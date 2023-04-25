@@ -9,13 +9,14 @@ JSP를 활용한 웹 페이지 생성
 
 ## 프로젝트 구성원
  - 강성빈(<https://github.com/achievebin>):
- - 김도욱():
+ - 김도욱(<https://github.com/nobody7518>):
  - 김성원(<https://github.com/zknrol>):
  - 김재현(<https://github.com/kjh7904321>):
  - 이성혁(<https://github.com/leecoder22>):
 
 ## 개발 환경
- -
+ - Java
+ - JDK
  - IDE: Eclipse EE 2020-09
  - Database: Oracle DB
 
