@@ -16,7 +16,7 @@ JSP를 활용한 웹 페이지 생성
 
 ## 개발 환경
  - Java
- - JDK
+ - JDK 11
  - IDE: Eclipse EE 2020-09
  - Database: Oracle DB
 
