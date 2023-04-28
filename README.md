@@ -18,7 +18,7 @@ JSP를 활용한 웹 페이지 생성
  - Java
  - JDK 11
  - IDE: Eclipse EE 2020-09
- - Database: Oracle DB
+ - Database: Oracle DB XE 11.2
 
 ## 주요 기능
 1. 로그인, 회원가입 및 탈퇴
