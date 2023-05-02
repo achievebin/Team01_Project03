@@ -11,8 +11,8 @@
 <body>
 <%
 // 로그인 폼으로부터 받은 아이디와 패스워드
-String signInId = request.getParameter("id"); 
-String signInPwd = request.getParameter("pw");  
+String signInId = request.getParameter("sinid"); 
+String signInPwd = request.getParameter("sinpw");  
 
 // web.xml에서 가져온 데이터베이스 연결 정보
 String oracleDriver = application.getInitParameter("OracleDriver");
@@ -29,12 +29,12 @@ dao.close();
 if (memberDto.getId() != null) {
     // 로그인 성공
     session.setAttribute("signInId", memberDto.getId()); 
-    response.sendRedirect("./index.jsp");
+    response.sendRedirect("index.jsp");
 }
 else {
     // 로그인 실패
     request.setAttribute("LoginErrMsg", "로그인 오류입니다."); 
-    request.getRequestDispatcher("./signIn.jsp").forward(request, response);
+    request.getRequestDispatcher("signIn.jsp").forward(request, response);
 }
 %>
 </body>

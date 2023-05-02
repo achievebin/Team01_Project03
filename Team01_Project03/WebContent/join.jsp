@@ -18,7 +18,7 @@
 		<legend>신규 회원 정보</legend>
 		<div>
 		<label>아이디</label>
-		<input type="text" placeholder="아이디를 입력헤주세요" name="id" required>
+		<input type="text" placeholder="아이디를 입력해주세요" name="id" required>
 		</div>
 		<div>
 		<label>비밀번호</label>
@@ -33,7 +33,7 @@
 		<legend>개인 정보</legend>
 		<div>
 		<label>이름</label>
-		<input type="text" placeholder="성과 이름을 기입" name="name" required autofocus>
+		<input type="text" placeholder="성과 이름을 기입" name="name" required>
 		</div>
 		<div>
 		<label>생년월일</label>
@@ -55,7 +55,7 @@
 		<option>KT</option>
 		<option>LG</option>
 		</select> -->
-		<input type="tel" placeholder="123-456-7890" name="phone" required>
+		<input type="tel" placeholder="010-1234-5678" name="phone" required>
 		</div>
 		<div>
 		<label>e-mail</label>

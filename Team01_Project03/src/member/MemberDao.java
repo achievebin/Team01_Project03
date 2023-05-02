@@ -1,7 +1,5 @@
 package member;
 
-import java.sql.Date;
-
 import connect.JDBConnect;
 
 public class MemberDao extends JDBConnect {
@@ -11,44 +9,34 @@ public class MemberDao extends JDBConnect {
 		super(drv, url, id, pw);
 	}
 	
-	public MemberDto join(String jnid, String jnpw, String jnname, Date jnbirth, String jnsex, String jnaddress, String jnphone,
-			String jnemail) {
-		MemberDto dto = new MemberDto();
-		String query =  "INSERT INTO memberidtable VALUES (member_seq.NEXTVAL,"
-						+ "?, ?, ?, ?, ?, ?, TRUNC(SYSDATE))";
+	public int join(MemberDto dto) {
+		int result = 0;
+		String query =  "INSERT INTO memberidtbl VALUES"
+		+ "(member_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, TRUNC(SYSDATE))";
 		
 		try {
 			psmt = con.prepareStatement(query);
-            psmt.setString(1, jnid); 
-            psmt.setString(2, jnpw);
-            psmt.setString(3, jnname);
-            psmt.setDate(4, jnbirth);
-            psmt.setString(5, jnsex);
-            psmt.setString(6, jnaddress);
-            psmt.setString(7, jnphone);
-            psmt.setString(8, jnemail);
-            rs = psmt.executeQuery();
+            psmt.setString(1, dto.getId()); 
+            psmt.setString(2, dto.getPw());
+            psmt.setString(3, dto.getName());
+            psmt.setDate(4, dto.getBirth());
+            psmt.setString(5, dto.getSex());
+            psmt.setString(6, dto.getAddress());
+            psmt.setString(7, dto.getPhone());
+            psmt.setString(8, dto.getEmail());
+            result = psmt.executeUpdate();
             
-            if (rs.next()) {
-            	dto.setId(rs.getString("id"));
-            	dto.setPw(rs.getString("pw"));
-            	dto.setName(rs.getString("name"));
-            	dto.setBirth(rs.getDate("birth"));
-            	dto.setSex(rs.getString("sex"));
-            	dto.setAddress(rs.getString("address"));
-            	dto.setPhone(rs.getString("phone"));
-            	dto.setEmail(rs.getString("email"));
-            } 
+            System.out.println(psmt.toString());
 		} catch (Exception e) {
         	e.printStackTrace();
         }
-		return dto;
+		return result;
 	}
 	
 	// 명시한 아이디/패스워드와 일치하는 회원 정보를 반환합니다.
 	public MemberDto signIn(String siid, String sipw) {
 		MemberDto dto = new MemberDto(); // 회원 정보 DTO 객체 생성
-		String query = "SELECT * FROM memberidtable WHERE mit_id=? AND mit_pw=?";
+		String query = "SELECT * FROM memberidtbl WHERE mit_id=? AND mit_pw=?";
 		
 		try {
 			// 쿼리 실행
@@ -60,8 +48,8 @@ public class MemberDao extends JDBConnect {
             // 결과 처리
             if (rs.next()) {
             	// 쿼리 결과로 얻은 회원 정보를 DTO 객체에 저장
-            	dto.setId(rs.getString("id"));
-            	dto.setPw(rs.getString("pw"));
+            	dto.setId(rs.getString("mit_id"));
+            	dto.setPw(rs.getString("mit_pw"));
             }
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,54 +57,39 @@ public class MemberDao extends JDBConnect {
 		return dto;
 	}
 	
-	public MemberDto update(String upid, String uppw, String upname, Date upbirth, String upsex, String upaddress, String upphone,
-			String upemail) {
-		MemberDto dto = new MemberDto();
-		String query = "UPDATE memberidtable SET mit_pw=?, mit_name=?, mit_birth=?,"
+	public int update(MemberDto dto) {
+		int result = 0;
+		String query = "UPDATE memberidtbl SET mit_pw=?, mit_name=?, mit_birth=?,"
 						+ "mit_sex= ?, mit_address=?, mit_phone=?,"
 						+ "mit_email=? WHERE mit_id=?";
 		try {
 			psmt = con.prepareStatement(query); 
-            psmt.setString(1, uppw);
-            psmt.setString(2, upname);
-            psmt.setDate(3, upbirth);
-            psmt.setString(4, upsex);
-            psmt.setString(5, upaddress);
-            psmt.setString(6, upphone);
-            psmt.setString(7, upemail);
-            psmt.setString(8, upid);
-            rs = psmt.executeQuery();
-			if (rs.next()) {
-            	dto.setPw(rs.getString("pw"));
-            	dto.setName(rs.getString("name"));
-            	dto.setBirth(rs.getDate("birth"));
-            	dto.setSex(rs.getString("sex"));
-            	dto.setAddress(rs.getString("address"));
-            	dto.setPhone(rs.getString("phone"));
-            	dto.setEmail(rs.getString("email"));
-            	dto.setId(rs.getString("id"));
-			}
+            psmt.setString(1, dto.getPw());
+            psmt.setString(2, dto.getName());
+            psmt.setDate(3, dto.getBirth());
+            psmt.setString(4, dto.getSex());
+            psmt.setString(5, dto.getAddress());
+            psmt.setString(6, dto.getPhone());
+            psmt.setString(7, dto.getEmail());
+            psmt.setString(8, dto.getId());
+            result = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dto;
+		return result;
 	}
 	
-	public  MemberDto withdraw(String wdid) {
-		MemberDto dto = new MemberDto();
-		String query = "DELETE FROM memberidtable WHERE mit_id=?";
+	public int withdraw(String wdid) {
+		int result = 0;
+		String query = "DELETE FROM memberidtbl WHERE mit_id=?";
 		try {
 			psmt = con.prepareStatement(query); 
             psmt.setString(1, wdid);
-            rs = psmt.executeQuery();
-            
-            if (rs.next()) {
-            	dto.setId(rs.getString("id"));
-            }
+            result = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dto;
+		return result;
 	}
 	
 }

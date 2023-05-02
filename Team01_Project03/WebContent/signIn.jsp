@@ -10,13 +10,15 @@
 	<jsp:include page="./header.jsp"/>
 	<span style="color: red; font-size: 1.2em;"> 
         <%= request.getAttribute("LoginErrMsg") == null ?
-                "" : request.getAttribute("LoginErrMsg") %>
+                "" : request.getAttribute("LoginErrMsg")%>
+        <%= request.getAttribute("joinOKMsg") == null ?
+                "" : request.getAttribute("joinOKMsg")%>
     </span>
-	<form action="./signInProcess.jsp">
+	<form action="./signInProcess.jsp" method="post">
 		<label>아이디</label>
-		<input type="text" name="id" required><br/>
+		<input type="text" name="sinid" required><br/>
 		<label>비밀번호</label>
-		<input type="password" name="pw" required><br/>
+		<input type="password" name="sinpw" required><br/>
 		<input type="submit" value="로그인">
 	</form>
 	<div>

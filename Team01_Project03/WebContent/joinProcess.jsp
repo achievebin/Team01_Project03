@@ -11,13 +11,15 @@
 </head>
 <body>
 <%
-DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-
 // 회원가입 폼으로부터 받은 내용
 String joinId = request.getParameter("id");
 String joinPwd = request.getParameter("pw");
 String joinName = request.getParameter("name");
-Date joinBirth = (Date)formatter.parse(request.getParameter("birth"));
+//https://stackoverflow.com/questions/21575253/classcastexception-java-util-date-cannot-be-cast-to-java-sql-date
+DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+java.util.Date utildate = formatter.parse(request.getParameter("birth"));
+java.sql.Date joinBirth = new java.sql.Date(utildate.getTime());
+
 String joinSex = request.getParameter("sex");
 String joinAddress = request.getParameter("address");
 String joinPhone = request.getParameter("phone");
@@ -32,19 +34,19 @@ String oraclePwd = application.getInitParameter("OraclePwd");
 
 // 회원 테이블 DAO를 통해 회원 정보 DTO 획득
 MemberDao dao = new MemberDao(oracleDriver, oracleURL, oracleId, oraclePwd);
-MemberDto memberDto = dao.join(joinId, joinPwd, joinName, joinBirth, joinSex, joinAddress, joinPhone, joinEmail);
+MemberDto dto = new MemberDto(joinId, joinPwd, joinName, joinBirth, joinSex, joinAddress, joinPhone, joinEmail);
+int joinresult = dao.join(dto);
 dao.close();
 
 // 회원가입 성공 여부에 따른 처리
-if (memberDto.getId() != null) {
+if (joinresult != 0) {
     // 회원가입 성공
-    //session.setAttribute("joinId", memberDto.getId());
-    response.sendRedirect("./signIn.jsp");
+    response.sendRedirect("signIn.jsp");
 }
-else {
+ else {
     // 회원가입 실패
     request.setAttribute("joinErrMsg", "회원가입 오류입니다.");
-    request.getRequestDispatcher("./join.jsp").forward(request, response);
+    request.getRequestDispatcher("join.jsp").forward(request, response);
 }
 %>
 </body>

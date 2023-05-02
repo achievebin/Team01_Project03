@@ -13,9 +13,7 @@ public class MemberDto {
 	private String phone;
 	private String email;
 	
-	public MemberDto() {
-		
-	}
+	public MemberDto() {}
 	
 	public MemberDto(String id, String pw, String name, Date birth, String sex, String address, String phone,
 			String email) {
@@ -29,7 +27,7 @@ public class MemberDto {
 		this.phone = phone;
 		this.email = email;
 	}
-	
+
 	// 멤버 변수별 게터와 세터
 	public String getId() {
 		return id;
