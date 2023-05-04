@@ -9,6 +9,7 @@ public class MemberDao extends JDBConnect {
 		super(drv, url, id, pw);
 	}
 	
+	//회원가입:
 	public int join(MemberDto dto) {
 		int result = 0;
 		String query =  "INSERT INTO memberidtbl VALUES"
@@ -25,15 +26,13 @@ public class MemberDao extends JDBConnect {
             psmt.setString(7, dto.getPhone());
             psmt.setString(8, dto.getEmail());
             result = psmt.executeUpdate();
-            
-            System.out.println(psmt.toString());
 		} catch (Exception e) {
         	e.printStackTrace();
         }
 		return result;
 	}
 	
-	// 명시한 아이디/패스워드와 일치하는 회원 정보를 반환합니다.
+	//로그인: 기입한 아이디·패스워드와 일치하는 회원 정보를 반환합니다.
 	public MemberDto signIn(String siid, String sipw) {
 		MemberDto dto = new MemberDto(); // 회원 정보 DTO 객체 생성
 		String query = "SELECT * FROM memberidtbl WHERE mit_id=? AND mit_pw=?";
@@ -57,6 +56,34 @@ public class MemberDao extends JDBConnect {
 		return dto;
 	}
 	
+	//내 페이지: 아이디와 일치하는 회원 정보를 반환합니다.
+	public MemberDto getInfo(String gid) {
+		MemberDto dto = new MemberDto();
+		String query = "SELECT * FROM memberidtbl WHERE mit_id=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, gid);
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				dto.setId(rs.getString("mit_id"));
+				dto.setPw(rs.getString("mit_pw"));
+				dto.setName(rs.getString("mit_name"));
+				dto.setBirth(rs.getDate("mit_birth"));
+				dto.setSex(rs.getString("mit_sex"));
+				dto.setAddress(rs.getString("mit_address"));
+				dto.setPhone(rs.getString("mit_phone"));
+				dto.setEmail(rs.getString("mit_email"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	
+	
+	//회원정보수정: 아이디와 일치하는 회원 정보를 찾아 수정한 정보를 갱신한다.
 	public int update(MemberDto dto) {
 		int result = 0;
 		String query = "UPDATE memberidtbl SET mit_pw=?, mit_name=?, mit_birth=?,"
@@ -79,6 +106,7 @@ public class MemberDao extends JDBConnect {
 		return result;
 	}
 	
+	//회원탈퇴:
 	public int withdraw(String wdid) {
 		int result = 0;
 		String query = "DELETE FROM memberidtbl WHERE mit_id=?";

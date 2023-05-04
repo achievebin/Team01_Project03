@@ -63,7 +63,7 @@
 		</div>
 		</fieldset>
 		<input type="submit" value="가입하기">
-		<input type="button" value="돌아가기" onclick="">
+		<input type="button" value="돌아가기" onclick="location.href='index.jsp';">
 	</form>
 	<jsp:include page="./footer.jsp"/>
 </body>
