@@ -14,7 +14,7 @@
 </div>
 <!-- 검색창이 들어갈 구역 -->
 <div id="search">
-	<h2>검색창 대용</h2>
+	<jsp:include page="./search.jsp"/>
 </div>
 <!-- 생성할 하위 페이지로 넘겨줄 구역 -->
 <nav>
@@ -42,7 +42,7 @@
         <% } else { %>
         	<%= session.getAttribute("signInId") %>
         	<ul>
-        		<li><a href="./myPage.jsp">내 페이지</a></li>
+        		<li><a href="./myPageProcess.jsp">내 페이지</a></li>
         		<li><a href="./signOut.jsp">로그아웃</a></li>
             </ul>
         <% } %>
