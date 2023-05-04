@@ -28,7 +28,7 @@ function deletePost() {
 </script>
 </head>
 <body>
-<jsp:include page="../Common/Link.jsp" />  <!-- 공통 링크 -->
+<%@ include file="../Common/header.jsp/" %>
 
 <h2>회원제 게시판 - 내용 보기(View)</h2>
 <form name="writeFrm">
@@ -55,7 +55,7 @@ function deletePost() {
         </tr>
         <tr>
             <td colspan="4" align="center">
-                <%
+                <--<%
                 if (session.getAttribute("UserId") != null
                     && session.getAttribute("UserId").toString().equals(dto.getMit_id())) {
                 %>
@@ -73,5 +73,6 @@ function deletePost() {
         </tr>
     </table>
 </form>
+<%@ include file="../Common/footer.jsp" %>
 </body>
 </html>

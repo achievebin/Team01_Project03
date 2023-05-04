@@ -7,13 +7,13 @@
 <title>회원가입</title>
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
+	<%@ include file="./Common/header.jsp" %>
 	<span style="color: red; font-size: 1.2em;"> 
 	        <%= request.getAttribute("joinErrMsg") == null ?
 	                "" : request.getAttribute("joinErrMsg") %>
 	</span>
 	<h2>회원가입</h2>
-	<form action="./joinProcess.jsp" method="post">
+	<form action="../joinProcess.jsp" method="post">
 		<fieldset>
 		<legend>신규 회원 정보</legend>
 		<div>
@@ -65,6 +65,6 @@
 		<input type="submit" value="가입하기">
 		<input type="button" value="돌아가기" onclick="location.href='index.jsp';">
 	</form>
-	<jsp:include page="./footer.jsp"/>
+	<%@ include file="./Common/footer.jsp" %>
 </body>
 </html>

@@ -18,7 +18,7 @@ String yourEmail = (String)request.getAttribute("mypageEmail");
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
+	<%@ include file="./Common/header.jsp/" %>
 	<section>
 		<h2> <%=yourId %>님, 환영합니다.</h2>
 		<h3>회원 등급은 Bronze입니다.</h3>
@@ -81,6 +81,6 @@ String yourEmail = (String)request.getAttribute("mypageEmail");
 			<li><a href="./bookmark.jsp">관심목록</a></li>
 		</ul>
 	</aside>
-	<jsp:include page="./footer.jsp"/>
+	<%@ include file="./Common/footer.jsp/" %>
 </body>
 </html>

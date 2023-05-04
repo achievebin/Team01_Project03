@@ -7,8 +7,9 @@
     pageEncoding="UTF-8"%>
 <%
 // DAO를 생성해 DB에 연결
-NoticetblDAO ndao = new NoticetblDAO(application);
-
+NoticetblDAO dao = new NoticetblDAO(application);
+NoticetblDTO dto = dao.selectView("noc_num");        // 게시물 가져오기 
+dao.close();                               // DB 연결 해제
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>(); 
 String searchField = request.getParameter("searchField");
@@ -18,10 +19,11 @@ if (searchWord != null) {
     param.put("searchWord", searchWord);
 }
 
-int totalCount = ndao.selectCount(param);  // 게시물 수 확인
-List<NoticetblDTO> boardLists = ndao.selectList(param);  // 게시물 목록 받기
-ndao.close();  // DB 연결 닫기
+int totalCount = dao.selectCount(param);  // 게시물 수 확인
+List<NoticetblDTO> boardLists = dao.selectList(param);  // 게시물 목록 받기
+dao.close();  // DB 연결 닫기
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,8 +31,9 @@ ndao.close();  // DB 연결 닫기
 <title>회원제 게시판</title>
 </head>
 <body>
-    <jsp:include page="../signIn.jsp" /> 
-    <h2>목록 보기(List)</h2>
+ 	<jsp:include page="/Common/header.jsp" />
+ 	
+    <h2>공지사항</h2>
     <!-- 검색폼 --> 
     <form method="get">  
     <table border="1" width="90%">
@@ -71,18 +74,18 @@ if (boardLists.isEmpty()) {
 else {
     // 게시물이 있을 때 
     int virtualNum = 0;  // 화면상에서의 게시물 번호
-    for (NoticetblDTO dto : boardLists)
+    for (NoticetblDTO odto : boardLists)
     {
         virtualNum = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
 %>
         <tr align="center">
             <td><%= virtualNum %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="View.jsp?num=<%= dto.getNoc_num() %>"><%= dto.getNoc_title() %></a> 
+                <a href="View.jsp?num=<%= odto.getNoc_num() %>"><%= odto.getNoc_title() %></a> 
             </td>
-            <td align="center"><%= dto.getMit_id() %></td>          <!--작성자 아이디-->
+            <td align="center"><%= odto.getMit_id() %></td>          <!--작성자 아이디-->
 
-            <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
+            <td align="center"><%= odto.getPostdate() %></td>    <!--작성일-->
         </tr>
 <%
     }
@@ -96,5 +99,7 @@ else {
                 </button></td>
         </tr>
     </table> 
+
+    <jsp:include page="/Common/footer.jsp" />
 </body>
 </html>
