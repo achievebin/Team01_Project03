@@ -28,8 +28,8 @@
 		<li><a href="./myReservation.jsp">예약정보</a></li>
 		<li>고객지원
 			<ul>
-				<li><a href=".notice/.jsp">공지사항</a></li>
-				<li><a href=".customService/.jsp">고객센터</a></li>
+				<li><a href="./notice.jsp">공지사항</a></li>
+				<li><a href="./customService.jsp">고객센터</a></li>
 			</ul>
 		</li>
 	</ul>
