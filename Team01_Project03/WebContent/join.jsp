@@ -37,7 +37,7 @@
 		</div>
 		<div>
 		<label>생년월일</label>
-		<input type="date" name="birth">
+		<input type="date" name="birth" required>
 		</div>
 		<div>
 		<label>성별</label>
