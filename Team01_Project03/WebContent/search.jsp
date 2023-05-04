@@ -7,9 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
-		<input type="text"/>
-		<input type="submit" value="찾기"/>
-	</form>
+
+	<!-- 검색폼 -->
+    <form action="accommodation.jsp" method="GET">
+    <tr>
+        <td align="center">
+            <input type="text" name="accsearch" />
+            <input type="submit" value="검색하기" />
+            <input type="hidden" name="searchField" value="act_name" />
+            <a href="./accommodation.jsp">
+        </td>
+    </tr>
+</form>
+	
+
+	
 </body>
 </html>
