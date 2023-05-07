@@ -16,7 +16,7 @@ String joinId = request.getParameter("id");
 String joinPwd = request.getParameter("pw");
 String joinName = request.getParameter("name");
 //https://stackoverflow.com/questions/21575253/classcastexception-java-util-date-cannot-be-cast-to-java-sql-date
-DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date utildate = formatter.parse(request.getParameter("birth"));
 java.sql.Date joinBirth = new java.sql.Date(utildate.getTime());
 

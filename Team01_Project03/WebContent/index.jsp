@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<%@ include file = "./header.jsp" %>
+<jsp:include page="/Common/header.jsp" />
 <body>
 임시 내용
 </body>
-<%@ include file = "./footer.jsp" %>
-</html>
+<jsp:include page="/Common/footer.jsp" />
+</html> 

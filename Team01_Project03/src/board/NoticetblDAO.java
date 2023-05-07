@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
+import connect.JDBConnect;
 
-public class NoticetblDAO extends connect.JDBConnect {
+public class NoticetblDAO extends JDBConnect {
     public NoticetblDAO(ServletContext application) {
         super(application);
     }
@@ -13,7 +14,7 @@ public class NoticetblDAO extends connect.JDBConnect {
     // 검색 조건에 맞는 게시물의 개수를 반환합니다.
     public int selectCount(Map<String, Object> map) {
         int totalCount = 0; // 결과(게시물 수)를 담을 변수
-
+        
         // 게시물 수를 얻어오는 쿼리문 작성
         String query = "SELECT COUNT(*) FROM Noticetbl";
         if (map.get("searchWord") != null) {
@@ -54,11 +55,11 @@ public class NoticetblDAO extends connect.JDBConnect {
                 // 한 행(게시물 하나)의 내용을 DTO에 저장
             	NoticetblDTO dto = new NoticetblDTO(); 
 
-                dto.setNoc_num(rs.getString("noc_num"));          // 일련번호
+                dto.setNoc_num(rs.getString("noc_number"));          // 일련번호
                 dto.setNoc_title(rs.getString("noc_title"));      // 제목
                 dto.setNoc_content(rs.getString("noc_content"));  // 내용
-                dto.setMit_id(rs.getString("noc_date"));            // 작성자 작성일
-                dto.setPostdate(rs.getDate("mit_id"));  // 아이디
+                dto.setMit_id(rs.getString("mit_id"));  // 아이디
+                dto.setPostdate(rs.getDate("noc_date"));  // 작성자 작성일
                 //dto.setVisitcount(rs.getString("visitcount"));  // 조회수
 
                 bbs.add(dto);  // 결과 목록에 저장
@@ -79,7 +80,7 @@ public class NoticetblDAO extends connect.JDBConnect {
         // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
                      + "    SELECT Tb.*, ROWNUM rNum FROM ( "
-                     + "        SELECT * FROM NoticetblDTO ";
+                     + "        SELECT * FROM Noticetbl ";
 
         // 검색 조건 추가 
         if (map.get("searchWord") != null) {
@@ -109,6 +110,7 @@ public class NoticetblDAO extends connect.JDBConnect {
                 dto.setNoc_content(rs.getString("noc_content"));  
                 dto.setPostdate(rs.getDate("noc_date"));     
                 dto.setMit_id(rs.getString("mit_id"));
+                
                 //dto.setVisitcount(rs.getString("visitcount"));
 
                 // 반환할 결과 목록에 게시물 추가
@@ -131,16 +133,34 @@ public class NoticetblDAO extends connect.JDBConnect {
         try {
             // INSERT 쿼리문 작성 
             String query = "INSERT INTO Noticetbl ( "
-                         + " noc_num, noc_title, noc_content, noc_date, mit_id) "
+                         + " noc_number, noc_title, noc_content, noc_date, mit_id) "
                          + " VALUES ( "
-                         + " seq_board_num.NEXTVAL, ?, ?, ?, 0)";  
-
+                         + " seq_board_num.NEXTVAL, ?, ?, sysdate, ?)";  
+            // 오류발생구간
             psmt = con.prepareStatement(query);  // 동적 쿼리 
-            psmt.setString(1, dto.getNoc_title());  
-            psmt.setString(2, dto.getNoc_content());
-            psmt.setString(3, dto.getMit_id());  
+             
+            psmt.setString(1, dto.getNoc_title());
+            psmt.setString(2, dto.getNoc_content());          
+            psmt.setString(3, dto.getMit_id());   
             
             result = psmt.executeUpdate(); 
+			/*
+			 * if (result == 1) { try { // 쿼리문 템플릿 String quer =
+			 * "insert into Noticetbl(title) values(?,?,?,?,?)";
+			 * 
+			 * // 쿼리문 완성 psmt = con.prepareStatement(quer); psmt.setString(1,
+			 * dto.getNoc_num()); psmt.setString(2, dto.getNoc_title()); psmt.setString(3,
+			 * dto.getNoc_content()); psmt.setDate(4, dto.getPostdate()); psmt.setString(5,
+			 * dto.getMit_id()); // 오류.
+			 * 
+			 * // 쿼리문 실행 result = psmt.executeUpdate();
+			 * 
+			 * } catch (Exception e) { System.out.println("게시물 입력 중 예외 발생");
+			 * e.printStackTrace(); }
+			 * 
+			 * 
+			 * }
+			 */
         }
         catch (Exception e) {
             System.out.println("게시물 입력 중 예외 발생");
@@ -149,29 +169,36 @@ public class NoticetblDAO extends connect.JDBConnect {
         
         return result;
     }
-
+    
 
     // 지정한 게시물을 찾아 내용을 반환합니다.
     public NoticetblDTO selectView(String num) { 
     	NoticetblDTO dto = new NoticetblDTO();
         
         // 쿼리문 준비
-        String query = "SELECT B.*, M.name " 
-                     + " FROM memberidtbl M INNER JOIN Noticetbl B " 
-                     + " ON M.id=B.id "
-                     + " WHERE noc_num=?";
+		/*
+		 * String query = "SELECT B.*, M.name " +
+		 * " FROM memberidtbl M INNER JOIN Noticetbl B " + " ON M.id=B.id " +
+		 * " WHERE noc_num=?";
+		 */
+    	
+    	String query = "SELECT *" 
+                + " FROM Noticetbl" 
+                + " WHERE noc_number=?";
 
         try {
             psmt = con.prepareStatement(query);
-            psmt.setString(1, num);    // 인파라미터를 일련번호로 설정 
+            //psmt.setString(1, num);    // 인파라미터를 일련번호로 설정
+            //psmt.setInt(1, Integer.parseInt(num)); // 문자열을 정수형으로 변환하여 인파라미터 설정
+            psmt.setInt(1, Integer.parseInt(num)); // noc_number를 int로 설정
             rs = psmt.executeQuery();  // 쿼리 실행 
 
             // 결과 처리
             if (rs.next()) {
-                dto.setNoc_num(rs.getString(1)); 
-                dto.setNoc_title(rs.getString(2));
+                dto.setNoc_num(rs.getString("noc_number")); 
+                dto.setNoc_title(rs.getString("noc_title"));
                 dto.setNoc_content(rs.getString("noc_content"));
-                dto.setPostdate(rs.getDate("noc_postdate"));
+                dto.setPostdate(rs.getDate("noc_date"));
                 dto.setMit_id(rs.getString("mit_id"));
                 //dto.setName(rs.getString("name")); 
                 //dto.setVisitcount(rs.getString(6));
@@ -186,7 +213,7 @@ public class NoticetblDAO extends connect.JDBConnect {
         return dto; 
     }
 
-    // 지정한 게시물의 조회수를 1 증가시킵니다.
+     //지정한 게시물의 조회수를 1 증가시킵니다.
 //    public void updateVisitCount(String num) { 
 //        // 쿼리문 준비 
 //        String query = "UPDATE Noticetbl SET "
@@ -212,7 +239,7 @@ public class NoticetblDAO extends connect.JDBConnect {
             // 쿼리문 템플릿 
             String query = "UPDATE Noticetbl SET "
                          + " noc_title=?, noc_content=? "
-                         + " WHERE noc_num=?";
+                         + " WHERE noc_number=?";
             
             // 쿼리문 완성
             psmt = con.prepareStatement(query);
@@ -237,7 +264,7 @@ public class NoticetblDAO extends connect.JDBConnect {
 
         try {
             // 쿼리문 템플릿
-            String query = "DELETE FROM Noticetbl WHERE noc_num=?"; 
+            String query = "DELETE FROM Noticetbl WHERE noc_number=?"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(query); 

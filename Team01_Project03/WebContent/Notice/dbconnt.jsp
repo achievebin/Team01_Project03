@@ -7,8 +7,8 @@
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	String uid = "superme";
-	String pwd = "super";
+	String uid = "testerid";
+	String pwd = "testerpw";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String sql = "select * from MEMBERIDTBLE";%>
 <!DOCTYPE html>

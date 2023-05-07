@@ -7,6 +7,14 @@ public class NoticetblDTO {
     private String noc_content;
     private String mit_id;
     private java.sql.Date postdate;
+    private String noc_date;
+    
+   	public String getNoc_date() {
+		return noc_date;
+	}
+	public void setNoc_date(String noc_date) {
+		this.noc_date = noc_date;
+	}
 	public String getNoc_num() {
 		return noc_num;
 	}

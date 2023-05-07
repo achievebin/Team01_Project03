@@ -22,7 +22,7 @@
 		<input type="submit" value="로그인">
 	</form>
 	<div>
-	아직 회원이 아니신가요? <a href="join.jsp">회원가입하기</a>
+	아직 회원이 아니신가요? <a href="./join.jsp">회원가입하기</a>
 	</div>
 	<div>
 	아이디나 비밀번호를 잊어버리셨나요?

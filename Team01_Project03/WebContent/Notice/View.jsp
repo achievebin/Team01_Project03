@@ -28,7 +28,7 @@ function deletePost() {
 </script>
 </head>
 <body>
-<%@ include file="../Common/header.jsp/" %>
+<%@ include file="/Common/header.jsp" %>
 
 <h2>회원제 게시판 - 내용 보기(View)</h2>
 <form name="writeFrm">
@@ -37,6 +37,8 @@ function deletePost() {
         <tr>
             <td>번호</td>
             <td><%= dto.getNoc_num() %></td>
+           <%--  <td><%= Integer.toString(dto.getNoc_num()) %></td> <!-- 형변환 --> --%>
+            
             <td>작성자</td>
             <td><%= dto.getMit_id() %></td>
         </tr>
@@ -66,13 +68,13 @@ function deletePost() {
                 <%
                 }
                 %>
-                <button type="button" onclick="location.href='List.jsp';">
+                <button type="button" onclick="location.href='NoticeList.jsp';">
                     목록 보기
                 </button>
             </td>
         </tr>
     </table>
 </form>
-<%@ include file="../Common/footer.jsp" %>
+<%@ include file="/Common/footer.jsp" %>
 </body>
 </html>

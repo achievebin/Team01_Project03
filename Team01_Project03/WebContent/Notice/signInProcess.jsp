@@ -29,12 +29,14 @@ dao.close();
 if (memberDto.getId() != null) {
     // 로그인 성공
     session.setAttribute("signInId", memberDto.getId()); 
-    response.sendRedirect("index.jsp");
+    response.sendRedirect("./Common/index.jsp");
 }
 else {
     // 로그인 실패
     request.setAttribute("LoginErrMsg", "로그인 오류입니다."); 
-    request.getRequestDispatcher("signIn.jsp").forward(request, response);
+    //request.getRequestDispatcher("signIn.jsp").forward(request, response);
+    request.getRequestDispatcher("/WEB-INF/views/signIn.jsp").forward(request, response);
+
 }
 %>
 </body>
