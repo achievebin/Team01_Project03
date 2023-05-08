@@ -9,7 +9,7 @@ public class MemberDao extends JDBConnect {
 		super(drv, url, id, pw);
 	}
 	
-	//회원가입:
+	//회원가입: 기입한 정보를 회원 테이블에 추가합니다.
 	public int join(MemberDto dto) {
 		int result = 0;
 		String query =  "INSERT INTO memberidtbl VALUES"
@@ -29,6 +29,29 @@ public class MemberDao extends JDBConnect {
 		} catch (Exception e) {
         	e.printStackTrace();
         }
+		return result;
+	}
+	
+	//아이디 중복 체크: 아이디가 일치하는 회원정보가 존재할 때 1, 그렇지 않을 때 0을 반환합니다.
+	public int findId(String fid) {
+		int result = -1;
+		String query = "SELECT mit_id FROM memberidtbl WHERE mit_id=?";
+		
+		try {
+			// 쿼리 실행
+			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
+			psmt.setString(1, fid);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				//존재
+				result = 1;
+			} else {
+				//부존재
+				result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
@@ -83,7 +106,7 @@ public class MemberDao extends JDBConnect {
 	}
 	
 	
-	//회원정보수정: 아이디와 일치하는 회원 정보를 찾아 수정한 정보를 갱신한다.
+	//회원정보수정: 아이디와 일치하는 회원 정보를 찾은 후 기입한 정보로 갱신합니다.
 	public int update(MemberDto dto) {
 		int result = 0;
 		String query = "UPDATE memberidtbl SET mit_pw=?, mit_name=?, mit_birth=?,"
@@ -106,7 +129,7 @@ public class MemberDao extends JDBConnect {
 		return result;
 	}
 	
-	//회원탈퇴:
+	//회원탈퇴: 아이디와 일치하는 회원 정보를 찾은 후 정보를 삭제합니다.
 	public int withdraw(String wdid) {
 		int result = 0;
 		String query = "DELETE FROM memberidtbl WHERE mit_id=?";
