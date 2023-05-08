@@ -22,7 +22,9 @@ public class AccommodationDAO extends JDBConnect {
             query += " WHERE " + map.get("searchText") + " "
                    + " LIKE '%" + map.get("accsearch") + "%'";
         }
-
+        
+        
+        
         try {
             stmt = con.createStatement();   // 쿼리문 생성
             rs = stmt.executeQuery(query);  // 쿼리 실행
@@ -57,7 +59,11 @@ public class AccommodationDAO extends JDBConnect {
                + "     ) Tb "
                + " ) "
                + " WHERE rNum BETWEEN ? AND ?"; 
-
+        
+        
+        
+        
+        
         try {
             // 쿼리문 완성 
             psmt = con.prepareStatement(query);

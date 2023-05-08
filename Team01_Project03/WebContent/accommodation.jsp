@@ -55,6 +55,7 @@ dao.close();  // DB 연결 닫기
 <body>
 <%@ include file = "./header.jsp" %>
 
+<%@ include file = "./accommodationDate.jsp" %>
 
 <%@ include file = "./sortbutton.jsp" %>
 
