@@ -12,12 +12,15 @@ AccommodationDAO dao = new  AccommodationDAO(application);
 
 //사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();
-String searchField = request.getParameter("searchField");
+String searchText = request.getParameter("searchText");
 String accsearch = request.getParameter("accsearch");
+String sortname = request.getParameter("sortname");
 if (accsearch != null) {
- param.put("searchField", searchField);
+ param.put("searchText", searchText);
  param.put("accsearch", accsearch);
+ param.put("sortname", sortname);
 }
+
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
 
@@ -52,6 +55,9 @@ dao.close();  // DB 연결 닫기
 <body>
 <%@ include file = "./header.jsp" %>
 
+
+<%@ include file = "./sortbutton.jsp" %>
+
  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
  
  
@@ -79,29 +85,41 @@ if (accommodationLists.isEmpty()) {
 <%
 }
 else {
- // 숙소 목록이 있을 때
- int virtualNum = 0;  // 화면상에의 숙소 번호
- int countNum = 0;
- for (AccommodationDTO dto : accommodationLists)
- {
-     // virtualNumber = totalCount--;  // 전체 숙소 수에서 시작해 1씩 감소
-     virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
+	// 숙소 목록이 있을 때
+	int virtualNum = 0;  // 화면상에의 숙소 번호
+	int countNum = 0;
+	for (AccommodationDTO dto : accommodationLists)
+		{
+		// virtualNumber = totalCount--;  // 전체 숙소 수에서 시작해 1씩 감소
+		virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
 %>
      <tr align="center">
          <td><%= virtualNum %></td>  <!--게시물 번호-->
          <td align="left">  <!--제목(+ 하이퍼링크)-->
              <a href="View.jsp?num=<%= dto.getAct_number() %>"><%= dto.getAct_name() %></a>
          </td>
-         <td align="center"><%= dto.getAct_address() %></td>          <!--작성자 아이디-->
-         <td align="center"><%= dto.getAct_phone() %></td>          <!--작성자 아이디-->
-         <td align="center"><%= dto.getAct_room() %></td>  <!--조회수-->
-         <td align="center"><%= dto.getAct_rcheck() %></td>    <!--작성일-->
+         <td align="center"><%= dto.getAct_address() %></td>        <!--소재지-->
+         <td align="center"><%= dto.getAct_phone() %></td>          <!--전화번호-->
+         <td align="center"><%= dto.getAct_room() %></td>  			<!--총 객실 수-->
+         <td align="center"><%= dto.getAct_rcheck() %></td>    		<!--예약가능 여부-->
      </tr>
 <%
  }
 }
 %>
 </table>
+
+</table>
+    <table border="1" width="90%">
+        <tr align="center">
+            <!--페이징 처리-->
+            <td>
+                <%= Page.pagingStr(totalCount, pageSize,
+                       blockPage, pageNum, request.getRequestURI()) %>  
+            </td>
+        </tr>
+    </table>
+
 <%@ include file = "./footer.jsp" %>
 </body>
 </html>

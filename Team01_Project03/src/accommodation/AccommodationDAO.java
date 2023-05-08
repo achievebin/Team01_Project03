@@ -19,7 +19,7 @@ public class AccommodationDAO extends JDBConnect {
         // 숙소 수를 얻어오는 쿼리문 작성
         String query = "SELECT COUNT(*) FROM accommodationtbl";
         if (map.get("accsearch") != null) {
-            query += " WHERE " + map.get("searchField") + " "
+            query += " WHERE " + map.get("searchText") + " "
                    + " LIKE '%" + map.get("accsearch") + "%'";
         }
 
@@ -49,7 +49,7 @@ public class AccommodationDAO extends JDBConnect {
 
         // 검색 조건 추가 
         if (map.get("accsearch") != null) {
-            query += " WHERE " + map.get("searchField")
+            query += " WHERE " + map.get("searchText")
                    + " LIKE '%" + map.get("accsearch") + "%' ";
         }
         

@@ -12,15 +12,13 @@
     <form action="accommodation.jsp" method="GET">
     <tr>
         <td align="center">
-            <input type="text" name="accsearch" />
-            <input type="submit" value="검색하기" />
-            <input type="hidden" name="searchField" value="act_name" />
-            <a href="./accommodation.jsp">
+            <button type="submit">검색하기</button>
+            <input type="hidden" name="searchText" value="act_name" />
+            
         </td>
     </tr>
 </form>
 	
 
-	
 </body>
 </html>
