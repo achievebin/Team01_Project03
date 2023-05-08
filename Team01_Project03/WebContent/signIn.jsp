@@ -14,7 +14,7 @@
         <%= request.getAttribute("joinOKMsg") == null ?
                 "" : request.getAttribute("joinOKMsg")%>
     </span>
-	<form action="./signInProcess.jsp" method="post">
+	<form name="signInForm" action="./signInProcess.jsp" method="post">
 		<label>아이디</label>
 		<input type="text" name="sinid" required><br/>
 		<label>비밀번호</label>

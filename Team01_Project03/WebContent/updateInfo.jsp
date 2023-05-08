@@ -27,7 +27,7 @@ String changeEmail = request.getParameter("prevEmail");
 	        <%= request.getAttribute("updateInfoErrMsg") == null ?
 	                "" : request.getAttribute("updateInfoErrMsg") %>
 	</span>
-<form action="./updateInfoProcess.jsp" method="post">
+<form name="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
 		<fieldset>
 		<legend>내 회원 정보</legend>
 		<div>

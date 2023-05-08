@@ -13,7 +13,7 @@
 	                "" : request.getAttribute("joinErrMsg") %>
 	</span>
 	<h2>회원가입</h2>
-	<form action="./joinProcess.jsp" method="post">
+	<form name="joinForm" action="./joinProcess.jsp" method="post">
 		<fieldset>
 		<legend>신규 회원 정보</legend>
 		<div>
