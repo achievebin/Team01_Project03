@@ -188,9 +188,8 @@ public class NoticetblDAO extends JDBConnect {
 
         try {
             psmt = con.prepareStatement(query);
-            //psmt.setString(1, num);    // 인파라미터를 일련번호로 설정
+            psmt.setString(1, num);    // 인파라미터를 일련번호로 설정
             //psmt.setInt(1, Integer.parseInt(num)); // 문자열을 정수형으로 변환하여 인파라미터 설정
-            psmt.setInt(1, Integer.parseInt(num)); // noc_number를 int로 설정
             rs = psmt.executeQuery();  // 쿼리 실행 
 
             // 결과 처리

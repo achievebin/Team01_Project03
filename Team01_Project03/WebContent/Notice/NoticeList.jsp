@@ -11,7 +11,7 @@
 NoticetblDAO dao = new NoticetblDAO(application);
 
 NoticetblDTO gdto = dao.selectView("noc_num");        // 게시물 가져오기 
-//dao.close();                               // DB 연결 해제
+dao.close();                               // DB 연결 해제
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>(); 
