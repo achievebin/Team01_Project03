@@ -44,7 +44,7 @@ param.put("end", end);
 /*** 페이지 처리 end ***/
 
 List<AccommodationDTO> accommodationLists = dao.selectListPage(param);  // 게시물 목록 받기
-dao.close();  // DB 연결 닫기
+dao.close();  // DB 연결호텔 닫기
 %>
 <!DOCTYPE html>
 <html>
@@ -53,8 +53,7 @@ dao.close();  // DB 연결 닫기
 <title>숙박업소 목록</title>
 </head>
 <body>
-<%@ include file = "./header.jsp" %>
-
+<%@ include file="../header.jsp" %>
 <%@ include file = "./accommodationDate.jsp" %>
 
 <%@ include file = "./sortbutton.jsp" %>
@@ -121,6 +120,6 @@ else {
         </tr>
     </table>
 
-<%@ include file = "./footer.jsp" %>
+ <%@ include file="../footer.jsp" %> 
 </body>
 </html>

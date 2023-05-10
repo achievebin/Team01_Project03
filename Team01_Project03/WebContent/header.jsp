@@ -7,7 +7,7 @@
 <title>헤더 영역</title>
 </head>
 <body>
-<header>
+
 <!-- 웹 사이트 이미지가 삽입될 구역 -->
 <div id="sitename">
 	<h1>이미지 대용</h1>
@@ -15,9 +15,9 @@
 <!-- 검색창이 들어갈 구역 -->
 <div id="search">
 	<!--검색 필드-->
-	<%@ include file="searchfield.jsp" %>
+	<%@ include file="./searchfield.jsp" %>
 	
-	<jsp:include page="./search.jsp"/>
+	<%@ include file="./search.jsp" %>
 </div>
 <!-- 생성할 하위 페이지로 넘겨줄 구역 -->
 <nav>
@@ -50,6 +50,6 @@
             </ul>
         <% } %>
 </div>
-</header>
+
 </body>
 </html>

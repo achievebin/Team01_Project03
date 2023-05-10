@@ -12,7 +12,7 @@
     <form action="accommodation.jsp" method="GET">
     <tr>
         <td align="center">
-        	
+        		
             <button type="submit">검색하기</button>
             <input type="hidden" name="searchText" value="act_name" />
             
