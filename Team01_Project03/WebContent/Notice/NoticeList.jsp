@@ -3,15 +3,14 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="board.NoticetblDAO"%>
 <%@ page import="board.NoticetblDTO"%>
+<%@ page import="board.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
 // DAO를 생성해 DB에 연결
 NoticetblDAO dao = new NoticetblDAO(application);
-
 NoticetblDTO gdto = dao.selectView("noc_num");        // 게시물 가져오기 
-dao.close();                               // DB 연결 해제
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>(); 
@@ -23,6 +22,26 @@ if (searchWord != null) {
 }
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
+
+/*** 페이지 처리 start ***/
+//전체 페이지 수 계산
+int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
+int totalPage = (int)Math.ceil((double)totalCount / pageSize); // 전체 페이지 수
+
+//현재 페이지 확인
+int pageNum = 1;  // 기본값
+String pageTemp = request.getParameter("pageNum");
+if (pageTemp != null && !pageTemp.equals(""))
+ pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
+
+//목록에 출력할 게시물 범위 계산
+int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
+int end = pageNum * pageSize; // 마지막 게시물 번호
+param.put("start", start);
+param.put("end", end);
+/*** 페이지 처리 end ***/
+
 List<NoticetblDTO> boardLists = dao.selectList(param);  // 게시물 목록 받기
 dao.close();  // DB 연결 닫기
 %>
@@ -34,7 +53,7 @@ dao.close();  // DB 연결 닫기
 <title>공지사항</title>
 </head>
 <body>
- 	<jsp:include page="/Common/header.jsp" />
+	<jsp:include page="../Common/header.jsp" />
  	
     <h2>공지사항</h2>
     <!-- 검색폼 --> 
@@ -85,7 +104,6 @@ else {
             <td><%= virtualNum %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
                  <a href="View.jsp?num=<%= dto.getNoc_num() %>"><%= dto.getNoc_title() %></a>
-					 <%-- <a href="View.jsp?num=<%= Integer.toString(dto.getNoc_num()) %>"><%= dto.getNoc_title() %></a> --%>
  
             </td>
             <td align="center"><%= dto.getMit_id() %></td>          <!--작성자 아이디-->
@@ -96,14 +114,19 @@ else {
     }
 }
 %>
-	</table>
-    <!--목록 하단의 [글쓰기] 버튼-->
+	<!--목록 하단의 [글쓰기] 버튼-->
     <table border="1" width="90%">
-        <tr align="right">
+        <tr align="center">
+            <!--페이징 처리-->
+            <td>
+                <%= BoardPage.pagingStr(totalCount, pageSize,
+                       blockPage, pageNum, request.getRequestURI()) %>  
+            </td>
+            <!--글쓰기 버튼-->
             <td><button type="button" onclick="location.href='NoticeWrite.jsp';">글쓰기
                 </button></td>
         </tr>
-    </table> 
+    </table>
 
     <jsp:include page="/Common/footer.jsp" />
 </body>

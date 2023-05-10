@@ -37,19 +37,21 @@ function deletePost() {
         <tr>
             <td>번호</td>
             <td><%= dto.getNoc_num() %></td>
-           <%--  <td><%= Integer.toString(dto.getNoc_num()) %></td> <!-- 형변환 --> --%>
-            
+             
             <td>작성자</td>
             <td><%= dto.getMit_id() %></td>
         </tr>
+        
         <tr>
             <td>작성일</td>
             <td><%= dto.getPostdate() %></td>
         </tr>
+        
         <tr>
             <td>제목</td>
             <td colspan="3"><%= dto.getNoc_title() %></td>
         </tr>
+        
         <tr>
             <td>내용</td>
             <td colspan="3" height="100">
@@ -57,12 +59,12 @@ function deletePost() {
         </tr>
         <tr>
             <td colspan="4" align="center">
-                <--<%
-                if (session.getAttribute("UserId") != null
-                    && session.getAttribute("UserId").toString().equals(dto.getMit_id())) {
+                <%
+                if (session.getAttribute("signInId") != null
+                    && session.getAttribute("signInId").toString().equals(dto.getMit_id())) {
                 %>
                 <button type="button"
-                        onclick="location.href='Edit.jsp?num=<%= dto.getNoc_num() %>';">
+                        onclick="location.href='NoticeEdit.jsp?num=<%= dto.getNoc_num() %>';">
                     수정하기</button>
                 <button type="button" onclick="deletePost();">삭제하기</button> 
                 <%

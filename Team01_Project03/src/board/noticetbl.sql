@@ -1,12 +1,12 @@
--- °øÁö»çÇ× ½ÃÄö½º »ı¼º
-CREATE SEQUENCE seq_board_num
+-- ê³µì§€ì‚¬í•­ ì‹œí€€ìŠ¤
+CREATE SEQUENCE seq_Notice_num
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 99999
     NOMINVALUE
     NOCYCLE;
 
--- °øÁö»çÇ× Å×ÀÌºí    
+-- ê³µì§€ì‚¬í•­ í…Œì´ë¸”
 create table Noticetbl(
     noc_number varchar2(8) primary key,
     noc_title varchar2(100),
@@ -15,9 +15,9 @@ create table Noticetbl(
     mit_id varchar2(12)
 );
   
--- ¿¹½Ã ÄÚµå
+-- ë”ë¯¸ë°ì´í„°
 insert into Noticetbl
-values (seq_Notice_num.NEXTVAL, 'Ã¹¹øÂ° °øÁö»çÇ×', '³ª¿Í¶ó °øÁö»çÇ×', sysdate, 'master');
+values (seq_Notice_num.NEXTVAL, 'ê³µì§€ì‚¬í•­', 'ì˜¤ëŠ˜ì ì‹¬ì€...', sysdate, 'master');
 
 
 commit;

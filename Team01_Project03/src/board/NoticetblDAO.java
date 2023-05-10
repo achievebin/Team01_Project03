@@ -135,7 +135,7 @@ public class NoticetblDAO extends JDBConnect {
             String query = "INSERT INTO Noticetbl ( "
                          + " noc_number, noc_title, noc_content, noc_date, mit_id) "
                          + " VALUES ( "
-                         + " seq_board_num.NEXTVAL, ?, ?, sysdate, ?)";  
+                         + " seq_Notice_num.NEXTVAL, ?, ?, sysdate, ?)";  
             // 오류발생구간
             psmt = con.prepareStatement(query);  // 동적 쿼리 
              

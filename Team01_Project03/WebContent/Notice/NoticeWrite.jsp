@@ -22,18 +22,18 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
-<jsp:include page="../signIn.jsp" /> 
-<h2>글쓰기</h2>
-<form name="writeFrm" method="post" action="WriteProcess.jsp"
-      onsubmit="return validateForm(this);">
-    <table border="1" width="90%">
-        <tr>
-            <td>제목</td>
-            <td>
+	<jsp:include page="../Common/header.jsp" /> 
+	<h2>글쓰기</h2>
+	<form name="writeFrm" method="post" action="WriteProcess.jsp"
+     	 onsubmit="return validateForm(this);">
+   	 <table border="1" width="90%">
+       	 <tr>
+           	 <td>제목</td>
+           	 <td>
                 <input type="text" name="title" style="width: 90%;" placeholder="제목을 입력해 주세요." />
               
-            </td>
-        </tr>
+            	</td>
+          </tr>
         <tr>
             <td>내용</td>
             <td>
