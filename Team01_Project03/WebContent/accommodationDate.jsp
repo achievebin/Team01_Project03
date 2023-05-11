@@ -29,7 +29,7 @@
     </script>
 </head>
 <body>
-    <h1>Date Range Selection</h1>
+    <h3>날짜 선택</h3>
     
     <form method="get" action="your_action.jsp">
         <label for="startDate">Start Date:</label>

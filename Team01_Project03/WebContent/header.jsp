@@ -15,7 +15,6 @@
 <!-- 검색창이 들어갈 구역 -->
 <div id="search">
 	<!--검색 필드-->
-	<%@ include file="./searchfield.jsp" %>
 	
 	<%@ include file="./search.jsp" %>
 </div>

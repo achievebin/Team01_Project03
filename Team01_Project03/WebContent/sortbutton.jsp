@@ -12,7 +12,7 @@
     <form action="accommodation.jsp" method="GET">
     <tr>
         <td align="center">
-            <input type="submit" value="이름순" />
+            <input type="submit" value="이름순 정렬" />
             <input type="hidden" name="sortname" value="act_name" />
             
         </td>
