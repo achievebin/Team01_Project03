@@ -49,12 +49,15 @@ String yourEmail = (String)request.getAttribute("mypageEmail");
 		<% if (yourSex.equals("m")) {%>
 		<input type="radio" name="prevSex" value="m" checked readonly onclick="return false">남자
 		<input type="radio" name="prevSex" value="f" readonly onclick="return false">여자
+		<input type="radio" name="prevSex" value="n" readonly onclick="return false">선택 안 함
 		<%} else if (yourSex.equals("f")) {%>
 		<input type="radio" name="prevSex" value="m" readonly onclick="return false">남자
 		<input type="radio" name="prevSex" value="f" checked readonly onclick="return false">여자
+		<input type="radio" name="prevSex" value="n" readonly onclick="return false">선택 안 함
 		<%} else {%>
 		<input type="radio" name="prevSex" value="m" readonly onclick="return false">남자
 		<input type="radio" name="prevSex" value="f" readonly onclick="return false">여자
+		<input type="radio" name="prevSex" value="n" checked readonly onclick="return false">선택 안 함
 		<%} %>
 		</div>
 		<div>

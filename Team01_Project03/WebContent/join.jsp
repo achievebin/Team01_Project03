@@ -7,6 +7,7 @@
 <title>회원가입</title>
 </head>
 <body>
+	<script type="text/javascript" src="./checkForm.js"></script>
 	<jsp:include page="./header.jsp"/>
 	<span style="color: red; font-size: 1.2em;"> 
 	        <%= request.getAttribute("joinErrMsg") == null ?
@@ -18,52 +19,49 @@
 		<legend>신규 회원 정보</legend>
 		<div>
 		<label>아이디</label>
-		<input type="text" placeholder="아이디를 입력해주세요" name="id" required>
+		<input type="text" maxlength="12" placeholder="아이디" name="id" id="id">
+		<input type="button" value="중복확인">
 		</div>
 		<div>
 		<label>비밀번호</label>
-		<input type="password" placeholder="비밀번호를 입력해주세요" name="pw" required>
+		<input type="password" maxlength="16" placeholder="비밀번호 입력" name="pw" id="pw">
 		</div>
 		<div>
 		<label>비밀번호 확인</label>
-		<input type="password" placeholder="비밀번호 재입력하세요" name="pwCheck" required>
+		<input type="password" maxlength="16" placeholder="비밀번호 재입력" name="pwCheck" id="pwCheck">
 		</div>
 		</fieldset>
 		<fieldset>
 		<legend>개인 정보</legend>
 		<div>
 		<label>이름</label>
-		<input type="text" placeholder="성과 이름을 기입" name="name" required>
+		<input type="text" maxlength="16" placeholder="성과 이름을 기입" name="name" id="name">
 		</div>
 		<div>
 		<label>생년월일</label>
-		<input type="date" name="birth" required>
+		<input type="date" name="birth">
 		</div>
 		<div>
 		<label>성별</label>
 		<input type="radio" name="sex" value="m">남자
 		<input type="radio" name="sex" value="f">여자
+		<input type="radio" name="sex" value="n" checked>선택 안 함
 		</div>
 		<div>
 		<label>주소</label>
-		<input type="text" name="address">
+		<input type="text" maxlength="50" name="address" id="address">
 		</div>
 		<div>
 		<label>휴대폰번호</label>
-		<!-- <select name="mobileCarrier">
-		<option>SKT</option>
-		<option>KT</option>
-		<option>LG</option>
-		</select> -->
-		<input type="tel" placeholder="010-1234-5678" name="phone" required>
+		<input type="tel" maxlength="20" placeholder="010-1234-5678" name="phone" id="phone">
 		</div>
 		<div>
 		<label>e-mail</label>
-		<input type="email" placeholder="example@example.org" name="email" required>
+		<input type="email" maxlength="40" placeholder="example@example.org" name="email" id="email">
 		</div>
 		</fieldset>
-		<input type="submit" value="가입하기">
-		<input type="button" value="돌아가기" onclick="location.href='index.jsp';">
+		<input type="button" value="가입하기" onclick="joinFormCheck()">
+		<input type="button" value="돌아가기" onclick="history.back()">
 	</form>
 	<jsp:include page="./footer.jsp"/>
 </body>

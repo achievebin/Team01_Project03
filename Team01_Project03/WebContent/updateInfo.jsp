@@ -54,12 +54,15 @@ String changeEmail = request.getParameter("prevEmail");
 		<% if (changeSex.equals("m")) {%>
 		<input type="radio" name="newSex" value="m" checked>남자
 		<input type="radio" name="newSex" value="f">여자
+		<input type="radio" name="newSex" value="n">선택 안 함
 		<%} else if (changeSex.equals("f")) {%>
 		<input type="radio" name="newSex" value="m">남자
 		<input type="radio" name="newSex" value="f" checked>여자
+		<input type="radio" name="newSex" value="n">선택 안 함
 		<%} else {%>
 		<input type="radio" name="newSex" value="m">남자
 		<input type="radio" name="newSex" value="f">여자
+		<input type="radio" name="newSex" value="n" checked>선택 안 함
 		<%} %>
 		</div>
 		<div>

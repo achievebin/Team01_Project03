@@ -7,6 +7,7 @@
 <title>로그인</title>
 </head>
 <body>
+	<script type="text/javascript" src="./checkForm.js"></script>
 	<jsp:include page="./header.jsp"/>
 	<span style="color: red; font-size: 1.2em;"> 
         <%= request.getAttribute("LoginErrMsg") == null ?
@@ -19,7 +20,8 @@
 		<input type="text" name="sinid" required><br/>
 		<label>비밀번호</label>
 		<input type="password" name="sinpw" required><br/>
-		<input type="submit" value="로그인">
+		<input type="button" value="로그인" onclick="signInFormCheck()">
+		<input type="button" value="돌아가기" onclick="history.back()">
 	</form>
 	<div>
 	아직 회원이 아니신가요? <a href="./join.jsp">회원가입하기</a>
