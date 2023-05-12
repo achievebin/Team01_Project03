@@ -12,7 +12,7 @@ public class ReviewDTO {
     private int avgScore;
     private int cntScore;
     private String hotel;
-    private int actNumber;
+    private String actNumber;
    
 	// 게터/세터
     public String getNum() {
@@ -75,10 +75,10 @@ public class ReviewDTO {
 	public void setHotel(String hotel) {
 		this.hotel = hotel;
 	}
-	public int getActNumber() {
+	public String getActNumber() {
 		return actNumber;
 	}
-	public void setActNumber(int actNumber) {
+	public void setActNumber(String actNumber) {
 		this.actNumber = actNumber;
 	}
 	

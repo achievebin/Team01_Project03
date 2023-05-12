@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
-import common.JDBConnect;
+import connect.JDBConnect;
 
 public class BoardDAO extends JDBConnect {
     public BoardDAO(ServletContext application) {

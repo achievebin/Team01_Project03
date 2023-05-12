@@ -28,13 +28,13 @@ function validateForm(form) {  // 폼 내용 검증
       onsubmit="return validateForm(this);">
     <table border="1" width="90%">
         <tr>
-            <td>제목</td>
+            <td>숙소명</td>
             <td>
                 <input type="text" name="act_name" style="width: 90%;" />
             </td>
         </tr>
         <tr>
-            <td>내용</td>
+            <td>숙소정보</td>
             <td>
                 <textarea name="act_info" style="width: 90%; height: 100px;"></textarea>
             </td>

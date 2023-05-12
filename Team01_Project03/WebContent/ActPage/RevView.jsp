@@ -1,28 +1,17 @@
-<%@ page import="Act.ActDAO"%>
-<%@ page import="Act.ActDTO"%>
-<%@ page import="score.ScoreDAO"%>
-<%@ page import="score.ScoreDTO"%>
+<%@ page import="Review.ReviewDAO"%>
+<%@ page import="Review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
 
-ActDAO dao = new ActDAO(application);  // DAO 생성 
+ReviewDAO dao = new ReviewDAO(application);  // DAO 생성 
               
-ActDTO dto = dao.selectView(num);        // 게시물 가져오기 
-String actname = dto.getActName();
-ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
-
-ScoreDTO sdto = sdao.scoreView(num); //점수 가져오기
-
-request.setAttribute("actname",dto.getActName());
-request.setAttribute("actnumber",dto.getActNumber());
-session.setAttribute("actname",dto.getActName());
-session.setAttribute("actnumber",dto.getActNumber());
+ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
+String actname = dto.getTitle();
 
 out.println(actname);
-dao.close();      
-sdao.close();// DB 연결 해제
+dao.close();                               // DB 연결 해제
 %>
 <!DOCTYPE html>
 <html>
@@ -42,48 +31,39 @@ function deletePost() {
 </script>
 </head>
 <body>
-<%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
-<h2>숙소 소개</h2>
-<form name="ActViewFrm" method="post">
-    <input type="hidden" name="num" value="<%= num %>" />  <!-- 공통 링크 -->
-	<input type="hidden" name="actnum" value="<%= dto.getActNumber() %>" />
-	<input type="hidden" name="actname" value="<%= dto.getActName() %>" />
+<jsp:include page="../ActPage/MainLink.jsp" />
+<h2>회원제 게시판 - 상세 보기(View)</h2>
+<form name="ReViewFrm" method="post">
+
     <table border="1" width="90%">
         <tr>
             <td>번호</td>
             
             <td><%= dto.getActNumber() %></td>
             <td>작성자</td>
-            <td><%= dto.getActId() %></td>
+            <td><%= dto.getId() %></td>
         </tr>
         <tr>
-            <td>전화번호</td>
-            <td><%= dto.getActPhone() %></td>
-            <td>주소</td>
-            <td><%= dto.getActAddress() %></td>
+
         </tr>
         <tr>
-            <td>숙소명</td>
+            <td>제목</td>
             
-            <td colspan="3"><%= dto.getActName() %></td>
+            <td colspan="3"><%= dto.getTitle() %></td>
         </tr>
         <tr>
-            <td>숙소정보</td>
+            <td>내용</td>
             <td colspan="3" height="100">
-                <%= dto.getActInfo() %></td> 
-        </tr>
-        <tr>
-            <td>숙소별점</td>
-            <td><%= sdto.getAvgScore() %></td> 
+                <%= dto.getContent() %></td> 
         </tr>
         <tr>
             <td colspan="4" align="center">
             <%
             if (session.getAttribute("signInId") != null
-                && session.getAttribute("signInId").toString().equals(dto.getActId())) {
+                && session.getAttribute("signInId").toString().equals(dto.getId())) {
             %>
                 <button type="button"
-                        onclick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
+                        onclick="location.href='ReviewEdit.jsp?num=<%= dto.getNum() %>';">
                     수정하기</button>
                 <button type="button" onclick="deletePost();">삭제하기</button> 
             <%

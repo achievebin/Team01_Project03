@@ -1,18 +1,19 @@
-<%@ page import="Act.ActDAO"%>
-<%@ page import="Act.ActDTO"%>
+<%@ page import="Review.ReviewDAO"%>
+<%@ page import="Review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%> 
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
-ActDAO dao = new ActDAO(application);  // DAO 생성
-ActDTO dto = dao.selectView(num);        // 게시물 가져오기 
+ReviewDAO dao = new ReviewDAO(application);  // DAO 생성
+ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
 String sessionId = session.getAttribute("signInId").toString(); // 로그인 ID 얻기 
-if (!sessionId.equals(dto.getActId())) {      // 본인인지 확인
+if (!sessionId.equals(dto.getId())) {      // 본인인지 확인
     JSFunction.alertBack("작성자 본인만 수정할 수 있습니다.", out);
     return;
 }
 dao.close();  // DB 연결 해제
+String actname = (String)session.getAttribute("actname");
 %>
 <!DOCTYPE html>
 <html>
@@ -38,50 +39,44 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 <jsp:include page="../Common/Link.jsp" />
 <h2>숙소정보 수정</h2>
-<form name="ActEditFrm" method="post" action="EditProcess.jsp"
-    <input type="hidden" name="act_number" value="<%= dto.getActNumber() %>" /> 
+<form name="ReviewwriteFrm" method="post" action="ReviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
     <table border="1" width="90%">
         <tr>
-            <td>숙소명</td>
+        
+            <td>제목</td>
             <td>
-                <input type="text" name="act_name" style="width: 90%;" />
+                <input type="text" name="rev_title" style="width: 90%;" />
             </td>
         </tr>
         <tr>
-            <td>숙소정보</td>
+            <td>내용</td>
             <td>
-                <textarea name="act_info" style="width: 90%; height: 100px;"></textarea>
+                <textarea name="rev_content" style="width: 90%; height: 100px;"></textarea>
             </td>
+        </tr>
+        <tr> 
+        	<td>별점</td>
+        	<td>
+        		<input type="radio" name="rev_score" value=1 />1
+        		<input type="radio" name="rev_score" value=2 />2
+        		<input type="radio" name="rev_score" value=3 />3
+        		<input type="radio" name="rev_score" value=4 />4
+        		<input type="radio" name="rev_score" value=5 />5
+        	</td>
         </tr>
         <tr>
-            <td>숙소 전화번호</td>
-            <td>
-                <input type="text" name="act_phone" style="width: 90%;" />
-            </td>
-        </tr>
-                <tr>
-            <td>숙소 주소</td>
-            <td>
-                <input type="text" name="act_address" style="width: 90%;" />
-            </td>
-        </tr>
-                <tr>
-            <td>숙소 총 객실수</td>
-            <td>
-                <select name="act_room">
-               	 	<option value=1>1개</option>
-                	<option value=2>2개</option>
-               		<option value=3>3개</option>
-                	<option value=4>4개</option>
-            	</select><br />
-            </td>
-        </tr>
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='List.jsp';">
+                <button type="button" onclick="location.href='ReviewList.jsp';">
                     목록 보기</button>
+            </td>
+        </tr>
+        <tr>
+            <td>숙소명</td>
+            <td>
+            	<%= actname %>
             </td>
         </tr>
     </table>

@@ -21,7 +21,7 @@ dto.setActInfo(info);
 dto.setActAddress(address);
 dto.setActPhone(phone);
 dto.setActRoom(Integer.parseInt(room));
-dto.setActId(session.getAttribute("UserId").toString());
+dto.setActId(session.getAttribute("signInId").toString());
 
 // DAO 객체를 통해 DB에 DTO 저장
 ActDAO dao = new ActDAO(application);

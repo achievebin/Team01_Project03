@@ -1,13 +1,13 @@
-<%@ page import="Act.ActDAO"%>
-<%@ page import="Act.ActDTO"%>
+<%@ page import="Review.ReviewDAO"%>
+<%@ page import="Review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%>
 <%
-String num = request.getParameter("num");  // 일련번호 얻기 
+String num = (String)request.getAttribute("num");  // 일련번호 얻기 
 
-ActDTO dto = new ActDTO();             // DTO 객체 생성
-ActDAO dao = new ActDAO(application);  // DAO 객체 생성
+ReviewDTO dto = new ReviewDTO();             // DTO 객체 생성
+ReviewDAO dao = new ReviewDAO(application);  // DAO 객체 생성
 dto = dao.selectView(num);  // 주어진 일련번호에 해당하는 기존 게시물 얻기
 
 // 로그인된 사용자 ID 얻기
@@ -15,12 +15,10 @@ String sessionId = session.getAttribute("signInId").toString();
 
 int delResult = 0;
 
-if (sessionId.equals(dto.getActId())) {  // 작성자가 본인인지 확인 
+if (sessionId.equals(dto.getId())) {  // 작성자가 본인인지 확인 
     // 작성자가 본인이면...
     dto.setActNumber(num);
     delResult = dao.deletePost(dto);  // 삭제!!! 
-/*     int delRev = dao.deleteReview(dto);
-    int delSco = dao.deleteScore(dto); */
     dao.close();
 
     // 성공/실패 처리

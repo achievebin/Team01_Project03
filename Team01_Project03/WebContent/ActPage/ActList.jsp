@@ -47,7 +47,7 @@ dao.close();  // DB 연결 닫기
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원제 게시판</title>
+<title>숙소 목록</title>
 </head>
 <body>
     <jsp:include page="../ActPage/MainLink.jsp" />  <!-- 공통 링크 -->
@@ -86,7 +86,7 @@ if (ActLists.isEmpty()) {
 %>
         <tr>
             <td colspan="5" align="center">
-                등록된 게시물이 없습니다^^*
+                첫 숙소를 등록해주세요!
             </td>
         </tr>
 <%
@@ -101,7 +101,7 @@ else {
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
 %>
         <tr align="center">
-            <td><%= virtualNum %></td>  <!--게시물 번호-->
+            <td><%= dto.getActNumber() %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
                 <a href="ActView.jsp?num=<%= dto.getActNumber() %>"><%= dto.getActName() %></a>
             </td>

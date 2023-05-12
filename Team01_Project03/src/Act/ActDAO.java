@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
-import common.JDBConnect;
+import connect.JDBConnect;
 
 public class ActDAO extends JDBConnect {
     public ActDAO(ServletContext application) {
@@ -160,10 +160,13 @@ public class ActDAO extends JDBConnect {
             if (result == 1) {
             	try {
                     // 쿼리문 템플릿
-                    String quer = "insert into review_score(hotel) values(?)"; 
+                    String quer = "insert into review_score"+
+                    "(act_number,hotel,rev_avg,count5,count4,count3,count2,count1)" +
+                    "values(seq_act_num.CURRVAL,?,0,0,0,0,0,0)"; 
 
                     // 쿼리문 완성
                     psmt = con.prepareStatement(quer); 
+                    
                     psmt.setString(1, dto.getActName()); 
 
                     // 쿼리문 실행
@@ -246,18 +249,24 @@ public class ActDAO extends JDBConnect {
         try {
             // 쿼리문 템플릿 
             String query = "UPDATE accommodationtbl SET "
-                         + " act_name=?, act_info=? "
-                         + " WHERE num=?";
+                         + " act_name=?, act_info=?, act_address=?, act_Phone=?, act_room=? "
+                         + " WHERE act_number=?";
             
             // 쿼리문 완성
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getActName());
             psmt.setString(2, dto.getActInfo());
-            psmt.setString(3, dto.getActNumber());
+            psmt.setString(3, dto.getActAddress());
+            psmt.setString(4, dto.getActPhone());
+            psmt.setInt(5, dto.getActRoom());
+            psmt.setString(6, dto.getActNumber());
             
             // 쿼리문 실행 
             result = psmt.executeUpdate();
-        } 
+
+        }
+        
+
         catch (Exception e) {
             System.out.println("게시물 수정 중 예외 발생");
             e.printStackTrace();
@@ -265,6 +274,55 @@ public class ActDAO extends JDBConnect {
         
         return result; // 결과 반환 
     }
+    // 수정 성공시 데이터베이스 업데이트
+    public int updateRev(ActDTO dto) { 
+        int result = 0;
+        
+    	try {
+            // 쿼리문 템플릿
+            String quer = "update reviewtbl SET rev_hotel = ?"; 
+
+            // 쿼리문 완성
+            psmt = con.prepareStatement(quer); 
+            
+            psmt.setString(1, dto.getActName()); 
+
+            // 쿼리문 실행
+            result = psmt.executeUpdate(); 
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환 
+    }
+    
+    public int updateScore(ActDTO dto) { 
+        int result = 0;
+        
+    	try {
+            // 쿼리문 템플릿
+            String quer = "update review_score SET hotel = ?"; 
+
+            // 쿼리문 완성
+            psmt = con.prepareStatement(quer); 
+            
+            psmt.setString(1, dto.getActName()); 
+
+            // 쿼리문 실행
+            result = psmt.executeUpdate(); 
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환 
+    }
+    
+
+
 
     // 지정한 게시물을 삭제합니다.
     public int deletePost(ActDTO dto) { 
@@ -272,7 +330,49 @@ public class ActDAO extends JDBConnect {
 
         try {
             // 쿼리문 템플릿
-            String query = "DELETE FROM accommodationtbl WHERE num=?"; 
+            String query = "DELETE FROM accommodationtbl WHERE act_number=?"; 
+
+            // 쿼리문 완성
+            psmt = con.prepareStatement(query); 
+            psmt.setString(1, dto.getActNumber()); 
+
+            // 쿼리문 실행
+            result = psmt.executeUpdate(); 
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환
+    }
+    public int deleteReview(ActDTO dto) { 
+        int result = 0;
+
+        try {
+            // 쿼리문 템플릿
+            String query = "DELETE FROM reviewtbl WHERE act_number=?"; 
+
+            // 쿼리문 완성
+            psmt = con.prepareStatement(query); 
+            psmt.setString(1, dto.getActNumber()); 
+
+            // 쿼리문 실행
+            result = psmt.executeUpdate(); 
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환
+    }
+    public int deleteScore(ActDTO dto) { 
+        int result = 0;
+
+        try {
+            // 쿼리문 템플릿
+            String query = "DELETE FROM review_score WHERE act_number=?"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(query); 

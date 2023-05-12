@@ -9,7 +9,7 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 
 import Act.ActDTO;
-import common.JDBConnect;
+import connect.JDBConnect;
 
 public class ReviewDAO extends JDBConnect {
     public ReviewDAO(ServletContext application) {
@@ -82,17 +82,18 @@ public class ReviewDAO extends JDBConnect {
     // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
     public List<ReviewDTO> selectListPage(Map<String, Object> map) {
         List<ReviewDTO> bbs = new Vector<ReviewDTO>();  // 결과(게시물 목록)를 담을 변수
-        ActDTO adt = new ActDTO();
         // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
                      + "    SELECT Tb.*, ROWNUM rNum FROM ( "
-                     + "        SELECT * FROM Reviewtbl ";
-
+                     + "        SELECT * FROM Reviewtbl "
+        			 + " where act_number = '"+ map.get("actnumber") +"'";
         // 검색 조건 추가 
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField")
-                   + " LIKE '%" + map.get("searchWord") + "%' ";
-        }
+		
+		/*
+		 * if (map.get("searchWord") != null) { query += " WHERE " +
+		 * map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' "; }
+		 */
+		 
         
         query += "      ORDER BY rev_number DESC "
                + "     ) Tb "
@@ -109,6 +110,9 @@ public class ReviewDAO extends JDBConnect {
             // 쿼리문 실행 
             rs = psmt.executeQuery();
             
+
+            
+            
             while (rs.next()) {
                 // 한 행(게시물 하나)의 데이터를 DTO에 저장
             	ReviewDTO dto = new ReviewDTO();
@@ -119,9 +123,12 @@ public class ReviewDAO extends JDBConnect {
                 dto.setId(rs.getString("rev_id"));
                 dto.setScore(rs.getInt("rev_Score"));
                 dto.setHotel(rs.getString("rev_hotel"));
-                dto.setActNumber(rs.getInt("act_number"));
+                dto.setActNumber(rs.getString("act_number"));
                 // 반환할 결과 목록에 게시물 추가
                 bbs.add(dto);
+				
+
+				 
             }
         } 
         catch (Exception e) {
@@ -149,7 +156,7 @@ public class ReviewDAO extends JDBConnect {
             psmt.setInt(3, dto.getScore());  
             psmt.setString(4, dto.getId()); 
             psmt.setString(5, dto.getHotel()); 
-            psmt.setInt(6, dto.getActNumber());
+            psmt.setString(6, dto.getActNumber());
             
             result = psmt.executeUpdate(); 
             if (result == 1) {
@@ -199,10 +206,9 @@ public class ReviewDAO extends JDBConnect {
     	ReviewDTO dto = new ReviewDTO();
         
         // 쿼리문 준비
-        String query = "SELECT B.*, M.name " 
-                     + " FROM member M INNER JOIN board B " 
-                     + " ON M.id=B.id "
-                     + " WHERE num=?";
+        String query = "SELECT *" 
+                + " FROM reviewtbl" 
+                + " WHERE rev_number=?";
 
         try {
             psmt = con.prepareStatement(query);
@@ -211,12 +217,13 @@ public class ReviewDAO extends JDBConnect {
 
             // 결과 처리
             if (rs.next()) {
-                dto.setNum(rs.getString(1)); 
-                dto.setTitle(rs.getString(2));
+                dto.setNum(rs.getString("rev_number")); 
+                dto.setTitle(rs.getString("rev_title"));
                 dto.setContent(rs.getString("rev_content"));
                 dto.setPostdate(rs.getDate("rev_date"));
                 dto.setId(rs.getString("rev_id"));
-                dto.setVisitcount(rs.getString(6));
+                dto.setHotel(rs.getString("rev_hotel"));
+                
                
             }
         } 
