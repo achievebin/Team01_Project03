@@ -7,19 +7,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-//DAO를 생성해 DB에 연결
-AccommodationDAO dao = new  AccommodationDAO(application);
-
-//사용자가 입력한 검색 조건을 Map에 저장
-Map<String, Object> param = new HashMap<String, Object>();
-String searchText = request.getParameter("searchText");
-String accsearch = request.getParameter("accsearch");
-String sortname = request.getParameter("sortname");
-if (accsearch != null) {
- param.put("searchText", searchText);
- param.put("accsearch", accsearch);
- param.put("sortname", sortname);
- 
+	//DAO를 생성해 DB에 연결
+	AccommodationDAO dao = new  AccommodationDAO(application);
+	
+	//사용자가 입력한 검색 조건을 Map에 저장
+	Map<String, Object> param = new HashMap<String, Object>();
+	String searchText = request.getParameter("searchText");
+	String accsearch = request.getParameter("accsearch");
+	String sortname = request.getParameter("sortname");
+	if (accsearch != null) {
+		param.put("searchText", searchText);
+		param.put("accsearch", accsearch);
+		param.put("sortname", sortname);
+		 
 }
 
 
@@ -35,7 +35,7 @@ int totalPage = (int)Math.ceil((double)totalCount / pageSize); // 전체 페이�
 int pageNum = 1;  // 기본값
 String pageTemp = request.getParameter("pageNum");
 if (pageTemp != null && !pageTemp.equals(""))
- pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
+	pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
 
 //목록에 출력할 숙소 목록 범위 계산
 int start = (pageNum - 1) * pageSize + 1;  // 첫 번째 숙소 번호
@@ -54,10 +54,10 @@ dao.close();  // DB 연결 닫기
 <title>숙박업소 목록</title>
 </head>
 <body>
-<%@ include file="./search.jsp" %>
+<%@ include file="./header.jsp" %>
 <%@ include file = "./accommodationDate.jsp" %>
 
- <h2>숙소 목록 보기 - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
+<h2>숙소 목록 보기 - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
  
 <%@ include file = "./sortbutton.jsp" %>
  
@@ -75,7 +75,7 @@ dao.close();  // DB 연결 닫기
      <!-- 목록의 내용 -->
 <%
 if (accommodationLists.isEmpty()) {
- // 숙소 목록이 하나도 없을 때
+	// 숙소 목록이 하나도 없을 때
 %>
      <tr>
          <td colspan="6" align="center">

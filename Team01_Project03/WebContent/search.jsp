@@ -21,24 +21,23 @@
 <body>
 
 <%
-    // 세션 시작
-    HttpSession userSession = request.getSession();
-
-    // 검색값 받기
-    String searchValue = request.getParameter("accsearch");
-
-    // 이전 검색값 가져오기
-    String previousSearchValue = (String) userSession.getAttribute("searchValue");
-
-    // 검색값이 null이거나 처음 접속 시인 경우 빈 값으로 설정
-    if (searchValue == null || searchValue.isEmpty()) {
-        searchValue = "";
-        previousSearchValue = "";
-    } else {
-        previousSearchValue = searchValue;
-    }
+	//세션 시작
+	HttpSession searchacco = request.getSession();
+	
+	//검색값 받기
+	String searchValue = request.getParameter("accsearch");
+	
+	//이전 검색값 가져오기
+	String previousSearchValue = (String) searchacco.getAttribute("searchValue");
+	
+	//검색값이 null이거나 처음 접속 시인 경우 빈 값으로 설정
+	if (searchValue == null || searchValue.isEmpty()) {
+		searchValue = "";
+	 	previousSearchValue = "";
+	} else {
+		previousSearchValue = searchValue;
+	}
     
-        
 %>
 
 <!-- 검색폼 -->
@@ -56,7 +55,7 @@
 
 <!-- 이전 검색값을 세션에 저장 -->
 <%
-    userSession.setAttribute("searchValue", previousSearchValue);
+    searchacco.setAttribute("searchValue", previousSearchValue);
 %>
 
 </body>
