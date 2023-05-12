@@ -113,8 +113,7 @@ else {
         <tr align="center">
             <!--페이징 처리-->
             <td>
-                <%= Page.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>  
+                <%= Page.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %>  
             </td>
         </tr>
     </table>
