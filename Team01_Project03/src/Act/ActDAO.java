@@ -139,15 +139,9 @@ public class ActDAO extends JDBConnect {
         
         try {
             // INSERT 쿼리문 작성 
-            String query = "insert into accommodationtbl(act_number,\n"
-            		+ "                             act_name,\n"
-            		+ "                             act_address,\n"
-            		+ "                             act_phone,\n"
-            		+ "                             act_room,\n"
-            		+ "                             act_info,\n"
-            		+ "                             act_id, act_price) "
-                         + " VALUES ( "
-                         + " seq_act_num.nextval, ?, ?, ?, ?, ?, ?, ?)";  
+            String query = "insert into reservationtbl(res_number,act_number,"
+            		+"res_start,res_end,res_name,res_phone,res_purchase,res_price)\n"
+            		+ "values(seq_res_num.nextval, ?, ?, ?, ?, ?, ?, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setString(1, dto.getActName());  
