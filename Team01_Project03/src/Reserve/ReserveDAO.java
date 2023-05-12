@@ -21,7 +21,7 @@ public class ReserveDAO extends JDBConnect {
     	ReserveDTO dto = new ReserveDTO();
         
         // 쿼리문 준비
-        String query = "SELECT * FROM review_score WHERE act_number=?" ;
+        String query = "SELECT * FROM reservationtbl WHERE act_number=?" ;
 
         try {
             psmt = con.prepareStatement(query);
@@ -61,37 +61,16 @@ public class ReserveDAO extends JDBConnect {
             		+ "values(seq_res_num.nextval, ?, ?, ?, ?, ?, ?, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
-            psmt.setString(1, dto.getActName());  
-            psmt.setString(2, dto.getActAddress());
-            psmt.setString(3, dto.getActPhone());  
-            psmt.setInt(4, dto.getActRoom()); 
-            psmt.setString(5, dto.getActInfo()); 
-            psmt.setString(6, dto.getActId());
-            psmt.setInt(7, dto.getActPrice()); 
+            psmt.setInt(1, dto.getActnumber());  
+            psmt.setDate(2, dto.getResstart());
+            psmt.setDate(3, dto.getResend());  
+            psmt.setString(4, dto.getResname()); 
+            psmt.setString(5, dto.getResphone()); 
+            psmt.setString(6, dto.getRespurchase());
+            psmt.setString(7, dto.getResprice()); 
             
             result = psmt.executeUpdate(); 
-            if (result == 1) {
-            	try {
-                    // 쿼리문 템플릿
-                    String quer = "insert into review_score"+
-                    "(act_number,hotel,rev_avg,count_all,count5,count4,count3,count2,count1)" +
-                    "values(seq_act_num.CURRVAL,?,0,0,0,0,0,0,0)"; 
 
-                    // 쿼리문 완성
-                    psmt = con.prepareStatement(quer); 
-                    
-                    psmt.setString(1, dto.getActName()); 
-
-                    // 쿼리문 실행
-                    result = psmt.executeUpdate(); 
-                } 
-                catch (Exception e) {
-                    System.out.println("게시물 삭제 중 예외 발생");
-                    e.printStackTrace();
-                }
-            	
-            	
-            }
         }
         catch (Exception e) {
             System.out.println("게시물 입력 중 예외 발생");
