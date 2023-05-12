@@ -12,6 +12,7 @@ String info = request.getParameter("act_info");
 String address = request.getParameter("act_address");
 String phone = request.getParameter("act_phone");
 String room = request.getParameter("act_room");
+String price = request.getParameter("act_price");
 
 
 // 폼값을 DTO 객체에 저장
@@ -22,6 +23,7 @@ dto.setActAddress(address);
 dto.setActPhone(phone);
 dto.setActRoom(Integer.parseInt(room));
 dto.setActId(session.getAttribute("signInId").toString());
+dto.setActPrice(Integer.parseInt(price));
 
 // DAO 객체를 통해 DB에 DTO 저장
 ActDAO dao = new ActDAO(application);

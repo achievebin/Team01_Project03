@@ -31,6 +31,7 @@ public class ScoreDAO extends JDBConnect {
             // 결과 처리
             if (rs.next()) {
                 dto.setActnum(rs.getInt("act_number")); 
+                dto.setCountAll(rs.getInt("count_all"));
                 dto.setHotel(rs.getString("hotel"));
                 dto.setAvgScore(rs.getInt("rev_avg"));
                 dto.setCount5(rs.getInt("count5"));

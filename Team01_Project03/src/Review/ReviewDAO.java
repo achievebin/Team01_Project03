@@ -163,23 +163,25 @@ public class ReviewDAO extends JDBConnect {
             	try {
                     // 쿼리문 템플릿
                     String quer = "update review_score \n"
-                    		+ "set rev_avg = (select round(avg(rev_score),2) from reviewtbl where rev_hotel = ?),\n"
-                    		+ "    count5  = (select count(rev_score)from reviewtbl where (rev_score = 5 and rev_hotel = ?)),\n"
-                    		+ "    count4  = (select count(rev_score)from reviewtbl where (rev_score = 4 and rev_hotel = ?)),\n"
-                    		+ "    count3  = (select count(rev_score)from reviewtbl where (rev_score = 3 and rev_hotel = ?)),\n"
-                    		+ "    count2  = (select count(rev_score)from reviewtbl where (rev_score = 2 and rev_hotel = ?)),\n"
-                    		+ "    count1  = (select count(rev_score)from reviewtbl where (rev_score = 1 and rev_hotel = ?))\n"
-                    		+ "where hotel = ?"; 
+                    		+ "set rev_avg = (select round(avg(rev_score),2) from reviewtbl where act_number = ?),\n"
+                    		+ "    count_all  = (select count(rev_score)from reviewtbl where act_number = ?),\n"
+                    		+ "    count5  = (select count(rev_score)from reviewtbl where (rev_score = 5 and act_number = ?)),\n"
+                    		+ "    count4  = (select count(rev_score)from reviewtbl where (rev_score = 4 and act_number = ?)),\n"
+                    		+ "    count3  = (select count(rev_score)from reviewtbl where (rev_score = 3 and act_number = ?)),\n"
+                    		+ "    count2  = (select count(rev_score)from reviewtbl where (rev_score = 2 and act_number = ?)),\n"
+                    		+ "    count1  = (select count(rev_score)from reviewtbl where (rev_score = 1 and act_number = ?))\n"
+                    		+ "where act_number = ?"; 
 
                     // 쿼리문 완성
                     psmt = con.prepareStatement(quer); 
-                    psmt.setString(1, dto.getHotel()); 
-                    psmt.setString(2, dto.getHotel()); 
-                    psmt.setString(3, dto.getHotel()); 
-                    psmt.setString(4, dto.getHotel()); 
-                    psmt.setString(5, dto.getHotel()); 
-                    psmt.setString(6, dto.getHotel()); 
-                    psmt.setString(7, dto.getHotel());
+                    psmt.setString(1, dto.getActNumber());                   
+                    psmt.setString(2, dto.getActNumber()); 
+                    psmt.setString(3, dto.getActNumber()); 
+                    psmt.setString(4, dto.getActNumber()); 
+                    psmt.setString(5, dto.getActNumber()); 
+                    psmt.setString(6, dto.getActNumber()); 
+                    psmt.setString(7, dto.getActNumber());
+                    psmt.setString(8, dto.getActNumber()); 
 
                     // 쿼리문 실행
                     result = psmt.executeUpdate(); 

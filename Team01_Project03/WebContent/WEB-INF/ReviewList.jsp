@@ -95,8 +95,30 @@ function deletePost() {
 
     <h2>별점 평균:<%= sdto.getAvgScore()%> 
   
-    전체리뷰:<%= sdto.getCountAll()%> 개 
- 
+      전체리뷰:     <%
+   // DB에 연결
+      JDBConnect jdbc = new JDBConnect();
+    // 쿼리문 생성   
+    String countAll = "select count(rev_score)from reviewtbl where act_number ='" + hotel + "'";  
+    Statement stmt = jdbc.con.createStatement();
+    // 쿼리 수행
+    ResultSet ca = stmt.executeQuery(countAll);  
+
+    // 결과 확인(웹 페이지에 출력)
+    while (ca.next()) { 
+        String id = ca.getString("count(rev_score)");
+
+        
+        
+        out.println(String.format("%s", id)); 
+    }
+
+    // 연결 닫기
+    
+    %>개 
+
+    
+    
     5점:<%= sdto.getCount5()%>개 
     
     4점:<%= sdto.getCount4()%>개 
@@ -108,13 +130,13 @@ function deletePost() {
     1점:<%= sdto.getCount1()%>개    </h2>
     
 
-
-<!-- // 차트를 그릴 영역으로 canvas태그를 사용한다. -->
-<div class="chart-container" style=" height:500px; width:500px;">
+<% jdbc.close(); %>
+// 차트를 그릴 영역으로 canvas태그를 사용한다.
+<div class="chart-container" style="position: relative; height:200px; width:40vw">
 	<canvas id="myChart"></canvas>
 </div>
 
-<!-- // 해당 부분은 JS파일을 따로 만들어서 사용해도 된다. -->
+// 해당 부분은 JS파일을 따로 만들어서 사용해도 된다.
 <script>
 // 차트를 그럴 영역을 dom요소로 가져온다.
 var chartArea = document.getElementById('myChart').getContext('2d');
@@ -142,7 +164,7 @@ var myChart = new Chart(chartArea, {
         }]
     },
     // ⑩차트의 설정(Object)
-    options: {
+    options: {maintainAspectRatio: false,
         // ⑪축에 관한 설정(Object)
         scales: {
             // ⑫y축에 대한 설정(Object)

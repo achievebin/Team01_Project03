@@ -9,8 +9,10 @@ public class ActDTO {
     private String actPhone;
     private int actRoom;
     private String actId;
+    private int actPrice;
     
 	// 게터/세터
+   
 	public String getActNumber() {
 		return actNumber;
 	}
@@ -53,6 +55,13 @@ public class ActDTO {
 	public void setActId(String actId) {
 		this.actId = actId;
 	}
+	public int getActPrice() {
+		return actPrice;
+	}
+	public void setActPrice(int actPrice) {
+		this.actPrice = actPrice;
+	}
+	
 	
 }
 

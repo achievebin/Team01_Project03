@@ -17,6 +17,7 @@ ScoreDTO sdto = sdao.scoreView(num); //점수 가져오기
 
 request.setAttribute("actname",dto.getActName());
 request.setAttribute("actnumber",dto.getActNumber());
+request.setAttribute("actprice",dto.getActPrice());
 session.setAttribute("actname",dto.getActName());
 session.setAttribute("actnumber",dto.getActNumber());
 
@@ -44,8 +45,8 @@ function deletePost() {
 <body>
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
 <h2>숙소 소개</h2>
-<form name="ActViewFrm" method="post">
-    <input type="hidden" name="num" value="<%= num %>" />  <!-- 공통 링크 -->
+<form name="ActViewFrm" method="get">
+    <input type="hidden" name="num" value="<%= dto.getActNumber() %>" />  <!-- 공통 링크 -->
 	<input type="hidden" name="actnum" value="<%= dto.getActNumber() %>" />
 	<input type="hidden" name="actname" value="<%= dto.getActName() %>" />
     <table border="1" width="90%">
@@ -74,7 +75,13 @@ function deletePost() {
         </tr>
         <tr>
             <td>숙소별점</td>
+            
             <td><%= sdto.getAvgScore() %></td> 
+        </tr>
+        <tr>
+            <td>숙소가격</td>
+            
+            <td><%= dto.getActPrice() %></td> 
         </tr>
         <tr>
             <td colspan="4" align="center">
@@ -89,6 +96,9 @@ function deletePost() {
             <%
             }
             %>
+                <button type="button" onclick="location.href='Reserv.jsp';">
+                    예약 하기
+                </button>
                 <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기
                 </button>
@@ -102,5 +112,6 @@ function deletePost() {
     		<jsp:include page="./ReviewList.jsp" />
     </table>
 </form>
+
 </body>
 </html>

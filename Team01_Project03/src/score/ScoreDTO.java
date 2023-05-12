@@ -3,6 +3,7 @@ package score;
 public class ScoreDTO {
     // 멤버 변수 선언
     private int actnum;
+    private int countall;
     private int count5;
     private int count4;
     private int count3;
@@ -25,6 +26,12 @@ public class ScoreDTO {
 	
 
 
+	public int getCountAll() {
+		return countall;
+	}
+	public void setCountAll(int countall) {
+		this.countall = countall;
+	}
 	public String getHotel() {
 		return hotel;
 	}

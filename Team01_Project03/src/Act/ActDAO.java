@@ -116,6 +116,7 @@ public class ActDAO extends JDBConnect {
                 dto.setActPhone(rs.getString("act_phone"));
                 dto.setActRoom(rs.getInt("act_room"));
                 dto.setActId(rs.getString("act_id"));
+                dto.setActPrice(rs.getInt("act_price"));
                 
                 
 
@@ -144,9 +145,9 @@ public class ActDAO extends JDBConnect {
             		+ "                             act_phone,\n"
             		+ "                             act_room,\n"
             		+ "                             act_info,\n"
-            		+ "                             act_id) "
+            		+ "                             act_id, act_price) "
                          + " VALUES ( "
-                         + " seq_act_num.nextval, ?, ?, ?, ?, ?, ?)";  
+                         + " seq_act_num.nextval, ?, ?, ?, ?, ?, ?, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setString(1, dto.getActName());  
@@ -155,14 +156,15 @@ public class ActDAO extends JDBConnect {
             psmt.setInt(4, dto.getActRoom()); 
             psmt.setString(5, dto.getActInfo()); 
             psmt.setString(6, dto.getActId());
+            psmt.setInt(7, dto.getActPrice()); 
             
             result = psmt.executeUpdate(); 
             if (result == 1) {
             	try {
                     // 쿼리문 템플릿
                     String quer = "insert into review_score"+
-                    "(act_number,hotel,rev_avg,count5,count4,count3,count2,count1)" +
-                    "values(seq_act_num.CURRVAL,?,0,0,0,0,0,0)"; 
+                    "(act_number,hotel,rev_avg,count_all,count5,count4,count3,count2,count1)" +
+                    "values(seq_act_num.CURRVAL,?,0,0,0,0,0,0,0)"; 
 
                     // 쿼리문 완성
                     psmt = con.prepareStatement(quer); 
@@ -212,7 +214,7 @@ public class ActDAO extends JDBConnect {
                 dto.setActRoom(rs.getInt(5));
                 dto.setActInfo(rs.getString(6));
                 dto.setActId(rs.getString(7));
-                
+                dto.setActPrice(rs.getInt(8));
                
             }
         } 
@@ -249,7 +251,7 @@ public class ActDAO extends JDBConnect {
         try {
             // 쿼리문 템플릿 
             String query = "UPDATE accommodationtbl SET "
-                         + " act_name=?, act_info=?, act_address=?, act_Phone=?, act_room=? "
+                         + " act_name=?, act_info=?, act_address=?, act_Phone=?, act_room=?, act_price=? "
                          + " WHERE act_number=?";
             
             // 쿼리문 완성
@@ -260,7 +262,7 @@ public class ActDAO extends JDBConnect {
             psmt.setString(4, dto.getActPhone());
             psmt.setInt(5, dto.getActRoom());
             psmt.setString(6, dto.getActNumber());
-            
+            psmt.setInt(7, dto.getActPrice());
             // 쿼리문 실행 
             result = psmt.executeUpdate();
 

@@ -45,10 +45,16 @@ function validateForm(form) {  // 폼 내용 검증
                 <input type="text" name="act_phone" style="width: 90%;" />
             </td>
         </tr>
-                <tr>
+         <tr>
             <td>숙소 주소</td>
             <td>
                 <input type="text" name="act_address" style="width: 90%;" />
+            </td>
+        </tr>
+         <tr>
+            <td>숙소 가격</td>
+            <td>
+                <input type="text" name="act_price" style="width: 90%;" />
             </td>
         </tr>
                 <tr>
