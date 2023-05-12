@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>타이틀을 입력하세요</title>
+<title>공지사항 글쓰기</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {

@@ -45,6 +45,7 @@ public class NoticetblDAO extends JDBConnect {
             query += " WHERE " + map.get("searchField") + " "
                    + " LIKE '%" + map.get("searchWord") + "%' ";
         }
+        
         query += " ORDER BY noc_number DESC "; 
 
         try {

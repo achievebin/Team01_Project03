@@ -62,8 +62,8 @@ dao.close();  // DB 연결 닫기
     <tr>
         <td align="center">
             <select name="searchField"> 
-                <option value="title">제목</option> 
-                <option value="content">내용</option>
+                <option value="noc_title">제목</option> 
+                <option value="noccontent">내용</option>
             </select>
             <input type="text" name="searchWord" />
             <input type="submit" value="검색하기" />

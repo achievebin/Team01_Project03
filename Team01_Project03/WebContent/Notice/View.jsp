@@ -14,7 +14,7 @@ dao.close();                               // DB 연결 해제
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원제 게시판</title>
+<title>공지사항</title>
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?");
@@ -30,7 +30,7 @@ function deletePost() {
 <body>
 <%@ include file="/Common/header.jsp" %>
 
-<h2>회원제 게시판 - 내용 보기(View)</h2>
+<h2>공지사항 상세보기</h2>
 <form name="writeFrm">
     <input type="hidden" name="num" value="<%= num %>" />
     <table border="1" width="90%">
