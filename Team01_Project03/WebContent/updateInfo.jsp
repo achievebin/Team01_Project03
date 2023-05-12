@@ -71,15 +71,15 @@ String changeEmail = request.getParameter("prevEmail");
 		</div>
 		<div>
 		<label>휴대폰번호</label>
-		<input type="tel" name="newPhone" value=<%=changePhone %> required>
+		<input type="tel" name="newPhone" value=<%=changePhone %>>
 		</div>
 		<div>
 		<label>e-mail</label>
-		<input type="email" name="newEmail" value=<%=changeEmail %> required>
+		<input type="email" name="newEmail" value=<%=changeEmail %>>
 		</div>
 		</fieldset>
-		<input type="submit" value="회원수정">
-		<input type="button" value="돌아가기" onclick="location.href='myPage.jsp';">
+		<input type="button" value="회원수정" onclick="updateInfoFormCheck()">
+		<input type="button" value="돌아가기" onclick="history.back()">
 		</form>
 </body>
 </html>
