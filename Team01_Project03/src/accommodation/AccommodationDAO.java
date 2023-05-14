@@ -15,15 +15,13 @@ public class AccommodationDAO extends JDBConnect {
     // 검색 조건에 맞는 게시물의 개수를 반환합니다.
     public int selectCount(Map<String, Object> map) {
         int totalCount = 0; // 결과(게시물 수)를 담을 변수
-
+        
         // 숙소 수를 얻어오는 쿼리문 작성
         String query = "SELECT COUNT(*) FROM accommodationtbl";
         if (map.get("accsearch") != null) {
             query += " WHERE " + map.get("searchText") + " "
                    + " LIKE '%" + map.get("accsearch") + "%'";
         }
-        
-        
         
         try {
             stmt = con.createStatement();   // 쿼리문 생성
@@ -48,7 +46,7 @@ public class AccommodationDAO extends JDBConnect {
         String query = " SELECT * FROM ( "
                      + "    SELECT Tb.*, ROWNUM rNum FROM ( "
                      + "        SELECT * FROM accommodationtbl ";
-
+        
         // 검색 조건 추가 
         if (map.get("accsearch") != null) {
             query += " WHERE " + map.get("searchText")
@@ -59,8 +57,6 @@ public class AccommodationDAO extends JDBConnect {
                + "     ) Tb "
                + " ) "
                + " WHERE rNum BETWEEN ? AND ?"; 
-        
-        
         
         
         
