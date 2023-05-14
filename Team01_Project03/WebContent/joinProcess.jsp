@@ -15,6 +15,7 @@
 String joinId = request.getParameter("id");
 String joinPwd = request.getParameter("pw");
 String joinName = request.getParameter("name");
+String joinNickname = request.getParameter("nickname");
 //https://stackoverflow.com/questions/21575253/classcastexception-java-util-date-cannot-be-cast-to-java-sql-date
 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date utildate = formatter.parse(request.getParameter("birth"));
@@ -34,7 +35,7 @@ String oraclePwd = application.getInitParameter("OraclePwd");
 
 // 회원 테이블 DAO를 통해 회원 정보 DTO 획득
 MemberDao dao = new MemberDao(oracleDriver, oracleURL, oracleId, oraclePwd);
-MemberDto dto = new MemberDto(joinId, joinPwd, joinName, joinBirth, joinSex, joinAddress, joinPhone, joinEmail);
+MemberDto dto = new MemberDto(joinId, joinPwd, joinName, joinNickname, joinBirth, joinSex, joinAddress, joinPhone, joinEmail);
 int joinresult = dao.join(dto);
 dao.close();
 

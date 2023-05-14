@@ -27,12 +27,14 @@ dao.close();
 if (myId != null) {
 	request.setAttribute("mypageId", memberDto.getId()); 
 	request.setAttribute("mypagePw", memberDto.getPw()); 
-	request.setAttribute("mypageName", memberDto.getName()); 
+	request.setAttribute("mypageName", memberDto.getName());
+	request.setAttribute("mypageNickname", memberDto.getNickname());
 	request.setAttribute("mypageBirth", memberDto.getBirth()); 
 	request.setAttribute("mypageSex", memberDto.getSex());
 	request.setAttribute("mypageAddress", memberDto.getAddress());
 	request.setAttribute("mypagePhone", memberDto.getPhone());
 	request.setAttribute("mypageEmail", memberDto.getEmail());
+	request.setAttribute("mypageGrade", memberDto.getGrade());
 	request.getRequestDispatcher("myPageProcess.jsp").forward(request, response);
 } else {
 	response.sendRedirect("./signIn.jsp");

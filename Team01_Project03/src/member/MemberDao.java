@@ -13,18 +13,19 @@ public class MemberDao extends JDBConnect {
 	public int join(MemberDto dto) {
 		int result = 0;
 		String query =  "INSERT INTO memberidtbl VALUES"
-		+ "(member_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, TRUNC(SYSDATE))";
+		+ "(member_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, DEFAULT, TRUNC(SYSDATE))";
 		
 		try {
 			psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getId()); 
             psmt.setString(2, dto.getPw());
             psmt.setString(3, dto.getName());
-            psmt.setDate(4, dto.getBirth());
-            psmt.setString(5, dto.getSex());
-            psmt.setString(6, dto.getAddress());
-            psmt.setString(7, dto.getPhone());
-            psmt.setString(8, dto.getEmail());
+            psmt.setString(4, dto.getNickname());
+            psmt.setDate(5, dto.getBirth());
+            psmt.setString(6, dto.getSex());
+            psmt.setString(7, dto.getAddress());
+            psmt.setString(8, dto.getPhone());
+            psmt.setString(9, dto.getEmail());
             result = psmt.executeUpdate();
 		} catch (Exception e) {
         	e.printStackTrace();
@@ -93,11 +94,13 @@ public class MemberDao extends JDBConnect {
 				dto.setId(rs.getString("mit_id"));
 				dto.setPw(rs.getString("mit_pw"));
 				dto.setName(rs.getString("mit_name"));
+				dto.setNickname(rs.getString("mit_nickname"));
 				dto.setBirth(rs.getDate("mit_birth"));
 				dto.setSex(rs.getString("mit_sex"));
 				dto.setAddress(rs.getString("mit_address"));
 				dto.setPhone(rs.getString("mit_phone"));
 				dto.setEmail(rs.getString("mit_email"));
+				dto.setGrade(rs.getString("mit_grade"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,13 +112,14 @@ public class MemberDao extends JDBConnect {
 	//회원정보수정: 아이디와 일치하는 회원 정보를 찾은 후 기입한 정보로 갱신합니다.
 	public int update(MemberDto dto) {
 		int result = 0;
-		String query = "UPDATE memberidtbl SET mit_pw=?, mit_name=?, mit_birth=?,"
+		String query = "UPDATE memberidtbl SET mit_pw=?, mit_name=?, mit_nickname=?, mit_birth=?,"
 						+ "mit_sex= ?, mit_address=?, mit_phone=?,"
 						+ "mit_email=? WHERE mit_id=?";
 		try {
 			psmt = con.prepareStatement(query); 
             psmt.setString(1, dto.getPw());
             psmt.setString(2, dto.getName());
+            psmt.setString(2, dto.getNickname());
             psmt.setDate(3, dto.getBirth());
             psmt.setString(4, dto.getSex());
             psmt.setString(5, dto.getAddress());

@@ -7,20 +7,23 @@ public class MemberDto {
 	private String id;
 	private String pw;
 	private String name;
+	private String nickname;
 	private java.sql.Date birth;
 	private String sex;
 	private String address;
 	private String phone;
 	private String email;
+	private String grade;
 	
 	public MemberDto() {}
 	
-	public MemberDto(String id, String pw, String name, Date birth, String sex, String address, String phone,
+	public MemberDto(String id, String pw, String name, String nickname, Date birth, String sex, String address, String phone,
 			String email) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
+		this.nickname = nickname;
 		this.birth = birth;
 		this.sex = sex;
 		this.address = address;
@@ -51,6 +54,14 @@ public class MemberDto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public java.sql.Date getBirth() {
@@ -93,4 +104,11 @@ public class MemberDto {
 		this.email = email;
 	}
 	
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
 }

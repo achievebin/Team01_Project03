@@ -14,6 +14,7 @@
 String updateId = request.getParameter("newId");
 String updatePw = request.getParameter("newPw");
 String updateName = request.getParameter("newName");
+String updateNickname = request.getParameter("newNickname");
 //https://stackoverflow.com/questions/21575253/classcastexception-java-util-date-cannot-be-cast-to-java-sql-date
 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date utildate = formatter.parse(request.getParameter("newBirth"));
@@ -30,7 +31,7 @@ String oracleId = application.getInitParameter("OracleId");
 String oraclePwd = application.getInitParameter("OraclePwd");
 
 MemberDao dao = new MemberDao(oracleDriver, oracleURL, oracleId, oraclePwd);
-MemberDto dto = new MemberDto(updateId, updatePw, updateName, updateBirth, updateSex, updateAddress, updatePhone, updateEmail);
+MemberDto dto = new MemberDto(updateId, updatePw, updateName, updateNickname, updateBirth, updateSex, updateAddress, updatePhone, updateEmail);
 int updateresult = dao.update(dto);
 dao.close();
 
