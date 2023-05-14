@@ -17,10 +17,11 @@
     </span>
 	<form name="signInForm" action="./signInProcess.jsp" method="post">
 		<label>아이디</label>
-		<input type="text" name="sinid" required><br/>
+		<input type="text" name="sinid" id="sinid"><br/>
 		<label>비밀번호</label>
-		<input type="password" name="sinpw" required><br/>
+		<input type="password" name="sinpw" id="sinpw"><br/>
 		<input type="button" value="로그인" onclick="signInFormCheck()">
+		<input type="submit" value="테스트">
 		<input type="button" value="돌아가기" onclick="history.back()">
 	</form>
 	<div>

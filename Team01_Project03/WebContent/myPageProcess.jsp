@@ -15,7 +15,7 @@ String yourEmail = (String)request.getAttribute("mypageEmail");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 페이지 처리</title>
+<title>내 페이지</title>
 </head>
 <body>
 	<jsp:include page="./header.jsp"/>
