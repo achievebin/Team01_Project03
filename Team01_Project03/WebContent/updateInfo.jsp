@@ -7,6 +7,7 @@
 String changeId = request.getParameter("prevId");
 String changePw = request.getParameter("prevPw");
 String changeName = request.getParameter("prevName");
+String changeNickname = request.getParameter("prevNickname");
 //https://stackoverflow.com/questions/21575253/classcastexception-java-util-date-cannot-be-cast-to-java-sql-date
 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date utildate = formatter.parse(request.getParameter("prevBirth"));
@@ -47,23 +48,27 @@ String changeEmail = request.getParameter("prevEmail");
 			<input type="text" name="newName" id="newName" value=<%=changeName %>>
 			</div>
 			<div>
+			<label>닉네임</label>
+			<input type="text" name="newNickname" id="newNickname" value=<%=changeNickname %>>
+			</div>
+			<div>
 			<label>생년월일</label>
-			<input type="date" name="newBirth" value=<%=changeBirth %> required>
+			<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %>>
 			</div>
 			<div>
 			<label>성별</label>
-			<% if (changeSex.equals("m")) {%>
-			<input type="radio" name="newSex" value="m" checked>남자
-			<input type="radio" name="newSex" value="f">여자
-			<input type="radio" name="newSex" value="n">선택 안 함
-			<%} else if (changeSex.equals("f")) {%>
-			<input type="radio" name="newSex" value="m">남자
-			<input type="radio" name="newSex" value="f" checked>여자
-			<input type="radio" name="newSex" value="n">선택 안 함
+			<% if (changeSex.equals("male")) {%>
+			<input type="radio" name="newSex" value="male" checked>남자
+			<input type="radio" name="newSex" value="female">여자
+			<input type="radio" name="newSex" value="none">선택 안 함
+			<%} else if (changeSex.equals("female")) {%>
+			<input type="radio" name="newSex" value="male">남자
+			<input type="radio" name="newSex" value="female" checked>여자
+			<input type="radio" name="newSex" value="none">선택 안 함
 			<%} else {%>
-			<input type="radio" name="newSex" value="m">남자
-			<input type="radio" name="newSex" value="f">여자
-			<input type="radio" name="newSex" value="n" checked>선택 안 함
+			<input type="radio" name="newSex" value="male">남자
+			<input type="radio" name="newSex" value="female">여자
+			<input type="radio" name="newSex" value="none" checked>선택 안 함
 			<%} %>
 			</div>
 			<div>

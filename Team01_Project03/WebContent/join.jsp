@@ -14,7 +14,7 @@
 	                "" : request.getAttribute("joinErrMsg") %>
 	</span>
 	<h2>회원가입</h2>
-	<form name="joinForm" action="./joinProcess.jsp" method="post">
+	<form name="joinForm" id="joinForm" action="./joinProcess.jsp" method="post">
 		<fieldset>
 		<legend>신규 회원 정보</legend>
 		<div>
@@ -24,28 +24,32 @@
 		</div>
 		<div>
 		<label>비밀번호</label>
-		<input type="password" maxlength="16" placeholder="비밀번호 입력" name="pw" id="pw">
+		<input type="password" maxlength="12" placeholder="비밀번호 입력" name="pw" id="pw">
 		</div>
 		<div>
 		<label>비밀번호 확인</label>
-		<input type="password" maxlength="16" placeholder="비밀번호 재입력" name="pwCheck" id="pwCheck">
+		<input type="password" maxlength="12" placeholder="비밀번호 재입력" name="pwCheck" id="pwCheck">
 		</div>
 		</fieldset>
 		<fieldset>
 		<legend>개인 정보</legend>
 		<div>
 		<label>이름</label>
-		<input type="text" maxlength="16" placeholder="성과 이름을 기입" name="name" id="name">
+		<input type="text" maxlength="12" placeholder="성과 이름을 기입" name="name" id="name">
+		</div>
+		<div>
+		<label>닉네임</label>
+		<input type="text" maxlength="48" placeholder="닉네임을 기입" name="nickname" id="nickname">
 		</div>
 		<div>
 		<label>생년월일</label>
-		<input type="date" name="birth" required>
+		<input type="date" name="birth" id="birth">
 		</div>
 		<div>
 		<label>성별</label>
-		<input type="radio" name="sex" value="m">남자
-		<input type="radio" name="sex" value="f">여자
-		<input type="radio" name="sex" value="n" checked>선택 안 함
+		<input type="radio" name="sex" value="male">남자
+		<input type="radio" name="sex" value="female">여자
+		<input type="radio" name="sex" value="none" checked>선택 안 함
 		</div>
 		<div>
 		<label>주소</label>
