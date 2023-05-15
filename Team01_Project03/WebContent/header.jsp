@@ -14,7 +14,7 @@
 </div>
 <!-- 검색창이 들어갈 구역 -->
 <div id="search">
-	<jsp:include page="./search.jsp"/>
+	<%@include file="./search.jsp"%>
 </div>
 <!-- 생성할 하위 페이지로 넘겨줄 구역 -->
 <nav>

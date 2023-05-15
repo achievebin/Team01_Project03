@@ -8,7 +8,8 @@
 </head>
 <%@ include file = "./header.jsp" %>
 <body>
-임시 내용
+
+
 </body>
 <%@ include file = "./footer.jsp" %>
 </html>
