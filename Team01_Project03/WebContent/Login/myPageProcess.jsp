@@ -20,7 +20,7 @@ String yourGrade = (String)request.getAttribute("mypageGrade");
 <title>내 페이지</title>
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
+	<jsp:include page="../Common/header.jsp"/>
 	<section>
 		<h2><%=yourNickname %>님, 환영합니다.</h2>
 		<h3>회원 등급은 <%=yourGrade%>입니다.</h3>
@@ -90,6 +90,6 @@ String yourGrade = (String)request.getAttribute("mypageGrade");
 			<li><a href="./bookmark.jsp">관심목록</a></li>
 		</ul>
 	</aside>
-	<jsp:include page="./footer.jsp"/>
+	<jsp:include page="../Common/footer.jsp"/>
 </body>
 </html>

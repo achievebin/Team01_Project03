@@ -31,7 +31,6 @@
 	</ul>
 </div>
 <!-- 사이트 정보가 들어갈 영역 -->
-
 <div id = "contact" align="center" >
 	<ul>
 		<li><a href="https://github.com/achievebin/Team01_Project03">개발 깃허브</a></li>	

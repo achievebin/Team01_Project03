@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript" src="./checkForm.js"></script>
-	<%@ include file="./Common/header.jsp" %>
+	<%@ include file="../Common/header.jsp" %>
 	<span style="color: red; font-size: 1.2em;"> 
 	        <%= request.getAttribute("joinErrMsg") == null ?
 	                "" : request.getAttribute("joinErrMsg") %>
@@ -67,6 +67,6 @@
 		<input type="button" value="가입하기" onclick="joinFormCheck()">
 		<input type="button" value="돌아가기" onclick="history.back()">
 	</form>
-	<%@ include file="./Common/footer.jsp" %>
+	<%@ include file="../Common/footer.jsp" %>
 </body>
 </html>

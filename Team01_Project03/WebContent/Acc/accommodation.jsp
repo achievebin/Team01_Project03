@@ -54,7 +54,7 @@ dao.close();  // DB 연결 닫기
 <title>숙박업소 목록</title>
 </head>
 <body>
-<%@ include file="./header.jsp" %>
+<%@ include file="../Common/header.jsp" %>
 <%@ include file = "./accommodationDate.jsp" %>
 
 <h2>숙소 목록 보기 - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
@@ -96,6 +96,7 @@ else {
      <tr align="center">
          <td>이미지<%-- <%= virtualNum %> --%></td>  <!--게시물 번호-->
          <td align="left">  <!--제목(+ 하이퍼링크)-->
+         	<!-- 성원씨 페이지로 넘겨야함 -->
              <a href="View.jsp?num=<%= dto.getAct_number() %>"><%= dto.getAct_name() %></a>
          </td>
          <td align="center"><%= dto.getAct_address() %></td>        <!--소재지-->
@@ -127,6 +128,6 @@ else {
         </tr>
     </table>
 
- <%@ include file="./footer.jsp" %> 
+ <%@ include file="../Common/footer.jsp" %> 
 </body>
 </html>
