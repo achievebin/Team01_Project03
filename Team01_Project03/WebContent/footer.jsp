@@ -17,7 +17,7 @@
 </div>
 <!-- 사이트 정보가 들어갈 영역 -->
 <div id = "contact">
-임시 내용
+
 </div>
 </footer>
 </body>
