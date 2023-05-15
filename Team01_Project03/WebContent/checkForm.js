@@ -165,14 +165,14 @@ function updateInfoFormCheck() {
 		nickname.focus();
 		return false;
 		}
-	if (regNickname.test(nickname.value) == false) {
-		alert("영어 또는 숫자 또는 한글로 된 2~16자리의 닉네임을 입력해주세요");
-		nickname.focus();
-		return false;
-		}
 	if (!birth.value) {
 		alert("생년월일을 입력해주세요");
 		birth.focus();
+		return false;
+		}
+	if (regNickname.test(nickname.value) == false) {
+		alert("영어 또는 숫자 또는 한글로 된 2~16자리의 닉네임을 입력해주세요");
+		nickname.focus();
 		return false;
 		}
 	if (!address.value) {
