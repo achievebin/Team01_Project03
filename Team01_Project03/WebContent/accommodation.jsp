@@ -113,7 +113,16 @@ else {
         <tr align="center">
             <!--페이징 처리-->
             <td>
-                <%= Page.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %>  
+                <%
+			    String reqUrl = request.getRequestURI(); // 현재 요청의 URI를 가져옴
+			    if (accsearch == null) { // accsearch가 null인 경우
+			        reqUrl += "?"; // reqUrl에 ?를 추가
+			    } else { // accsearch가 null이 아닌 경우
+			        reqUrl += "?accsearch=" + accsearch; // reqUrl에 ?accsearch=값을 추가
+			    }
+			    reqUrl += "&searchText=act_name"; // reqUrl에 &searchText=act_name을 추가
+			    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
+				%>
             </td>
         </tr>
     </table>
