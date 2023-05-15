@@ -26,7 +26,7 @@ function validateForm(form) {  // 폼 내용 검증
 	<h2>글쓰기</h2>
 	<form name="writeFrm" method="post" action="WriteProcess.jsp"
      	 onsubmit="return validateForm(this);">
-   	 <table border="1" width="90%">
+   	 <table border="1" style="width:90%">
        	 <tr>
            	 <td>제목</td>
            	 <td>
@@ -44,7 +44,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit" >작성 완료</button>
                 <!-- <button type="reset">다시 입력</button>-->
-                <!--<button type="button" onclick="location.href='List.jsp';" >-->
+                <!-- <button type="button" onClick="location.href='List.jsp';"> -->
                 <button type="button" onclick="if(confirm('목록 페이지로 이동하시겠습니까?')){location.href='NoticeList.jsp';}">
                     목록 보기</button>
             </td>

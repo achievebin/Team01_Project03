@@ -62,7 +62,7 @@ dao.close();  // DB 연결 닫기
 <%@ include file = "./sortbutton.jsp" %>
  
  <!-- 게시물 목록 테이블(표) -->
- <table border="1" width="90%">
+ <table border="1" style="width:90%">
      <!-- 각 칼럼의 이름 -->
      <tr>
          <th width="10%">이미지</th>
@@ -110,7 +110,7 @@ else {
 %>
 </table>
 
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr align="center">
             <!--페이징 처리-->
             <td>

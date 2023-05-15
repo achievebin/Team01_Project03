@@ -42,15 +42,15 @@
 
 <!-- 검색폼 -->
 <form action="accommodation.jsp" method="GET" onsubmit="return validateForm();">
-    <tr>
-        <td align="center">
-            <input type="text" name="accsearch" id="accsearch" value="<%= searchValue %>" />
-            <button type="submit">검색하기</button>
-            <input type="hidden" id="searchText" name="searchText" value="act_name" />
-            
-            
-        </td>
-    </tr>
+    <table>
+	    <tr>
+	        <td align="center">
+	            <input type="text" name="accsearch" id="accsearch" value="<%= searchValue %>" />
+	            <button type="submit">검색하기</button>
+	            <input type="hidden" id="searchText" name="searchText" value="act_name" />
+	        </td>
+	    </tr>
+    </table>
 </form>
 
 <!-- 이전 검색값을 세션에 저장 -->

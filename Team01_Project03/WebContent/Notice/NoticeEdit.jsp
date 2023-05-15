@@ -41,7 +41,7 @@ function validateForm(form) {  // 폼 내용 검증
 <form name="writeFrm" method="post" action="EditProcess.jsp"
       onsubmit="return validateForm(this);">
     <input type="hidden" name="num" value="<%= dto.getNoc_num() %>" /> 
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>제목</td>
             <td>
