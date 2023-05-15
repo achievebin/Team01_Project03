@@ -10,7 +10,16 @@ public class ReserveDTO {
     private String resphone;
     private String respurchase;
     private String resprice;
+    private String reshotel;
     
+    
+    
+	public String getReshotel() {
+		return reshotel;
+	}
+	public void setReshotel(String reshotel) {
+		this.reshotel = reshotel;
+	}
 	public int getResnumber() {
 		return resnumber;
 	}

@@ -2,6 +2,8 @@
 <%@ page import="Act.ActDTO"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
+<%@ page import="Reserve.ReserveDAO"%>
+<%@ page import="Reserve.ReserveDTO"%>
 <%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -57,9 +59,7 @@ sdao.close();// DB 연결 해제
 		java.util.Date utildate = formatter.parse(request.getParameter("chk_in"));
 		java.sql.Date joinBirth = new java.sql.Date(utildate.getTime()); %>
 
-		<%if( joinBirth!= null){
-			out.println(joinBirth);
-		} %>
+
 		</td>
 		<td>
 		<label>체크아웃 날짜</label>

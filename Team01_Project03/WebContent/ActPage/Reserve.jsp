@@ -1,5 +1,7 @@
 <%@ page import="Act.ActDAO"%>
 <%@ page import="Act.ActDTO"%>
+<%@ page import="Reserve.ReserveDAO"%>
+<%@ page import="Reserve.ReserveDTO"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

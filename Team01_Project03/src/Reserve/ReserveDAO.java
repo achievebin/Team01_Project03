@@ -30,15 +30,15 @@ public class ReserveDAO extends JDBConnect {
 
             // 결과 처리
             if (rs.next()) {
-                dto.setActnum(rs.getInt("act_number")); 
-                dto.setCountAll(rs.getInt("count_all"));
-                dto.setHotel(rs.getString("hotel"));
-                dto.setAvgScore(rs.getInt("rev_avg"));
-                dto.setCount5(rs.getInt("count5"));
-                dto.setCount4(rs.getInt("count4"));
-                dto.setCount3(rs.getInt("count3"));
-                dto.setCount2(rs.getInt("count2"));
-                dto.setCount1(rs.getInt("count1"));
+                dto.setResnumber(rs.getInt("res_number")); 
+                dto.setActnumber(rs.getInt("act_number"));
+                dto.setResstart(rs.getDate("res_start"));
+                dto.setResend(rs.getDate("res_end"));
+                dto.setResname(rs.getString("res_name"));
+                dto.setResphone(rs.getString("res_phone"));
+                dto.setRespurchase(rs.getString("res_purchase"));
+                dto.setResprice(rs.getString("res_price"));
+                dto.setResprice(rs.getString("res_hotel"));
 
                
             }
@@ -57,8 +57,8 @@ public class ReserveDAO extends JDBConnect {
         try {
             // INSERT 쿼리문 작성 
             String query = "insert into reservationtbl(res_number,"
-            		+"act_number,res_start,res_end,res_name,res_phone,res_purchase,res_price)\n"
-            		+ "values(seq_res_num.nextval, ?, ?, ?, ?, ?, ?, ?)";  
+            		+"act_number,res_start,res_end,res_name,res_phone,res_purchase,res_price, res_hotel)\n"
+            		+ "values(seq_res_num.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setInt(1, dto.getActnumber());  
@@ -68,7 +68,7 @@ public class ReserveDAO extends JDBConnect {
             psmt.setString(5, dto.getResphone()); 
             psmt.setString(6, dto.getRespurchase());
             psmt.setString(7, dto.getResprice()); 
-            
+            psmt.setString(8, dto.getReshotel()); 
             result = psmt.executeUpdate(); 
 
         }
