@@ -29,7 +29,7 @@ String changeEmail = request.getParameter("prevEmail");
 		        <%= request.getAttribute("updateInfoErrMsg") == null ?
 		                "" : request.getAttribute("updateInfoErrMsg") %>
 		</span>
-	<form name="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
+	<form name="updateInfoForm" id="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
 			<fieldset>
 			<legend>내 회원 정보</legend>
 			<div>
@@ -53,7 +53,7 @@ String changeEmail = request.getParameter("prevEmail");
 			</div>
 			<div>
 			<label>생년월일</label>
-			<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %>>
+			<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %> required>
 			</div>
 			<div>
 			<label>성별</label>

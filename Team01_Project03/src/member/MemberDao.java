@@ -119,13 +119,13 @@ public class MemberDao extends JDBConnect {
 			psmt = con.prepareStatement(query); 
             psmt.setString(1, dto.getPw());
             psmt.setString(2, dto.getName());
-            psmt.setString(2, dto.getNickname());
-            psmt.setDate(3, dto.getBirth());
-            psmt.setString(4, dto.getSex());
-            psmt.setString(5, dto.getAddress());
-            psmt.setString(6, dto.getPhone());
-            psmt.setString(7, dto.getEmail());
-            psmt.setString(8, dto.getId());
+            psmt.setString(3, dto.getNickname());
+            psmt.setDate(4, dto.getBirth());
+            psmt.setString(5, dto.getSex());
+            psmt.setString(6, dto.getAddress());
+            psmt.setString(7, dto.getPhone());
+            psmt.setString(8, dto.getEmail());
+            psmt.setString(9, dto.getId());
             result = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
