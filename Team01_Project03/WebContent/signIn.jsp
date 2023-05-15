@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript" src="./checkForm.js"></script>
-	<jsp:include page="./header.jsp"/>
+	<jsp:include page="/Common/header.jsp" />
 	<span style="color: red; font-size: 1.2em;"> 
         <%= request.getAttribute("LoginErrMsg") == null ?
                 "" : request.getAttribute("LoginErrMsg")%>
@@ -29,6 +29,6 @@
 	<div>
 	아이디나 비밀번호를 잊어버리셨나요?
 	</div>
-	<jsp:include page="./footer.jsp"/>
+	<jsp:include page="/Common/footer.jsp" />
 </body>
 </html>

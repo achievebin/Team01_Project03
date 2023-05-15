@@ -13,23 +13,24 @@
 	<h1>이미지 대용</h1>
 </div>
 <!-- 검색창이 들어갈 구역 -->
+
 <div id="search">
-	<%@include file="./search.jsp"%>
+	<%@ include file="../search.jsp" %>
 </div>
 <!-- 생성할 하위 페이지로 넘겨줄 구역 -->
 <nav>
 	<ul>
 		<li>안내
 			<ul>
-				<li><a href="./introduce.jsp">소개</a></li>
-				<li><a href="./history.jsp">연혁</a></li>
+				<li><a href="../introduce.jsp">소개</a></li>
+				<li><a href="../history.jsp">연혁</a></li>
 			</ul>
 		</li>
-		<li><a href="./myReservation.jsp">예약정보</a></li>
+		<li><a href="../myReservation.jsp">예약정보</a></li>
 		<li>고객지원
 			<ul>
-				<li><a href="./NoticeList.jsp">공지사항</a></li>
-				<li><a href="./customService.jsp">고객센터</a></li>
+				<li><a href="${pageContext.request.contextPath}/Notice/NoticeList.jsp">공지사항</a></li>
+				<li><a href="${pageContext.request.contextPath}/CustomerService.jsp">고객센터</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -38,12 +39,12 @@
 <div id="account">
 	<!-- 로그인 여부에 따른 메뉴 변화 -->
         <% if (session.getAttribute("signInId") == null) { %>
-            <a href="./signIn.jsp">로그인</a>
+            <a href="${pageContext.request.contextPath}/signIn.jsp">로그인</a>
         <% } else { %>
         	<%= session.getAttribute("signInId") %>
         	<ul>
-        		<li><a href="./myPage.jsp">내 페이지</a></li>
-        		<li><a href="./signOut.jsp">로그아웃</a></li>
+        		<li><a href="${pageContext.request.contextPath}/myPageProcess.jsp">내 페이지</a></li>
+        		<li><a href="${pageContext.request.contextPath}/signOut.jsp">로그아웃</a></li>
             </ul>
         <% } %>
 </div>

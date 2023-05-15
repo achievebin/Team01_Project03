@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>첫 화면</title>
+<title>Insert title here</title>
 </head>
-<jsp:include page="/Common/header.jsp" />
 <body>
+<jsp:include page="/Common/header.jsp" />
 
 
+임시 내용
 </body>
 <jsp:include page="/Common/footer.jsp" />
-</html> 
+</html>
