@@ -1,4 +1,4 @@
-package Review;
+package review;
 
 public class ReviewDTO {
     // 멤버 변수 선언

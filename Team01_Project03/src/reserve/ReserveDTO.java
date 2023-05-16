@@ -1,4 +1,4 @@
-package Reserve;
+package reserve;
 
 public class ReserveDTO {
     // 멤버 변수 선언

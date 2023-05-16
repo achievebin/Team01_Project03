@@ -1,13 +1,13 @@
-<%@ page import="Act.ActDAO"%>
-<%@ page import="Act.ActDTO"%>
+<%@ page import="act.ActDAO"%>
+<%@ page import="act.ActDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%>
 <%
-String num = request.getParameter("num");  // 일련번호 얻기 
+	String num = request.getParameter("num");  // 일련번호 얻기 
 
 ActDTO dto = new ActDTO();             // DTO 객체 생성
-ActDAO dao = new ActDAO(application);  // DAO 객체 생성
+act.ActDAO dao = new act.ActDAO(application);  // DAO 객체 생성
 dto = dao.selectView(num);  // 주어진 일련번호에 해당하는 기존 게시물 얻기
 
 // 로그인된 사용자 ID 얻기

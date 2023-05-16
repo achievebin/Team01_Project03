@@ -1,4 +1,4 @@
-package Act;
+package act;
 
 /*import java.beans.Statement;
 import java.sql.ResultSet;

@@ -1,12 +1,12 @@
-<%@ page import="Review.ReviewDAO"%>
-<%@ page import="Review.ReviewDTO"%>
+<%@ page import="review.ReviewDAO"%>
+<%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%>
 <%
-String num = (String)request.getAttribute("num");  // 일련번호 얻기 
+	String num = (String)request.getAttribute("num");  // 일련번호 얻기 
 
-ReviewDTO dto = new ReviewDTO();             // DTO 객체 생성
+review.ReviewDTO dto = new review.ReviewDTO();             // DTO 객체 생성
 ReviewDAO dao = new ReviewDAO(application);  // DAO 객체 생성
 dto = dao.selectView(num);  // 주어진 일련번호에 해당하는 기존 게시물 얻기
 

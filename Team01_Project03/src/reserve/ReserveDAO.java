@@ -1,4 +1,4 @@
-package Reserve;
+package reserve;
 
 /*import java.beans.Statement;
 import java.sql.ResultSet;

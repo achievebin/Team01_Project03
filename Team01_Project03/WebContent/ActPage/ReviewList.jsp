@@ -1,9 +1,9 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="Review.ReviewDAO"%>
-<%@ page import="Review.ReviewDTO"%>
-<%@ page import="Act.ActDTO"%>
+<%@ page import="review.ReviewDAO"%>
+<%@ page import="review.ReviewDTO"%>
+<%@ page import="act.ActDTO"%>
 <%@ page import="utils.BoardPage"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.Statement"%>
@@ -17,9 +17,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-// DAO를 생성해 DB에 연결
+	// DAO를 생성해 DB에 연결
 ReviewDAO dao = new ReviewDAO(application);
-ActDTO adt = new ActDTO();
+act.ActDTO adt = new act.ActDTO();
 
 
 // 사용자가 입력한 검색 조건을 Map에 저장
@@ -53,7 +53,7 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
- List<ReviewDTO> ReviewLists = dao.selectListPage(param);  // 게시물 목록 받기
+ List<review.ReviewDTO> ReviewLists = dao.selectListPage(param);  // 게시물 목록 받기
 
 dao.close();  // DB 연결 닫기
 
@@ -89,23 +89,23 @@ function deletePost() {
     <jsp:include page="../ActPage/ActLink.jsp" />  <!-- 공통 링크 -->
 
 
-    <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
-    <h2>현재 숙소: <%= request.getAttribute("actname") %>  </h2>
+    <h2>목록 보기(List) - 현재 페이지 : <%=pageNum%> (전체 : <%=totalPage%>)</h2>
+    <h2>현재 숙소: <%=request.getAttribute("actname")%>  </h2>
     <canvas id="myChart" width="50" height="50"></canvas>
 
-    <h2>별점 평균:<%= sdto.getAvgScore()%> 
+    <h2>별점 평균:<%=sdto.getAvgScore()%> 
   
-    전체리뷰:<%= sdto.getCountAll()%> 개 
+    전체리뷰:<%=sdto.getCountAll()%> 개 
  
-    5점:<%= sdto.getCount5()%>개 
+    5점:<%=sdto.getCount5()%>개 
     
-    4점:<%= sdto.getCount4()%>개 
+    4점:<%=sdto.getCount4()%>개 
     
-    3점:<%= sdto.getCount3()%>개  
+    3점:<%=sdto.getCount3()%>개  
     
-    2점:<%= sdto.getCount2()%>개 
+    2점:<%=sdto.getCount2()%>개 
     
-    1점:<%= sdto.getCount1()%>개    </h2>
+    1점:<%=sdto.getCount1()%>개    </h2>
     
 
 
@@ -175,8 +175,8 @@ var myChart = new Chart(chartArea, {
         <tr align="right">
             <!--페이징 처리-->
             <td>
-                <%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>  
+                <%=BoardPage.pagingStr(totalCount, pageSize,
+                       blockPage, pageNum, request.getRequestURI())%>  
             </td>
             <!--글쓰기 버튼-->
             <td><button type="button" onclick="location.href='ReviewWrite.jsp';">글쓰기
@@ -198,7 +198,7 @@ var myChart = new Chart(chartArea, {
         </tr>
         <!-- 목록의 내용 -->
 <%
-if (ReviewLists.isEmpty()) {
+	if (ReviewLists.isEmpty()) {
     // 게시물이 하나도 없을 때
 %>
         <tr>
@@ -207,13 +207,13 @@ if (ReviewLists.isEmpty()) {
             </td>
         </tr>
 <%
-}
+	}
 else {
     // 게시물이 있을 때
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
     
-    for (ReviewDTO dto : ReviewLists)
+    for (review.ReviewDTO dto : ReviewLists)
     {
     	
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소

@@ -1,13 +1,13 @@
-<%@ page import="Review.ReviewDAO"%>
-<%@ page import="Review.ReviewDTO"%>
+<%@ page import="review.ReviewDAO"%>
+<%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String num = request.getParameter("num");  // 일련번호 받기 
+	String num = request.getParameter("num");  // 일련번호 받기 
 
 ReviewDAO dao = new ReviewDAO(application);  // DAO 생성 
               
-ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
+review.ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
 String actname = dto.getTitle();
 
 out.println(actname);
