@@ -39,7 +39,7 @@ sdao.close();// DB 연결 해제
         
         </div>    --%>
 <form name="ReserverFrm" method="post">
-    <table border="1" width="50%">
+    <table border="1" style="width:50%">
         <tr>
 
         <h2>예약 하기</h2>
@@ -69,7 +69,7 @@ sdao.close();// DB 연결 해제
         </form>
 
 <form name="saleFrm" method="post">
-    <table border="1" width="50%">
+    <table border="1" style="width:50%">
         <tr>
 
         <h2>총 금액</h2>
@@ -133,19 +133,19 @@ sdao.close();// DB 연결 해제
                 && session.getAttribute("signInId").toString().equals(dto.getActId())) {
             %>
                 <button type="button"
-                        onclick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
+                        onClick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
                     수정하기</button>
-                <button type="button" onclick="deletePost();">삭제하기</button> 
+                <button type="button" onClick="deletePost();">삭제하기</button> 
             <%
             }
             %>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
+                <button type="button" onClick="location.href='ReviewWrite.jsp';">
                     예약 하기
                 </button>
-                <button type="button" onclick="location.href='ActList.jsp';">
+                <button type="button" onClick="location.href='ActList.jsp';">
                     목록 보기
                 </button>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
+                <button type="button" onClick="location.href='ReviewWrite.jsp';">
                     리뷰 쓰기
                 </button>
             </td>

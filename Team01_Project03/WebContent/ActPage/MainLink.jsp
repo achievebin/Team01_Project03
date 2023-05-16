@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<table border="1" width="90%"> 
+<table border="1" style="width:90%"> 
     <tr>
         <td align="center">
         <!-- 로그인 여부에 따른 메뉴 변화 -->

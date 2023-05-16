@@ -35,13 +35,9 @@ sdao.close();// DB 연결 해제
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
 <h2><%=dto.getActName() %>숙소 예약</h2>
 <%-- <div style="width:600px; height:600px; border:2px solid black; float:right">네번째 영역
-        <jsp:include page="../ActPage/ReservPrint.jsp" />
-        
-        
-        
-        </div>    --%>
+        <jsp:include page="../ActPage/ReservPrint.jsp" /></div> --%>
 <form name="ReserverFrm" action="./ReservProcess.jsp" method="post" method="post">
-    <table border="1" width="50%">
+    <table border="1" style="width:50%">
         <tr>
 
         <h2>예약 하기</h2>
@@ -69,7 +65,7 @@ sdao.close();// DB 연결 해제
         </table>
         <hr width="50%" align="left">
 
-    <table border="1" width="50%">
+    <table border="1" style="width:50%">
         <tr>
 
         <h2>총 금액</h2>
@@ -134,26 +130,22 @@ sdao.close();// DB 연결 해제
                 && session.getAttribute("signInId").toString().equals(dto.getActId())) {
             %>
                 <button type="button"
-                        onclick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
+                        onClick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
                     수정하기</button>
-                <button type="button" onclick="deletePost();">삭제하기</button> 
+                <button type="button" onClick="deletePost();">삭제하기</button> 
             <%
             }
             %>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
+                <button type="button" onClick="location.href='ReviewWrite.jsp';">
                     예약 하기
                 </button>
-                <button type="button" onclick="location.href='ActList.jsp';">
+                <button type="button" onClick="location.href='ActList.jsp';">
                     목록 보기
                 </button>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
+                <button type="button" onClick="location.href='ReviewWrite.jsp';">
                     리뷰 쓰기
                 </button>
             </td>
         </tr> --%>
-
-    
-
-
 </body>
 </html>

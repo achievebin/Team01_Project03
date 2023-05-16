@@ -41,7 +41,7 @@
 %>
 
 <!-- 검색폼 -->
-<form action="accommodation.jsp" method="GET" onsubmit="return validateForm();">
+<form action="../Acc/accommodation.jsp" method="GET" onsubmit="return validateForm();">
     <table>
 	    <tr>
 	        <td align="center">
