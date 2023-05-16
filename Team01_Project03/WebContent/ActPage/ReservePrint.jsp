@@ -132,7 +132,7 @@ sdao.close();// DB 연결 해제
                 && session.getAttribute("signInId").toString().equals(dto.getActId())) {
             %>
                 <button type="button"
-                        onClick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
+                        onclick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
                     수정하기</button>
                 <button type="button" onclick="deletePost();">삭제하기</button> 
             <%
