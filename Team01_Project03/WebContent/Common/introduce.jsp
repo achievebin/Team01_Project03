@@ -1,9 +1,23 @@
-<%@include file="Test_header.jsp"%>
+<%@include file="header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
-
+<style>
+  .video-container {
+    display: flex;
+    justify-content: center;
+  }
+  .video-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  .video-title {
+    margin-bottom: 10px;
+  }
+</style>
 <body>
-<img src="please.png" width=100%/>
+<img src="introduce.png" width=100%/>
 
  <!-- -------------------------------목차 목록-------------------------------- -->
 
@@ -36,7 +50,7 @@
   <div class="row">
   		<div class="col-lg-2">
   		<div class="card" style="width: 11rem;">
-  <img src="bbgg.png" class="card-img-top" alt="...">
+  <img src="blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">김도욱</h5>
     <p class="card-text">역할</p>
@@ -47,7 +61,7 @@
 
   		<div class="col-lg-2">
   		<div class="card" style="width: 11rem;">
-  <img src="bbgg.png" class="card-img-top" alt="...">
+  <img src="blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">이성혁</h5>
     <p class="card-text">역할</p>
@@ -58,7 +72,7 @@
   		
   		<div class="col-lg-2">
   		<div class="card" style="width: 11rem;">
-  <img src="bbgg.png" class="card-img-top" alt="...">
+  <img src="blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">강성빈</h5>
     <p class="card-text">역할</p>
@@ -68,7 +82,7 @@
   		</div>
   		<div class="col-lg-2" >
   		<div class="card" style="width: 11rem;">
-  <img src="bbgg.png" class="card-img-top" alt="...">
+  <img src="blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">김재현</h5>
     <p class="card-text">역할</p>
@@ -79,7 +93,7 @@
   		
   		<div class="col-lg-2">
   		<div class="card" style="width: 11rem;">
-  <img src="bbgg.png" class="card-img-top" alt="...">
+  <img src="blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">김성원</h5>
     <p class="card-text">역할</p>
@@ -104,31 +118,17 @@
   <div class="center">
   <h4>&lt;1차 프로젝트&gt;</h4>
   </div>
-   <style>
-         .video-container {
-         display: flex;
-         justify-content: left;
-  }
-         .video-group {
-          display: flex;
-          flex-direction: column;
-          align-items: left;
-          margin: 20px;
-  }
-         .video-title {
-    margin-bottom: 10px;
-  }
-</style>
+
 
 <div class="video-container">
   <div class="video-group">
     <h3 class="video-title">발표영상</h3>
-    <video src="Project01_introduction.mp4" width="320" height="240" controls autoplay></video>
+    <video src="Project01_introduction.mp4" width="320" height="240" controls></video>
   </div>
 
   <div class="video-group">
     <h3 class="video-title">시연영상</h3>
-    <video src="Project01_play.mp4" width="320" height="240" controls autoplay></video>
+    <video src="Project01_play.mp4" width="320" height="240" controls></video>
   </div>
 </div>
 
@@ -140,31 +140,15 @@
 	     <br>
 </div>
 
-<style>
-  .video-container {
-    display: flex;
-    justify-content: center;
-  }
-  .video-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-  }
-  .video-title {
-    margin-bottom: 10px;
-  }
-</style>
-
 <div class="video-container">
   <div class="video-group">
     <h3 class="video-title">발표영상</h3>
-    <video src="Team01_Project02_발표.mp4" width="320" height="240" controls autoplay></video>
+    <video src="Team01_Project02_발표.mp4" width="320" height="240" controls></video>
   </div>
 
   <div class="video-group">
     <h3 class="video-title">시연영상</h3>
-    <video src="Team01_Project02_시연.mp4" width="320" height="240" controls autoplay></video>
+    <video src="Team01_Project02_시연.mp4" width="320" height="240" controls></video>
   </div>
 </div>
 	        <div class="center">

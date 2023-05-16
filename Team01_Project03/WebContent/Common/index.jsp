@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/Common/Test_header.jsp" />
+<jsp:include page="/Common/header.jsp" />
 
 
 임시 내용
