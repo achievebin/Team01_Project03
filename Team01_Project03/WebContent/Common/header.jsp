@@ -5,50 +5,73 @@
 <head>
 <meta charset="UTF-8">
 <title>헤더 영역</title>
+<link href="${pageContext.request.contextPath}/Common/header.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<header>
-<!-- 웹 사이트 이미지가 삽입될 구역 -->
-<div id="sitename">
-	<h1>이미지 대용</h1>
-</div>
-<!-- 검색창이 들어갈 구역 -->
-<div id="search">
-	<%@include file="../Common/search.jsp"%>
-</div>
-<!-- 생성할 하위 페이지로 넘겨줄 구역 -->
-<nav>
-	<ul>
-		<li>안내
-			<ul>
-				<li><a href="./introduce.jsp">소개</a></li>
-				<li><a href="./history.jsp">연혁</a></li>
-			</ul>
-		</li>
-		<li><a href="">예약정보</a></li>
-		<li><a href="../Acc/accommodation.jsp">숙소검색</a></li>
-		
-		<li>고객지원
-			<ul>
-				<li><a href="../Notice/NoticeList.jsp">공지사항</a></li>
-				<li><a href="./customService.jsp">고객센터</a></li>
-			</ul>
-		</li>
-	</ul>
-</nav>
-<!-- 로그인 여부에 따라 달라질 구역 -->
-<div id="account">
-	<!-- 로그인 여부에 따른 메뉴 변화 -->
-        <% if (session.getAttribute("signInId") == null) { %>
-            <a href="../Login/signIn.jsp">로그인</a>
-        <% } else { %>
-        	<%= session.getAttribute("signInId") %>
-        	<ul>
-        		<li><a href="../Login/myPage.jsp">내 페이지</a></li>
-        		<li><a href="../Login/signOut.jsp">로그아웃</a></li>
-            </ul>
-        <% } %>
-</div>
-</header>
-</body>
-</html>
+	<header>
+		<nav class="navbar navbar-expand-lg headcolor">
+			<div class="container-fluid"> <!-- first start -->
+				<a href="index.jsp">
+					<img class="navbar-brnad" src="logo.png" alt="로고">
+				</a>
+			 	<!-- -------------------------검색창------------------------------ -->  
+				<form class="d-flex position-absolute top-50 start-50 translate-middle" role="search">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+				<!-- -----------------생성할 하위 페이지로 넘겨줄 구역------------------- -->
+				<div class="position-absolute top-50 end-0 translate-middle-y"> <!-- second start -->       
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse " id="navbarSupportedContent"> 
+						<ul class="navbar-nav ">
+							<li class="nav-item dropdown">
+								<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
+									          role="button" data-bs-toggle="dropdown" aria-expanded="false">안내</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li><a class="dropdown-item" href="./introduce.jsp">소개</a></li>
+									<li><a class="dropdown-item" href="./history.jsp">연혁</a></li>  
+								</ul>
+							</li>
+						</ul>
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown">
+							<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
+								          role="button" data-bs-toggle="dropdown" aria-expanded="false">고객지원</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="./notice.jsp">공지사항</a></li>
+								<li><a class="dropdown-item" href="./customService.jsp">고객센터</a></li>  
+							</ul>
+							</li>
+						</ul>
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="./myReservation.jsp">예약정보</a>
+							</li>
+						</ul>
+						<% if (session.getAttribute("signInId") == null) { %>
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="./signIn.jsp">로그인</a>
+							</li>
+						</ul>
+				        <% } else { %>
+				        <ul class="navbar-nav">
+							<li class="nav-item dropdown">
+							<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
+								          role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= session.getAttribute("signInId") %></a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="./myPage.jsp">내 페이지</a></li>
+								<li><a class="dropdown-item" href="./signOut.jsp">로그아웃</a></li>  
+							</ul>
+							</li>
+						</ul>
+				        <% } %>
+					</div>
+				</div> <!-- second start -->
+			</div> <!-- first end -->
+		</nav>
+	</header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
