@@ -34,8 +34,7 @@ function deletePost() {
 <jsp:include page="../ActPage/MainLink.jsp" />
 <h2>회원제 게시판 - 상세 보기(View)</h2>
 <form name="ReViewFrm" method="post">
-
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>번호</td>
             
@@ -77,9 +76,7 @@ function deletePost() {
                 </button>
             </td>
         </tr>
-                
-            <h3>액션 태그로 페이지 포함하기</h3>
-    		<jsp:include page="./ReviewList.jsp" />
+    	<jsp:include page="./ReviewList.jsp" />
     </table>
 </form>
 </body>

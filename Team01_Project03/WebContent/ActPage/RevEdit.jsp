@@ -41,7 +41,7 @@ function validateForm(form) {  // 폼 내용 검증
 <h2>숙소정보 수정</h2>
 <form name="ReviewwriteFrm" method="post" action="ReviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
         
             <td>제목</td>

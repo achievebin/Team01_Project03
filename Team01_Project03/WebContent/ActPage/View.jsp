@@ -33,7 +33,7 @@ function deletePost() {
 <form name="writeFrm">
     <input type="hidden" name="num" value="<%= num %>" />  <!-- 공통 링크 -->
 
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>번호</td>
             <td><%= dto.getNum() %></td>
