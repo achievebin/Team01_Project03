@@ -33,16 +33,11 @@ sdao.close();// DB 연결 해제
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
 <h2><%=dto.getActName() %>숙소 예약</h2>
 <%-- <div style="width:600px; height:600px; border:2px solid black; float:right">네번째 영역
-        <jsp:include page="../ActPage/ReservPrint.jsp" />
-        
-        
-        
-        </div>    --%>
+        <jsp:include page="../ActPage/ReservPrint.jsp" /> </div> --%>
 <form name="ReserverFrm" method="post">
+	<h2>예약 하기</h2>
     <table border="1" style="width:50%">
         <tr>
-
-        <h2>예약 하기</h2>
             <td>예약자 성함</td>
             <td>
                 <input type="text" name="reserv_name" style="width: 90%;" />
@@ -69,16 +64,13 @@ sdao.close();// DB 연결 해제
         </form>
 
 <form name="saleFrm" method="post">
+<h2>총 금액</h2>
     <table border="1" style="width:50%">
         <tr>
-
-        <h2>총 금액</h2>
             <td width="15%">구매 총액</td>
             <td>
                 <%= act_price %> 
             </td>
-
-            
         </tr>
 
         </table>
@@ -133,26 +125,22 @@ sdao.close();// DB 연결 해제
                 && session.getAttribute("signInId").toString().equals(dto.getActId())) {
             %>
                 <button type="button"
-                        onClick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
+                        onclick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
                     수정하기</button>
-                <button type="button" onClick="deletePost();">삭제하기</button> 
+                <button type="button" onclick="deletePost();">삭제하기</button> 
             <%
             }
             %>
-                <button type="button" onClick="location.href='ReviewWrite.jsp';">
+                <button type="button" onclick="location.href='ReviewWrite.jsp';">
                     예약 하기
                 </button>
-                <button type="button" onClick="location.href='ActList.jsp';">
+                <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기
                 </button>
-                <button type="button" onClick="location.href='ReviewWrite.jsp';">
+                <button type="button" onclick="location.href='ReviewWrite.jsp';">
                     리뷰 쓰기
                 </button>
             </td>
         </tr> --%>
-
-    
-
-
 </body>
 </html>
