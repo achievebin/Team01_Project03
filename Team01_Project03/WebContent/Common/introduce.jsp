@@ -159,7 +159,6 @@
 	  
 	  	     <br>
  </div>
-<body>
-
 </body>
+<%@include file="footer.jsp"%>
 </html>
