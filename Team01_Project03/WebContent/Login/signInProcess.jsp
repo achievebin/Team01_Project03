@@ -29,7 +29,7 @@ dao.close();
 if (memberDto.getId() != null) {
     // 로그인 성공
     session.setAttribute("signInId", memberDto.getId()); 
-    response.sendRedirect("index.jsp");
+    response.sendRedirect("../Common/index.jsp");
 }
 else {
     // 로그인 실패

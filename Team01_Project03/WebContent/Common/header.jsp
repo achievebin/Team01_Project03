@@ -44,8 +44,8 @@
         <% } else { %>
         	<%= session.getAttribute("signInId") %>
         	<ul>
-        		<li><a href="./myPage.jsp">내 페이지</a></li>
-        		<li><a href="./signOut.jsp">로그아웃</a></li>
+        		<li><a href="../Login/myPage.jsp">내 페이지</a></li>
+        		<li><a href="../Login/signOut.jsp">로그아웃</a></li>
             </ul>
         <% } %>
 </div>
