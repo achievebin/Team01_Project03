@@ -12,14 +12,11 @@
 	<header>
 		<nav class="navbar navbar-expand-lg headcolor">
 			<div class="container-fluid"> <!-- first start -->
-				<a href="index.jsp">
-					<img class="navbar-brnad" src="logo.png" alt="로고">
+				<a href="../Common/index.jsp">
+					<img class="navbar-brnad" src="../Common/logo.png" alt="로고">
 				</a>
 			 	<!-- -------------------------검색창------------------------------ -->  
-				<form class="d-flex position-absolute top-50 start-50 translate-middle" role="search">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form>
+				<%@include file="../Common/search.jsp"%>
 				<!-- -----------------생성할 하위 페이지로 넘겨줄 구역------------------- -->
 				<div class="position-absolute top-50 end-0 translate-middle-y"> <!-- second start -->       
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +38,7 @@
 							<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 								          role="button" data-bs-toggle="dropdown" aria-expanded="false">고객지원</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="./notice.jsp">공지사항</a></li>
+								<li><a class="dropdown-item" href="../Notice/NoticeList.jsp">공지사항</a></li>
 								<li><a class="dropdown-item" href="./customService.jsp">고객센터</a></li>  
 							</ul>
 							</li>
@@ -54,7 +51,7 @@
 						<% if (session.getAttribute("signInId") == null) { %>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="./signIn.jsp">로그인</a>
+								<a class="nav-link active" aria-current="page" href="../Login/signIn.jsp">로그인</a>
 							</li>
 						</ul>
 				        <% } else { %>
@@ -63,8 +60,8 @@
 							<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 								          role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= session.getAttribute("signInId") %></a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="./myPage.jsp">내 페이지</a></li>
-								<li><a class="dropdown-item" href="./signOut.jsp">로그아웃</a></li>  
+								<li><a class="dropdown-item" href="../Login/myPage.jsp">내 페이지</a></li>
+								<li><a class="dropdown-item" href="../Login/signOut.jsp">로그아웃</a></li>  
 							</ul>
 							</li>
 						</ul>
