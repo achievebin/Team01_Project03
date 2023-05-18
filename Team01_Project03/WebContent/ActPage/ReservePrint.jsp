@@ -35,7 +35,7 @@ sdao.close();// DB 연결 해제
 <h2><%=dto.getActName() %>숙소 예약</h2>
  
 <form name="ReserverFrm" method="post">
-    <table border="1" width="100%">
+    <table border="1" style="width:100%">
         <tr>
 
         
@@ -70,10 +70,9 @@ sdao.close();// DB 연결 해제
         </form>
 
 <form name="saleFrm" method="post">
-    <table border="1" width="50%">
+<h2>총 금액</h2>
+    <table border="1" style="width:50%">
         <tr>
-
-        <h2>총 금액</h2>
             <td width="15%">구매 총액</td>
             <td>
                 <%= act_price %> 
@@ -100,7 +99,6 @@ sdao.close();// DB 연결 해제
         <input type="submit" value="예약하기" />
         </form> 
         
- 
         <%-- <tr>
             <td>전화번호</td>
             <td><%= dto.getActPhone() %></td>
@@ -151,9 +149,5 @@ sdao.close();// DB 연결 해제
                 </button>
             </td>
         </tr> --%>
-
-    
-
-
 </body>
 </html>

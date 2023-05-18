@@ -49,7 +49,7 @@ function deletePost() {
     <input type="hidden" name="num" value="<%= dto.getActNumber() %>" />  <!-- 공통 링크 -->
 	<input type="hidden" name="actnum" value="<%= dto.getActNumber() %>" />
 	<input type="hidden" name="actname" value="<%= dto.getActName() %>" />
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>번호</td>
             
@@ -107,9 +107,7 @@ function deletePost() {
                 </button>
             </td>
         </tr>
-                
-            <h3>액션 태그로 페이지 포함하기</h3>
-    		<jsp:include page="./ReviewList.jsp" />
+		<jsp:include page="./ReviewList.jsp" />
     </table>
 </form>
 

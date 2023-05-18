@@ -84,7 +84,7 @@ dao.close();  // DB 연결 닫기
 <%-- <h2>현재 숙소: <%=hotelname%>  </h2> --%>
 <form name="ReviewwriteFrm" method="post" action="ReviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
         
             <td>제목</td>
