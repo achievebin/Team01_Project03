@@ -1,4 +1,4 @@
-package Reserve;
+package reserve;
 
 import java.beans.Statement;
 import java.sql.ResultSet;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 
-import Act.ActDTO;
+import act.ActDTO;
 import connect.JDBConnect;
 
 public class ReserveDAO extends JDBConnect {

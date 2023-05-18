@@ -1,13 +1,12 @@
-<%@ page import="Review.ReviewDAO"%>
-<%@ page import="Review.ReviewDTO"%>
+<%@ page import="review.ReviewDAO"%>
+<%@ page import="review.ReviewDTO"%>
 <%@ page import="java.util.Random"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- <%@ include file="./IsLoggedIn.jsp"%> --%>
 <%
-
-// 폼값 받기
+	// 폼값 받기
 String title = request.getParameter("rev_title");
 String content = request.getParameter("rev_content");
 String score = request.getParameter("rev_score");
@@ -15,7 +14,7 @@ String hotel = request.getParameter("rev_hotel");
 String actnumber = (String)session.getAttribute("actnumber");
 String id = (String)session.getAttribute("signInId");
 // 폼값을 DTO 객체에 저장
-ReviewDTO dto = new ReviewDTO();
+review.ReviewDTO dto = new review.ReviewDTO();
 dto.setTitle(title);
 dto.setContent(content);
 dto.setId(id);

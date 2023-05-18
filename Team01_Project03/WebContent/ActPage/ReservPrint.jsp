@@ -1,16 +1,16 @@
-<%@ page import="Act.ActDAO"%>
-<%@ page import="Act.ActDTO"%>
+<%@ page import="act.ActDAO"%>
+<%@ page import="act.ActDTO"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
-<%@ page import="Reserve.ReserveDAO"%>
-<%@ page import="Reserve.ReserveDTO"%>
-<%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
+<%@ page import="reserve.ReserveDAO"%>
+<%@ page import="reserve.ReserveDTO"%>
+<%@ page import="java.sql.Date,java.io.*,java.util.*,java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String num = request.getParameter("num");  // 일련번호 받기 
+	String num = request.getParameter("num");  // 일련번호 받기 
 String actnum = (String)session.getAttribute("actnumber");
-ActDAO dao = new ActDAO(application);  // DAO 생성 
+act.ActDAO dao = new act.ActDAO(application);  // DAO 생성 
               
 ActDTO dto = dao.selectView(actnum);        // 게시물 가져오기 
 String actname = dto.getActName();

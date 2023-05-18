@@ -1,19 +1,19 @@
-<%@ page import="Act.ActDAO"%>
-<%@ page import="Act.ActDTO"%>
+<%@ page import="act.ActDAO"%>
+<%@ page import="act.ActDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%> 
 <%
-String num = request.getParameter("num");  // 일련번호 받기 
-ActDAO dao = new ActDAO(application);  // DAO 생성
-ActDTO dto = dao.selectView(num);        // 게시물 가져오기 
-String sessionId = session.getAttribute("signInId").toString(); // 로그인 ID 얻기 
-if (!sessionId.equals(dto.getActId())) {      // 본인인지 확인
-    JSFunction.alertBack("작성자 본인만 수정할 수 있습니다.", out);
-    return;
-}
-dao.close();  // DB 연결 해제
-%>
+ 	String num = request.getParameter("num");  // 일련번호 받기 
+  act.ActDAO dao = new act.ActDAO(application);  // DAO 생성
+  ActDTO dto = dao.selectView(num);        // 게시물 가져오기 
+  String sessionId = session.getAttribute("signInId").toString(); // 로그인 ID 얻기 
+  if (!sessionId.equals(dto.getActId())) {      // 본인인지 확인
+      JSFunction.alertBack("작성자 본인만 수정할 수 있습니다.", out);
+      return;
+  }
+  dao.close();  // DB 연결 해제
+ %>
 <!DOCTYPE html>
 <html>
 <head>

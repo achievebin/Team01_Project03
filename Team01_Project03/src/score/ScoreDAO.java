@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 
-import Act.ActDTO;
+import act.ActDTO;
 import connect.JDBConnect;
 
 public class ScoreDAO extends JDBConnect {

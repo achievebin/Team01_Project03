@@ -1,14 +1,14 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="Act.ActDAO"%>
-<%@ page import="Act.ActDTO"%>
+<%@ page import="act.ActDAO"%>
+<%@ page import="act.ActDTO"%>
 <%@ page import="utils.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-// DAO를 생성해 DB에 연결
-ActDAO dao = new ActDAO(application);
+	// DAO를 생성해 DB에 연결
+act.ActDAO dao = new act.ActDAO(application);
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();

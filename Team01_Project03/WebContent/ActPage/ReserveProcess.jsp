@@ -1,11 +1,11 @@
-<%@ page import="Reserve.ReserveDAO"%>
-<%@ page import="Reserve.ReserveDTO"%>
-<%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
+<%@ page import="reserve.ReserveDAO"%>
+<%@ page import="reserve.ReserveDTO"%>
+<%@ page import="java.sql.Date,java.io.*,java.util.*,java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%>
 <%
-// 수정 내용 얻기
+	// 수정 내용 얻기
 String num = (String)session.getAttribute("actnumber");
 String name = request.getParameter("reserv_name");
 String phone = request.getParameter("reserv_phone");
@@ -20,7 +20,7 @@ java.util.Date chkoutdate = formatter.parse(request.getParameter("chk_out"));
 java.sql.Date chkOut = new java.sql.Date(chkoutdate.getTime());
 
 // DTO에 저장
-ReserveDTO dto = new ReserveDTO();
+reserve.ReserveDTO dto = new reserve.ReserveDTO();
 dto.setResname(name);
 dto.setActnumber(Integer.parseInt(num));
 dto.setResstart(chkIn);

@@ -1,10 +1,10 @@
-<%@ page import="Act.ActDAO"%>
-<%@ page import="Act.ActDTO"%>
+<%@ page import="act.ActDAO"%>
+<%@ page import="act.ActDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%>
 <%
-// 수정 내용 얻기
+	// 수정 내용 얻기
 String num = (String)session.getAttribute("actnumber");
 String name = request.getParameter("act_name");
 String info = request.getParameter("act_info");
@@ -22,7 +22,7 @@ dto.setActRoom(Integer.parseInt(room));
 dto.setActNumber(num);
 
 // DB에 반영
-ActDAO dao = new ActDAO(application);
+act.ActDAO dao = new act.ActDAO(application);
 int affected = dao.updateEdit(dto);
 int upRev = dao.updateRev(dto);
 int upScore = dao.updateScore(dto);

@@ -1,4 +1,4 @@
-package Act;
+package act;
 
 public class ActDTO {
     // 멤버 변수 선언
