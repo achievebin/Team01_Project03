@@ -1,5 +1,4 @@
 package accommodation;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -91,6 +90,5 @@ public class AccommodationDAO extends JDBConnect {
         // 목록 반환
         return bbs;
     }
-
-
+  
 }
