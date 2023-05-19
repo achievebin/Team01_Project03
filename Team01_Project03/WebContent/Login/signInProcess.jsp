@@ -28,7 +28,9 @@ dao.close();
 // 로그인 성공 여부에 따른 처리
 if (memberDto.getId() != null) {
     // 로그인 성공
-    session.setAttribute("signInId", memberDto.getId()); 
+    session.setAttribute("signInId", memberDto.getId());
+    session.setAttribute("signInNickname", memberDto.getNickname());
+    session.setAttribute("signInGrade", memberDto.getGrade());
     response.sendRedirect("../Common/index.jsp");
 }
 else {

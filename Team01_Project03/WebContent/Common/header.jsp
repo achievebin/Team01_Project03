@@ -60,6 +60,8 @@
 							<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 								          role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= session.getAttribute("signInId") %></a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><%= session.getAttribute("signInNickname") %>님 환영합니다.<li>
+								<li><%= session.getAttribute("signInGrade") %><li>
 								<li><a class="dropdown-item" href="../Login/myPage.jsp">내 페이지</a></li>
 								<li><a class="dropdown-item" href="../Login/signOut.jsp">로그아웃</a></li>  
 							</ul>
