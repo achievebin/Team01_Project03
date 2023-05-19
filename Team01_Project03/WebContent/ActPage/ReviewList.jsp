@@ -110,7 +110,8 @@ function deletePost() {
 
 
 <!-- // 차트를 그릴 영역으로 canvas태그를 사용한다. -->
-<div class="chart-container">
+
+<div class="chart-container" style="position: relative; height:200px; width:40vw">
 	<canvas id="myChart"></canvas>
 </div>
 
@@ -226,26 +227,26 @@ else {
             <td><%= dto.getNum() 
             %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a><%= dto.getTitle() %></a>
+                <a href="RevView.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a>
             </td>
             <td width="100px" height="100px" style = "word-break: break-all">O</td> 
             <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
             <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
             <td align="center"><%= dto.getScore() %></td>  <!--점수-->
             <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
-                        <td colspan="4" align="center">
+<%--                         <td colspan="4" align="center">
             <%
             if (session.getAttribute("signInId") != null
                 && session.getAttribute("signInId").toString().equals(dto.getId())) {
             %>
-<%--                 <button type="button"
+                <button type="button"
                         onclick="location.href='RevEdit.jsp?num=<%= dto.getActNumber() %>';">
-                    수정하기</button> --%>
-                <button type="button" onclick="deletePost();">삭제하기</button> 
+                    수정하기</button>
+                <!-- <button type="button" onclick="deletePost();">삭제하기</button>  -->
             <%
             }
             %>
-            </td>
+            </td> --%>
         </tr>
 
 
@@ -257,9 +258,7 @@ else {
 
     </table>
     
-<div class="chart-container" style="position: relative; height:200px; width:40vw">
-	<canvas id="myChart"></canvas>
-</div>
+
 
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 import connect.JDBConnect;
+import review.ReviewDTO;
 
 public class ActDAO extends JDBConnect {
     public ActDAO(ServletContext application) {
@@ -386,6 +387,43 @@ public class ActDAO extends JDBConnect {
         }
         
         return result; // 결과 반환
+    }
+    
+    public int scoreUpdate(int num) {
+        
+    	int result = 0;
+    	 try {
+             // 쿼리문 템플릿
+             String query = "update review_score \n"
+             		+ "set rev_avg = (select round(avg(rev_score),2) from reviewtbl where act_number = ?),\n"
+             		+ "    count_all  = (select count(rev_score)from reviewtbl where act_number = ?),\n"
+             		+ "    count5  = (select count(rev_score)from reviewtbl where (rev_score = 5 and act_number = ?)),\n"
+             		+ "    count4  = (select count(rev_score)from reviewtbl where (rev_score = 4 and act_number = ?)),\n"
+             		+ "    count3  = (select count(rev_score)from reviewtbl where (rev_score = 3 and act_number = ?)),\n"
+             		+ "    count2  = (select count(rev_score)from reviewtbl where (rev_score = 2 and act_number = ?)),\n"
+             		+ "    count1  = (select count(rev_score)from reviewtbl where (rev_score = 1 and act_number = ?))\n"
+             		+ "where act_number = ?"; 
+
+             // 쿼리문 완성
+             psmt = con.prepareStatement(query); 
+             psmt.setInt(1, num); 
+             psmt.setInt(2, num); 
+             psmt.setInt(3, num); 
+             psmt.setInt(4, num); 
+             psmt.setInt(5, num); 
+             psmt.setInt(6, num); 
+             psmt.setInt(7, num);
+             psmt.setInt(8, num); 
+
+             // 쿼리문 실행
+             result = psmt.executeUpdate(); 
+         } 
+         catch (Exception e) {
+             System.out.println("게시물 삭제 중 예외 발생");
+             e.printStackTrace();
+         }
+    	
+    	return result; // 결과 반환
     }
     
     	

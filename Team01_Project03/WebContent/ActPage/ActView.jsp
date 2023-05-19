@@ -17,6 +17,7 @@ ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
 ScoreDTO sdto = sdao.scoreView(num); //점수 가져오기
 
+dao.scoreUpdate(Integer.parseInt(num));
 
 ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
 
@@ -59,7 +60,7 @@ function deletePost() {
     <input type="hidden" name="num" value="<%= dto.getActNumber() %>" />  <!-- 공통 링크 -->
 	<input type="hidden" name="actnum" value="<%= dto.getActNumber() %>" />
 	<input type="hidden" name="actname" value="<%= dto.getActName() %>" />
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>번호</td>
             
@@ -126,8 +127,9 @@ function deletePost() {
         </tr>
                 
            
-    		<jsp:include page="./ReviewList.jsp" />
+    		
     </table>
+    <jsp:include page="./ReviewList.jsp" />
 </form>
 
 </body>

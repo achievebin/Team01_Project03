@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 
+import review.ReviewDTO;
 import act.ActDTO;
 import connect.JDBConnect;
 
@@ -262,14 +263,15 @@ public class ReviewDAO extends JDBConnect {
         try {
             // 쿼리문 템플릿 
             String query = "UPDATE Reviewtbl SET "
-                         + " rev_title=?, rev_content=? "
-                         + " WHERE num=?";
+                         + " rev_title=?, rev_content=?, rev_score=? "
+                         + " WHERE rev_number=?";
             
             // 쿼리문 완성
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getTitle());
             psmt.setString(2, dto.getContent());
-            psmt.setString(3, dto.getNum());
+            psmt.setInt(3, dto.getScore());
+            psmt.setString(4, dto.getNum());
             
             // 쿼리문 실행 
             result = psmt.executeUpdate();
@@ -288,7 +290,7 @@ public class ReviewDAO extends JDBConnect {
 
         try {
             // 쿼리문 템플릿
-            String query = "DELETE FROM Reviewtbl WHERE num=?"; 
+            String query = "DELETE FROM Reviewtbl WHERE rev_number=?"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(query); 
@@ -311,17 +313,25 @@ public class ReviewDAO extends JDBConnect {
     	 try {
              // 쿼리문 템플릿
              String query = "update review_score \n"
-             		+ "set rev_avg = (select round(avg(rev_score),2) from reviewtbl),\n"
-             		+ "    count5  = (select count(rev_score)from reviewtbl where rev_score = 5),\n"
-             		+ "    count4  = (select count(rev_score)from reviewtbl where rev_score = 4),\n"
-             		+ "    count3  = (select count(rev_score)from reviewtbl where rev_score = 3),\n"
-             		+ "    count2  = (select count(rev_score)from reviewtbl where rev_score = 2),\n"
-             		+ "    count1  = (select count(rev_score)from reviewtbl where rev_score = 1)\n"
-             		+ "where hotel = ?"; 
+             		+ "set rev_avg = (select round(avg(rev_score),2) from reviewtbl where act_number = ?),\n"
+             		+ "    count_all  = (select count(rev_score)from reviewtbl where act_number = ?),\n"
+             		+ "    count5  = (select count(rev_score)from reviewtbl where (rev_score = 5 and act_number = ?)),\n"
+             		+ "    count4  = (select count(rev_score)from reviewtbl where (rev_score = 4 and act_number = ?)),\n"
+             		+ "    count3  = (select count(rev_score)from reviewtbl where (rev_score = 3 and act_number = ?)),\n"
+             		+ "    count2  = (select count(rev_score)from reviewtbl where (rev_score = 2 and act_number = ?)),\n"
+             		+ "    count1  = (select count(rev_score)from reviewtbl where (rev_score = 1 and act_number = ?))\n"
+             		+ "where act_number = ?"; 
 
              // 쿼리문 완성
              psmt = con.prepareStatement(query); 
-             psmt.setString(1, dto.getHotel()); 
+             psmt.setString(1, dto.getActNumber()); 
+             psmt.setString(2, dto.getActNumber()); 
+             psmt.setString(3, dto.getActNumber()); 
+             psmt.setString(4, dto.getActNumber()); 
+             psmt.setString(5, dto.getActNumber()); 
+             psmt.setString(6, dto.getActNumber()); 
+             psmt.setString(7, dto.getActNumber()); 
+             psmt.setString(8, dto.getActNumber()); 
 
              // 쿼리문 실행
              result = psmt.executeUpdate(); 

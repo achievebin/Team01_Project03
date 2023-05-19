@@ -19,7 +19,7 @@ String actname = (String)session.getAttribute("actname");
 <html>
 <head>
 <meta charset="UTF-8">
-
+<jsp:include page="./ActLink.jsp" />
 <title>숙소정보 수정</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
@@ -39,8 +39,9 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 <jsp:include page="../Common/Link.jsp" />
 <h2>숙소정보 수정</h2>
-<form name="ReviewwriteFrm" method="post" action="ReviewWriteProcess.jsp"
+<form name="ReviewEditFrm" method="post" action="RevEditProcess.jsp"
       onsubmit="return validateForm(this);">
+      <input type="hidden" name="rev_num" value="<%= dto.getNum() %>" />
     <table border="1" style="width:90%">
         <tr>
         
