@@ -26,7 +26,6 @@ act.ActDAO dao = new act.ActDAO(application);
 		 
 }
 
-
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
 
 /*** 페이지 처리 start ***/

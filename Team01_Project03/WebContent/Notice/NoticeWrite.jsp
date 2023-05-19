@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="IsLoggedIn.jsp"%>
+<%@ include file="../Common/IsLoggedIn.jsp"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지사항 글쓰기</title>
 <script type="text/javascript">
-function validateForm(form) {  // 폼 내용 검증
+
+function NoticeWriteForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {
         alert("제목을 입력하세요.");
         form.title.focus();
@@ -22,10 +26,11 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
+
 	<jsp:include page="../Common/header.jsp" /> 
 	<h2>글쓰기</h2>
 	<form name="writeFrm" method="post" action="WriteProcess.jsp"
-     	 onsubmit="return validateForm(this);">
+     	 onsubmit="return NoticeWriteForm(this);">
    	 <table border="1" style="width:90%">
        	 <tr>
            	 <td>제목</td>
