@@ -18,7 +18,7 @@ public class MemberDto {
 	public MemberDto() {}
 	
 	public MemberDto(String id, String pw, String name, String nickname, Date birth, String sex, String address, String phone,
-			String email, String grade) {
+			String email) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -29,7 +29,6 @@ public class MemberDto {
 		this.address = address;
 		this.phone = phone;
 		this.email = email;
-		this.grade = grade;
 	}
 
 	// 멤버 변수별 게터와 세터

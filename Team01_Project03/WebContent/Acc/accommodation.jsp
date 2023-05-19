@@ -22,7 +22,6 @@
 		 
 }
 
-
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
 
 /*** 페이지 처리 start ***/
@@ -97,7 +96,7 @@ else {
          <td>이미지<%-- <%= virtualNum %> --%></td>  <!--게시물 번호-->
          <td align="left">  <!--제목(+ 하이퍼링크)-->
          	<!-- 성원씨 페이지로 넘겨야함 -->
-             <a href="View.jsp?num=<%= dto.getAct_number() %>"><%= dto.getAct_name() %></a>
+             <a href="../Actpage/ActView.jsp?num=<%= dto.getAct_number() %>"><%= dto.getAct_name() %></a>
          </td>
          <td align="center"><%= dto.getAct_address() %></td>        <!--소재지-->
          <td align="center"><%= dto.getAct_phone() %></td>          <!--전화번호-->

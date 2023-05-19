@@ -26,7 +26,7 @@ function validateForm(form) {  // 폼 내용 검증
 <h2>숙소목록 - 글쓰기(Write)</h2>
 <form name="ActwriteFrm" method="post" action="ActWriteProcess.jsp"
       onsubmit="return validateForm(this);">
-    <table border="1" style="width:90%">
+    <table border="1" width="90%">
         <tr>
             <td>숙소명</td>
             <td>

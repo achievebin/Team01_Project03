@@ -1,7 +1,7 @@
 package act;
 
 public class ActDTO {
-    // 멤버 변수 선언
+	// 멤버 변수 선언
     private String actNumber;
     private String actName;
     private String actInfo;
@@ -10,11 +10,18 @@ public class ActDTO {
     private int actRoom;
     private String actId;
     private int actPrice;
+    private int actLeftRoom;
     
 	// 게터/세터
    
 	public String getActNumber() {
 		return actNumber;
+	}
+	public int getActLeftRoom() {
+		return actLeftRoom;
+	}
+	public void setActLeftRoom(int actLeftRoom) {
+		this.actLeftRoom = actLeftRoom;
 	}
 	public void setActNumber(String actNumber) {
 		this.actNumber = actNumber;
@@ -61,7 +68,6 @@ public class ActDTO {
 	public void setActPrice(int actPrice) {
 		this.actPrice = actPrice;
 	}
-	
 	
 }
 
