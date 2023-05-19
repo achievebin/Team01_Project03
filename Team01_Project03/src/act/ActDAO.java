@@ -1,8 +1,5 @@
 package act;
 
-/*import java.beans.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;*/
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -84,7 +81,7 @@ public class ActDAO extends JDBConnect {
         // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
                      + "    SELECT Tb.*, ROWNUM rNum FROM ( "
-                     + "        SELECT * FROM accommodationtbl ";
+                     + "        SELECT * FROM accommodationtbl";
 
         // 검색 조건 추가 
         if (map.get("searchWord") != null) {
@@ -117,6 +114,7 @@ public class ActDAO extends JDBConnect {
                 dto.setActRoom(rs.getInt("act_room"));
                 dto.setActId(rs.getString("act_id"));
                 dto.setActPrice(rs.getInt("act_price"));
+                dto.setActLeftRoom(rs.getInt("act_leftroom"));
                 
                 
 
@@ -139,9 +137,15 @@ public class ActDAO extends JDBConnect {
         
         try {
             // INSERT 쿼리문 작성 
-            String query = "insert into reservationtbl(res_number,act_number,"
-            		+"res_start,res_end,res_name,res_phone,res_purchase,res_price)\n"
-            		+ "values(seq_res_num.nextval, ?, ?, ?, ?, ?, ?, ?)";  
+            String query = "insert into accommodationtbl(act_number,\n"
+            		+ "                             act_name,\n"
+            		+ "                             act_address,\n"
+            		+ "                             act_phone,\n"
+            		+ "                             act_room,\n"
+            		+ "                             act_info,\n"
+            		+ "                             act_id, act_price, act_leftroom) "
+                         + " VALUES ( "
+                         + " seq_act_num.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setString(1, dto.getActName());  
@@ -151,6 +155,7 @@ public class ActDAO extends JDBConnect {
             psmt.setString(5, dto.getActInfo()); 
             psmt.setString(6, dto.getActId());
             psmt.setInt(7, dto.getActPrice()); 
+            psmt.setInt(8, dto.getActRoom()); 
             
             result = psmt.executeUpdate(); 
             if (result == 1) {
@@ -209,6 +214,7 @@ public class ActDAO extends JDBConnect {
                 dto.setActInfo(rs.getString(6));
                 dto.setActId(rs.getString(7));
                 dto.setActPrice(rs.getInt(8));
+                dto.setActLeftRoom(rs.getInt(9));
                
             }
         } 
@@ -317,9 +323,6 @@ public class ActDAO extends JDBConnect {
         return result; // 결과 반환 
     }
     
-
-
-
     // 지정한 게시물을 삭제합니다.
     public int deletePost(ActDTO dto) { 
         int result = 0;

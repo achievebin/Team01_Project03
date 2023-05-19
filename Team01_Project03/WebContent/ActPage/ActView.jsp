@@ -2,12 +2,14 @@
 <%@ page import="act.ActDTO"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
+<%@ page import="reserve.ReserveDAO"%>
+<%@ page import="reserve.ReserveDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String num = request.getParameter("num");  // 일련번호 받기 
+String num = request.getParameter("num");  // 일련번호 받기 
 
-act.ActDAO dao = new act.ActDAO(application);  // DAO 생성 
+ActDAO dao = new ActDAO(application);  // DAO 생성 
               
 ActDTO dto = dao.selectView(num);        // 게시물 가져오기 
 String actname = dto.getActName();
@@ -15,13 +17,20 @@ ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
 ScoreDTO sdto = sdao.scoreView(num); //점수 가져오기
 
+
+ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
+
+ReserveDTO rdto = rdao.scoreView(num); //예약 가져오기
+
+int upd = rdao.updateRoom(Integer.parseInt(num));
+
 request.setAttribute("actname",dto.getActName());
 request.setAttribute("actnumber",dto.getActNumber());
 request.setAttribute("actprice",dto.getActPrice());
 session.setAttribute("actname",dto.getActName());
 session.setAttribute("actnumber",dto.getActNumber());
 
-out.println(actname);
+//out.println(actname);
 dao.close();      
 sdao.close();// DB 연결 해제
 %>
@@ -43,18 +52,19 @@ function deletePost() {
 </script>
 </head>
 <body>
+
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
 <h2>숙소 소개</h2>
 <form name="ActViewFrm" method="get">
     <input type="hidden" name="num" value="<%= dto.getActNumber() %>" />  <!-- 공통 링크 -->
 	<input type="hidden" name="actnum" value="<%= dto.getActNumber() %>" />
 	<input type="hidden" name="actname" value="<%= dto.getActName() %>" />
-    <table border="1" style="width:90%">
+    <table border="1" width="90%">
         <tr>
             <td>번호</td>
             
             <td><%= dto.getActNumber() %></td>
-            <td>작성자</td>
+            <td>판매자</td>
             <td><%= dto.getActId() %></td>
         </tr>
         <tr>
@@ -84,6 +94,11 @@ function deletePost() {
             <td><%= dto.getActPrice() %></td> 
         </tr>
         <tr>
+            <td>남은객실</td>
+            
+            <td><%= dto.getActLeftRoom() %></td> 
+        </tr>
+        <tr>
             <td colspan="4" align="center">
             <%
             if (session.getAttribute("signInId") != null
@@ -96,9 +111,11 @@ function deletePost() {
             <%
             }
             %>
-                <button type="button" onclick="location.href='Reserv.jsp';">
+            <% if (dto.getActLeftRoom() != 0){ %>
+                <button type="button" onclick="location.href='Reserve.jsp';">
                     예약 하기
                 </button>
+                <%} %>
                 <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기
                 </button>
@@ -107,7 +124,9 @@ function deletePost() {
                 </button>
             </td>
         </tr>
-		<jsp:include page="./ReviewList.jsp" />
+                
+           
+    		<jsp:include page="./ReviewList.jsp" />
     </table>
 </form>
 

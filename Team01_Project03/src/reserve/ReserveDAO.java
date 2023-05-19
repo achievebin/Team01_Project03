@@ -1,14 +1,14 @@
 package reserve;
 
-/*import java.beans.Statement;
+import java.beans.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;*/
+import java.util.Vector;
 import javax.servlet.ServletContext;
 
-//import Act.ActDTO;
+import act.ActDTO;
 import connect.JDBConnect;
 
 public class ReserveDAO extends JDBConnect {
@@ -21,7 +21,8 @@ public class ReserveDAO extends JDBConnect {
     	ReserveDTO dto = new ReserveDTO();
         
         // 쿼리문 준비
-        String query = "SELECT * FROM reservationtbl WHERE act_number=?" ;
+        String query = "SELECT * FROM reservationtbl WHERE act_number=? and res_number ="
+        				+"(select max(res_number) from reservationtbl)" ;
 
         try {
             psmt = con.prepareStatement(query);
@@ -37,8 +38,8 @@ public class ReserveDAO extends JDBConnect {
                 dto.setResname(rs.getString("res_name"));
                 dto.setResphone(rs.getString("res_phone"));
                 dto.setRespurchase(rs.getString("res_purchase"));
-                dto.setResprice(rs.getString("res_price"));
-                dto.setResprice(rs.getString("res_hotel"));
+                dto.setResprice(rs.getString("res_price").replace("/", ""));
+                dto.setReshotel(rs.getString("res_hotel"));
 
                
             }
@@ -58,7 +59,7 @@ public class ReserveDAO extends JDBConnect {
             // INSERT 쿼리문 작성 
             String query = "insert into reservationtbl(res_number,"
             		+"act_number,res_start,res_end,res_name,res_phone,res_purchase,res_price, res_hotel)\n"
-            		+ "values(seq_res_num.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";  
+            		+ "values(seq_res_num.nextval, ?, ?, ?, ?, ?, ?, replace(?,'/',''), (select act_name from accommodationtbl where act_number = ?))";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setInt(1, dto.getActnumber());  
@@ -68,7 +69,8 @@ public class ReserveDAO extends JDBConnect {
             psmt.setString(5, dto.getResphone()); 
             psmt.setString(6, dto.getRespurchase());
             psmt.setString(7, dto.getResprice()); 
-            psmt.setString(8, dto.getReshotel()); 
+            psmt.setInt(8, dto.getActnumber()); 
+            
             result = psmt.executeUpdate(); 
 
         }
@@ -79,7 +81,66 @@ public class ReserveDAO extends JDBConnect {
         
         return result;
     }
+    
+    // 게시글 데이터를 받아 DB업데이트. 
+    public int updateRoom(int actnumber) {
+        int result = 0;
+        
+        try {
+            // INSERT 쿼리문 작성 
+            String query = "update accommodationtbl SET act_leftroom = act_room-(select count(*) "
+            		+ "from reservationtbl where (sysdate between res_start and res_end) and act_number = ?)"
+            		+ "where act_number = ?";
+            psmt = con.prepareStatement(query);  // 동적 쿼리 
+            psmt.setInt(1, actnumber);  
+            psmt.setInt(2, actnumber);
+            
+            result = psmt.executeUpdate(); 
+            
+            
 
+        }
+        catch (Exception e) {
+            System.out.println("게시물 입력 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
+    
+    public int datesearch(ReserveDTO dto) {
+        int result = 0;
+        
+        try {
+        	for ( int i = dto.getResstart().getDate(); i < dto.getResend().getDate(); i++) 
+        	{
+            // INSERT 쿼리문 작성 
+            String query = "insert into reservationtbl(res_number,"
+            		+"act_number,res_start,res_end,res_name,res_phone,res_purchase,res_price, res_hotel)\n"
+            		+ "values(seq_res_num.nextval, ?, ?, ?, ?, ?, ?, replace(?,'/',''), (select act_name from accommodationtbl where act_number = ?))";  
+
+            psmt = con.prepareStatement(query);  // 동적 쿼리 
+            psmt.setInt(1, dto.getActnumber());  
+            psmt.setDate(2, dto.getResstart());
+            psmt.setDate(3, dto.getResend());  
+            psmt.setString(4, dto.getResname()); 
+            psmt.setString(5, dto.getResphone()); 
+            psmt.setString(6, dto.getRespurchase());
+            psmt.setString(7, dto.getResprice()); 
+            psmt.setInt(8, dto.getActnumber()); 
+            
+            result = psmt.executeUpdate(); 
+        	}
+
+        }
+        catch (Exception e) {
+            System.out.println("게시물 입력 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
+    
     	
     }
 

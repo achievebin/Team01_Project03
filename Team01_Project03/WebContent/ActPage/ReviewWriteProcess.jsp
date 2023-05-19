@@ -6,7 +6,8 @@
     pageEncoding="UTF-8"%>
 <%-- <%@ include file="./IsLoggedIn.jsp"%> --%>
 <%
-	// 폼값 받기
+
+// 폼값 받기
 String title = request.getParameter("rev_title");
 String content = request.getParameter("rev_content");
 String score = request.getParameter("rev_score");
@@ -14,7 +15,7 @@ String hotel = request.getParameter("rev_hotel");
 String actnumber = (String)session.getAttribute("actnumber");
 String id = (String)session.getAttribute("signInId");
 // 폼값을 DTO 객체에 저장
-review.ReviewDTO dto = new review.ReviewDTO();
+ReviewDTO dto = new ReviewDTO();
 dto.setTitle(title);
 dto.setContent(content);
 dto.setId(id);

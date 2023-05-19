@@ -45,6 +45,11 @@
 						</ul>
 						<ul class="navbar-nav">
 							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="../ActPage/ActList.jsp">숙소목록</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav">
+							<li class="nav-item">
 								<a class="nav-link active" aria-current="page" href="./myReservation.jsp">예약정보</a>
 							</li>
 						</ul>
@@ -60,6 +65,8 @@
 							<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 								          role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= session.getAttribute("signInId") %></a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><%= session.getAttribute("signInNickname") %>님 환영합니다.<li>
+								<li><%= session.getAttribute("signInGrade") %><li>
 								<li><a class="dropdown-item" href="../Login/myPage.jsp">내 페이지</a></li>
 								<li><a class="dropdown-item" href="../Login/signOut.jsp">로그아웃</a></li>  
 							</ul>

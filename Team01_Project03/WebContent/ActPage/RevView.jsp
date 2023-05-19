@@ -3,11 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String num = request.getParameter("num");  // 일련번호 받기 
+String num = request.getParameter("num");  // 일련번호 받기 
 
 ReviewDAO dao = new ReviewDAO(application);  // DAO 생성 
               
-review.ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
+ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
 String actname = dto.getTitle();
 
 out.println(actname);
@@ -34,6 +34,7 @@ function deletePost() {
 <jsp:include page="../ActPage/MainLink.jsp" />
 <h2>회원제 게시판 - 상세 보기(View)</h2>
 <form name="ReViewFrm" method="post">
+
     <table border="1" style="width:90%">
         <tr>
             <td>번호</td>
@@ -76,7 +77,7 @@ function deletePost() {
                 </button>
             </td>
         </tr>
-    	<jsp:include page="./ReviewList.jsp" />
+    		<jsp:include page="./ReviewList.jsp" />
     </table>
 </form>
 </body>

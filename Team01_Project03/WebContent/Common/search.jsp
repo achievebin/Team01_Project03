@@ -41,7 +41,7 @@
 %>
 
 <!-- 검색폼 -->
-<form class="d-flex position-absolute top-50 start-50 translate-middle" role="search" action="../Acc/accommodation.jsp" method="GET" onsubmit="return validateForm();">
+<form class="d-flex position-absolute top-50 start-50 translate-middle" role="search" action="../ActPage/ActList.jsp" method="GET" onsubmit="return validateForm();">
 	<input class="form-control me-2" type="text" placeholder="Search" aria-label="Search"  name="accsearch" id="accsearch" value="<%= searchValue %>">
 	<button class="btn btn-outline-success" type="submit">검색하기</button>
 	<input type="hidden" id="searchText" name="searchText" value="act_name" />

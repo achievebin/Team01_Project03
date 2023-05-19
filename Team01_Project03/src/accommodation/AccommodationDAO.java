@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 import connect.JDBConnect;
-//import accommodation.AccommodationDTO;
 
 public class AccommodationDAO extends JDBConnect {
 	public AccommodationDAO(ServletContext application) {
