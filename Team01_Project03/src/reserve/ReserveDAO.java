@@ -1,14 +1,6 @@
 package reserve;
 
-import java.beans.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 import javax.servlet.ServletContext;
-
-import act.ActDTO;
 import connect.JDBConnect;
 
 public class ReserveDAO extends JDBConnect {

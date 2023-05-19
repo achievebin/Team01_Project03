@@ -65,7 +65,7 @@ dao.close();  // DB 연결 닫기
     <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
     
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <!-- 각 칼럼의 이름 -->
         <tr>
             <th width="10%">번호</th>

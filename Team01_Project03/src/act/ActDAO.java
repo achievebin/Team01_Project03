@@ -15,11 +15,11 @@ public class ActDAO extends JDBConnect {
     public int selectCount(Map<String, Object> map) {
         int totalCount = 0; // 결과(게시물 수)를 담을 변수
 
-        // 게시물 수를 얻어오는 쿼리문 작성
+     // 숙소 수를 얻어오는 쿼리문 작성
         String query = "SELECT COUNT(*) FROM accommodationtbl";
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField") + " "
-                   + " LIKE '%" + map.get("searchWord") + "%'";
+        if (map.get("accsearch") != null) {
+            query += " WHERE " + map.get("searchText") + " "
+                   + " LIKE '%" + map.get("accsearch") + "%'";
         }
 
         try {
@@ -78,15 +78,15 @@ public class ActDAO extends JDBConnect {
     public List<ActDTO> selectListPage(Map<String, Object> map) {
         List<ActDTO> bbs = new Vector<ActDTO>();  // 결과(게시물 목록)를 담을 변수
         
-        // 쿼리문 템플릿  
+     // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
                      + "    SELECT Tb.*, ROWNUM rNum FROM ( "
-                     + "        SELECT * FROM accommodationtbl";
-
+                     + "        SELECT * FROM accommodationtbl ";
+        
         // 검색 조건 추가 
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField")
-                   + " LIKE '%" + map.get("searchWord") + "%' ";
+        if (map.get("accsearch") != null) {
+            query += " WHERE " + map.get("searchText")
+                   + " LIKE '%" + map.get("accsearch") + "%' ";
         }
         
         query += "      ORDER BY act_number DESC "
