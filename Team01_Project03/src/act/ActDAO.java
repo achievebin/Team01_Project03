@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 import connect.JDBConnect;
-import review.ReviewDTO;
+
 
 public class ActDAO extends JDBConnect {
     public ActDAO(ServletContext application) {

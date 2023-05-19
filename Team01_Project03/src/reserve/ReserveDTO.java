@@ -11,9 +11,15 @@ public class ReserveDTO {
     private String respurchase;
     private String resprice;
     private String reshotel;
+    private String resid;
     
     
-    
+	public String getResid() {
+		return resid;
+	}
+	public void setResid(String resid) {
+		this.resid = resid;
+	}
 	public String getReshotel() {
 		return reshotel;
 	}

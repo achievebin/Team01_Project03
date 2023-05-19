@@ -20,7 +20,7 @@ ScoreDTO sdto = sdao.scoreView(actnum); //점수 가져오기
 
 ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
 
-ReserveDTO rdto = rdao.scoreView(actnum); //예약 가져오기
+ReserveDTO rdto = rdao.scoreView(num); //예약 가져오기
 
 int upd = rdao.updateRoom(Integer.parseInt(actnum));
 
@@ -60,7 +60,9 @@ sdao.close();// DB 연결 해제
             </tr>
             <tr>
             <td>예약자명</td><td><%=rdto.getResname()%> </td>
+            
             </tr>
+            <tr><td>예약 아이디</td><td><%=rdto.getResid()%> </td></tr>
             <tr>
             <td>예약자 휴대번호</td><td><%=rdto.getResphone()%> </td>
             </tr>
