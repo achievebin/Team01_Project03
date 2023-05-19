@@ -4,22 +4,22 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%> 
 <%
- 	String num = request.getParameter("num");  // 일련번호 받기 
-  ReviewDAO dao = new ReviewDAO(application);  // DAO 생성
-  review.ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
-  String sessionId = session.getAttribute("signInId").toString(); // 로그인 ID 얻기 
-  if (!sessionId.equals(dto.getId())) {      // 본인인지 확인
-      JSFunction.alertBack("작성자 본인만 수정할 수 있습니다.", out);
-      return;
-  }
-  dao.close();  // DB 연결 해제
-  String actname = (String)session.getAttribute("actname");
- %>
+String num = request.getParameter("num");  // 일련번호 받기 
+ReviewDAO dao = new ReviewDAO(application);  // DAO 생성
+ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
+String sessionId = session.getAttribute("signInId").toString(); // 로그인 ID 얻기 
+if (!sessionId.equals(dto.getId())) {      // 본인인지 확인
+    JSFunction.alertBack("작성자 본인만 수정할 수 있습니다.", out);
+    return;
+}
+dao.close();  // DB 연결 해제
+String actname = (String)session.getAttribute("actname");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="./ActLink.jsp" />
+
 <title>숙소정보 수정</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
@@ -41,7 +41,7 @@ function validateForm(form) {  // 폼 내용 검증
 <h2>숙소정보 수정</h2>
 <form name="ReviewwriteFrm" method="post" action="ReviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
-    <table border="1" style="width:90%">
+    <table border="1" width="90%">
         <tr>
         
             <td>제목</td>

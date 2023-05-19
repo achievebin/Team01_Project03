@@ -3,21 +3,29 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="act.ActDAO"%>
 <%@ page import="act.ActDTO"%>
-<%@ page import="utils.BoardPage"%>
+<%@ page import="utils.Page"%>
+<%@ page import="reserve.ReserveDAO"%>
+<%@ page import="reserve.ReserveDTO"%>
+<%@ page import="score.ScoreDAO"%>
+<%@ page import="score.ScoreDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	// DAO를 생성해 DB에 연결
+// DAO를 생성해 DB에 연결
 act.ActDAO dao = new act.ActDAO(application);
 
-// 사용자가 입력한 검색 조건을 Map에 저장
-Map<String, Object> param = new HashMap<String, Object>();
-String searchField = request.getParameter("searchField");
-String searchWord = request.getParameter("searchWord");
-if (searchWord != null) {
-    param.put("searchField", searchField);
-    param.put("searchWord", searchWord);
+//사용자가 입력한 검색 조건을 Map에 저장
+	Map<String, Object> param = new HashMap<String, Object>();
+	String searchText = request.getParameter("searchText");
+	String accsearch = request.getParameter("accsearch");
+	String sortname = request.getParameter("sortname");
+	if (accsearch != null) {
+		param.put("searchText", searchText);
+		param.put("accsearch", accsearch);
+		param.put("sortname", sortname);
+		 
 }
+
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
 
@@ -50,26 +58,14 @@ dao.close();  // DB 연결 닫기
 <title>숙소 목록</title>
 </head>
 <body>
-    <jsp:include page="../ActPage/MainLink.jsp" />  <!-- 공통 링크 -->
+
+    <%@ include file="../Common/header.jsp" %>	
+	<%@ include file = "../Acc/accommodationDate.jsp" %>
 
     <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
-    <!-- 검색폼 -->
-    <form method="get">
-    <table border="1" style="width:90%">
-    <tr>
-        <td align="center">
-            <select name="searchField">
-                <option value="title">제목</option>
-                <option value="content">내용</option>
-            </select>
-            <input type="text" name="searchWord" />
-            <input type="submit" value="검색하기" />
-        </td>
-    </tr>
-    </table>
-    </form>
+    
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" style="width:90%">
+    <table border="1" width="90%">
         <!-- 각 칼럼의 이름 -->
         <tr>
             <th width="10%">번호</th>
@@ -77,7 +73,8 @@ dao.close();  // DB 연결 닫기
             <th width="30%">숙소정보</th>
             <th width="10%">숙소주소</th>
             <th width="10%">전화번호</th>
-            <th width="15%">남은객실수</th>
+            <th width="5%">남은객실수</th>
+            <th width="5%">평균 점수</th>
         </tr>
         <!-- 목록의 내용 -->
 <%
@@ -95,8 +92,11 @@ else {
     // 게시물이 있을 때
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
-    for (ActDTO dto : ActLists)
-    {
+    for (ActDTO dto : ActLists)	
+    {	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
+    	int upd = rdao.updateRoom(Integer.parseInt(dto.getActNumber())); // 남은 객실수 업데이트
+    	ScoreDAO sdao = new ScoreDAO(application);
+    	ScoreDTO sdto = sdao.scoreView(dto.getActNumber());
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
 %>
@@ -108,25 +108,32 @@ else {
             <td align="center"><%= dto.getActInfo() %></td>          <!--숙소정보-->
             <td align="center"><%= dto.getActAddress() %></td>          <!--숙소주소-->
             <td align="center"><%= dto.getActPhone() %></td>  <!--숙소번호-->
-            <td align="center"><%= dto.getActRoom() %></td>    <!--남은객실수-->
+            <td align="center"><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
+            <td align="center"><%= sdto.getAvgScore() %></td>    <!--평균점수-->
         </tr>
 <%
-    }
+   rdao.close();
+	sdao.close();	
+    	}
 }
 %>
     </table>
-    <!--목록 하단의 [글쓰기] 버튼-->
     <table border="1" style="width:90%">
         <tr align="center">
             <!--페이징 처리-->
             <td>
-                <%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>  
+                <%
+			    String reqUrl = request.getRequestURI(); // 현재 요청의 URI를 가져옴
+			    if (accsearch == null) { // accsearch가 null인 경우
+			        reqUrl += "?"; // reqUrl에 ?를 추가
+			    } else { // accsearch가 null이 아닌 경우
+			        reqUrl += "?accsearch=" + accsearch; // reqUrl에 ?accsearch=값을 추가
+			    }
+			    reqUrl += "&searchText=act_name"; // reqUrl에 &searchText=act_name을 추가
+			    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
+				%>
             </td>
-            <!--글쓰기 버튼-->
-            <td><button type="button" onclick="location.href='ActWrite.jsp';">글쓰기
-                </button></td>
-
+        </tr>
     </table>
 </body>
 </html>

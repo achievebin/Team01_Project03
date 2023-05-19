@@ -36,11 +36,11 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
-<jsp:include page="../ActPage/ActLink.jsp" />
+
 <%
-	// DAO를 생성해 DB에 연결
+// DAO를 생성해 DB에 연결
 ReviewDAO dao = new ReviewDAO(application);
-act.ActDTO adt = new act.ActDTO();
+ActDTO adt = new ActDTO();
 String actname = (String)session.getAttribute("actname");
 String actnumber = (String)session.getAttribute("actnumber");
 
@@ -76,15 +76,17 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
-List<review.ReviewDTO> ReviewLists = dao.selectListPage(param);  // 게시물 목록 받기
+List<ReviewDTO> ReviewLists = dao.selectListPage(param);  // 게시물 목록 받기
 
 dao.close();  // DB 연결 닫기
+
+
 %>
 <h2>리뷰 쓰기</h2>
 <%-- <h2>현재 숙소: <%=hotelname%>  </h2> --%>
 <form name="ReviewwriteFrm" method="post" action="ReviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
-    <table border="1" style="width:90%">
+    <table border="1" width="90%">
         <tr>
         
             <td>제목</td>

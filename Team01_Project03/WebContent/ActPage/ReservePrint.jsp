@@ -2,19 +2,27 @@
 <%@ page import="act.ActDTO"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
-<%@ page import="java.sql.Date,java.io.*,java.util.*,java.text.*" %>
+<%@ page import="reserve.ReserveDAO"%>
+<%@ page import="reserve.ReserveDTO"%>
+<%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String num = request.getParameter("num");  // 일련번호 받기 
+String num = request.getParameter("num");  // 일련번호 받기 
 String actnum = (String)session.getAttribute("actnumber");
-act.ActDAO dao = new act.ActDAO(application);  // DAO 생성 
+ActDAO dao = new ActDAO(application);  // DAO 생성 
               
 ActDTO dto = dao.selectView(actnum);        // 게시물 가져오기 
 String actname = dto.getActName();
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
 ScoreDTO sdto = sdao.scoreView(actnum); //점수 가져오기
+
+ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
+
+ReserveDTO rdto = rdao.scoreView(actnum); //예약 가져오기
+
+int upd = rdao.updateRoom(Integer.parseInt(actnum));
 
 int act_price = dto.getActPrice();
 
@@ -26,42 +34,45 @@ sdao.close();// DB 연결 해제
 <html>
 <head>
 <meta charset="UTF-8">
-<title>숙소 예약</title>
+<title>예약 정보</title>
 
 </head>
 <body>
 <div style=""></div>
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
-<h2><%=dto.getActName() %>숙소 예약</h2>
+<h2>예약 정보</h2>
  
 <form name="ReserverFrm" method="post">
-    <table border="1" style="width:100%">
+    <table border="1" width="50%">
         <tr>
 
         
-            <td>숙소 이름</td>
-            <td>
-                <%= dto.getActName() %>
+            <td style="width: 10%;">숙소 이름</td>
+            <td style="width: 20%;">
+                <%= rdto.getReshotel() %>
             </td>
-            
-            <td>숙소 정보</td>          
-            <td>
+            </tr>
+            <tr>
+            <td style="width: 20%;">숙소 정보</td>          
+            <td style="width: 30%;">
                 <%= dto.getActInfo() %>
             </td>
+            </tr>
+            <tr>
+            <td>예약자명</td><td><%=rdto.getResname()%> </td>
+            </tr>
+            <tr>
+            <td>예약자 휴대번호</td><td><%=rdto.getResphone()%> </td>
             </tr>
          <tr>
          <td>
 		<label>체크인 날짜</label>
-		<%
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		java.util.Date utildate = formatter.parse(request.getParameter("chk_in"));
-		java.sql.Date joinBirth = new java.sql.Date(utildate.getTime()); %>
 
-		<%= joinBirth %>
+		<%= rdto.getResstart() %>
 		</td>
 		<td>
 		<label>체크아웃 날짜</label>
-		<input type="date" name="chk_out" required>
+		<%= rdto.getResend() %>
 		</td>
             
         </tr>
@@ -70,12 +81,13 @@ sdao.close();// DB 연결 해제
         </form>
 
 <form name="saleFrm" method="post">
-<h2>총 금액</h2>
-    <table border="1" style="width:50%">
+    <table border="1" width="50%">
         <tr>
+
+        <h2>총 금액</h2>
             <td width="15%">구매 총액</td>
             <td>
-                <%= act_price %> 
+                <%= rdto.getResprice() %> 원
             </td>
 
             
@@ -86,19 +98,17 @@ sdao.close();// DB 연결 해제
         </form>
 
 <form name="purchaseFrm" method="post">
-        <h2>결제수단 선택</h2>
-            <select name="purchase">
-                <option value="credit">신용카드</option>
-                <option value="cash">무통장입금</option>
-                <option value="ezpay">간편결제</option>   
-            </select><br />
-        <hr width="50%" align="left">
-                
-            <input type="checkbox" name="inter" value="terms_a" />약관A
-            <input type="checkbox" name="inter" value="terms_b" />약관B
-        <input type="submit" value="예약하기" />
+        <h2>결제수단</h2>
+        <tr>
+        <td><%=rdto.getRespurchase() %></td>
+        </tr>
+			<button type="button" onclick="location.href='ActList.jsp';">
+                    목록 보기
+            </button>
+
         </form> 
         
+ 
         <%-- <tr>
             <td>전화번호</td>
             <td><%= dto.getActPhone() %></td>
@@ -149,5 +159,9 @@ sdao.close();// DB 연결 해제
                 </button>
             </td>
         </tr> --%>
+
+    
+
+
 </body>
 </html>

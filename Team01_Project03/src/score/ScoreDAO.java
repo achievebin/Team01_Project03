@@ -1,14 +1,14 @@
 package score;
 
-/*import java.beans.Statement;
+import java.beans.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;*/
+import java.util.Vector;
 import javax.servlet.ServletContext;
 
-//import Act.ActDTO;
+import act.ActDTO;
 import connect.JDBConnect;
 
 public class ScoreDAO extends JDBConnect {

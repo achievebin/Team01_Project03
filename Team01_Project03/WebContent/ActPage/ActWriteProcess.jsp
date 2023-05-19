@@ -5,7 +5,8 @@
     pageEncoding="UTF-8"%>
 <%-- <%@ include file="./IsLoggedIn.jsp"%> --%>
 <%
-	// 폼값 받기
+
+// 폼값 받기
 String name = request.getParameter("act_name");
 String info = request.getParameter("act_info");
 String address = request.getParameter("act_address");
@@ -25,7 +26,7 @@ dto.setActId(session.getAttribute("signInId").toString());
 dto.setActPrice(Integer.parseInt(price));
 
 // DAO 객체를 통해 DB에 DTO 저장
-act.ActDAO dao = new act.ActDAO(application);
+ActDAO dao = new ActDAO(application);
 Random random = new Random();
 // 기존 코드
 int iResult = dao.insertWrite(dto);
