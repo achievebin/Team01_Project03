@@ -22,9 +22,9 @@ dao.close();                               // DB 연결 해제
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
     if (confirmed) {
-        var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
+        var form = document.ReViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식 
-        form.action = "DeleteProcess.jsp";  // 전송 경로
+        form.action = "RevDelete.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
     }
 }
@@ -34,12 +34,14 @@ function deletePost() {
 <jsp:include page="../ActPage/MainLink.jsp" />
 <h2>회원제 게시판 - 상세 보기(View)</h2>
 <form name="ReViewFrm" method="post">
+            <input type="hidden" name="revId" value="<%= dto.getId() %>" />
+            <input type="hidden" name="revNum" value="<%= dto.getNum() %>" />
 
     <table border="1" style="width:90%">
         <tr>
             <td>번호</td>
             
-            <td><%= dto.getActNumber() %></td>
+            <td><%= dto.getNum() %></td>
             <td>작성자</td>
             <td><%= dto.getId() %></td>
         </tr>
@@ -63,7 +65,7 @@ function deletePost() {
                 && session.getAttribute("signInId").toString().equals(dto.getId())) {
             %>
                 <button type="button"
-                        onclick="location.href='ReviewEdit.jsp?num=<%= dto.getNum() %>';">
+                        onclick="location.href='RevEdit.jsp?num=<%= dto.getNum() %>';">
                     수정하기</button>
                 <button type="button" onclick="deletePost();">삭제하기</button> 
             <%
@@ -72,13 +74,11 @@ function deletePost() {
                 <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기
                 </button>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
-                    리뷰 쓰기
-                </button>
             </td>
         </tr>
-    		<jsp:include page="./ReviewList.jsp" />
+               
     </table>
 </form>
 </body>
 </html>
+

@@ -1,8 +1,8 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="review.ReviewDAO"%>
-<%@ page import="review.ReviewDTO"%>
+<%@ page import="reserve.ReserveDAO"%>
+<%@ page import="reserve.ReserveDTO"%>
 <%@ page import="act.ActDTO"%>
 <%@ page import="utils.BoardPage"%>
 <%@ page import="java.sql.ResultSet"%>
@@ -18,18 +18,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 // DAO를 생성해 DB에 연결
-ReviewDAO dao = new ReviewDAO(application);
+ReserveDAO dao = new ReserveDAO(application);
 ActDTO adt = new ActDTO();
 
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();
 String searchField = request.getParameter("searchField");
-String searchWord = (String)request.getAttribute("actnumber");
+String searchWord = (String)session.getAttribute("signInId");
 param.put("actnumber", searchWord);
 if (searchWord != null) {
     param.put("searchField", searchField);
-    param.put("actnumber", searchWord);
+    param.put("resid", searchWord);
 }
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
@@ -53,7 +53,7 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
- List<ReviewDTO> ReviewLists = dao.selectListPage(param);  // 게시물 목록 받기
+ List<ReserveDTO> ReserveLists = dao.selectListPage(param);  // 게시물 목록 받기
 
 dao.close();  // DB 연결 닫기
 
@@ -90,72 +90,7 @@ function deletePost() {
 
 
    <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
-    <h2>현재 숙소: <%= request.getAttribute("actname") %>  </h2>
-   
-
-    <h2>별점 평균:<%= sdto.getAvgScore()%> 
-  
-    전체리뷰:<%= sdto.getCountAll()%> 개 
- 
-    5점:<%= sdto.getCount5()%>개 
-    
-    4점:<%= sdto.getCount4()%>개 
-    
-    3점:<%= sdto.getCount3()%>개  
-    
-    2점:<%= sdto.getCount2()%>개 
-    
-    1점:<%= sdto.getCount1()%>개    </h2>
-    
-
-
-<!-- // 차트를 그릴 영역으로 canvas태그를 사용한다. -->
-
-<div class="chart-container" style="position: relative; height:200px; width:40vw">
-	<canvas id="myChart"></canvas>
-</div>
-
-<!-- // 해당 부분은 JS파일을 따로 만들어서 사용해도 된다. -->
-<script>
-// 차트를 그럴 영역을 dom요소로 가져온다.
-var chartArea = document.getElementById('myChart').getContext('2d');
-// 차트를 생성한다. 
-var myChart = new Chart(chartArea, {
-    // ①차트의 종류(String)
-    type: 'bar',
-    // ②차트의 데이터(Object)
-    data: {
-        // ③x축에 들어갈 이름들(Array)
-        labels: ['5점', '4점', '3점', '2점', '1점'],
-        // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
-        datasets: [{
-            // ⑤dataset의 이름(String)
-            label: '# 점수 카운트',
-            // ⑥dataset값(Array)
-            data: [<%=sdto.getCount5()%>, <%=sdto.getCount4()%>, 
-            	<%=sdto.getCount3()%>, <%=sdto.getCount2()%>, <%=sdto.getCount1()%>],
-            // ⑦dataset의 배경색(rgba값을 String으로 표현)
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            // ⑧dataset의 선 색(rgba값을 String으로 표현)
-            borderColor: 'rgba(255, 99, 132, 1)',
-            // ⑨dataset의 선 두께(Number)
-            borderWidth: 1
-        }]
-    },
-    // ⑩차트의 설정(Object)
-    options: { maintainAspectRatio: false,
-    	 responsive: false,
-        // ⑪축에 관한 설정(Object)
-        scales: {
-            // ⑫y축에 대한 설정(Object)
-            y: {
-                // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
+    <h2>예약 목록</h2>
 
     <!-- 검색폼 -->
     <form method="get">
@@ -191,16 +126,18 @@ var myChart = new Chart(chartArea, {
         <!-- 각 칼럼의 이름 -->
         <tr>
             <th width="5%">번호</th>
-            <th width="10%">제목</th>
-            <th width="10%">사진</th>
-            <th width="40%" style="word-break:break-all">내용</th>
-            <th width="10%">작성자</th>
-            <th width="5%">별점</th>
-            <th width="10%">작성일</th>
+            <th width="10%">숙소명</th>
+            <th width="10%">체크인</th>
+            <th width="10%">체크아웃</th>
+            <th width="10%">예약 아이디</th>
+            <th width="10%">예약자 명</th>
+            <th width="10%">가격</th>
+            <th width="10%">지불수단</th>
+            
         </tr>
         <!-- 목록의 내용 -->
 <%
-if (ReviewLists.isEmpty()) {
+if (ReserveLists.isEmpty()) {
     // 게시물이 하나도 없을 때
 %>
         <tr>
@@ -215,25 +152,26 @@ else {
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
     
-    for (ReviewDTO dto : ReviewLists)
+    for (ReserveDTO dto : ReserveLists)
     {
     	
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
-        request.setAttribute("num",dto.getNum());
+        request.setAttribute("num",dto.getResnumber());
 %>
 
         <tr align="center">
-            <td><%= dto.getNum() 
+            <td><%= dto.getResnumber() 
             %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="RevView.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a>
+                <a href="ReservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
             </td>
-            <td width="100px" height="100px" style = "word-break: break-all">O</td> 
-            <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
-            <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
-            <td align="center"><%= dto.getScore() %></td>  <!--점수-->
-            <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
+            <td align="center"><%= dto.getResstart() %></td>
+			<td align="center"><%= dto.getResend() %></td>
+            <td align="center"><%= dto.getResid() %></td>          <!--작성자 아이디-->
+            <td align="center"><%= dto.getResname() %></td>
+            <td align="center"><%= dto.getResprice() %></td>  <!--점수-->
+            <td align="center"><%= dto.getRespurchase() %></td>    <!--작성일-->
 <%--                         <td colspan="4" align="center">
             <%
             if (session.getAttribute("signInId") != null
