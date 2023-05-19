@@ -20,7 +20,7 @@
     </span>
     
     
-	<div class="imsi">
+	<div>
 		<form class="position-absolute top-50 start-50 translate-middle" name="signInForm" id="signInForm" action="./signInProcess.jsp" method="post">
 			<label>아이디</label>
 			<input type="text" name="sinid" id="sinid"><br/>
@@ -28,7 +28,7 @@
 			<input type="password" name="sinpw" id="sinpw"><br/>
 			<input type="button" value="로그인" onclick="signInFormCheck()">
 			<input type="button" value="돌아가기" onclick="history.back()"><br>
-			<label>아직 회원이 아니신가요? <a href="./join.jsp">회원가입하기</a></label><br>
+			<label>아직 회원이 아니신가요? <a href="./join.jsp">회원가입하기</a></label>
 		</form>
 	</div>
 	<!-- <div>
