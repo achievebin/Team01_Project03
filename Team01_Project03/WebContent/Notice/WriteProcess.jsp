@@ -2,7 +2,7 @@
 <%@ page import="board.NoticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%> <!-- 경고페이지 -->
+<%@ include file="../Common/IsLoggedIn.jsp"%> <!-- 경고페이지 -->
 <%
 // 폼값 받기
 String title = request.getParameter("title");
@@ -22,9 +22,6 @@ dao.close();
 if (iResult == 1) {
     response.sendRedirect("NoticeList.jsp");
 	//response.sendRedirect(request.getContextPath() + "/NoticeList.jsp");
-
-
-
 
 } else {
     JSFunction.alertBack("글쓰기에 실패하였습니다.", out);

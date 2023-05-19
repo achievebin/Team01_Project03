@@ -14,7 +14,7 @@
 <%@ page import="java.sql.Connection"%>
 <%@ page import="connect.JDBConnect"%>
 
-<%@ include file="./IsLoggedIn.jsp"%> <!--로그인 확인-->
+<%@ include file="../Common/IsLoggedIn.jsp"%> <!--로그인 확인-->
 <!DOCTYPE html>
 <html>
 <head>

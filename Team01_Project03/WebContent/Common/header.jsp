@@ -16,7 +16,7 @@
 					<img class="navbar-brnad" src="../Common/logo.png" alt="로고">
 				</a>
 			 	<!-- -------------------------검색창------------------------------ -->  
-				<%@include file="../Common/search.jsp"%>
+				<jsp:include page = "../Common/search.jsp" />
 				<!-- -----------------생성할 하위 페이지로 넘겨줄 구역------------------- -->
 				<div class="position-absolute top-50 end-0 translate-middle-y"> <!-- second start -->       
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,8 +28,8 @@
 								<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 									          role="button" data-bs-toggle="dropdown" aria-expanded="false">안내</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="./introduce.jsp">소개</a></li>
-									<li><a class="dropdown-item" href="./history.jsp">연혁</a></li>  
+									<li><a class="dropdown-item" href="../Common/introduce.jsp">소개</a></li>
+									<li><a class="dropdown-item" href="../Common/history.jsp">연혁</a></li>  
 								</ul>
 							</li>
 						</ul>
