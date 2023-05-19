@@ -3,11 +3,16 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="board.NoticetblDAO"%>
 <%@ page import="board.NoticetblDTO"%>
+<%@ page import="member.MemberDao"%>
+<%@ page import="member.MemberDto"%>
 <%@ page import="board.BoardPage"%>
+<%@ page import="utils.Page"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
+
 // DAO를 생성해 DB에 연결
 NoticetblDAO dao = new NoticetblDAO(application);
 NoticetblDTO gdto = dao.selectView("noc_num");        // 게시물 가져오기 
@@ -126,6 +131,23 @@ else {
             <!--글쓰기 버튼-->
             <td><button type="button" onclick="location.href='NoticeWrite.jsp';">글쓰기
                 </button></td>
+        </tr>
+    </table>
+        <table border="1" style="width:90%">
+        <tr align="center">
+            <!--페이징 처리-->
+            <td>
+                <%
+			    String reqUrl = request.getRequestURI(); // 현재 요청의 URI를 가져옴
+			    if (searchField == null) { // accsearch가 null인 경우
+			        reqUrl += "?"; // reqUrl에 ?를 추가
+			    } else { // accsearch가 null이 아닌 경우
+			        reqUrl += "?accsearch=" + searchField; // reqUrl에 ?accsearch=값을 추가
+			    }
+			    reqUrl += "&searchText=act_name"; // reqUrl에 &searchText=act_name을 추가
+			    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
+				%>
+            </td>
         </tr>
     </table>
 
