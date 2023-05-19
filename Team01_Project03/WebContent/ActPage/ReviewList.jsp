@@ -158,7 +158,7 @@ var myChart = new Chart(chartArea, {
 
     <!-- 검색폼 -->
     <form method="get">
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
     <tr>
         <td align="left">
             <select name="searchField">
@@ -172,7 +172,7 @@ var myChart = new Chart(chartArea, {
     </tr>
     </table>
         <!--목록 하단의 [글쓰기] 버튼-->
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr align="right">
             <!--페이징 처리-->
             <td>
@@ -186,7 +186,7 @@ var myChart = new Chart(chartArea, {
     </table>
     </form>
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <!-- 각 칼럼의 이름 -->
         <tr>
             <th width="5%">번호</th>

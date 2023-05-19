@@ -1,5 +1,5 @@
-<%@ page import="Review.ReviewDAO"%>
-<%@ page import="Review.ReviewDTO"%>
+<%@ page import="review.ReviewDAO"%>
+<%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -35,7 +35,7 @@ function deletePost() {
 <h2>회원제 게시판 - 상세 보기(View)</h2>
 <form name="ReViewFrm" method="post">
 
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>번호</td>
             
@@ -77,8 +77,6 @@ function deletePost() {
                 </button>
             </td>
         </tr>
-                
-            <h3>액션 태그로 페이지 포함하기</h3>
     		<jsp:include page="./ReviewList.jsp" />
     </table>
 </form>

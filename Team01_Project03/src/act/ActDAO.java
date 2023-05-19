@@ -1,8 +1,5 @@
 package act;
 
-import java.beans.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -326,9 +323,6 @@ public class ActDAO extends JDBConnect {
         return result; // 결과 반환 
     }
     
-
-
-
     // 지정한 게시물을 삭제합니다.
     public int deletePost(ActDTO dto) { 
         int result = 0;

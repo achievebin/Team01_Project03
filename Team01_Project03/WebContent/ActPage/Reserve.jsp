@@ -42,14 +42,10 @@ sdao.close();// DB 연결 해제
         
         </div>    --%>
 <form name="ReserverFrm" action="./ReserveProcess.jsp" method="post" method="post">
-    <table border="1" width="50%">
-    
-    
-        <tr>
-        
-        
+    <h2>예약자 정보</h2>
+    <table border="1" style="width:50%">
 
-        <h2>예약자 정보</h2>
+        <tr>
             <td>예약자 성함</td>
             <td>
                 <input type="text" name="reserv_name" style="width: 90%;" />
@@ -74,10 +70,9 @@ sdao.close();// DB 연결 해제
         </table>
         <hr width="50%" align="left">
 
-    <table border="1" width="50%">
+	<h2>총 금액</h2>
+    <table border="1" style="width:50%">
         <tr>
-
-        <h2>총 금액</h2>
             <td width="15%">구매 총액</td>
             
             <td>
@@ -93,7 +88,7 @@ sdao.close();// DB 연결 해제
         <hr width="50%" align="left">
 
         <h2>결제수단 선택</h2>
-            <select name="reserv_purchase", onchange="selectBoxChange(this.value);">
+            <select name="reserv_purchase" onchange="selectBoxChange(this.value);">
                 <option value="신용카드">신용카드</option>
                 <option value="무통장입금">무통장입금</option>
                 <option value="간편결제">간편결제</option>   

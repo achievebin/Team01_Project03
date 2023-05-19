@@ -43,7 +43,7 @@ sdao.close();// DB 연결 해제
 <h2>예약 정보</h2>
  
 <form name="ReserverFrm" method="post">
-    <table border="1" width="50%">
+    <table border="1" style="width=50%">
         <tr>
 
         
@@ -81,10 +81,9 @@ sdao.close();// DB 연결 해제
         </form>
 
 <form name="saleFrm" method="post">
-    <table border="1" width="50%">
+	<h2>총 금액</h2>
+    <table border="1" style="width:50%">
         <tr>
-
-        <h2>총 금액</h2>
             <td width="15%">구매 총액</td>
             <td>
                 <%= rdto.getResprice() %> 원
@@ -99,16 +98,13 @@ sdao.close();// DB 연결 해제
 
 <form name="purchaseFrm" method="post">
         <h2>결제수단</h2>
-        <tr>
-        <td><%=rdto.getRespurchase() %></td>
-        </tr>
-			<button type="button" onclick="location.href='ActList.jsp';">
-                    목록 보기
-            </button>
-
+        <table>
+	        <tr>
+	        	<td><%=rdto.getRespurchase() %></td>
+	        </tr>
+        </table>
+			<button type="button" onclick="location.href='ActList.jsp';">목록 보기</button>
         </form> 
-        
- 
         <%-- <tr>
             <td>전화번호</td>
             <td><%= dto.getActPhone() %></td>
@@ -159,9 +155,6 @@ sdao.close();// DB 연결 해제
                 </button>
             </td>
         </tr> --%>
-
-    
-
 
 </body>
 </html>
