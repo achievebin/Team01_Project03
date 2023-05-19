@@ -41,7 +41,7 @@ function validateForm(form) {  // 폼 내용 검증
 <form name="ActEditFrm" method="post" action="EditProcess.jsp"
     <input type="hidden" name="act_number" value="<%= dto.getActNumber() %>" /> 
       onsubmit="return validateForm(this);">
-    <table border="1" style="width=90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>숙소명</td>
             <td>
