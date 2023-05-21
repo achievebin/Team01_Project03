@@ -39,7 +39,7 @@
 								          role="button" data-bs-toggle="dropdown" aria-expanded="false">고객지원</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="../Notice/NoticeList.jsp">공지사항</a></li>
-								<li><a class="dropdown-item" href="./customService.jsp">고객센터</a></li>  
+								<li><a class="dropdown-item" href="../QnA/QnaList.jsp">고객센터</a></li>  
 							</ul>
 							</li>
 						</ul>
