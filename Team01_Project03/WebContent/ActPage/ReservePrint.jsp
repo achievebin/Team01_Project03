@@ -33,6 +33,7 @@ sdao.close();// DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../Common/header.jsp" %>
 <meta charset="UTF-8">
 <title>예약 정보</title>
 
@@ -105,7 +106,7 @@ sdao.close();// DB 연결 해제
 	        	<td><%=rdto.getRespurchase() %></td>
 	        </tr>
         </table>
-			<button type="button" onclick="location.href='ActList.jsp';">목록 보기</button>
+			<button type="button" onclick="location.href='myReservation.jsp';">목록 보기</button>
         </form> 
         <%-- <tr>
             <td>전화번호</td>

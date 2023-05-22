@@ -70,7 +70,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='ReviewList.jsp';">
+                <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기</button>
             </td>
         </tr>

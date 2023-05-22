@@ -54,12 +54,13 @@ dao.close();  // DB 연결 닫기
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../Common/header.jsp" %>	
 <meta charset="UTF-8">
 <title>숙소 목록</title>
 </head>
 <body>
 
-    <%@ include file="../Common/header.jsp" %>	
+    
 	<%@ include file = "../Acc/accommodationDate.jsp" %>
 
     <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>

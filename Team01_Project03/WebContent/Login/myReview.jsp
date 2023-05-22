@@ -1,8 +1,8 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="reserve.ReserveDAO"%>
-<%@ page import="reserve.ReserveDTO"%>
+<%@ page import="review.ReviewDAO"%>
+<%@ page import="review.ReviewDTO"%>
 <%@ page import="act.ActDTO"%>
 <%@ page import="utils.BoardPage"%>
 <%@ page import="java.sql.ResultSet"%>
@@ -18,7 +18,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 // DAO를 생성해 DB에 연결
-ReserveDAO dao = new ReserveDAO(application);
+ReviewDAO dao = new ReviewDAO(application);
 ActDTO adt = new ActDTO();
 
 
@@ -26,10 +26,10 @@ ActDTO adt = new ActDTO();
 Map<String, Object> param = new HashMap<String, Object>();
 String searchField = request.getParameter("searchField");
 String searchWord = (String)session.getAttribute("signInId");
-param.put("actnumber", searchWord);
+param.put("id", searchWord);
 if (searchWord != null) {
     param.put("searchField", searchField);
-    param.put("resid", searchWord);
+    param.put("id", searchWord);
 }
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
@@ -53,7 +53,7 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
- List<ReserveDTO> ReserveLists = dao.selectListPage(param);  // 게시물 목록 받기
+ List<ReviewDTO> ReviewLists = dao.selectMyList(param);  // 게시물 목록 받기
 
 dao.close();  // DB 연결 닫기
 
@@ -69,11 +69,10 @@ sdao.close();
 <html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 <head>
-<jsp:include page="/Common/header.jsp" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <meta charset="UTF-8">
-<title>예약 정보</title>
+<title>리뷰 목록</title>
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -85,13 +84,13 @@ function deletePost() {
     }
 }
 </script>
+<%@ include file="../Common/header.jsp" %>	
 </head>
 <body>
+<h2>활동내역 - 내가 쓴 리뷰</h2>
 
 
-
-   <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
-    <h2>예약 목록</h2>
+  
 
     <!-- 검색폼 -->
     <form method="get">
@@ -116,31 +115,30 @@ function deletePost() {
                 <%= BoardPage.pagingStr(totalCount, pageSize,
                        blockPage, pageNum, request.getRequestURI()) %>  
             </td>
+
         </tr>
     </table>
     </form>
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" style="width:90%">
+    <table border="1" style="width:90%" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="5%">번호</th>
             <th width="10%">숙소명</th>
-            <th width="10%">체크인</th>
-            <th width="10%">체크아웃</th>
-            <th width="10%">예약 아이디</th>
-            <th width="10%">예약자 명</th>
-            <th width="10%">가격</th>
-            <th width="10%">지불수단</th>
-            
+            <th width="10%">제목</th>
+            <th width="40%" style="word-break:break-all">내용</th>
+            <th width="10%">작성자</th>
+            <th width="5%">별점</th>
+            <th width="10%">작성일</th>
         </tr>
         <!-- 목록의 내용 -->
 <%
-if (ReserveLists.isEmpty()) {
+if (ReviewLists.isEmpty()) {
     // 게시물이 하나도 없을 때
 %>
         <tr>
             <td colspan="5" align="center">
-                예약 정보가 없습니다.
+                첫 리뷰를 작성해보세요!
             </td>
         </tr>
 <%
@@ -150,26 +148,26 @@ else {
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
     
-    for (ReserveDTO dto : ReserveLists)
+    for (ReviewDTO dto : ReviewLists)
     {
     	
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
-        request.setAttribute("num",dto.getResnumber());
+        request.setAttribute("num",dto.getNum());
 %>
 
         <tr align="center">
-            <td><%= dto.getResnumber() 
+            <td><%= dto.getNum() 
             %></td>  <!--게시물 번호-->
+            <td align="center"><%= dto.getHotel() %></td> 
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="ReservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
+                <a href="../ActPage/RevView.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a>
             </td>
-            <td align="center"><%= dto.getResstart() %></td>
-			<td align="center"><%= dto.getResend() %></td>
-            <td align="center"><%= dto.getResid() %></td>          <!--작성자 아이디-->
-            <td align="center"><%= dto.getResname() %></td>
-            <td align="center"><%= dto.getResprice() %></td>  <!--점수-->
-            <td align="center"><%= dto.getRespurchase() %></td>    <!--작성일-->
+            <!-- <td width="100px" height="100px" style = "word-break: break-all">O</td>  -->
+            <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
+            <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
+            <td align="center"><%= dto.getScore() %></td>  <!--점수-->
+            <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
 <%--                         <td colspan="4" align="center">
             <%
             if (session.getAttribute("signInId") != null

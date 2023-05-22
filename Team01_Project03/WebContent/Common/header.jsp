@@ -50,7 +50,7 @@
 						</ul>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="./myReservation.jsp">예약정보</a>
+								<a class="nav-link active" aria-current="page" href="../ActPage/myReservation.jsp">예약정보</a>
 							</li>
 						</ul>
 						<% if (session.getAttribute("signInId") == null) { %>
