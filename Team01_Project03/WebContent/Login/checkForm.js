@@ -10,7 +10,7 @@ function signInFormCheck() {
 		alert("아이디를 입력해주세요.");
 		id.focus();
 		return false;
-	}
+		}
 	if (regId.test(id.value) == false) {
 		alert("영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.");
 		id.focus();
@@ -20,14 +20,15 @@ function signInFormCheck() {
 		alert("비밀번호를 입력해주세요.");
 		pw.focus();
 		return false;
-	}
+		}
 	if (regPw.test(pw.value) == false) {
 		alert("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
 		pw.focus();
 		return false;
 		}
 	document.signInForm.submit();
-}
+	}
+
 //회원가입 유효성 검증
 function joinFormCheck() {
 		let id = document.getElementById("id");
@@ -90,7 +91,7 @@ function joinFormCheck() {
 			alert("생년월일을 입력해주세요");
 			birth.focus();
 			return false;
-		}
+			}
 		if (!address.value) {
 			alert("주소를 입력해주세요.");
 			address.focus();
@@ -118,6 +119,18 @@ function joinFormCheck() {
 			}
 		document.joinForm.submit();
 	}
+	
+function idDuplicateCheck() {
+	let id = document.getElementById("id");
+	
+	if (id.value == "" || id.value.length < 0) {
+		alert("확인할 아이디를 먼저 입력해주세요.");
+		id.focus();
+		} else {
+			window.open("IdDuplicateCheck.jsp?userid="+id.value,"","width=500, height=300");
+		}
+	}
+	
 //정보수정 유효성 검증	
 function updateInfoFormCheck() {
 	let id = document.getElementById("newId");
@@ -201,8 +214,4 @@ function updateInfoFormCheck() {
 		return false;
 		}
 	document.updateInfoForm.submit();
-}
-//아이디 중복 체크
-function idDuplicateCheck() {
-	
-}
+	}
