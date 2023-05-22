@@ -35,7 +35,7 @@ if (sessionId.equals(dto.getResid())) {  // 작성자가 본인인지 확인
 } 
 else { 
     // 작성자 본인이 아니라면 이전 페이지로 이동
-    JSFunction.alertBack("본인만 삭제할 수 있습니다.", out);
+    JSFunction.alertBack("본인만 취소할 수 있습니다.", out);
 
     return;
 }
