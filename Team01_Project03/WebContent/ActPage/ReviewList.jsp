@@ -197,6 +197,7 @@ var myChart = new Chart(chartArea, {
             <th width="10%">작성자</th>
             <th width="5%">별점</th>
             <th width="10%">작성일</th>
+            
         </tr>
         <!-- 목록의 내용 -->
 <%
@@ -231,9 +232,10 @@ else {
             </td>
             <td width="100px" height="100px" style = "word-break: break-all">O</td> 
             <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
-            <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
-            <td align="center"><%= dto.getScore() %></td>  <!--점수-->
-            <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
+            <td ><%= dto.getId() %></td>          <!--작성자 아이디-->
+            <td ><%= dto.getScore() %></td>  <!--점수-->
+            <td ><%= dto.getPostdate() %></td>    <!--작성일-->
+            <td ><%= dto.getPostdate() %></td>    <!--작성일-->
 <%--                         <td colspan="4" align="center">
             <%
             if (session.getAttribute("signInId") != null

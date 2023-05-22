@@ -28,8 +28,8 @@
 								<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 									          role="button" data-bs-toggle="dropdown" aria-expanded="false">안내</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="./introduce.jsp">소개</a></li>
-									<li><a class="dropdown-item" href="./history.jsp">연혁</a></li>  
+									<li><a class="dropdown-item" href="../Common/introduce.jsp">소개</a></li>
+									<li><a class="dropdown-item" href="../Common/history.jsp">연혁</a></li>  
 								</ul>
 							</li>
 						</ul>

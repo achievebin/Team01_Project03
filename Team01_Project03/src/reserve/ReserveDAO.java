@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
+
+import act.ActDTO;
 import connect.JDBConnect;
 
 public class ReserveDAO extends JDBConnect {
@@ -61,7 +63,7 @@ public class ReserveDAO extends JDBConnect {
                 dto.setResprice(rs.getString("res_price").replace("/", ""));
                 dto.setReshotel(rs.getString("res_hotel"));
                 dto.setResid(rs.getString("res_id"));
-
+                dto.setRescancle(rs.getString("res_cancle"));
                
             }
         } 
@@ -118,6 +120,7 @@ public class ReserveDAO extends JDBConnect {
                 dto.setResprice(rs.getString("res_price"));
                 dto.setReshotel(rs.getString("res_hotel"));
                 dto.setResid(rs.getString("res_id"));
+                dto.setRescancle(rs.getString("res_cancle"));
                 // 반환할 결과 목록에 게시물 추가
                 bbs.add(dto);
             }
@@ -168,7 +171,7 @@ public class ReserveDAO extends JDBConnect {
         try {
             // INSERT 쿼리문 작성 
             String query = "update accommodationtbl SET act_leftroom = act_room-(select count(*) "
-            		+ "from reservationtbl where (sysdate between res_start and res_end) and act_number = ?)"
+            		+ "from reservationtbl where (sysdate between res_start and res_end) and act_number = ? and res_cancle = '예약됨')"
             		+ "where act_number = ?";
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setInt(1, actnumber);  
@@ -185,6 +188,29 @@ public class ReserveDAO extends JDBConnect {
         }
         
         return result;
+    }
+    // 예약취소
+    public int cancleReserve(ReserveDTO dto) { 
+        int result = 0;
+
+        try {
+            // 쿼리문 템플릿
+            String query = "update reservationtbl set res_cancle = "
+            		+ " '취소됨' where res_number = ? "; 
+
+            // 쿼리문 완성
+            psmt = con.prepareStatement(query); 
+            psmt.setInt(1, dto.getResnumber()); 
+
+            // 쿼리문 실행
+            result = psmt.executeUpdate(); 
+        } 
+        catch (Exception e) {
+            System.out.println("예약취소 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환
     }
     
 	/*

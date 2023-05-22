@@ -11,12 +11,18 @@
 <%@ page import="connect.JDBConnect"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
-
-
+<%@ page import="java.time.LocalDate"%>
+<%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="./IsLoggedIn.jsp"%>
 <%
+
+String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+Date sysdate = new Date(dateFormat.parse(todayfm).getTime());
+
 // DAO를 생성해 DB에 연결
 ReserveDAO dao = new ReserveDAO(application);
 ActDTO adt = new ActDTO();
@@ -131,7 +137,7 @@ function deletePost() {
             <th width="10%">예약자 명</th>
             <th width="10%">가격</th>
             <th width="10%">지불수단</th>
-            
+            <th width="10%">예약여부</th>
         </tr>
         <!-- 목록의 내용 -->
 <%
@@ -164,12 +170,13 @@ else {
             <td align="left">  <!--제목(+ 하이퍼링크)-->
                 <a href="ReservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
             </td>
-            <td align="center"><%= dto.getResstart() %></td>
-			<td align="center"><%= dto.getResend() %></td>
-            <td align="center"><%= dto.getResid() %></td>          <!--작성자 아이디-->
-            <td align="center"><%= dto.getResname() %></td>
-            <td align="center"><%= dto.getResprice() %></td>  <!--점수-->
-            <td align="center"><%= dto.getRespurchase() %></td>    <!--작성일-->
+            <td ><%= dto.getResstart() %></td>
+			<td ><%= dto.getResend() %></td>
+            <td ><%= dto.getResid() %></td>          <!--작성자 아이디-->
+            <td ><%= dto.getResname() %></td>
+            <td ><%= dto.getResprice() %></td>  <!--점수-->
+            <td ><%= dto.getRespurchase() %></td>    <!--작성일-->
+            <td ><%= dto.getRescancle() %></td>
 <%--                         <td colspan="4" align="center">
             <%
             if (session.getAttribute("signInId") != null

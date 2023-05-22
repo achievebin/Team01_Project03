@@ -48,6 +48,19 @@ rdao.close();
 <head>
 <%@ include file="../Common/header.jsp" %>
 <meta charset="UTF-8">
+
+<script>
+function resCancel() {
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.ReserverFrm;       // 이름(name)이 "writeFrm"인 폼 선택
+        form.method = "post";               // 전송 방식 
+        form.action = "ReserveCancelProcess.jsp";  // 전송 경로
+        form.submit();                      // 폼값 전송
+    }
+}
+</script>
+
 <title>예약 정보</title>
 
 </head>
@@ -57,6 +70,7 @@ rdao.close();
 <h2>예약 정보</h2>
  
 <form name="ReserverFrm" method="post">
+<input type="hidden" name="num" value="<%= rdto.getResnumber() %>" />
     <table border="1" style="width=50%">
         <tr>
 
@@ -121,6 +135,12 @@ rdao.close();
         </table>
 			<button type="button" onclick="location.href='myReservation.jsp';">목록 보기</button>
         </form> 
+        <%if (rdto.getResstart().compareTo(sysdate) >=0 && rdto.getRescancle().equals("예약됨")){%>
+        	<button type="button" onclick="resCancel();">예약 취소</button>
+        	
+        	
+        	
+       <%} %>
         <%-- <tr>
             <td>전화번호</td>
             <td><%= dto.getActPhone() %></td>
