@@ -4,31 +4,44 @@
 <%@ page import="score.ScoreDTO"%>
 <%@ page import="reserve.ReserveDAO"%>
 <%@ page import="reserve.ReserveDTO"%>
+<%@ page import="java.time.LocalDate"%>
 <%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String num = request.getParameter("num");  // 일련번호 받기 
-String actnum = (String)session.getAttribute("actnumber");
-ActDAO dao = new ActDAO(application);  // DAO 생성 
-              
-ActDTO dto = dao.selectView(actnum);        // 게시물 가져오기 
-String actname = dto.getActName();
-ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
+String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+Date sysdate = new Date(dateFormat.parse(todayfm).getTime());
 
-ScoreDTO sdto = sdao.scoreView(actnum); //점수 가져오기
+String num = request.getParameter("num");  // 일련번호 받기 
+
+
 
 ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
 
 ReserveDTO rdto = rdao.scoreView(num); //예약 가져오기
 
-int upd = rdao.updateRoom(Integer.parseInt(actnum));
+String actnum = String.valueOf(rdto.getActnumber());
 
+
+
+ActDAO dao = new ActDAO(application);  // DAO 생성 
+              
+ActDTO dto = dao.selectView(actnum);        // 게시물 가져오기 
+String actname = dto.getActName();
+ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
+ScoreDTO sdto = sdao.scoreView(actnum); //점수 가져오기
+
+
+if (rdto.getResend().compareTo(sysdate)>0){
+int upd = rdao.updateRoom(Integer.parseInt(actnum));
+}
 int act_price = dto.getActPrice();
 
 
 dao.close();      
 sdao.close();// DB 연결 해제
+rdao.close();
 %>
 <!DOCTYPE html>
 <html>

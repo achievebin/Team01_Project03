@@ -72,7 +72,7 @@ function validateForm(form) {  // 폼 내용 검증
                 <input type="text" name="act_price" style="width: 90%;" />
             </td>
         </tr>
-        </tr>
+        
                 <tr>
             <td>숙소 총 객실수</td>
             <td>
