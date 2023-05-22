@@ -11,7 +11,7 @@ String content = request.getParameter("content");
 
 // DTO에 저장
 QnAtblDTO dto = new QnAtblDTO();
-dto.setQna_num(num);
+dto.setQna_number(num);
 dto.setQna_title(title);
 dto.setQna_content(content);
 
@@ -23,7 +23,7 @@ dao.close();
 // 성공/실패 처리
 if (affected == 1) {
     // 성공 시 상세 보기 페이지로 이동
-    response.sendRedirect("QnaView.jsp?num=" + dto.getQna_num());
+    response.sendRedirect("QnaView.jsp?num=" + dto.getQna_number());
 }
 else {
     // 실패 시 이전 페이지로 이동

@@ -17,7 +17,7 @@ int delResult = 0;
 
 if (sessionId.equals(dto.getMit_id())) {  // 작성자가 본인인지 확인 
     // 작성자가 본인이면...
-    dto.setQna_num(num);
+    dto.setQna_number(num);
     delResult = dao.deletePost(dto);  // 삭제!!! 
     dao.close();
 

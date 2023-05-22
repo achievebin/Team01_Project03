@@ -11,7 +11,7 @@
 <title>공지사항 글쓰기</title>
 <script type="text/javascript">
 
-function NoticeWriteForm(form) {  // 폼 내용 검증
+function QnaWriteForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {
         alert("제목을 입력하세요.");
         form.title.focus();
@@ -30,7 +30,7 @@ function NoticeWriteForm(form) {  // 폼 내용 검증
 	<jsp:include page="../Common/header.jsp" /> 
 	<h2>글쓰기</h2>
 	<form name="writeFrm" method="post" action="WriteProcess.jsp"
-     	 onsubmit="return NoticeWriteForm(this);">
+     	 onsubmit="return QnaWriteForm(this);">
    	 <table border="1" style="width:90%">
        	 <tr>
            	 <td>제목</td>
@@ -50,7 +50,7 @@ function NoticeWriteForm(form) {  // 폼 내용 검증
                 <button type="submit" >작성 완료</button>
                 <!-- <button type="reset">다시 입력</button>-->
                 <!-- <button type="button" onClick="location.href='List.jsp';"> -->
-                <button type="button" onclick="if(confirm('목록 페이지로 이동하시겠습니까?')){location.href='NoticeList.jsp';}">
+                <button type="button" onclick="if(confirm('목록 페이지로 이동하시겠습니까?')){location.href='QnaList.jsp';}">
                     목록 보기</button>
             </td>
         </tr>

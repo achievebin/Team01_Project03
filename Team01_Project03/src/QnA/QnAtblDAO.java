@@ -19,14 +19,20 @@ public class QnAtblDAO extends JDBConnect {
         super(application);
     }
     
-    public List<Object> Allboard() {
-    	List<Object> QnaBoard = new ArrayList<Object>();
+    public List<QnAtblDTO> Allboard() {
+    	List<QnAtblDTO> QnaBoard = new ArrayList<>();
     	try {
-    	String Query = "SELECT LEVEL, qna_number, qna_pb, qna_title,"
-    			+ "qna_content, qna_date, mit_id"
-    			+ "from qnatbl"
-    			+" START WIHT qna_pb=0" + " CONNECT BY PRIOR qna_number=qna_number"
-    			+" ORDER SIBLINGS BY qna_number DESC";
+			/*
+			 * String Query = "SELECT LEVEL, qna_number, qna_pb, qna_title," +
+			 * "qna_content, qna_date, mit_id " + "from qnatbl" +" START WHIT qna_pb=0" +
+			 * " CONNECT BY PRIOR qna_number=qna_pb" +" ORDER SIBLINGS BY qna_number DESC";
+			 */
+    		String Query = "SELECT LEVEL, qna_number, qna_pb, qna_title, qna_content, qna_date, mit_id "
+    	             + "FROM qnatbl "
+    	             + "START WITH qna_pb = 0 "
+    	             + "CONNECT BY PRIOR qna_number = qna_pb "
+    	             + "ORDER SIBLINGS BY qna_number DESC";
+
     	
     	stmt = con.createStatement();   // 쿼리문 생성
         rs = stmt.executeQuery(Query);  // 쿼리 실행
@@ -50,6 +56,8 @@ public class QnAtblDAO extends JDBConnect {
                 dto.setPostdate(writeDate);
                 dto.setMit_id(id);
         	 	
+                QnaBoard.add(dto);  // QnaBoard에 객체 추가
+         
          }
          rs.close();
          stmt.close();   			
@@ -196,23 +204,7 @@ public class QnAtblDAO extends JDBConnect {
             psmt.setString(3, dto.getMit_id());   
             
             result = psmt.executeUpdate(); 
-			/*
-			 * if (result == 1) { try { // 쿼리문 템플릿 String quer =
-			 * "insert into Noticetbl(title) values(?,?,?,?,?)";
-			 * 
-			 * // 쿼리문 완성 psmt = con.prepareStatement(quer); psmt.setString(1,
-			 * dto.getNoc_num()); psmt.setString(2, dto.getNoc_title()); psmt.setString(3,
-			 * dto.getNoc_content()); psmt.setDate(4, dto.getPostdate()); psmt.setString(5,
-			 * dto.getMit_id()); // 오류.
-			 * 
-			 * // 쿼리문 실행 result = psmt.executeUpdate();
-			 * 
-			 * } catch (Exception e) { System.out.println("게시물 입력 중 예외 발생");
-			 * e.printStackTrace(); }
-			 * 
-			 * 
-			 * }
-			 */
+		
         }
         catch (Exception e) {
             System.out.println("게시물 입력 중 예외 발생");
@@ -289,7 +281,7 @@ public class QnAtblDAO extends JDBConnect {
         try {
             // 쿼리문 템플릿 
             String query = "UPDATE QnAtbl SET "
-                         + " noc_title=?, noc_content=? "
+                         + " Qna_title=?, Qna_content=? "
                          + " WHERE qna_number=?";
             
             // 쿼리문 완성
@@ -315,7 +307,7 @@ public class QnAtblDAO extends JDBConnect {
 
         try {
             // 쿼리문 템플릿
-            String query = "DELETE FROM NnAtbl WHERE qna_number=?"; 
+            String query = "DELETE FROM qnatbl WHERE qna_number=?"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(query); 
