@@ -16,7 +16,7 @@
 					<img class="navbar-brnad" src="../Common/logo.png" alt="로고">
 				</a>
 			 	<!-- -------------------------검색창------------------------------ -->  
-				<jsp:include page = "../Common/search.jsp" />
+				<%@ include file="../Common/search.jsp" %>
 				<!-- -----------------생성할 하위 페이지로 넘겨줄 구역------------------- -->
 				<div class="position-absolute top-50 end-0 translate-middle-y"> <!-- second start -->       
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -14,7 +14,7 @@
             alert("검색어가 없습니다. 검색어를 입력하세요.");
             return false; // 폼 제출을 막음
         }
-        document.searchForm.submit(); // 폼 제출을 진행
+        return true; // 폼 제출을 진행
     }
 </script>
 </head>
@@ -41,9 +41,9 @@
 %>
 
 <!-- 검색폼 -->
-<form class="d-flex position-absolute top-50 start-50 translate-middle" name="searchForm" role="search" action="../ActPage/ActList.jsp" method="GET">
+<form class="d-flex position-absolute top-50 start-50 translate-middle" role="search" action="../ActPage/ActList.jsp" method="GET" onsubmit="return searchForm();">
 	<input class="form-control me-2" type="text" placeholder="Search" aria-label="Search"  name="accsearch" id="accsearch" value="<%= searchValue %>">
-	<button class="btn btn-outline-success" onclick="searchForm()">검색하기</button>
+	<button class="btn btn-outline-success" type="submit">검색하기</button>
 	<input type="hidden" id="searchText" name="searchText" value="act_name" />
 </form>
 

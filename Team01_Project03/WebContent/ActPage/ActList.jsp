@@ -26,6 +26,7 @@ act.ActDAO dao = new act.ActDAO(application);
 		 
 }
 
+
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
 
 /*** 페이지 처리 start ***/
@@ -63,8 +64,21 @@ dao.close();  // DB 연결 닫기
 
     <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
     
+  	<!-- 정렬 기능 -->
+	<form action="../ActPage/ActList.jsp" method="GET">
+	    <input type="hidden" name="accsearch" value="<%=searchValue%>">
+	    <input type="hidden" name="searchText" value="act_name">
+	    <select name="sortname" onchange="this.form.submit()">
+	        <option value="">정렬</option>
+	        <option value="asc_name">이름순(오름차순)</option>
+	        <option value="desc_name">이름순(내림차순)</option>
+	        <option value="asc_leftroom">남은객실수(오름차순)</option>
+	        <option value="desc_leftroom">남은객실수(내림차순)</option>
+	    </select>
+	</form>
+    
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" style="width:90%">
+    <table border="1" width="90%">
         <!-- 각 칼럼의 이름 -->
         <tr>
             <th width="10%">번호</th>
@@ -132,9 +146,6 @@ else {
 			    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
 				%>
             </td>
-                        <!--글쓰기 버튼-->
-            <td><button type="button" onclick="location.href='ActWrite.jsp';">글쓰기
-                </button></td>
         </tr>
     </table>
 </body>
