@@ -14,12 +14,25 @@ String price = request.getParameter("reserv_price");
 String hotel = request.getParameter("reserv_hotel");
 String id = (String)session.getAttribute("signInId");
 
+
+
+
 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date chkIndate = formatter.parse(request.getParameter("chk_in"));
 java.sql.Date chkIn = new java.sql.Date(chkIndate.getTime());
 
 java.util.Date chkoutdate = formatter.parse(request.getParameter("chk_out"));
 java.sql.Date chkOut = new java.sql.Date(chkoutdate.getTime());
+
+if (name == "") { // txt에 아무값도 입력되지 않았을 때
+	out.print("<script>alert(\"예약자 성함이 입력되지 않았습니다. 다시 입력해주세요.\");" 
+	+"history.back();</script>");}
+
+if (phone == "") { // txt에 아무값도 입력되지 않았을 때
+	out.print("<script>alert(\"예약자 휴대번호가 입력되지 않았습니다. 다시 입력해주세요.\");" 
+	+"history.back();</script>");}
+
+
 
 // DTO에 저장
 ReserveDTO dto = new ReserveDTO();

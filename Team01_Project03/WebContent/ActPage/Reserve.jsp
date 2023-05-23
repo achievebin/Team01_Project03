@@ -104,56 +104,7 @@ sdao.close();// DB 연결 해제
         </form> 
         
  
-        <%-- <tr>
-            <td>전화번호</td>
-            <td><%= dto.getActPhone() %></td>
-            <td>주소</td>
-            <td><%= dto.getActAddress() %></td>
-        </tr>
-        <tr>
-            <td>숙소명</td>
-            
-            <td colspan="3"><%= dto.getActName() %></td>
-        </tr>
-        <tr>
-            <td>숙소정보</td>
-            <td colspan="3" height="100">
-                <%= dto.getActInfo() %></td> 
-        </tr>
-        <tr>
-            <td>숙소별점</td>
-            
-            <td><%= sdto.getAvgScore() %></td> 
-        </tr>
-        <tr>
-            <td>숙소가격</td>
-            
-            <td><%= dto.getActPrice() %></td> 
-        </tr>
-        <tr>
-            <td colspan="4" align="center">
-            <%
-            if (session.getAttribute("signInId") != null
-                && session.getAttribute("signInId").toString().equals(dto.getActId())) {
-            %>
-                <button type="button"
-                        onclick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
-                    수정하기</button>
-                <button type="button" onclick="deletePost();">삭제하기</button> 
-            <%
-            }
-            %>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
-                    예약 하기
-                </button>
-                <button type="button" onclick="location.href='ActList.jsp';">
-                    목록 보기
-                </button>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
-                    리뷰 쓰기
-                </button>
-            </td>
-        </tr> --%>
+        
 
     
 
