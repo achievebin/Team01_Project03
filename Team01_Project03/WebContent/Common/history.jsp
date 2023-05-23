@@ -99,7 +99,7 @@
 	  <div>
 		  <div style="text-align: left;">
 		  	<div class="text-container">
-		    	<span>2차 프로젝트<br>SafeRoute<br>2023.04.16 ~ 05.05  </span>
+		    	<span>2차 프로젝트<br>SafeRoute<br>2023.03.15 ~ 04.05  </span>
 		  	</div>
 		  </div>
 	  </div>
@@ -115,7 +115,7 @@
 	  <div>
 		  <div style="text-align: left;">
 		  	<div class="text-container">
-		    	<span>2차 프로젝트<br>SafeRoute<br>2023.04.16 ~ 05.05  </span>
+		    	<span>3차 프로젝트<br>숙박업소 프로그램<br>2023.04.17 ~ 05.12.  </span>
 		    </div>
 		  </div>
 	  </div>
