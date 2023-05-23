@@ -26,7 +26,7 @@ ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
 ScoreDTO sdto = sdao.scoreView(num); //점수 가져오기
 
-//dao.scoreUpdate(Integer.parseInt(num));
+dao.scoreUpdate(Integer.parseInt(num));
 
 ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
 

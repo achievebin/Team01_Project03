@@ -429,8 +429,6 @@ public class ActDAO extends JDBConnect {
         return result; // 결과 반환
     }
     
-<<<<<<< HEAD
-=======
     public int scoreUpdate(int num) {
         
     	int result = 0;
@@ -491,9 +489,6 @@ public class ActDAO extends JDBConnect {
         }
         
         return result; // 결과 반환
-    }
-    
->>>>>>> zknrol
-    	
+    }  	
 }
 
