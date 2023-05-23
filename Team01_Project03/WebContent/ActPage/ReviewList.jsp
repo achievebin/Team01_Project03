@@ -74,7 +74,7 @@ sdao.close();
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
 <script>
-function deletePost() {
+/* function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
     if (confirmed) {
         var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
@@ -82,7 +82,7 @@ function deletePost() {
         form.action = "RevDeleteProcess.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
     }
-}
+} */
 </script>
 </head>
 <body>

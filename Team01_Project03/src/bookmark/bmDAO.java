@@ -41,6 +41,32 @@ public class bmDAO extends JDBConnect {
         return result; // 결과 반환
     }
     
+    // 북마크 삭제
+    public int delBookmark(bmDTO dto) { 
+        int result = 0;
+    	try {
+            // 쿼리문 템플릿
+            String quer = "delete from bookmarktbl where act_number =? and bm_id =?"; 
+
+            // 쿼리문 완성
+            psmt = con.prepareStatement(quer); 
+            psmt.setString(1, dto.getActNumber());
+            psmt.setString(2, dto.getBmId()); 
+            
+           
+             
+
+            // 쿼리문 실행
+            result = psmt.executeUpdate(); 
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환
+    }
+    
     // 지정한 게시물을 찾아 내용을 반환합니다.
     public bmDTO selectView(String id) { 
     	bmDTO dto = new bmDTO();
