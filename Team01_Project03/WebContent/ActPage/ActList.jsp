@@ -3,6 +3,8 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="act.ActDAO"%>
 <%@ page import="act.ActDTO"%>
+<%@ page import="bookmark.bmDAO"%>
+<%@ page import="bookmark.bmDTO"%>
 <%@ page import="utils.Page"%>
 <%@ page import="reserve.ReserveDAO"%>
 <%@ page import="reserve.ReserveDTO"%>
@@ -11,14 +13,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+String id = (String)session.getAttribute("signInId");
 // DAO를 생성해 DB에 연결
 act.ActDAO dao = new act.ActDAO(application);
+bmDAO bdao = new bmDAO(application);
+bmDTO bdto = bdao.selectView(id);
 
 //사용자가 입력한 검색 조건을 Map에 저장
 	Map<String, Object> param = new HashMap<String, Object>();
 	String searchText = request.getParameter("searchText");
 	String accsearch = request.getParameter("accsearch");
 	String sortname = request.getParameter("sortname");
+	
+	
 	if (accsearch != null) {
 		param.put("searchText", searchText);
 		param.put("accsearch", accsearch);
@@ -46,28 +53,44 @@ int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
 int end = pageNum * pageSize; // 마지막 게시물 번호
 param.put("start", start);
 param.put("end", end);
+param.put("bmid",id);
 /*** 페이지 처리 end ***/
-
+List<bmDTO> bmLists = bdao.selectList(param);
 List<ActDTO> ActLists = dao.selectListPage(param);  // 게시물 목록 받기
+List<ActDTO> chkLists = dao.bmCheck(param);
 dao.close();  // DB 연결 닫기
 %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../Common/header.jsp" %>	
 <meta charset="UTF-8">
 <title>숙소 목록</title>
 </head>
 <body>
 
-    <%@ include file="../Common/header.jsp" %>	
+    
 	<%@ include file = "../Acc/accommodationDate.jsp" %>
 
     <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
     
+  	<!-- 정렬 기능 -->
+	<form action="../ActPage/ActList.jsp" method="GET">
+	    <input type="hidden" name="accsearch" value="<%=searchValue%>">
+	    <input type="hidden" name="searchText" value="act_name">
+	    <select name="sortname" onchange="this.form.submit()">
+	        <option value="">정렬</option>
+	        <option value="asc_name">이름순(오름차순)</option>
+	        <option value="desc_name">이름순(내림차순)</option>
+	        <option value="asc_leftroom">남은객실수(오름차순)</option>
+	        <option value="desc_leftroom">남은객실수(내림차순)</option>
+	    </select>
+	</form>
+    
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" width="90%">
+    <table border="1" style="width:90%" >
         <!-- 각 칼럼의 이름 -->
-        <tr>
+        <tr align="center">
             <th width="10%">번호</th>
             <th width="10%">숙소명</th>
             <th width="30%">숙소정보</th>
@@ -75,6 +98,7 @@ dao.close();  // DB 연결 닫기
             <th width="10%">전화번호</th>
             <th width="5%">남은객실수</th>
             <th width="5%">평균 점수</th>
+            <th width="5%">관심 여부</th>
         </tr>
         <!-- 목록의 내용 -->
 <%
@@ -99,17 +123,28 @@ else {
     	ScoreDTO sdto = sdao.scoreView(dto.getActNumber());
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
-%>
+        String bmchk = "X";
+%>		
         <tr align="center">
-            <td><%= dto.getActNumber() %></td>  <!--게시물 번호-->
+            <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
                 <a href="ActView.jsp?num=<%= dto.getActNumber() %>"><%= dto.getActName() %></a>
             </td>
-            <td align="center"><%= dto.getActInfo() %></td>          <!--숙소정보-->
-            <td align="center"><%= dto.getActAddress() %></td>          <!--숙소주소-->
-            <td align="center"><%= dto.getActPhone() %></td>  <!--숙소번호-->
-            <td align="center"><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
-            <td align="center"><%= sdto.getAvgScore() %></td>    <!--평균점수-->
+            <td ><%= dto.getActInfo() %></td>          <!--숙소정보-->
+            <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
+            <td ><%= dto.getActPhone() %></td>  <!--숙소번호-->
+            <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
+            <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
+            
+            <!--관심목록 표시-->
+            <%for(ActDTO adt : chkLists){
+            	
+            	if (adt.getActBookMark().equals(dto.getActNumber())){
+            		bmchk = "O";
+            		
+            	}%> <% }; %>
+			<td><%=bmchk %></td>
+           
         </tr>
 <%
    rdao.close();

@@ -2,7 +2,7 @@
 <%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%> 
+<%@ include file="../Common/IsLoggedIn.jsp"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
 ReviewDAO dao = new ReviewDAO(application);  // DAO 생성
@@ -19,7 +19,7 @@ String actname = (String)session.getAttribute("actname");
 <html>
 <head>
 <meta charset="UTF-8">
-
+<jsp:include page="./ActLink.jsp" />
 <title>숙소정보 수정</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
@@ -39,8 +39,9 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 <jsp:include page="../Common/Link.jsp" />
 <h2>숙소정보 수정</h2>
-<form name="ReviewwriteFrm" method="post" action="ReviewWriteProcess.jsp"
+<form name="ReviewEditFrm" method="post" action="RevEditProcess.jsp"
       onsubmit="return validateForm(this);">
+      <input type="hidden" name="rev_num" value="<%= dto.getNum() %>" />
     <table border="1" style="width:90%">
         <tr>
         
@@ -69,7 +70,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='ReviewList.jsp';">
+                <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기</button>
             </td>
         </tr>

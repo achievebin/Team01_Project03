@@ -99,8 +99,6 @@ sdao.close();// DB 연결 해제
             <input type="checkbox" name="inter" value="terms_b" />약관B
             
             <input type="submit" value="예약하기">
-            <button type="button" onclick="location.href='ReservPrint.jsp';">전송
-                </button>
        
         </form> 
         

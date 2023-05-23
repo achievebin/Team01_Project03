@@ -5,23 +5,25 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 import connect.JDBConnect;
+import bookmark.bmDAO;
+import bookmark.bmDTO;
 
 public class ActDAO extends JDBConnect {
     public ActDAO(ServletContext application) {
         super(application);
     }
 
-    // 검색 조건에 맞는 게시물의 개수를 반환합니다.
+ // 검색 조건에 맞는 게시물의 개수를 반환합니다.
     public int selectCount(Map<String, Object> map) {
         int totalCount = 0; // 결과(게시물 수)를 담을 변수
-
-        // 게시물 수를 얻어오는 쿼리문 작성
+        
+        // 숙소 수를 얻어오는 쿼리문 작성
         String query = "SELECT COUNT(*) FROM accommodationtbl";
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField") + " "
-                   + " LIKE '%" + map.get("searchWord") + "%'";
+        if (map.get("accsearch") != null) {
+            query += " WHERE " + map.get("searchText") + " "
+                   + " LIKE '%" + map.get("accsearch") + "%'";
         }
-
+        
         try {
             stmt = con.createStatement();   // 쿼리문 생성
             rs = stmt.executeQuery(query);  // 쿼리 실행
@@ -36,44 +38,7 @@ public class ActDAO extends JDBConnect {
         return totalCount; 
     }
     
-    // 검색 조건에 맞는 게시물 목록을 반환합니다.
-    public List<ActDTO> selectList(Map<String, Object> map) { 
-        List<ActDTO> bbs = new Vector<ActDTO>();  // 결과(게시물 목록)를 담을 변수
-
-        String query = "SELECT * FROM accommodationtbl "; 
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField") + " "
-                   + " LIKE '%" + map.get("searchWord") + "%' ";
-        }
-        query += " ORDER BY num DESC "; 
-
-        try {
-            stmt = con.createStatement();   // 쿼리문 생성
-            rs = stmt.executeQuery(query);  // 쿼리 실행
-
-            while (rs.next()) {  // 결과를 순화하며...
-                // 한 행(게시물 하나)의 내용을 DTO에 저장
-            	ActDTO dto = new ActDTO(); 
-
-                dto.setActNumber(rs.getString("act_number"));          // 일련번호
-                dto.setActName(rs.getString("act_name"));      // 제목
-                dto.setActInfo(rs.getString("act_info"));  // 내용
-                dto.setActAddress(rs.getString("act_address"));  // 작성일
-                dto.setActPhone(rs.getString("act_phone"));            // 작성자 아이디
-                dto.setActRoom(rs.getInt("act_room"));  // 조회수
-                dto.setActId(rs.getString("act_id"));
-
-                bbs.add(dto);  // 결과 목록에 저장
-            }
-        } 
-        catch (Exception e) {
-            System.out.println("게시물 조회 중 예외 발생");
-            e.printStackTrace();
-        }
-
-        return bbs;
-    }
-    
+	    
     // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
     public List<ActDTO> selectListPage(Map<String, Object> map) {
         List<ActDTO> bbs = new Vector<ActDTO>();  // 결과(게시물 목록)를 담을 변수
@@ -81,55 +46,131 @@ public class ActDAO extends JDBConnect {
         // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
                      + "    SELECT Tb.*, ROWNUM rNum FROM ( "
-                     + "        SELECT * FROM accommodationtbl";
-
+                     + "        SELECT * FROM accommodationtbl ";
+        
         // 검색 조건 추가 
-        if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField")
-                   + " LIKE '%" + map.get("searchWord") + "%' ";
+        if (map.get("accsearch") != null) {
+            query += " WHERE " + map.get("searchText")
+                   + " LIKE '%" + map.get("accsearch") + "%' ";
         }
         
-        query += "      ORDER BY act_number DESC "
-               + "     ) Tb "
+        // 정렬 조건 추가
+        String sortname = (String) map.get("sortname");
+        if (sortname != null && !sortname.isEmpty()) {
+            if (sortname.equals("asc_name")) {
+                query += " ORDER BY act_name ASC, act_leftroom ASC";
+            } else if (sortname.equals("desc_name")) {
+                query += " ORDER BY act_name DESC, act_leftroom DESC";
+            } else if (sortname.equals("asc_leftroom")) {
+                query += " ORDER BY act_leftroom ASC, act_name ASC";
+            } else if (sortname.equals("desc_leftroom")) {
+                query += " ORDER BY act_leftroom DESC, act_name DESC";
+            }
+        } else {
+            query += " ORDER BY act_number DESC "; // 기본적으로 게시물 번호를 기준으로 내림차순 정렬
+        }
+        
+        query += "     ) Tb "
                + " ) "
                + " WHERE rNum BETWEEN ? AND ?"; 
+        
+        String quer = "select act_number from accommodationtbl where "
+        +"act_number in (select act_number from bookmarktbl where bm_id = '" + map.get("bmid")+"')" ;
 
         try {
+
             // 쿼리문 완성 
             psmt = con.prepareStatement(query);
             psmt.setString(1, map.get("start").toString());
             psmt.setString(2, map.get("end").toString());
             
-            // 쿼리문 실행 
+            // 쿼리문 실행
             rs = psmt.executeQuery();
-            
+			/* bmDTO */             
             while (rs.next()) {
-                // 한 행(게시물 하나)의 데이터를 DTO에 저장
+            	String actnum = rs.getString("act_number");
+            	String actname = rs.getString("act_name");
+            	String actinfo = rs.getString("act_info");
+            	String actadd = rs.getString("act_address");
+            	String actph = rs.getString("act_phone");
+            	int actroom = rs.getInt("act_room");
+            	String actid = rs.getString("act_id");
+            	int actpr = rs.getInt("act_price");
+            	int actle = rs.getInt("act_leftroom");
             	ActDTO dto = new ActDTO();
-                dto.setActNumber(rs.getString("act_number"));
-                dto.setActName(rs.getString("act_name"));
-                dto.setActInfo(rs.getString("act_info"));
-                dto.setActAddress(rs.getString("act_address"));
-                dto.setActPhone(rs.getString("act_phone"));
-                dto.setActRoom(rs.getInt("act_room"));
-                dto.setActId(rs.getString("act_id"));
-                dto.setActPrice(rs.getInt("act_price"));
-                dto.setActLeftRoom(rs.getInt("act_leftroom"));
+                dto.setActNumber(actnum);
+                dto.setActName(actname);
+                dto.setActInfo(actinfo);
+                dto.setActAddress(actadd);
+                dto.setActPhone(actph);
+                dto.setActRoom(actroom);
+                dto.setActId(actid);
+                dto.setActPrice(actpr);
+                dto.setActLeftRoom(actle);	
                 
-                
-
+            	bbs.add(dto);
                 // 반환할 결과 목록에 게시물 추가
-                bbs.add(dto);
+				/*
+				 * psmt = con.prepareStatement(quer); rs = psmt.executeQuery(); while
+				 * (rs.next()) { String bmAct = rs.getString("act_number"); String bmchk; // 한
+				 * 행(게시물 하나)의 데이터를 DTO에 저장
+				 * 
+				 * 
+				 * if(bmAct.equals(dto.getActNumber())) {bmchk = "O";}else {bmchk = "X";}
+				 * dto.setActBookMark(bmchk);
+				 * 
+				 * }
+				 */
+
+                
             }
-        } 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+
+        return bbs;
+    }
+    
+    // 북마크 체킹
+    public List<ActDTO> bmCheck(Map<String, Object> map) {
+        List<ActDTO> bbs = new Vector<ActDTO>();  // 결과(게시물 목록)를 담을 변수
+        
+        String quer = "select act_number from accommodationtbl where "
+                +"act_number in (select act_number from bookmarktbl where bm_id = '" + map.get("bmid")+"')" ;
+
+        
+        try {
+        	psmt = con.prepareStatement(quer);
+            rs = psmt.executeQuery();
+
+            
+			/* bmDTO */             
+            while (rs.next()) {
+            	ActDTO dto = new ActDTO();
+            	String bmAct = rs.getString("act_number");
+            	
+                // 한 행(게시물 하나)의 데이터를 DTO에 저장
+
+				dto.setActBookMark(bmAct);
+				
+				 // 반환할 결과 목록에 게시물 추가
+            	bbs.add(dto);
+               
+                
+            }
+        }
         catch (Exception e) {
             System.out.println("게시물 조회 중 예외 발생");
             e.printStackTrace();
         }
-        
         // 목록 반환
         return bbs;
     }
+    
+
 
     // 게시글 데이터를 받아 DB에 추가합니다. 
     public int insertWrite(ActDTO dto) {
@@ -388,6 +429,66 @@ public class ActDAO extends JDBConnect {
         return result; // 결과 반환
     }
     
+    public int scoreUpdate(int num) {
+        
+    	int result = 0;
+    	 try {
+             // 쿼리문 템플릿
+             String query = "update review_score \n"
+             		+ "set rev_avg = (select round(avg(rev_score),2) from reviewtbl where act_number = ?),\n"
+             		+ "    count_all  = (select count(rev_score)from reviewtbl where act_number = ?),\n"
+             		+ "    count5  = (select count(rev_score)from reviewtbl where (rev_score = 5 and act_number = ?)),\n"
+             		+ "    count4  = (select count(rev_score)from reviewtbl where (rev_score = 4 and act_number = ?)),\n"
+             		+ "    count3  = (select count(rev_score)from reviewtbl where (rev_score = 3 and act_number = ?)),\n"
+             		+ "    count2  = (select count(rev_score)from reviewtbl where (rev_score = 2 and act_number = ?)),\n"
+             		+ "    count1  = (select count(rev_score)from reviewtbl where (rev_score = 1 and act_number = ?))\n"
+             		+ "where act_number = ?"; 
+
+             // 쿼리문 완성
+             psmt = con.prepareStatement(query); 
+             psmt.setInt(1, num); 
+             psmt.setInt(2, num); 
+             psmt.setInt(3, num); 
+             psmt.setInt(4, num); 
+             psmt.setInt(5, num); 
+             psmt.setInt(6, num); 
+             psmt.setInt(7, num);
+             psmt.setInt(8, num); 
+
+             // 쿼리문 실행
+             result = psmt.executeUpdate(); 
+         } 
+         catch (Exception e) {
+             System.out.println("게시물 삭제 중 예외 발생");
+             e.printStackTrace();
+         }
     	
+    	return result; // 결과 반환
+    }
+    
+ // 예약취소
+    public int addBookmark(ActDTO dto) { 
+        int result = 0;
+    	try {
+            // 쿼리문 템플릿
+            String quer = "insert into bookmarktbl"+
+            "(bm_number,bm_id,act_number)" +
+            "values(seq_bm_num.nextVAL,?,?)"; 
+
+            // 쿼리문 완성
+            psmt = con.prepareStatement(quer); 
+            
+            psmt.setString(1, dto.getActName()); 
+
+            // 쿼리문 실행
+            result = psmt.executeUpdate(); 
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result; // 결과 반환
+    }  	
 }
 

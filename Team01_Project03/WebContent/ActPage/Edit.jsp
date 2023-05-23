@@ -2,7 +2,7 @@
 <%@ page import="act.ActDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%> 
+<%@ include file="../Common/IsLoggedIn.jsp"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
 ActDAO dao = new ActDAO(application);  // DAO 생성
@@ -17,6 +17,7 @@ dao.close();  // DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="/Common/header.jsp" />
 <meta charset="UTF-8">
 
 <title>숙소정보 수정</title>
@@ -41,7 +42,7 @@ function validateForm(form) {  // 폼 내용 검증
 <form name="ActEditFrm" method="post" action="EditProcess.jsp"
     <input type="hidden" name="act_number" value="<%= dto.getActNumber() %>" /> 
       onsubmit="return validateForm(this);">
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>숙소명</td>
             <td>
@@ -65,8 +66,13 @@ function validateForm(form) {  // 폼 내용 검증
             <td>
                 <input type="text" name="act_address" style="width: 90%;" />
             </td>
+         <tr>
+            <td>숙소 가격</td>
+            <td>
+                <input type="text" name="act_price" style="width: 90%;" />
+            </td>
         </tr>
-                <tr>
+        <tr>
             <td>숙소 총 객실수</td>
             <td>
                 <select name="act_room">
@@ -77,10 +83,11 @@ function validateForm(form) {  // 폼 내용 검증
             	</select><br />
             </td>
         </tr>
+        <tr>
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='List.jsp';">
+                <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기</button>
             </td>
         </tr>

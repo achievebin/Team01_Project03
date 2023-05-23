@@ -4,36 +4,63 @@
 <%@ page import="score.ScoreDTO"%>
 <%@ page import="reserve.ReserveDAO"%>
 <%@ page import="reserve.ReserveDTO"%>
+<%@ page import="java.time.LocalDate"%>
 <%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+Date sysdate = new Date(dateFormat.parse(todayfm).getTime());
+
 String num = request.getParameter("num");  // 일련번호 받기 
-String actnum = (String)session.getAttribute("actnumber");
+
+
+
+ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
+
+ReserveDTO rdto = rdao.scoreView(num); //예약 가져오기
+
+String actnum = String.valueOf(rdto.getActnumber());
+
+
+
 ActDAO dao = new ActDAO(application);  // DAO 생성 
               
 ActDTO dto = dao.selectView(actnum);        // 게시물 가져오기 
 String actname = dto.getActName();
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
-
 ScoreDTO sdto = sdao.scoreView(actnum); //점수 가져오기
 
-ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
 
-ReserveDTO rdto = rdao.scoreView(actnum); //예약 가져오기
-
+if (rdto.getResend().compareTo(sysdate)>0){
 int upd = rdao.updateRoom(Integer.parseInt(actnum));
-
+}
 int act_price = dto.getActPrice();
 
 
 dao.close();      
 sdao.close();// DB 연결 해제
+rdao.close();
 %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../Common/header.jsp" %>
 <meta charset="UTF-8">
+
+<script>
+function resCancel() {
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.ReserverFrm;       // 이름(name)이 "writeFrm"인 폼 선택
+        form.method = "post";               // 전송 방식 
+        form.action = "ReserveCancelProcess.jsp";  // 전송 경로
+        form.submit();                      // 폼값 전송
+    }
+}
+</script>
+
 <title>예약 정보</title>
 
 </head>
@@ -43,6 +70,7 @@ sdao.close();// DB 연결 해제
 <h2>예약 정보</h2>
  
 <form name="ReserverFrm" method="post">
+<input type="hidden" name="num" value="<%= rdto.getResnumber() %>" />
     <table border="1" style="width=50%">
         <tr>
 
@@ -60,7 +88,9 @@ sdao.close();// DB 연결 해제
             </tr>
             <tr>
             <td>예약자명</td><td><%=rdto.getResname()%> </td>
+            
             </tr>
+            <tr><td>예약 아이디</td><td><%=rdto.getResid()%> </td></tr>
             <tr>
             <td>예약자 휴대번호</td><td><%=rdto.getResphone()%> </td>
             </tr>
@@ -103,8 +133,14 @@ sdao.close();// DB 연결 해제
 	        	<td><%=rdto.getRespurchase() %></td>
 	        </tr>
         </table>
-			<button type="button" onclick="location.href='ActList.jsp';">목록 보기</button>
+			<button type="button" onclick="location.href='myReservation.jsp';">목록 보기</button>
         </form> 
+        <%if (rdto.getResstart().compareTo(sysdate) >=0 && rdto.getRescancle().equals("예약됨")){%>
+        	<button type="button" onclick="resCancel();">예약 취소</button>
+        	
+        	
+        	
+       <%} %>
         <%-- <tr>
             <td>전화번호</td>
             <td><%= dto.getActPhone() %></td>

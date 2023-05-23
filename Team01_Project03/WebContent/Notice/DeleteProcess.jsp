@@ -2,7 +2,7 @@
 <%@ page import="board.NoticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%>
+<%@ include file="../Common/IsLoggedIn.jsp"%>
 <%
 String num = request.getParameter("num");  // 일련번호 얻기 
 

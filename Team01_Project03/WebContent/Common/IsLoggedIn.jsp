@@ -4,7 +4,7 @@
 <%
 if (session.getAttribute("signInId") == null) {
     JSFunction.alertLocation("로그인 후 이용해주십시오.",
-                             "../signIn.jsp", out);
+                             "../Login/signIn.jsp", out);
     return;
 
 }

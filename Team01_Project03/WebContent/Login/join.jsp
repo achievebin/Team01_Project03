@@ -19,8 +19,9 @@
 		<legend>신규 회원 정보</legend>
 		<div>
 		<label>아이디</label>
-		<input type="text" maxlength="12" placeholder="아이디" name="id" id="id">
-		<input type="button" value="중복확인">
+		<input type="text" maxlength="12" placeholder="아이디" name="id" id="id" onkeydown="resetIdCheckValue()">
+		<input type="button" id="letIdCheck" name="letIdCheck" value="중복확인" onclick="idDuplicateCheck()">
+		<input type="hidden" id="idCheck" name="idCheck" value="unchecked">
 		</div>
 		<div>
 		<label>비밀번호</label>
@@ -67,6 +68,18 @@
 		<input type="button" value="가입하기" onclick="joinFormCheck()">
 		<input type="button" value="돌아가기" onclick="history.back()">
 	</form>
+	<!-- 다음 주소 API 활용 -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	function execDaumPostCode {
+		new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+	        }
+	    }).open();
+	}
+	</script>
 	<%@ include file="../Common/footer.jsp" %>
 </body>
 </html>

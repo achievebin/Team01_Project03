@@ -1,14 +1,9 @@
 package review;
 
-import java.beans.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
-
-import act.ActDTO;
 import connect.JDBConnect;
 
 public class ReviewDAO extends JDBConnect {
@@ -225,7 +220,7 @@ public class ReviewDAO extends JDBConnect {
                 dto.setPostdate(rs.getDate("rev_date"));
                 dto.setId(rs.getString("rev_id"));
                 dto.setHotel(rs.getString("rev_hotel"));
-                
+                dto.setScore(rs.getInt("rev_score"));
                
             }
         } 
@@ -262,14 +257,15 @@ public class ReviewDAO extends JDBConnect {
         try {
             // 쿼리문 템플릿 
             String query = "UPDATE Reviewtbl SET "
-                         + " rev_title=?, rev_content=? "
-                         + " WHERE num=?";
+                         + " rev_title=?, rev_content=?, rev_score=? "
+                         + " WHERE rev_number=?";
             
             // 쿼리문 완성
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getTitle());
             psmt.setString(2, dto.getContent());
-            psmt.setString(3, dto.getNum());
+            psmt.setInt(3, dto.getScore());
+            psmt.setString(4, dto.getNum());
             
             // 쿼리문 실행 
             result = psmt.executeUpdate();
@@ -288,7 +284,7 @@ public class ReviewDAO extends JDBConnect {
 
         try {
             // 쿼리문 템플릿
-            String query = "DELETE FROM Reviewtbl WHERE num=?"; 
+            String query = "DELETE FROM Reviewtbl WHERE rev_number=?"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(query); 
@@ -311,17 +307,25 @@ public class ReviewDAO extends JDBConnect {
     	 try {
              // 쿼리문 템플릿
              String query = "update review_score \n"
-             		+ "set rev_avg = (select round(avg(rev_score),2) from reviewtbl),\n"
-             		+ "    count5  = (select count(rev_score)from reviewtbl where rev_score = 5),\n"
-             		+ "    count4  = (select count(rev_score)from reviewtbl where rev_score = 4),\n"
-             		+ "    count3  = (select count(rev_score)from reviewtbl where rev_score = 3),\n"
-             		+ "    count2  = (select count(rev_score)from reviewtbl where rev_score = 2),\n"
-             		+ "    count1  = (select count(rev_score)from reviewtbl where rev_score = 1)\n"
-             		+ "where hotel = ?"; 
+             		+ "set rev_avg = (select round(avg(rev_score),2) from reviewtbl where act_number = ?),\n"
+             		+ "    count_all  = (select count(rev_score)from reviewtbl where act_number = ?),\n"
+             		+ "    count5  = (select count(rev_score)from reviewtbl where (rev_score = 5 and act_number = ?)),\n"
+             		+ "    count4  = (select count(rev_score)from reviewtbl where (rev_score = 4 and act_number = ?)),\n"
+             		+ "    count3  = (select count(rev_score)from reviewtbl where (rev_score = 3 and act_number = ?)),\n"
+             		+ "    count2  = (select count(rev_score)from reviewtbl where (rev_score = 2 and act_number = ?)),\n"
+             		+ "    count1  = (select count(rev_score)from reviewtbl where (rev_score = 1 and act_number = ?))\n"
+             		+ "where act_number = ?"; 
 
              // 쿼리문 완성
              psmt = con.prepareStatement(query); 
-             psmt.setString(1, dto.getHotel()); 
+             psmt.setString(1, dto.getActNumber()); 
+             psmt.setString(2, dto.getActNumber()); 
+             psmt.setString(3, dto.getActNumber()); 
+             psmt.setString(4, dto.getActNumber()); 
+             psmt.setString(5, dto.getActNumber()); 
+             psmt.setString(6, dto.getActNumber()); 
+             psmt.setString(7, dto.getActNumber()); 
+             psmt.setString(8, dto.getActNumber()); 
 
              // 쿼리문 실행
              result = psmt.executeUpdate(); 
@@ -332,6 +336,67 @@ public class ReviewDAO extends JDBConnect {
          }
     	
     	return result; // 결과 반환
+    }
+    
+    // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
+    public List<ReviewDTO> selectMyList(Map<String, Object> map) {
+        List<ReviewDTO> bbs = new Vector<ReviewDTO>();  // 결과(게시물 목록)를 담을 변수
+        // 쿼리문 템플릿  
+        String query = " SELECT * FROM ( "
+                     + "    SELECT Tb.*, ROWNUM rNum FROM ( "
+                     + "        SELECT * FROM Reviewtbl "
+        			 + " where rev_id = '"+ map.get("id") +"'";
+        // 검색 조건 추가 
+		
+		/*
+		 * if (map.get("searchWord") != null) { query += " WHERE " +
+		 * map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' "; }
+		 */
+		 
+        
+        query += "      ORDER BY rev_number DESC "
+               + "     ) Tb "
+               + " ) "
+               + " WHERE rNum BETWEEN ? AND ?"; 
+
+        try {
+            // 쿼리문 완성 
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, map.get("start").toString());
+            psmt.setString(2, map.get("end").toString());
+            
+            
+            // 쿼리문 실행 
+            rs = psmt.executeQuery();
+            
+
+            
+            
+            while (rs.next()) {
+                // 한 행(게시물 하나)의 데이터를 DTO에 저장
+            	ReviewDTO dto = new ReviewDTO();
+                dto.setNum(rs.getString("rev_number"));
+                dto.setTitle(rs.getString("rev_title"));
+                dto.setContent(rs.getString("rev_content"));
+                dto.setPostdate(rs.getDate("rev_date"));
+                dto.setId(rs.getString("rev_id"));
+                dto.setScore(rs.getInt("rev_Score"));
+                dto.setHotel(rs.getString("rev_hotel"));
+                dto.setActNumber(rs.getString("act_number"));
+                // 반환할 결과 목록에 게시물 추가
+                bbs.add(dto);
+				
+
+				 
+            }
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 조회 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        // 목록 반환
+        return bbs;
     }
     	
     }

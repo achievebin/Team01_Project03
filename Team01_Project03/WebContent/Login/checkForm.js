@@ -10,7 +10,7 @@ function signInFormCheck() {
 		alert("아이디를 입력해주세요.");
 		id.focus();
 		return false;
-	}
+		}
 	if (regId.test(id.value) == false) {
 		alert("영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.");
 		id.focus();
@@ -20,17 +20,19 @@ function signInFormCheck() {
 		alert("비밀번호를 입력해주세요.");
 		pw.focus();
 		return false;
-	}
+		}
 	if (regPw.test(pw.value) == false) {
 		alert("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
 		pw.focus();
 		return false;
 		}
 	document.signInForm.submit();
-}
+	}
+
 //회원가입 유효성 검증
 function joinFormCheck() {
 		let id = document.getElementById("id");
+		let idCheck = document.getElementById("idCheck");
 		let pw = document.getElementById("pw");
 		let pwCheck = document.getElementById("pwCheck");
 		let name = document.getElementById("name");
@@ -54,6 +56,11 @@ function joinFormCheck() {
 		if (regId.test(id.value) == false) {
 			alert("영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.");
 			id.focus();
+			return false;
+			}
+		if (idCheck.value.equals("unchecked")) {
+			alert("아이디 중복 체크를 해주세요.");
+			document.getElementById("letIdCheck").focus();
 			return false;
 			}
 		if (!pw.value) {
@@ -90,7 +97,7 @@ function joinFormCheck() {
 			alert("생년월일을 입력해주세요");
 			birth.focus();
 			return false;
-		}
+			}
 		if (!address.value) {
 			alert("주소를 입력해주세요.");
 			address.focus();
@@ -118,6 +125,7 @@ function joinFormCheck() {
 			}
 		document.joinForm.submit();
 	}
+	
 //정보수정 유효성 검증	
 function updateInfoFormCheck() {
 	let id = document.getElementById("newId");
@@ -201,8 +209,22 @@ function updateInfoFormCheck() {
 		return false;
 		}
 	document.updateInfoForm.submit();
-}
-//아이디 중복 체크
-function idDuplicateCheck() {
+	}
 	
-}
+//회원탈퇴 유효성 검증
+function withdrawFormCheck() {
+	let pw = document.getElementById("widpw");
+	let regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
+	
+	if (!pw.value) {
+		alert("비밀번호를 입력해주세요.");
+		pw.focus();
+		return false;
+		}
+	if (regPw.test(pw.value) == false) {
+		alert("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
+		pw.focus();
+		return false;
+		}
+	document.withdrawForm.submit();
+	}

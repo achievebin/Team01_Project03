@@ -1,31 +1,33 @@
-<%@ page import="act.ActDAO"%>
-<%@ page import="act.ActDTO"%>
+<%@ page import="review.ReviewDAO"%>
+<%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%>
+<%@ include file="../Common/IsLoggedIn.jsp"%>
 <%
 // 수정 내용 얻기
-String num = (String)session.getAttribute("actnumber");
-String name = request.getParameter("act_name");
-String info = request.getParameter("act_info");
-String address = request.getParameter("act_address");
-String phone = request.getParameter("act_phone");
-String room = request.getParameter("act_room");
+// 폼값 받기
+String revnum = request.getParameter("rev_num");
+String title = request.getParameter("rev_title");
+String content = request.getParameter("rev_content");
+String score = request.getParameter("rev_score");
+String actnumber = (String)session.getAttribute("actnumber");
+String id = (String)session.getAttribute("signInId");
 
-// DTO에 저장
-ActDTO dto = new ActDTO();
-dto.setActName(name);
-dto.setActInfo(info);
-dto.setActAddress(address);
-dto.setActPhone(phone);
-dto.setActRoom(Integer.parseInt(room));
-dto.setActNumber(num);
+//폼값을 DTO 객체에 저장
+ReviewDTO dto = new ReviewDTO();
+dto.setNum(revnum);
+dto.setTitle(title);
+dto.setContent(content);
+dto.setScore(Integer.parseInt(score));
+dto.setId(id);
+dto.setActNumber(actnumber);
 
 // DB에 반영
-ActDAO dao = new ActDAO(application);
+ReviewDAO dao = new ReviewDAO(application);
+
 int affected = dao.updateEdit(dto);
-int upRev = dao.updateRev(dto);
-int upScore = dao.updateScore(dto);
+int scu = dao.scoreUpdate(dto);
+
 dao.close();
 
 // 성공/실패 처리

@@ -14,7 +14,7 @@
 <%@ page import="java.sql.Connection"%>
 <%@ page import="connect.JDBConnect"%>
 
-<%@ include file="./IsLoggedIn.jsp"%> <!--로그인 확인-->
+<%@ include file="../Common/IsLoggedIn.jsp"%> <!--로그인 확인-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,7 +114,7 @@ dao.close();  // DB 연결 닫기
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='ReviewList.jsp';">
+                <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기</button>
             </td>
         </tr>

@@ -3,7 +3,7 @@
 <%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%>
+<%@ include file="../Common/IsLoggedIn.jsp"%>
 <%
 // 수정 내용 얻기
 String num = (String)session.getAttribute("actnumber");
@@ -12,7 +12,7 @@ String phone = request.getParameter("reserv_phone");
 String purchase = request.getParameter("reserv_purchase");
 String price = request.getParameter("reserv_price");
 String hotel = request.getParameter("reserv_hotel");
-
+String id = (String)session.getAttribute("signInId");
 
 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date chkIndate = formatter.parse(request.getParameter("chk_in"));
@@ -30,6 +30,7 @@ dto.setResend(chkOut);
 dto.setResphone(phone);
 dto.setRespurchase(purchase);
 dto.setResprice(price);
+dto.setResid(id);
 
 
 // DB에 반영
@@ -41,8 +42,9 @@ dao.close();
 
 // 성공/실패 처리
 if (affected == 1) {
-    // 성공 시 상세 보기 페이지로 이동
-    response.sendRedirect("ReservePrint.jsp");
+    // 성공 시 예약 보기 페이지로 이동
+    JSFunction.alertLocation("예약이 완료되었습니다.", "myReservation.jsp", out);
+    /* response.sendRedirect("ReservePrint.jsp?num="+dto.getResnumber()+".jsp"); */
 }
 else {
     // 실패 시 이전 페이지로 이동

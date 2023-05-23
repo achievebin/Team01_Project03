@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%> <!--로그인 확인-->
+<%@ include file="../Common/IsLoggedIn.jsp"%> <!--로그인 확인-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +22,10 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
-<jsp:include page="../Common/Link.jsp" />
 <h2>숙소목록 - 글쓰기(Write)</h2>
 <form name="ActwriteFrm" method="post" action="ActWriteProcess.jsp"
       onsubmit="return validateForm(this);">
-    <table border="1" width="90%">
+    <table border="1" style="width:90%">
         <tr>
             <td>숙소명</td>
             <td>
