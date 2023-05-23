@@ -58,11 +58,6 @@ function joinFormCheck() {
 			id.focus();
 			return false;
 			}
-		if (idCheck.value.equals("unchecked")) {
-			alert("아이디 중복 체크를 해주세요.");
-			document.getElementById("letIdCheck").focus();
-			return false;
-			}
 		if (!pw.value) {
 			alert("비밀번호를 입력해주세요.");
 			pw.focus();
