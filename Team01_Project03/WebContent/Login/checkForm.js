@@ -32,7 +32,6 @@ function signInFormCheck() {
 //회원가입 유효성 검증
 function joinFormCheck() {
 		let id = document.getElementById("id");
-		let idCheck = document.getElementById("idCheck");
 		let pw = document.getElementById("pw");
 		let pwCheck = document.getElementById("pwCheck");
 		let name = document.getElementById("name");
