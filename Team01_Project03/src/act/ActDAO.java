@@ -66,17 +66,13 @@ public class ActDAO extends JDBConnect {
             } else if (sortname.equals("desc_leftroom")) {
                 query += " ORDER BY act_leftroom DESC, act_name DESC";
             }
-        } else {
-            query += " ORDER BY act_number DESC "; // 기본적으로 게시물 번호를 기준으로 내림차순 정렬
+        } else {query += " ORDER BY act_number DESC "; // 기본적으로 게시물 번호를 기준으로 내림차순 정렬
+           
         }
         
         query += "     ) Tb "
                + " ) "
                + " WHERE rNum BETWEEN ? AND ?"; 
-        
-        String quer = "select act_number from accommodationtbl where "
-        +"act_number in (select act_number from bookmarktbl where bm_id = '" + map.get("bmid")+"')" ;
-
         try {
 
             // 쿼리문 완성 
@@ -85,8 +81,7 @@ public class ActDAO extends JDBConnect {
             psmt.setString(2, map.get("end").toString());
             
             // 쿼리문 실행
-            rs = psmt.executeQuery();
-			/* bmDTO */             
+            rs = psmt.executeQuery();          
             while (rs.next()) {
             	String actnum = rs.getString("act_number");
             	String actname = rs.getString("act_name");
@@ -109,26 +104,11 @@ public class ActDAO extends JDBConnect {
                 dto.setActLeftRoom(actle);	
                 
             	bbs.add(dto);
-                // 반환할 결과 목록에 게시물 추가
-				/*
-				 * psmt = con.prepareStatement(quer); rs = psmt.executeQuery(); while
-				 * (rs.next()) { String bmAct = rs.getString("act_number"); String bmchk; // 한
-				 * 행(게시물 하나)의 데이터를 DTO에 저장
-				 * 
-				 * 
-				 * if(bmAct.equals(dto.getActNumber())) {bmchk = "O";}else {bmchk = "X";}
-				 * dto.setActBookMark(bmchk);
-				 * 
-				 * }
-				 */
-
                 
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            close();
         }
 
         return bbs;
@@ -466,7 +446,7 @@ public class ActDAO extends JDBConnect {
     	return result; // 결과 반환
     }
     
- // 예약취소
+ // 북마크추가
     public int addBookmark(ActDTO dto) { 
         int result = 0;
     	try {
