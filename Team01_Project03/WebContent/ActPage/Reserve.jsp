@@ -41,6 +41,7 @@ sdao.close();// DB 연결 해제
         
         
         </div>    --%>
+        <script type="text/javascript" src="../ActPage/reservercheck.js"></script>
 <form name="ReserverFrm" action="./ReserveProcess.jsp" method="post" method="post">
     <h2>예약자 정보</h2>
     <table border="1" style="width:50%">
@@ -48,22 +49,22 @@ sdao.close();// DB 연결 해제
         <tr>
             <td>예약자 성함</td>
             <td>
-                <input type="text" name="reserv_name" style="width: 90%;" />
+                <input type="text" name="reserv_name" style="width: 90%;" id="reserv_name" />
             </td>
             
             <td>예약자 휴대번호</td>          
             <td>
-                <input type="text" name="reserv_phone" style="width: 90%;" />
+                <input type="text" name="reserv_phone" style="width: 90%;" id="reserv_phone" />
             </td>
             </tr>
          <tr>
          <td>
 		<label>체크인 날짜</label>
-		<input type="date" name="chk_in" required>
+		<input type="date" name="chk_in" id="chk_in" required>
 		</td>
 		<td>
 		<label>체크아웃 날짜</label>
-		<input type="date" name="chk_out" required>
+		<input type="date" name="chk_out" id="chk_out" required>
 		</td>
             
         </tr>
