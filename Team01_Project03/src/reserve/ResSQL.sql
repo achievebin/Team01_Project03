@@ -8,8 +8,8 @@ create table reservationtbl(
     res_phone varchar2(30),
     res_purchase varchar2(30),
     res_price varchar2(30),
-    res_hotel varchar2(30));   
-    
+    res_hotel varchar2(30),  
+    res_id varchar2(30)); 
 --예약번호 시퀀스
 create sequence seq_res_num 
     increment by 1
