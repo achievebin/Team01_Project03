@@ -52,6 +52,19 @@ function deletePost() {
     }
 }
 </script>
+
+<script>
+function addBookMark() {
+    var confirmed = confirm("정말로 추가하겠습니까?"); 
+    if (confirmed) {
+        var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
+        form.method = "post";               // 전송 방식 
+        form.action = "addBmProcess.jsp";  // 전송 경로
+        form.submit();                      // 폼값 전송
+    }
+}
+</script>
+
 </head>
 <body>
 
@@ -123,6 +136,9 @@ function deletePost() {
                 </button>
                 <button type="button" onclick="location.href='ReviewWrite.jsp';">
                     리뷰 쓰기
+                </button>
+                <button type="button" onclick="addBookMark();">
+                    관심목록에 추가
                 </button>
             </td>
         </tr>

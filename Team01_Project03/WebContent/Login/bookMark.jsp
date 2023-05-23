@@ -10,29 +10,29 @@
 <%@ page import="reserve.ReserveDTO"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
+<%@ page import="bookmark.bmDAO"%>
+<%@ page import="bookmark.bmDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-String id = (String)session.getAttribute("signInId");
 // DAO를 생성해 DB에 연결
-act.ActDAO dao = new act.ActDAO(application);
-bmDAO bdao = new bmDAO(application);
-bmDTO bdto = bdao.selectView(id);
+bmDAO dao = new bmDAO(application);
+ActDAO adao = new ActDAO(application);
+ActDTO adt = new ActDTO();
+String accsearch = request.getParameter("accsearch");
 
-//사용자가 입력한 검색 조건을 Map에 저장
-	Map<String, Object> param = new HashMap<String, Object>();
-	String searchText = request.getParameter("searchText");
-	String accsearch = request.getParameter("accsearch");
-	String sortname = request.getParameter("sortname");
-	
-	
-	if (accsearch != null) {
-		param.put("searchText", searchText);
-		param.put("accsearch", accsearch);
-		param.put("sortname", sortname);
-		 
+// 사용자가 입력한 검색 조건을 Map에 저장
+Map<String, Object> param = new HashMap<String, Object>();
+String searchField = request.getParameter("searchField");
+String searchWord = (String)session.getAttribute("signInId");
+
+param.put("id", searchWord);
+if (searchWord != null) {
+    param.put("searchField", searchField);
+    param.put("id", searchWord);
 }
-
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
 
@@ -53,19 +53,37 @@ int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
 int end = pageNum * pageSize; // 마지막 게시물 번호
 param.put("start", start);
 param.put("end", end);
-param.put("bmid",id);
 /*** 페이지 처리 end ***/
-List<bmDTO> bmLists = bdao.selectList(param);
-List<ActDTO> ActLists = dao.selectListPage(param);  // 게시물 목록 받기
-List<ActDTO> chkLists = dao.bmCheck(param);
+
+ List<ActDTO> ActLists = dao.actList(param);  // 게시물 목록 받기
+ List<ActDTO> chkLists = adao.bmCheck(param);
 dao.close();  // DB 연결 닫기
+
+String hotel = (String)request.getAttribute("actnumber");
+request.setAttribute("hotelname", hotel);
+List<bmDTO> bmLists = dao.selectList(param);
 %>
 <!DOCTYPE html>
+
 <html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 <head>
-<%@ include file="../Common/header.jsp" %>	
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <meta charset="UTF-8">
-<title>숙소 목록</title>
+<title>관심 목록</title>
+<script>
+function deletePost() {
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
+        form.method = "post";               // 전송 방식 
+        form.action = "RevDeleteProcess.jsp";  // 전송 경로
+        form.submit();                      // 폼값 전송
+    }
+}
+</script>
+<%@ include file="../Common/header.jsp" %>	
 </head>
 <body>
 
@@ -104,14 +122,15 @@ else {
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
     for (ActDTO dto : ActLists)	
-    {	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
+    {	
+    	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
     	int upd = rdao.updateRoom(Integer.parseInt(dto.getActNumber())); // 남은 객실수 업데이트
     	ScoreDAO sdao = new ScoreDAO(application);
     	ScoreDTO sdto = sdao.scoreView(dto.getActNumber());
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
-        String bmchk = "X";
-%>		
+        String bmchk = "O";
+%>
         <tr align="center">
             <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
@@ -124,13 +143,14 @@ else {
             <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
             
             <!--관심목록 표시-->
-            <%for(ActDTO adt : chkLists){
+            <%for(ActDTO adto : chkLists){
             	
-            	if (adt.getActBookMark().equals(dto.getActNumber())){
+            	if (adto.getActBookMark().equals(dto.getActNumber())){
             		bmchk = "O";
             		
             	}%> <% }; %>
 			<td><%=bmchk %></td>
+            
            
         </tr>
 <%
