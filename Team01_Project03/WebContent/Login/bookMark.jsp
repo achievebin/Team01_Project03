@@ -88,7 +88,7 @@ function deletePost() {
 <body>
 
     
-	<%@ include file = "../Acc/accommodationDate.jsp" %>
+	
 
     <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
     

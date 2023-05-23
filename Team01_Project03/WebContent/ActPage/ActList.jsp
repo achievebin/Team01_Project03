@@ -70,7 +70,7 @@ dao.close();  // DB 연결 닫기
 <body>
 
     
-	<%@ include file = "../Acc/accommodationDate.jsp" %>
+	<%@ include file = "../ActPage/accommodationDate.jsp" %>
 
     <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
     
