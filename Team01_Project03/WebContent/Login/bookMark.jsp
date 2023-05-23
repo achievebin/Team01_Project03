@@ -175,9 +175,9 @@ else {
 			    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
 				%>
             </td>
-                        <!--글쓰기 버튼-->
+<!--                         글쓰기 버튼
             <td><button type="button" onclick="location.href='ActWrite.jsp';">글쓰기
-                </button></td>
+                </button></td> -->
         </tr>
     </table>
 </body>
