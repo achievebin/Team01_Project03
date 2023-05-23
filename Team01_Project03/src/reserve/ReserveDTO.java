@@ -12,8 +12,16 @@ public class ReserveDTO {
     private String resprice;
     private String reshotel;
     private String resid;
+    private String rescancle;
     
     
+    
+	public String getRescancle() {
+		return rescancle;
+	}
+	public void setRescancle(String rescancle) {
+		this.rescancle = rescancle;
+	}
 	public String getResid() {
 		return resid;
 	}

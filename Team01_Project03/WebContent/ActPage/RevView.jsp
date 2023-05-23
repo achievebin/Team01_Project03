@@ -9,15 +9,13 @@ ReviewDAO dao = new ReviewDAO(application);  // DAO 생성
               
 ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
 String actname = dto.getTitle();
-
-out.println(actname);
 dao.close();                               // DB 연결 해제
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>숙소 소개</title>
+<title>리뷰 상세</title>
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -29,10 +27,10 @@ function deletePost() {
     }
 }
 </script>
+<%@ include file="../Common/header.jsp" %>	
 </head>
 <body>
-<jsp:include page="../ActPage/MainLink.jsp" />
-<h2>회원제 게시판 - 상세 보기(View)</h2>
+<h2>리뷰 상세</h2>
 <form name="ReViewFrm" method="post">
             <input type="hidden" name="revId" value="<%= dto.getId() %>" />
             <input type="hidden" name="revNum" value="<%= dto.getNum() %>" />
@@ -52,11 +50,20 @@ function deletePost() {
             <td>제목</td>
             
             <td colspan="3"><%= dto.getTitle() %></td>
+
         </tr>
+        <tr>            <td>숙소</td>
+            
+            <td colspan="3"><%= dto.getHotel() %></td></tr>
         <tr>
             <td>내용</td>
             <td colspan="3" height="100">
                 <%= dto.getContent() %></td> 
+        </tr>
+        <tr>
+            <td>점수</td>
+            <td colspan="3" height="100">
+                <%= dto.getScore() %></td> 
         </tr>
         <tr>
             <td colspan="4" align="center">
@@ -71,8 +78,8 @@ function deletePost() {
             <%
             }
             %>
-                <button type="button" onclick="location.href='ActList.jsp';">
-                    목록 보기
+                <button type="button" onclick="javascript:history.back();">
+                    이전화면
                 </button>
             </td>
         </tr>

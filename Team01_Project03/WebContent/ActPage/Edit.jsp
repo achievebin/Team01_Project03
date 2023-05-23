@@ -17,6 +17,7 @@ dao.close();  // DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="/Common/header.jsp" />
 <meta charset="UTF-8">
 
 <title>숙소정보 수정</title>
@@ -65,6 +66,11 @@ function validateForm(form) {  // 폼 내용 검증
             <td>
                 <input type="text" name="act_address" style="width: 90%;" />
             </td>
+         <tr>
+            <td>숙소 가격</td>
+            <td>
+                <input type="text" name="act_price" style="width: 90%;" />
+            </td>
         </tr>
         <tr>
             <td>숙소 총 객실수</td>
@@ -81,7 +87,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='List.jsp';">
+                <button type="button" onclick="location.href='ActList.jsp';">
                     목록 보기</button>
             </td>
         </tr>

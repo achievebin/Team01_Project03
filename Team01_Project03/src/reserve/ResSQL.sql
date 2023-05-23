@@ -18,3 +18,6 @@ create sequence seq_res_num
     nomaxvalue
     nocycle
     nocache;
+    
+--예약 여부 컬럼 추가
+alter table reservationtbl add res_cancle varchar(25) default '예약됨';

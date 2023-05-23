@@ -74,7 +74,7 @@ sdao.close();
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
 <script>
-function deletePost() {
+/* function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
     if (confirmed) {
         var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
@@ -82,7 +82,7 @@ function deletePost() {
         form.action = "RevDeleteProcess.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
     }
-}
+} */
 </script>
 </head>
 <body>
@@ -197,6 +197,7 @@ var myChart = new Chart(chartArea, {
             <th width="10%">작성자</th>
             <th width="5%">별점</th>
             <th width="10%">작성일</th>
+            
         </tr>
         <!-- 목록의 내용 -->
 <%
@@ -231,9 +232,10 @@ else {
             </td>
             <td width="100px" height="100px" style = "word-break: break-all">O</td> 
             <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
-            <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
-            <td align="center"><%= dto.getScore() %></td>  <!--점수-->
-            <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
+            <td ><%= dto.getId() %></td>          <!--작성자 아이디-->
+            <td ><%= dto.getScore() %></td>  <!--점수-->
+            <td ><%= dto.getPostdate() %></td>    <!--작성일-->
+            <td ><%= dto.getPostdate() %></td>    <!--작성일-->
 <%--                         <td colspan="4" align="center">
             <%
             if (session.getAttribute("signInId") != null

@@ -220,7 +220,7 @@ public class ReviewDAO extends JDBConnect {
                 dto.setPostdate(rs.getDate("rev_date"));
                 dto.setId(rs.getString("rev_id"));
                 dto.setHotel(rs.getString("rev_hotel"));
-                
+                dto.setScore(rs.getInt("rev_score"));
                
             }
         } 
@@ -336,6 +336,67 @@ public class ReviewDAO extends JDBConnect {
          }
     	
     	return result; // 결과 반환
+    }
+    
+    // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
+    public List<ReviewDTO> selectMyList(Map<String, Object> map) {
+        List<ReviewDTO> bbs = new Vector<ReviewDTO>();  // 결과(게시물 목록)를 담을 변수
+        // 쿼리문 템플릿  
+        String query = " SELECT * FROM ( "
+                     + "    SELECT Tb.*, ROWNUM rNum FROM ( "
+                     + "        SELECT * FROM Reviewtbl "
+        			 + " where rev_id = '"+ map.get("id") +"'";
+        // 검색 조건 추가 
+		
+		/*
+		 * if (map.get("searchWord") != null) { query += " WHERE " +
+		 * map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' "; }
+		 */
+		 
+        
+        query += "      ORDER BY rev_number DESC "
+               + "     ) Tb "
+               + " ) "
+               + " WHERE rNum BETWEEN ? AND ?"; 
+
+        try {
+            // 쿼리문 완성 
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, map.get("start").toString());
+            psmt.setString(2, map.get("end").toString());
+            
+            
+            // 쿼리문 실행 
+            rs = psmt.executeQuery();
+            
+
+            
+            
+            while (rs.next()) {
+                // 한 행(게시물 하나)의 데이터를 DTO에 저장
+            	ReviewDTO dto = new ReviewDTO();
+                dto.setNum(rs.getString("rev_number"));
+                dto.setTitle(rs.getString("rev_title"));
+                dto.setContent(rs.getString("rev_content"));
+                dto.setPostdate(rs.getDate("rev_date"));
+                dto.setId(rs.getString("rev_id"));
+                dto.setScore(rs.getInt("rev_Score"));
+                dto.setHotel(rs.getString("rev_hotel"));
+                dto.setActNumber(rs.getString("act_number"));
+                // 반환할 결과 목록에 게시물 추가
+                bbs.add(dto);
+				
+
+				 
+            }
+        } 
+        catch (Exception e) {
+            System.out.println("게시물 조회 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        // 목록 반환
+        return bbs;
     }
     	
     }

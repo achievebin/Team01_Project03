@@ -11,11 +11,21 @@ public class ActDTO {
     private String actId;
     private int actPrice;
     private int actLeftRoom;
+    private String actBookMark;
+    
     
 	// 게터/세터
    
+    
+    
 	public String getActNumber() {
 		return actNumber;
+	}
+	public String getActBookMark() {
+		return actBookMark;
+	}
+	public void setActBookMark(String actBookMark) {
+		this.actBookMark = actBookMark;
 	}
 	public int getActLeftRoom() {
 		return actLeftRoom;

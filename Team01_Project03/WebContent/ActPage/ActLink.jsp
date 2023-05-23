@@ -11,8 +11,6 @@
         <% } %>
             <!-- 회원제 게시판 프로젝트에서 사용할 링크 -->   
             &nbsp;&nbsp;&nbsp; 
-            <a href="../ActPage/ActList.jsp">객실목록</a>
-            &nbsp;&nbsp;&nbsp; 
             <a href="../ActPage/ActList.jsp">숙소정보</a>
             &nbsp;&nbsp;&nbsp; 
             <a href="../ActPage/ReviewList.jsp">리뷰</a>
