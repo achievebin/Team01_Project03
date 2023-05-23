@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 
-import act.ActDTO;
 import connect.JDBConnect;
 
 public class ReserveDAO extends JDBConnect {

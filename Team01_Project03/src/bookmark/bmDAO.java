@@ -7,7 +7,6 @@ import javax.servlet.ServletContext;
 
 import act.ActDTO;
 import connect.JDBConnect;
-import reserve.ReserveDTO;
 
 
 public class bmDAO extends JDBConnect {

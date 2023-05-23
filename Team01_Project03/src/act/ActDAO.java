@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
 import connect.JDBConnect;
-import bookmark.bmDAO;
-import bookmark.bmDTO;
 
 public class ActDAO extends JDBConnect {
     public ActDAO(ServletContext application) {
