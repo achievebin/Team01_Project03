@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.text-padding{
+	padding-right:1000px
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: center;
+  margin-left: -10px;
+}
+
+.img-container img {
+  display: block; /* 이미지를 블록 요소로 만듭니다. */
+  margin-left: 300px; /* 원하는 거리로 조절하세요. */
+}
+
+.text-container {
+  position: relative;
+  margin-right: 250px; /* 왼쪽으로 20px만큼 이동 */
+}
+
+.video-container{
+	
+}

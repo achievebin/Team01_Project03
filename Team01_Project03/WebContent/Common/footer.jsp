@@ -20,19 +20,22 @@
 
 <footer>
 <!-- 약관 등 내용이 들어갈 영역 -->
+<div class="sticky-bottom">
 <div id = "terms" align="center" >
 
 	<ul>
 		<li><a href=>서비스이용약관</a></li>
 		<li><a href="${pageContext.request.contextPath}/Common/privacy.htm">개인정보 보호법</a></li>	
 		<li><a href="${pageContext.request.contextPath}/Common/ict.htm">정보통신망 이용법률</a></li>
+				<li><a href="https://github.com/achievebin/Team01_Project03">개발 깃허브</a></li>	
 	</ul>
 </div>
 <!-- 사이트 정보가 들어갈 영역 -->
 <div id = "contact" align="center" >
 	<ul>
-		<li><a href="https://github.com/achievebin/Team01_Project03">개발 깃허브</a></li>	
+
 	</ul>
+</div>
 </div>
 </footer>
 </body>
