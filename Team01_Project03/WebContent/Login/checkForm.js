@@ -32,6 +32,7 @@ function signInFormCheck() {
 //회원가입 유효성 검증
 function joinFormCheck() {
 		let id = document.getElementById("id");
+		let idCheck = document.getElementById("idCheck");
 		let pw = document.getElementById("pw");
 		let pwCheck = document.getElementById("pwCheck");
 		let name = document.getElementById("name");
@@ -55,6 +56,11 @@ function joinFormCheck() {
 		if (regId.test(id.value) == false) {
 			alert("영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.");
 			id.focus();
+			return false;
+			}
+		if (idCheck.value.equals("unchecked")) {
+			alert("아이디 중복 체크를 해주세요.");
+			document.getElementById("letIdCheck").focus();
 			return false;
 			}
 		if (!pw.value) {
@@ -118,17 +124,6 @@ function joinFormCheck() {
 			return false;
 			}
 		document.joinForm.submit();
-	}
-	
-function idDuplicateCheck() {
-	let id = document.getElementById("id");
-	
-	if (id.value == "" || id.value.length < 0) {
-		alert("확인할 아이디를 먼저 입력해주세요.");
-		id.focus();
-		} else {
-			window.open("IdDuplicateCheck.jsp?userid="+id.value,"","width=500, height=300");
-		}
 	}
 	
 //정보수정 유효성 검증	
@@ -214,4 +209,22 @@ function updateInfoFormCheck() {
 		return false;
 		}
 	document.updateInfoForm.submit();
+	}
+	
+//회원탈퇴 유효성 검증
+function withdrawFormCheck() {
+	let pw = document.getElementById("widpw");
+	let regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
+	
+	if (!pw.value) {
+		alert("비밀번호를 입력해주세요.");
+		pw.focus();
+		return false;
+		}
+	if (regPw.test(pw.value) == false) {
+		alert("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
+		pw.focus();
+		return false;
+		}
+	document.withdrawForm.submit();
 	}

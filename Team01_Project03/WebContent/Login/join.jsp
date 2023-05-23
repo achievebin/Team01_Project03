@@ -19,9 +19,9 @@
 		<legend>신규 회원 정보</legend>
 		<div>
 		<label>아이디</label>
-		<input type="text" maxlength="12" placeholder="아이디" name="id" id="id">
-		<input type="button" value="중복확인" onclick="idDuplicateCheck()">
-		<input type="hidden" name="idCheck" value="uncheck">
+		<input type="text" maxlength="12" placeholder="아이디" name="id" id="id" onkeydown="resetIdCheckValue()">
+		<input type="button" id="letIdCheck" name="letIdCheck" value="중복확인" onclick="idDuplicateCheck()">
+		<input type="hidden" id="idCheck" name="idCheck" value="unchecked">
 		</div>
 		<div>
 		<label>비밀번호</label>

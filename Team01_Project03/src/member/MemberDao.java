@@ -33,7 +33,7 @@ public class MemberDao extends JDBConnect {
 		return result;
 	}
 	
-	//아이디 중복 체크: 아이디가 일치하는 회원정보가 존재할 때 1, 그렇지 않을 때 0을 반환합니다.
+	//아이디 중복 체크
 	public int findId(String fid) {
 		int result = -1;
 		String query = "SELECT mit_id FROM memberidtbl WHERE mit_id=?";
@@ -44,11 +44,9 @@ public class MemberDao extends JDBConnect {
 			psmt.setString(1, fid);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-				//존재
-				result = 1;
-			} else {
-				//부존재
 				result = 0;
+			} else {
+				result = 1;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -135,18 +133,18 @@ public class MemberDao extends JDBConnect {
 		return result;
 	}
 	
-	//회원탈퇴: 아이디와 일치하는 회원 정보를 찾은 후 정보를 삭제합니다.
-	public int withdraw(String wdid) {
+	//회원탈퇴: 기입한 아이디·패스워드와 일치하는 회원 정보를 찾은 후 정보를 삭제합니다.
+	public int withdraw(String wdid, String wdpw) {
 		int result = 0;
-		String query = "DELETE FROM memberidtbl WHERE mit_id=?";
+		String query = "DELETE FROM memberidtbl WHERE mit_id=? AND mit_pw=?";
 		try {
 			psmt = con.prepareStatement(query); 
-            psmt.setString(1, wdid);
-            result = psmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			psmt.setString(1, wdid);
+			psmt.setString(2, wdpw);
+			result = psmt.executeUpdate();
+           } catch (Exception e) {
+            	e.printStackTrace();
+           }
 		return result;
 	}
-	
 }
