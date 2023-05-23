@@ -10,7 +10,7 @@ function signInFormCheck() {
 		alert("아이디를 입력해주세요.");
 		id.focus();
 		return false;
-		}
+	}
 	if (regId.test(id.value) == false) {
 		alert("영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.");
 		id.focus();
@@ -20,7 +20,7 @@ function signInFormCheck() {
 		alert("비밀번호를 입력해주세요.");
 		pw.focus();
 		return false;
-		}
+	}
 	if (regPw.test(pw.value) == false) {
 		alert("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
 		pw.focus();
@@ -91,7 +91,7 @@ function joinFormCheck() {
 			alert("생년월일을 입력해주세요");
 			birth.focus();
 			return false;
-			}
+		}
 		if (!address.value) {
 			alert("주소를 입력해주세요.");
 			address.focus();
