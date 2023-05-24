@@ -68,7 +68,7 @@ sdao.close();// DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/common/header.jsp" />
+
 <meta charset="UTF-8">
 <title>숙소 소개</title>
 <script>
@@ -111,8 +111,7 @@ function delBookMark() {
 
 </head>
 <body>
-
-<%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
+<%@ include file="../common/header.jsp" %>	
 <h2>숙소 소개</h2>
 <form name="ActViewFrm" method="get">
     <input type="hidden" name="num" value="<%= dto.getActNumber() %>" />  <!-- 공통 링크 -->

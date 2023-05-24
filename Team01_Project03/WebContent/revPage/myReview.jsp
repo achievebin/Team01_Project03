@@ -84,9 +84,10 @@ function deletePost() {
     }
 }
 </script>
-<%@ include file="../common/header.jsp" %>	
+
 </head>
 <body>
+<%@ include file="../common/header.jsp" %>	
 <h2>활동내역 - 내가 쓴 리뷰</h2>
 
 

@@ -32,6 +32,7 @@ sdao.close();// DB 연결 해제
 
 </head>
 <body>
+<jsp:include page="/common/header.jsp" />
 <div style=""></div>
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
 <h2><%=actname%> 예약</h2>

@@ -81,11 +81,11 @@ function deletePost() {
     }
 }
 </script>
-<%@ include file="../common/header.jsp" %>	
+
 </head>
 <body>
-
-    <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
+<%@ include file="../common/header.jsp" %>	
+    <h2>관심 목록</h2>
     
     <!-- 게시물 목록 테이블(표) -->
     <table border="1" style="width:90%" >

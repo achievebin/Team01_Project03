@@ -63,12 +63,12 @@ dao.close();  // DB 연결 닫기
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/header.jsp" %>	
+
 <meta charset="UTF-8">
 <title>숙소 목록</title>
 </head>
 <body>
-
+<%@ include file="../common/header.jsp" %>	
     
 	<%@ include file = "../actPage/accommodationDate.jsp" %>
 
