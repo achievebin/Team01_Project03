@@ -1,15 +1,15 @@
 <%@ page import="act.ActDAO"%>
 <%@ page import="act.ActDTO"%>
-<%@ page import="bookmark.bmDAO"%>
-<%@ page import="bookmark.bmDTO"%>
+<%@ page import="bookmark.BmDAO"%>
+<%@ page import="bookmark.BmDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 String num = (String)request.getParameter("num");  // 일련번호 얻기 
 
-bmDTO dto = new bmDTO();             // DTO 객체 생성
-bmDAO dao = new bmDAO(application);  // DAO 객체 생성
+BmDTO dto = new BmDTO();             // DTO 객체 생성
+BmDAO dao = new BmDAO(application);  // DAO 객체 생성
 
 
 

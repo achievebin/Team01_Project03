@@ -13,7 +13,7 @@
             &nbsp;&nbsp;&nbsp; 
             <a href="../actPage/actList.jsp">숙소목록</a>
             &nbsp;&nbsp;&nbsp; 
-            <a href="../Review/reviewList.jsp">리뷰</a>
+            <a href="../actPage/reviewList.jsp">리뷰</a>
         </td>
     </tr>
 </table>

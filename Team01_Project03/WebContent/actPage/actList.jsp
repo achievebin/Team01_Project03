@@ -3,8 +3,8 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="act.ActDAO"%>
 <%@ page import="act.ActDTO"%>
-<%@ page import="bookmark.bmDAO"%>
-<%@ page import="bookmark.bmDTO"%>
+<%@ page import="bookmark.BmDAO"%>
+<%@ page import="bookmark.BmDTO"%>
 <%@ page import="utils.Page"%>
 <%@ page import="reserve.ReserveDAO"%>
 <%@ page import="reserve.ReserveDTO"%>
@@ -16,8 +16,8 @@
 String id = (String)session.getAttribute("signInId");
 // DAO를 생성해 DB에 연결
 act.ActDAO dao = new act.ActDAO(application);
-bmDAO bdao = new bmDAO(application);
-bmDTO bdto = bdao.selectView(id);
+BmDAO bdao = new BmDAO(application);
+BmDTO bdto = bdao.selectView(id);
 
 //사용자가 입력한 검색 조건을 Map에 저장
 	Map<String, Object> param = new HashMap<String, Object>();
@@ -55,7 +55,7 @@ param.put("start", start);
 param.put("end", end);
 param.put("bmid",id);
 /*** 페이지 처리 end ***/
-List<bmDTO> bmLists = bdao.selectList(param);
+List<BmDTO> bmLists = bdao.selectList(param);
 List<ActDTO> ActLists = dao.selectListPage(param);  // 게시물 목록 받기
 List<ActDTO> chkLists = dao.bmCheck(param);
 dao.close();  // DB 연결 닫기
