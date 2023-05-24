@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/header.jsp" %>	
+
 <meta charset="UTF-8">
 <title>숙소목록</title>
 <script type="text/javascript">
@@ -23,6 +23,7 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
+<%@ include file="../common/header.jsp" %>	
 <h2>숙소목록 - 글쓰기(Write)</h2>
 <form name="ActwriteFrm" method="post" action="actWriteProcess.jsp"
       onsubmit="return validateForm(this);">

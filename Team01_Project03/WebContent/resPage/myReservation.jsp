@@ -75,7 +75,7 @@ sdao.close();
 <html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 <head>
-<jsp:include page="/common/header.jsp" />
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <meta charset="UTF-8">
@@ -93,7 +93,7 @@ function deletePost() {
 </script>
 </head>
 <body>
-
+<jsp:include page="/common/header.jsp" />
 
 
    <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>

@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/header.jsp" %>
+
 <meta charset="UTF-8">
 <title>리뷰 쓰기</title>
 <script type="text/javascript">
@@ -37,7 +37,7 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
-
+<%@ include file="../common/header.jsp" %>
 <%
 // DAO를 생성해 DB에 연결
 ReviewDAO dao = new ReviewDAO(application);
@@ -108,7 +108,7 @@ dao.close();  // DB 연결 닫기
         		<input type="radio" name="rev_score" value=2 />2
         		<input type="radio" name="rev_score" value=3 />3
         		<input type="radio" name="rev_score" value=4 />4
-        		<input type="radio" name="rev_score" value=5 />5
+        		<input type="radio" name="rev_score" value=5 checked="checked" />5
         	</td>
         </tr>
         <tr>

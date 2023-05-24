@@ -17,7 +17,7 @@ dao.close();  // DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/common/header.jsp" />
+
 <meta charset="UTF-8">
 
 <title>숙소정보 수정</title>
@@ -37,7 +37,7 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
-<jsp:include page="../common/Link.jsp" />
+<%@ include file="../common/header.jsp" %>	
 <h2>숙소정보 수정</h2>
 <form name="ActEditFrm" method="post" action="editProcess.jsp"
     <input type="hidden" name="act_number" value="<%= dto.getActNumber() %>" /> 

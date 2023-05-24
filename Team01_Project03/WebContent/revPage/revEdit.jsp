@@ -18,7 +18,7 @@ String actname = (String)session.getAttribute("actname");
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/header.jsp" %>
+
 <meta charset="UTF-8">
 <title>숙소정보 수정</title>
 <script type="text/javascript">
@@ -37,6 +37,7 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
+<%@ include file="../common/header.jsp" %>
 <h2>숙소정보 수정</h2>
 <form name="ReviewEditFrm" method="post" action="revEditProcess.jsp"
       onsubmit="return validateForm(this);">

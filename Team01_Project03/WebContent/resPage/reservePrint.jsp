@@ -46,7 +46,7 @@ rdao.close();
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/header.jsp" %>
+
 <meta charset="UTF-8">
 
 <script>
@@ -65,6 +65,7 @@ function resCancel() {
 
 </head>
 <body>
+<%@ include file="../common/header.jsp" %>
 <div style=""></div>
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
 <h2>예약 정보</h2>
