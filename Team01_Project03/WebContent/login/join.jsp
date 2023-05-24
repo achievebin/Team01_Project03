@@ -7,7 +7,7 @@
 <title>회원가입</title>
 </head>
 <body>
-	<script type="text/javascript" src="./checkForm.js"></script>
+	<script type="text/javascript" src="./js/checkForm.js"></script>
 	<%@ include file="../common/header.jsp" %>
 	<span style="color: red; font-size: 1.2em;"> 
 	        <%= request.getAttribute("joinErrMsg") == null ?

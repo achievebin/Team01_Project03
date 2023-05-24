@@ -24,7 +24,7 @@ String changeEmail = request.getParameter("prevEmail");
 <title>회원정보수정</title>
 </head>
 <body>
-	<script type="text/javascript" src="./checkForm.js"></script>
+	<script type="text/javascript" src="./js/checkForm.js"></script>
 	<span style="color: red; font-size: 1.2em;"> 
 		        <%= request.getAttribute("updateInfoErrMsg") == null ?
 		                "" : request.getAttribute("updateInfoErrMsg") %>

@@ -10,7 +10,7 @@
 
 </style>
 <body>
-	<script type="text/javascript" src="./checkForm.js"></script>
+	<script type="text/javascript" src="./js/checkForm.js"></script>
 	<jsp:include page="/common/header.jsp" />
 	<span style="color: red; font-size: 1.2em;"> 
         <%= request.getAttribute("LoginErrMsg") == null ?
