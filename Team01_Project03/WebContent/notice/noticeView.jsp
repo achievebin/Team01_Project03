@@ -1,13 +1,13 @@
-<%@ page import="board.NoticetblDAO"%>
-<%@ page import="board.NoticetblDTO"%>
+<%@ page import="board.noticetblDAO"%>
+<%@ page import="board.noticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%
-String num = request.getParameter("num");  // 일련번호 받기
+	String num = request.getParameter("num");  // 일련번호 받기
 
-NoticetblDAO dao = new NoticetblDAO(application);  // DAO 생성
+noticetblDAO dao = new noticetblDAO(application);  // DAO 생성
 //dao.updateVisitCount(num);                 // 조회수 증가
-NoticetblDTO dto = dao.selectView(num);        // 게시물 가져오기
+noticetblDTO dto = dao.selectView(num);        // 게시물 가져오기
 dao.close();                               // DB 연결 해제
 %>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ function deletePost() {
     if (confirmed) {
         var form = document.writeFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식
-        form.action = "DeleteProcess.jsp";  // 전송 경로
+        form.action = "deleteProcess.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
     }
 }
@@ -64,13 +64,13 @@ function deletePost() {
                     && session.getAttribute("signInId").toString().equals(dto.getMit_id())) {
                 %>
                 <button type="button"
-                        onclick="location.href='NoticeEdit.jsp?num=<%= dto.getNoc_num() %>';">
+                        onclick="location.href='noticeEdit.jsp?num=<%= dto.getNoc_num() %>';">
                     수정하기</button>
                 <button type="button" onclick="deletePost();">삭제하기</button> 
                 <%
                 }
                 %>
-                <button type="button" onclick="location.href='NoticeList.jsp';">
+                <button type="button" onclick="location.href='noticeList.jsp';">
                     목록 보기
                 </button>
             </td>

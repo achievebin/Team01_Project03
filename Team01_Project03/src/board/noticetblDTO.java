@@ -1,6 +1,6 @@
 package board;
 
-public class NoticetblDTO {
+public class noticetblDTO {
     // 멤버 변수 선언
     private String noc_num;
     private String noc_title;

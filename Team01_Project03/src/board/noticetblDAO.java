@@ -6,8 +6,8 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import connect.JDBConnect;
 
-public class NoticetblDAO extends JDBConnect {
-    public NoticetblDAO(ServletContext application) {
+public class noticetblDAO extends JDBConnect {
+    public noticetblDAO(ServletContext application) {
         super(application);
     }
 
@@ -37,8 +37,8 @@ public class NoticetblDAO extends JDBConnect {
     }
     
     // 검색 조건에 맞는 게시물 목록을 반환합니다.
-    public List<NoticetblDTO> selectList(Map<String, Object> map) { 
-        List<NoticetblDTO> bbs = new Vector<NoticetblDTO>();  // 결과(게시물 목록)를 담을 변수
+    public List<noticetblDTO> selectList(Map<String, Object> map) { 
+        List<noticetblDTO> bbs = new Vector<noticetblDTO>();  // 결과(게시물 목록)를 담을 변수
 
         String query = "SELECT * FROM Noticetbl "; 
         if (map.get("searchWord") != null) {
@@ -54,7 +54,7 @@ public class NoticetblDAO extends JDBConnect {
 
             while (rs.next()) {  // 결과를 순화하며...
                 // 한 행(게시물 하나)의 내용을 DTO에 저장
-            	NoticetblDTO dto = new NoticetblDTO(); 
+            	noticetblDTO dto = new noticetblDTO(); 
 
                 dto.setNoc_num(rs.getString("noc_number"));          // 일련번호
                 dto.setNoc_title(rs.getString("noc_title"));      // 제목
@@ -75,8 +75,8 @@ public class NoticetblDAO extends JDBConnect {
     }
     
     // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
-    public List<NoticetblDTO> selectListPage(Map<String, Object> map) {
-        List<NoticetblDTO> bbs = new Vector<NoticetblDTO>();  // 결과(게시물 목록)를 담을 변수
+    public List<noticetblDTO> selectListPage(Map<String, Object> map) {
+        List<noticetblDTO> bbs = new Vector<noticetblDTO>();  // 결과(게시물 목록)를 담을 변수
         
         // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
@@ -105,7 +105,7 @@ public class NoticetblDAO extends JDBConnect {
             
             while (rs.next()) {
                 // 한 행(게시물 하나)의 데이터를 DTO에 저장
-            	NoticetblDTO dto = new NoticetblDTO();
+            	noticetblDTO dto = new noticetblDTO();
                 dto.setNoc_num(rs.getString("noc_num"));
                 dto.setNoc_title(rs.getString("noc_title"));
                 dto.setNoc_content(rs.getString("noc_content"));  
@@ -128,7 +128,7 @@ public class NoticetblDAO extends JDBConnect {
     }
 
     // 게시글 데이터를 받아 DB에 추가합니다. 
-    public int insertWrite(NoticetblDTO dto) {
+    public int insertWrite(noticetblDTO dto) {
         int result = 0;
         
         try {
@@ -173,8 +173,8 @@ public class NoticetblDAO extends JDBConnect {
     
 
     // 지정한 게시물을 찾아 내용을 반환합니다.
-    public NoticetblDTO selectView(String num) { 
-    	NoticetblDTO dto = new NoticetblDTO();
+    public noticetblDTO selectView(String num) { 
+    	noticetblDTO dto = new noticetblDTO();
         
         // 쿼리문 준비
 		/*
@@ -232,7 +232,7 @@ public class NoticetblDAO extends JDBConnect {
 //    }
     
     // 지정한 게시물을 수정합니다.
-    public int updateEdit(NoticetblDTO dto) { 
+    public int updateEdit(noticetblDTO dto) { 
         int result = 0;
         
         try {
@@ -259,7 +259,7 @@ public class NoticetblDAO extends JDBConnect {
     }
 
     // 지정한 게시물을 삭제합니다.
-    public int deletePost(NoticetblDTO dto) { 
+    public int deletePost(noticetblDTO dto) { 
         int result = 0;
 
         try {

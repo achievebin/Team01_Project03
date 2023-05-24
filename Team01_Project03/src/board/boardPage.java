@@ -1,6 +1,6 @@
 package board;
 
-public class BoardPage {
+public class boardPage {
     public static String pagingStr(int totalCount, int pageSize, int blockPage,
             int pageNum, String reqUrl) {
         String pagingStr = "";
