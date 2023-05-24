@@ -11,8 +11,6 @@
     pageEncoding="UTF-8"%>
 <%
 
-
-
 String num = request.getParameter("num");  // 일련번호 받기 
 
 ActDAO dao = new ActDAO(application);  // DAO 생성 
@@ -21,19 +19,22 @@ ActDTO dto = dao.selectView(num);        // 게시물 가져오기
 
 
 
-String actname = dto.getActName();
+String actname = dto.getActName();  //숙소번호 변수지정
+
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
 ScoreDTO sdto = sdao.scoreView(num); //점수 가져오기
 
-dao.scoreUpdate(Integer.parseInt(num));
+dao.scoreUpdate(Integer.parseInt(num)); // 해당페이지에 들어올 시 숙소점수 업데이트
 
 ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
 
 ReserveDTO rdto = rdao.scoreView(num); //예약 가져오기
 
-int upd = rdao.updateRoom(Integer.parseInt(num));
+int upd = rdao.updateRoom(Integer.parseInt(num)); // 해당페이지에 들어올 시 남은객실 업데이트
 
+
+//데이터 입력
 request.setAttribute("actname",dto.getActName());
 request.setAttribute("actnumber",dto.getActNumber());
 request.setAttribute("actprice",dto.getActPrice());
@@ -41,6 +42,7 @@ session.setAttribute("actname",dto.getActName());
 session.setAttribute("actnumber",dto.getActNumber());
 
 
+// map에 값 입력
 Map<String, Object> param = new HashMap<String, Object>();
 String searchText = request.getParameter("searchText");
 String accsearch = request.getParameter("accsearch");
@@ -49,6 +51,7 @@ String sortname = request.getParameter("sortname");
 String id = (String)session.getAttribute("signInId");
 param.put("bmid",id);
 
+// map 에 검색어 입력
 if (accsearch != null) {
 	param.put("searchText", searchText);
 	param.put("accsearch", accsearch);
@@ -57,12 +60,12 @@ if (accsearch != null) {
 }
 
 
-String bmchk = "X";
-List<ActDTO> chkLists = dao.bmCheck(param);//북마크 리스트
+String bmchk = "X"; //관심목록 변수 설정
+List<ActDTO> chkLists = dao.bmCheck(param); //관심목록 리스트
 
 
 //out.println(actname);
-dao.close();      
+dao.close();  // DB 연결 해제    
 sdao.close();// DB 연결 해제
 %>
 <!DOCTYPE html>
@@ -70,7 +73,9 @@ sdao.close();// DB 연결 해제
 <head>
 
 <meta charset="UTF-8">
+<!-- 타이틀 -->
 <title>숙소 소개</title>
+<!-- 삭제 버튼 클릭시 해당함수 작동 -->
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -83,6 +88,7 @@ function deletePost() {
 }
 </script>
 
+<!-- 관심목록추가 버튼 클릭시 해당함수 작동 -->
 <script>
 function addBookMark() {
     var confirmed = confirm("정말로 추가하겠습니까?"); 
@@ -96,6 +102,7 @@ function addBookMark() {
 }
 </script>
 
+<!-- 관심목록삭제 버튼 클릭시 해당함수 작동 -->
 <script>
 function delBookMark() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -111,13 +118,19 @@ function delBookMark() {
 
 </head>
 <body>
+
+<!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
 <h2>숙소 소개</h2>
+
+<!-- 숙소소개 폼  -->
 <form name="ActViewFrm" method="get">
     <input type="hidden" name="num" value="<%= dto.getActNumber() %>" />  <!-- 공통 링크 -->
 	<input type="hidden" name="actnum" value="<%= dto.getActNumber() %>" />
 	<input type="hidden" name="actname" value="<%= dto.getActName() %>" />
+	<!-- 숙소 소개 테이블  -->
     <table border="1" style="width:90%">
+    	<!-- 숙소 데이터 출력 -->
         <tr>
             <td>번호</td>
             
@@ -154,15 +167,20 @@ function delBookMark() {
             
             <td><%= dto.getActLeftRoom() %></td> 
             <td>관심 여부</td>
-                        <!--관심목록 표시-->
+              <!--관심목록 표시용 반복문-->
             <%for(ActDTO adt : chkLists){
             	
             	if (adt.getActBookMark().equals(dto.getActNumber())){
             		bmchk = "O";
             		
-            	}%> <% }; %>
+            		}%> 
+            <% }; %>
+            <!--관심목록 표시-->
 			<td><%=bmchk %></td>
         </tr>
+        <!-- 숙소 데이터 출력 끝 -->
+        
+        <!-- 버튼 출력 -->
         <tr>
             <td colspan="4" align="center">
             <%
@@ -194,12 +212,16 @@ function delBookMark() {
                     관심목록에 삭제</button><%} %>
             </td>
         </tr>
+        <!-- 버튼 출력 끝 -->
                 
            
     		
     </table>
+    <!-- 숙소 소개 테이블 끝  -->
+    
+    <!-- 아래쪽에 리뷰리스트 출력 -->
     <jsp:include page="../revPage/reviewList.jsp" />
 </form>
-
+<!-- 숙소소개 폼 끝 -->
 </body>
 </html>

@@ -5,28 +5,28 @@
 <%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 // 수정 내용 얻기
-String num = (String)session.getAttribute("actnumber");
-String name = request.getParameter("act_name");
-String info = request.getParameter("act_info");
-String address = request.getParameter("act_address");
-String phone = request.getParameter("act_phone");
-String room = request.getParameter("act_room");
+String num = (String)session.getAttribute("actnumber"); //숙소 번호
+String name = request.getParameter("act_name"); //숙소명
+String info = request.getParameter("act_info"); //숙소정보
+String address = request.getParameter("act_address"); //숙소주소
+String phone = request.getParameter("act_phone"); //숙소 전화번호
+String room = request.getParameter("act_room"); //숙소 객실수
 
 // DTO에 저장
 ActDTO dto = new ActDTO();
-dto.setActName(name);
-dto.setActInfo(info);
-dto.setActAddress(address);
-dto.setActPhone(phone);
-dto.setActRoom(Integer.parseInt(room));
-dto.setActNumber(num);
+dto.setActName(name);  //숙소명
+dto.setActInfo(info);  //숙소정보
+dto.setActAddress(address);  //숙소주소
+dto.setActPhone(phone);  //숙소 전화번호
+dto.setActRoom(Integer.parseInt(room));  //숙소 객실수
+dto.setActNumber(num);  //숙소번호
 
 // DB에 반영
 ActDAO dao = new ActDAO(application);
-int affected = dao.updateEdit(dto);
-int upRev = dao.updateRev(dto);
-int upScore = dao.updateScore(dto);
-dao.close();
+int affected = dao.updateEdit(dto);  //숙소 데이터 변경
+int upRev = dao.updateRev(dto);  //리뷰 데이터 변경
+int upScore = dao.updateScore(dto);  //숙소 점수 데이터 변경
+dao.close(); //db 연결해제
 
 // 성공/실패 처리
 if (affected == 1) {

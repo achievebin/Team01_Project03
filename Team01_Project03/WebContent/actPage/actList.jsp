@@ -13,10 +13,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+//세션 아이디 변수지정
 String id = (String)session.getAttribute("signInId");
 // DAO를 생성해 DB에 연결
 act.ActDAO dao = new act.ActDAO(application);
+
+//북마크 dao 연결
 BmDAO bdao = new BmDAO(application);
+// 북마크 정보 dto로 가져오기
 BmDTO bdto = bdao.selectView(id);
 
 //사용자가 입력한 검색 조건을 Map에 저장
@@ -24,8 +28,7 @@ BmDTO bdto = bdao.selectView(id);
 	String searchText = request.getParameter("searchText");
 	String accsearch = request.getParameter("accsearch");
 	String sortname = request.getParameter("sortname");
-	
-	
+		
 	if (accsearch != null) {
 		param.put("searchText", searchText);
 		param.put("accsearch", accsearch);
@@ -51,13 +54,18 @@ if (pageTemp != null && !pageTemp.equals(""))
 // 목록에 출력할 게시물 범위 계산
 int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
 int end = pageNum * pageSize; // 마지막 게시물 번호
+
+//체크인 시작 날짜 map에 입력
 param.put("start", start);
+//체크인 끝 날짜 map에 입력
 param.put("end", end);
+//북마크 조회용 아이디 map에 입력
 param.put("bmid",id);
 /*** 페이지 처리 end ***/
-List<BmDTO> bmLists = bdao.selectList(param);
+
+//dao로 리스트 받기
 List<ActDTO> ActLists = dao.selectListPage(param);  // 게시물 목록 받기
-List<ActDTO> chkLists = dao.bmCheck(param);
+List<ActDTO> chkLists = dao.bmCheck(param); //북마크 목록
 dao.close();  // DB 연결 닫기
 %>
 <!DOCTYPE html>
@@ -68,14 +76,15 @@ dao.close();  // DB 연결 닫기
 <title>숙소 목록</title>
 </head>
 <body>
+<!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
-    
+    <!-- 날짜 입력용 달력 -->
 	<%@ include file = "../actPage/accommodationDate.jsp" %>
 
-    <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2>
+    <h2>숙소 목록</h2>
     
   	<!-- 정렬 기능 -->
-	<form action="../actPage/ActList.jsp" method="GET">
+	<form action="../actPage/actList.jsp" method="GET">
 	    <input type="hidden" name="accsearch" value="<%=searchValue%>">
 	    <input type="hidden" name="searchText" value="act_name">
 	    <select name="sortname" onchange="this.form.submit()">
@@ -86,6 +95,7 @@ dao.close();  // DB 연결 닫기
 	        <option value="desc_leftroom">남은객실수(내림차순)</option>
 	    </select>
 	</form>
+    <!-- 정렬 기능 끝 -->
     
     <!-- 게시물 목록 테이블(표) -->
     <table border="1" style="width:90%" >
@@ -101,6 +111,8 @@ dao.close();  // DB 연결 닫기
             <th width="5%">관심 여부</th>
         </tr>
         <!-- 목록의 내용 -->
+        
+        <!-- 목록이 없을경우 -->
 <%
 if (ActLists.isEmpty()) {
     // 게시물이 하나도 없을 때
@@ -112,18 +124,24 @@ if (ActLists.isEmpty()) {
         </tr>
 <%
 }
-else {
+	else {%>
+<!-- 목록이 있을경우 -->
+			<%
     // 게시물이 있을 때
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
     for (ActDTO dto : ActLists)	
     {	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
     	int upd = rdao.updateRoom(Integer.parseInt(dto.getActNumber())); // 남은 객실수 업데이트
-    	ScoreDAO sdao = new ScoreDAO(application);
-    	ScoreDTO sdto = sdao.scoreView(dto.getActNumber());
-        // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
+    	
+    	ScoreDAO sdao = new ScoreDAO(application); // 숙소별 점수 DB연결
+    	ScoreDTO sdto = sdao.scoreView(dto.getActNumber()); // 숙소별 점수 DTO
+        
+    	// virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
-        String bmchk = "X";
+        
+       
+        String bmchk = "X";  //북마크 체크용 변수 지정
 %>		
         <tr align="center">
             <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
@@ -136,13 +154,14 @@ else {
             <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
             <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
             
-            <!--관심목록 표시-->
+            <!--관심목록 표시용 반복문-->
             <%for(ActDTO adt : chkLists){
             	
             	if (adt.getActBookMark().equals(dto.getActNumber())){
-            		bmchk = "O";
+            		bmchk = "O"; // 관심목록 데이터에 해당 숙소가 있을경우 O로 표시
             		
             	}%> <% }; %>
+            <!--관심목록 표시-->	
 			<td><%=bmchk %></td>
            
         </tr>
@@ -153,6 +172,9 @@ else {
 }
 %>
     </table>
+    <!-- 게시물 목록 테이블 끝 -->
+    
+    <!-- 페이징 및 글쓰기 버튼 -->
     <table border="1" style="width:90%">
         <tr align="center">
             <!--페이징 처리-->
@@ -168,10 +190,13 @@ else {
 			    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
 				%>
             </td>
-                        <!--글쓰기 버튼-->
-            <td><button type="button" onclick="location.href='actWrite.jsp';">글쓰기
-                </button></td>
+             <!--글쓰기 버튼-->
+            <td>
+            	<button type="button" onclick="location.href='actWrite.jsp';">글쓰기
+                </button>
+            </td>
         </tr>
     </table>
+    <!-- 페이징 및 글쓰기 버튼 끝 -->
 </body>
 </html>

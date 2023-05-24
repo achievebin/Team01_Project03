@@ -16,9 +16,9 @@ String sessionId = session.getAttribute("signInId").toString();
 int delResult = 0;
 
 if (sessionId.equals(dto.getActId())) {  // 작성자가 본인인지 확인 
-    // 작성자가 본인이면...
+    // 작성자가 본인일경우
     dto.setActNumber(num);
-    delResult = dao.deletePost(dto);  // 삭제!!! 
+    delResult = dao.deletePost(dto);  // 삭제
 /*     int delRev = dao.deleteReview(dto);
     int delSco = dao.deleteScore(dto); */
     dao.close();
