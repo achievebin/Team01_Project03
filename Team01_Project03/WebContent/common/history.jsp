@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>History</title>
-<link rel="stylesheet" type="text/css" href="history.css">
+<link rel="stylesheet" type="text/css" href="./css/history.css">
 </head>
 
 <body>
@@ -15,16 +15,16 @@
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="hotel1.jpg" class="d-block w-100" alt="...">
+      <img src="./images/hotel1.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="hotel2.jpg" class="d-block w-100" alt="...">
+      <img src="./images/hotel2.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="hotel3.jpg" class="d-block w-100" alt="...">
+      <img src="./images/hotel3.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="hotel4.jpg" class="d-block w-100" alt="...">
+      <img src="./images/hotel4.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -43,7 +43,7 @@
 
 
 <div align="center">
-	<img src="historyname.PNG" >
+	<img src="./images/historyname.png" >
 
 		<!-- -------------------------동그라미 2022------------------------------ -->
 		<div style="margin-bottom: 50px;"><!-- 간격을 주는 부분 --></div>
@@ -58,7 +58,7 @@
 <div style="margin-bottom: 50px;"><!-- 간격을 주는 부분 --></div>
 	<div style="display: flex; justify-content: space-between;">
 	  <div class="img-container">
-	    <img src="daewoologo.PNG">
+	    <img src="./images/daewoologo.png">
 	  </div>
 	  <div>
 		  <div style="text-align: right;">
@@ -79,7 +79,7 @@
 <div style="margin-bottom: 50px;"><!-- 간격을 주는 부분 --></div>
 	<div style="display: flex; justify-content: space-between;">
 	  <div class="img-container">
-	    <img src="proj1logo.PNG">
+	    <img src="./images/proj1logo.png">
 	  </div>
 	  <div>
 		  <div style="text-align: left;">
@@ -94,7 +94,7 @@
 <div style="margin-bottom: 50px;"><!-- 간격을 주는 부분 --></div>
 	<div style="display: flex; justify-content: space-between;">
 	  <div class="img-container">
-	    <img src="proj2logo.PNG">
+	    <img src="./images/proj2logo.png">
 	  </div>
 	  <div>
 		  <div style="text-align: left;">
@@ -110,7 +110,7 @@
 <div style="margin-bottom: 50px;"><!-- 간격을 주는 부분 --></div>
 	<div style="display: flex; justify-content: space-between;">
 	  <div class="img-container">
-	    <img src="proj3.PNG">
+	    <img src="./images/proj3.png">
 	  </div>
 	  <div>
 		  <div style="text-align: left;">

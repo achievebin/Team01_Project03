@@ -17,7 +17,7 @@
   }
 </style>
 <body>
-<img src="introduce.png" width=100%/>
+<img src="./images/introduce.png" width=100%/>
 
  <!-- -------------------------------목차 목록-------------------------------- -->
 
@@ -50,7 +50,7 @@
   <div class="row">
   		<div class="col-lg-2">
   		<div class="card" style="width: 11rem;">
-  <img src="blank.png" class="card-img-top" alt="...">
+  <img src="./images/blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">김도욱</h5>
     <p class="card-text">역할</p>
@@ -61,7 +61,7 @@
 
   		<div class="col-lg-2">
   		<div class="card" style="width: 11rem;">
-  <img src="blank.png" class="card-img-top" alt="...">
+  <img src="./images/blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">이성혁</h5>
     <p class="card-text">역할</p>
@@ -72,7 +72,7 @@
   		
   		<div class="col-lg-2">
   		<div class="card" style="width: 11rem;">
-  <img src="blank.png" class="card-img-top" alt="...">
+  <img src="./images/blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">강성빈</h5>
     <p class="card-text">역할</p>
@@ -82,7 +82,7 @@
   		</div>
   		<div class="col-lg-2" >
   		<div class="card" style="width: 11rem;">
-  <img src="blank.png" class="card-img-top" alt="...">
+  <img src="./images/blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">김재현</h5>
     <p class="card-text">역할</p>
@@ -93,7 +93,7 @@
   		
   		<div class="col-lg-2">
   		<div class="card" style="width: 11rem;">
-  <img src="blank.png" class="card-img-top" alt="...">
+  <img src="./images/blank.png" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">김성원</h5>
     <p class="card-text">역할</p>
