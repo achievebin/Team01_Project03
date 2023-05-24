@@ -5,7 +5,7 @@
 <%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 String num = (String)request.getParameter("revNum");  // 일련번호 얻기 
-String id = (String)request.getParameter("revId");
+String id = (String)request.getParameter("revId");	//id 얻기
 
 ReviewDTO dto = new ReviewDTO();             // DTO 객체 생성
 ReviewDAO dao = new ReviewDAO(application);  // DAO 객체 생성
@@ -20,7 +20,7 @@ if (sessionId.equals(id)) {  // 작성자가 본인인지 확인
     // 작성자가 본인이면...
     dto.setActNumber(num);
     delResult = dao.deletePost(dto);  // 삭제!!! 
-    int revUpdate = dao.scoreUpdate(dto);
+    int revUpdate = dao.scoreUpdate(dto);//삭제 시 숙소 점수 업데이트
     
     // 성공/실패 처리
     if (delResult == 1) { 

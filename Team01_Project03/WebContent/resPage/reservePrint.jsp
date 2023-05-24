@@ -9,6 +9,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
+// 날짜 포맷 설정
 String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 Date sysdate = new Date(dateFormat.parse(todayfm).getTime());
@@ -21,7 +23,7 @@ ReserveDAO rdao = new ReserveDAO(application); //예약 dao 생성
 
 ReserveDTO rdto = rdao.scoreView(num); //예약 가져오기
 
-String actnum = String.valueOf(rdto.getActnumber());
+String actnum = String.valueOf(rdto.getActnumber()); //숙소번호 가져오기
 
 
 
@@ -32,16 +34,16 @@ String actname = dto.getActName();
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 ScoreDTO sdto = sdao.scoreView(actnum); //점수 가져오기
 
-
+//예약날짜가 지날경우 취소 불가능
 if (rdto.getResend().compareTo(sysdate)>0){
 int upd = rdao.updateRoom(Integer.parseInt(actnum));
 }
 int act_price = dto.getActPrice();
 
 
-dao.close();      
-sdao.close();// DB 연결 해제
-rdao.close();
+dao.close(); //숙소 DB 연결 해제    
+sdao.close();//점수 DB 연결 해제
+rdao.close();//예약 DB 연결 해제
 %>
 <!DOCTYPE html>
 <html>
@@ -49,6 +51,7 @@ rdao.close();
 
 <meta charset="UTF-8">
 
+<!-- 예약취소 함수 -->
 <script>
 function resCancel() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -60,16 +63,19 @@ function resCancel() {
     }
 }
 </script>
+<!-- 예약취소 함수 끝 -->
 
+<!-- 타이틀 -->
 <title>예약 정보</title>
 
 </head>
 <body>
+<!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>
 <div style=""></div>
-<%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
+
 <h2>예약 정보</h2>
- 
+ <!-- 예약 정보 출력  폼-->
 <form name="ReserverFrm" method="post">
 <input type="hidden" name="num" value="<%= rdto.getResnumber() %>" />
     <table border="1" style="width=50%">
@@ -77,56 +83,44 @@ function resCancel() {
 
         
             <td style="width: 10%;">숙소 이름</td>
-            <td style="width: 20%;">
-                <%= rdto.getReshotel() %>
-            </td>
-            </tr>
-            <tr>
+            <td style="width: 20%;"><%= rdto.getReshotel() %></td>
+        </tr>
+         <tr>
             <td style="width: 20%;">숙소 정보</td>          
-            <td style="width: 30%;">
-                <%= dto.getActInfo() %>
-            </td>
-            </tr>
-            <tr>
+            <td style="width: 30%;"><%= dto.getActInfo() %></td>
+         </tr>
+         <tr>
             <td>예약자명</td><td><%=rdto.getResname()%> </td>
             
-            </tr>
-            <tr><td>예약 아이디</td><td><%=rdto.getResid()%> </td></tr>
-            <tr>
-            <td>예약자 휴대번호</td><td><%=rdto.getResphone()%> </td>
-            </tr>
+         </tr>
          <tr>
-         <td>
-		<label>체크인 날짜</label>
-
-		<%= rdto.getResstart() %>
-		</td>
-		<td>
-		<label>체크아웃 날짜</label>
-		<%= rdto.getResend() %>
-		</td>
-            
+           	<td>예약 아이디</td><td><%=rdto.getResid()%> </td>
+         </tr>
+         <tr>
+            <td>예약자 휴대번호</td><td><%=rdto.getResphone()%> </td>
+         </tr>
+         <tr>
+         	<td><label>체크인 날짜</label><%= rdto.getResstart() %></td>
+			<td><label>체크아웃 날짜</label><%= rdto.getResend() %></td>   
         </tr>
-        </table>
+    </table>
         <hr width="50%" align="left">
-        </form>
-
+ </form>
+ <!-- 예약 정보 출력  폼 끝-->
+  <!-- 총 금액 출력 폼-->
 <form name="saleFrm" method="post">
 	<h2>총 금액</h2>
     <table border="1" style="width:50%">
         <tr>
             <td width="15%">구매 총액</td>
-            <td>
-                <%= rdto.getResprice() %> 원
-            </td>
-
-            
-        </tr>
-
-        </table>
+            <td><%= rdto.getResprice() %> 원</td>
+		</tr>
+	</table>
         <hr width="50%" align="left">
-        </form>
-
+</form>
+  <!-- 총 금액 출력 폼 끝-->
+  
+   <!-- 결제수단 출력 폼 -->
 <form name="purchaseFrm" method="post">
         <h2>결제수단</h2>
         <table>
@@ -135,63 +129,12 @@ function resCancel() {
 	        </tr>
         </table>
 			<button type="button" onclick="location.href='myReservation.jsp';">목록 보기</button>
-        </form> 
-        <%if (rdto.getResstart().compareTo(sysdate) >=0 && rdto.getRescancle().equals("예약됨")){%>
-        	<button type="button" onclick="resCancel();">예약 취소</button>
-        	
-        	
-        	
-       <%} %>
-        <%-- <tr>
-            <td>전화번호</td>
-            <td><%= dto.getActPhone() %></td>
-            <td>주소</td>
-            <td><%= dto.getActAddress() %></td>
-        </tr>
-        <tr>
-            <td>숙소명</td>
-            
-            <td colspan="3"><%= dto.getActName() %></td>
-        </tr>
-        <tr>
-            <td>숙소정보</td>
-            <td colspan="3" height="100">
-                <%= dto.getActInfo() %></td> 
-        </tr>
-        <tr>
-            <td>숙소별점</td>
-            
-            <td><%= sdto.getAvgScore() %></td> 
-        </tr>
-        <tr>
-            <td>숙소가격</td>
-            
-            <td><%= dto.getActPrice() %></td> 
-        </tr>
-        <tr>
-            <td colspan="4" align="center">
-            <%
-            if (session.getAttribute("signInId") != null
-                && session.getAttribute("signInId").toString().equals(dto.getActId())) {
-            %>
-                <button type="button"
-                        onclick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
-                    수정하기</button>
-                <button type="button" onclick="deletePost();">삭제하기</button> 
-            <%
-            }
-            %>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
-                    예약 하기
-                </button>
-                <button type="button" onclick="location.href='ActList.jsp';">
-                    목록 보기
-                </button>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
-                    리뷰 쓰기
-                </button>
-            </td>
-        </tr> --%>
+</form> 
+<!-- 결제수단 출력 폼 끝 -->
 
+		<!-- 날짜가 오늘보다 미래일경우 예약 취소버튼 출력 -->
+        <%if (rdto.getResstart().compareTo(sysdate) >=0 && rdto.getRescancle().equals("예약됨")){%>
+        	<button type="button" onclick="resCancel();">예약 취소</button>  	
+       <%} %>
 </body>
 </html>

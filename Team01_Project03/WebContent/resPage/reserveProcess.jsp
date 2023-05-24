@@ -6,52 +6,43 @@
 <%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 // 수정 내용 얻기
-String num = (String)session.getAttribute("actnumber");
-String name = request.getParameter("reserv_name");
-String phone = request.getParameter("reserv_phone");
-String purchase = request.getParameter("reserv_purchase");
-String price = request.getParameter("reserv_price");
-String hotel = request.getParameter("reserv_hotel");
-String id = (String)session.getAttribute("signInId");
+String num = (String)session.getAttribute("actnumber"); // 숙소 번호
+String name = request.getParameter("reserv_name");	// 예약자 성함
+String phone = request.getParameter("reserv_phone");	// 예약자 전화번호
+String purchase = request.getParameter("reserv_purchase");	// 결제수단
+String price = request.getParameter("reserv_price");	// 총 금액
+String hotel = request.getParameter("reserv_hotel");	// 숙소명
+String id = (String)session.getAttribute("signInId");	// 예약자id
 
-
-
-
+//날짜 포맷 설정
 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-java.util.Date chkIndate = formatter.parse(request.getParameter("chk_in"));
+java.util.Date chkIndate = formatter.parse(request.getParameter("chk_in"));	//체크인 날짜
 java.sql.Date chkIn = new java.sql.Date(chkIndate.getTime());
 
-java.util.Date chkoutdate = formatter.parse(request.getParameter("chk_out"));
+java.util.Date chkoutdate = formatter.parse(request.getParameter("chk_out")); //체크아웃 날짜
 java.sql.Date chkOut = new java.sql.Date(chkoutdate.getTime());
 
-if (name == "") { // txt에 아무값도 입력되지 않았을 때
-	out.print("<script>alert(\"예약자 성함이 입력되지 않았습니다. 다시 입력해주세요.\");" 
-	+"history.back();</script>");}
-
-if (phone == "") { // txt에 아무값도 입력되지 않았을 때
-	out.print("<script>alert(\"예약자 휴대번호가 입력되지 않았습니다. 다시 입력해주세요.\");" 
-	+"history.back();</script>");}
 
 
 
 // DTO에 저장
 ReserveDTO dto = new ReserveDTO();
-dto.setResname(name);
-dto.setActnumber(Integer.parseInt(num));
-dto.setResstart(chkIn);
-dto.setResend(chkOut);
-dto.setResphone(phone);
-dto.setRespurchase(purchase);
-dto.setResprice(price);
-dto.setResid(id);
+dto.setResname(name);	//예약자 명
+dto.setActnumber(Integer.parseInt(num));	//숙소 번호
+dto.setResstart(chkIn);	//체크인
+dto.setResend(chkOut);	//체크아웃
+dto.setResphone(phone);	//예약자 전화번호
+dto.setRespurchase(purchase);	//결제수단
+dto.setResprice(price);	// 총 금액
+dto.setResid(id);	//예약자 아이디
 
 
 // DB에 반영
 ReserveDAO dao = new ReserveDAO(application);
-int affected = dao.insertWrite(dto);
-int upd = dao.updateRoom(Integer.parseInt(num));
+int affected = dao.insertWrite(dto);	//db에 입력
+int upd = dao.updateRoom(Integer.parseInt(num));	//객실수 업데이트
 
-dao.close();
+dao.close();	//db연결 해제
 
 // 성공/실패 처리
 if (affected == 1) {

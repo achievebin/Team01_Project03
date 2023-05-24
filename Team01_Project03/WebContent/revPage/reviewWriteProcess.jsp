@@ -4,29 +4,28 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@ include file="./IsLoggedIn.jsp"%> --%>
+ <%@ include file="../actPage/isLoggedIn.jsp"%> 
 <%
 
 // 폼값 받기
-String title = request.getParameter("rev_title");
-String content = request.getParameter("rev_content");
-String score = request.getParameter("rev_score");
-String hotel = request.getParameter("rev_hotel");
-String actnumber = (String)session.getAttribute("actnumber");
-String id = (String)session.getAttribute("signInId");
+String title = request.getParameter("rev_title");  //리뷰 제목
+String content = request.getParameter("rev_content"); //리뷰 내용
+String score = request.getParameter("rev_score");  //리뷰 점수
+String hotel = request.getParameter("rev_hotel");  //리뷰한 숙소 명
+String actnumber = (String)session.getAttribute("actnumber"); //리뷰한 숙소 번호
+String id = (String)session.getAttribute("signInId");  //리뷰 작성자 id
 // 폼값을 DTO 객체에 저장
 ReviewDTO dto = new ReviewDTO();
-dto.setTitle(title);
-dto.setContent(content);
-dto.setId(id);
-dto.setScore(Integer.parseInt(score));
-dto.setHotel(hotel);
-dto.setActNumber(actnumber);
-// dto.setId(session.getAttribute("UserId").toString());
+dto.setTitle(title); //리뷰 제목
+dto.setContent(content); //리뷰 내용
+dto.setId(id); //리뷰 작성자 id
+dto.setScore(Integer.parseInt(score)); //리뷰 점수
+dto.setHotel(hotel); //리뷰한 숙소 명
+dto.setActNumber(actnumber); //리뷰한 숙소 번호
 
 // DAO 객체를 통해 DB에 DTO 저장
 ReviewDAO dao = new ReviewDAO(application);
-Random random = new Random();
+Random random = new Random(); //더미데이터용 랜덤함수
 // 기존 코드
 int iResult = dao.insertWrite(dto);
 
@@ -39,12 +38,12 @@ int iResult = dao.insertWrite(dto);
      iResult = dao.insertWrite(dto);
  }  */
 
-dao.close();
+dao.close(); //db연결해제
 
 // 성공 or 실패? 
 if (iResult == 1) {
     response.sendRedirect("../actPage/actView.jsp?num=" + dto.getActNumber());
 } else {
-//    JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
+    JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
 }
 %>

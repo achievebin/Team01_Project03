@@ -21,28 +21,26 @@ int act_price = dto.getActPrice();
 
 
 
-dao.close();      
-sdao.close();// DB 연결 해제
+dao.close(); // 숙소DB 연결 해제    
+sdao.close();// 점수DB 연결 해제
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 타이틀 -->
 <title>숙소 예약</title>
 
 </head>
 <body>
+<!-- 헤더 -->
 <jsp:include page="/common/header.jsp" />
 <div style=""></div>
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
+<!-- 숙소명 예약 출력 -->
 <h2><%=actname%> 예약</h2>
-<%-- <div style="width:600px; height:600px; border:2px solid black; float:right">네번째 영역
-        <jsp:include page="../ActPage/ReservPrint.jsp" />
         
-        
-        
-        </div>    --%>
-        
+        <!-- 예약 정보 입력 폼 -->
 <form name="ReserverFrm" action="./reserveProcess.jsp" method="post" method="post">
     <h2>예약자 정보</h2>
     <table border="1" style="width:50%">
@@ -103,7 +101,7 @@ sdao.close();// DB 연결 해제
             <input type="submit" value="예약하기">
        
         </form> 
-        
+        <!-- 예약 정보 입력 폼 끝 -->
  
         
 

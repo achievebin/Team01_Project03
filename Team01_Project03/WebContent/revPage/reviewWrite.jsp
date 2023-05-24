@@ -21,6 +21,8 @@
 
 <meta charset="UTF-8">
 <title>리뷰 쓰기</title>
+
+<!-- 리뷰 작성 예외처리 -->
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {
@@ -35,13 +37,17 @@ function validateForm(form) {  // 폼 내용 검증
     }
 }
 </script>
+<!-- 리뷰 작성 예외처리 끝 -->
 </head>
 <body>
+<!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>
+
+
 <%
 // DAO를 생성해 DB에 연결
 ReviewDAO dao = new ReviewDAO(application);
-ActDTO adt = new ActDTO();
+ActDTO adt = new ActDTO(); //숙소dto
 String actname = (String)session.getAttribute("actname");
 String actnumber = (String)session.getAttribute("actnumber");
 
@@ -49,11 +55,13 @@ String actnumber = (String)session.getAttribute("actnumber");
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();
 String searchField = request.getParameter("searchField");
-String searchWord = (String)request.getAttribute("actnumber");
-param.put("actnumber", searchWord);
+String searchWord = request.getParameter("searchword");
+
+String actnum = (String)request.getAttribute("actnumber"); // 숙소번호 변수지정
+param.put("actnumber", actnum); //map에 숙소번호 입력
 if (searchWord != null) {
     param.put("searchField", searchField);
-    param.put("actnumber", searchWord);
+    param.put("searchword", searchWord);
 }
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
@@ -84,24 +92,26 @@ dao.close();  // DB 연결 닫기
 
 %>
 <h2>리뷰 쓰기</h2>
-<%-- <h2>현재 숙소: <%=hotelname%>  </h2> --%>
+ <!-- 리뷰 입력 폼 -->
 <form name="ReviewwriteFrm" method="post" action="reviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
     <table border="1" style="width:90%">
         <tr>
-        
+        <!-- 리뷰 제목 -->
             <td>제목</td>
             <td>
                 <input type="text" name="rev_title" style="width: 90%;" />
             </td>
         </tr>
         <tr>
+         <!-- 리뷰 내용 -->
             <td>내용</td>
             <td>
                 <textarea name="rev_content" style="width: 90%; height: 100px;"></textarea>
             </td>
         </tr>
         <tr> 
+         <!-- 리뷰 점수 -->
         	<td>별점</td>
         	<td>
         		<input type="radio" name="rev_score" value=1 />1
@@ -112,6 +122,7 @@ dao.close();  // DB 연결 닫기
         	</td>
         </tr>
         <tr>
+         <!-- 버튼 목록 -->
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
@@ -120,6 +131,7 @@ dao.close();  // DB 연결 닫기
             </td>
         </tr>
         <tr>
+         <!-- 숙소명 출력 -->
             <td>숙소명</td>
             <td>
             	<%= actname %>
@@ -129,5 +141,6 @@ dao.close();  // DB 연결 닫기
         </tr>
     </table>
 </form>
+ <!-- 리뷰 입력 끝 -->
 </body>
 </html>

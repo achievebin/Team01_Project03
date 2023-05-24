@@ -17,13 +17,15 @@ dto.setActNumber((String)num);
 
 // 로그인된 사용자 ID 얻기
 String sessionId = session.getAttribute("signInId").toString(); 
+
+//dto에 사용자 ID 입력
 dto.setBmId(sessionId);
 int delResult = 0;
 
 if (sessionId != null ) {  // 
  
-    dto.setActNumber(num);
-    dto.setBmId(sessionId);
+    dto.setActNumber(num); // dto에 숙소번호 입력
+    dto.setBmId(sessionId); //dto에 사용자 ID 입력
     delResult = dao.delBookmark(dto);  // 관심목록에 추가
 /*     int delRev = dao.deleteReview(dto);
     int delSco = dao.deleteScore(dto); */

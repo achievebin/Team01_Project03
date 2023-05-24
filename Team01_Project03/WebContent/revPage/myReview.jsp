@@ -24,8 +24,8 @@ ActDTO adt = new ActDTO();
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();
-String searchField = request.getParameter("searchField");
-String searchWord = (String)session.getAttribute("signInId");
+String searchField = request.getParameter("searchField");	
+String searchWord = (String)session.getAttribute("signInId");	//map에 아이디 입력
 param.put("id", searchWord);
 if (searchWord != null) {
     param.put("searchField", searchField);
@@ -57,12 +57,12 @@ param.put("end", end);
 
 dao.close();  // DB 연결 닫기
 
-String hotel = (String)request.getAttribute("actnumber");
-request.setAttribute("hotelname", hotel);
+String hotel = (String)request.getAttribute("actnumber");	//숙소번호 변수지정
+request.setAttribute("hotelname", hotel);	//숙소번호 리퀘스트지정
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
 ScoreDTO sdto = sdao.scoreView(hotel); //점수 가져오기
-sdao.close();
+sdao.close();	//점수db 연결해제
 %>
 <!DOCTYPE html>
 
@@ -73,6 +73,8 @@ sdao.close();
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
+
+<!-- 리뷰 삭제 함수 -->
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -84,9 +86,10 @@ function deletePost() {
     }
 }
 </script>
-
+<!-- 리뷰 삭제 함수 끝 -->
 </head>
 <body>
+<!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
 <h2>활동내역 - 내가 쓴 리뷰</h2>
 
@@ -120,6 +123,8 @@ function deletePost() {
         </tr>
     </table>
     </form>
+    <!-- 검색 폼 끝 -->
+    
     <!-- 게시물 목록 테이블(표) -->
     <table border="1" style="width:90%" >
         <!-- 각 칼럼의 이름 -->
@@ -133,6 +138,8 @@ function deletePost() {
             <th width="10%">작성일</th>
         </tr>
         <!-- 목록의 내용 -->
+        
+        <!-- 게시물이 없을경우 -->
 <%
 if (ReviewLists.isEmpty()) {
     // 게시물이 하나도 없을 때
@@ -144,13 +151,15 @@ if (ReviewLists.isEmpty()) {
         </tr>
 <%
 }
-else {
+else { %> 
+	<!-- 게시물이 있을경우 목록 출력 -->
+	<%
     // 게시물이 있을 때
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
     
-    for (ReviewDTO dto : ReviewLists)
-    {
+    for (ReviewDTO dto : ReviewLists) 
+    	{
     	
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
@@ -158,41 +167,31 @@ else {
 %>
 
         <tr align="center">
-            <td><%= dto.getNum() 
-            %></td>  <!--게시물 번호-->
-            <td align="center"><%= dto.getHotel() %></td> 
+            <td><%= dto.getNum()%></td>  <!--게시물 번호-->
+            <td align="center"><%= dto.getHotel() %></td> <!-- 숙소명 -->
+            
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="../revPage/revView.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a>
+                <a href="../revPage/revView.jsp?num=<%= dto.getNum() %>">
+                <%= dto.getTitle() %></a> <!-- 리뷰제목 -->
             </td>
+            
             <!-- <td width="100px" height="100px" style = "word-break: break-all">O</td>  -->
             <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
             <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
-            <td align="center"><%= dto.getScore() %></td>  <!--점수-->
+            <td align="center"><%= dto.getScore() %></td>  <!--숙소점수-->
             <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
-<%--                         <td colspan="4" align="center">
-            <%
-            if (session.getAttribute("signInId") != null
-                && session.getAttribute("signInId").toString().equals(dto.getId())) {
-            %>
-                <button type="button"
-                        onclick="location.href='RevEdit.jsp?num=<%= dto.getActNumber() %>';">
-                    수정하기</button>
-                <!-- <button type="button" onclick="deletePost();">삭제하기</button>  -->
-            <%
-            }
-            %>
-            </td> --%>
+
         </tr>
 
 
 <%
     	
-    }
-}
+    	}
+	}
 %>
 
     </table>
-    
+    <!-- 게시물 목록 끝 -->
 
 
 </body>

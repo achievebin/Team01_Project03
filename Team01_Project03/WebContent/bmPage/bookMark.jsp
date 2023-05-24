@@ -68,26 +68,19 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 <!DOCTYPE html>
 
 <html>
+<!-- 차트 js 스크립트 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 <head>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <meta charset="UTF-8">
+<!-- 타이틀 -->
 <title>관심 목록</title>
-<script>
-function deletePost() {
-    var confirmed = confirm("정말로 삭제하겠습니까?"); 
-    if (confirmed) {
-        var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
-        form.method = "post";               // 전송 방식 
-        form.action = "RevDeleteProcess.jsp";  // 전송 경로
-        form.submit();                      // 폼값 전송
-    }
-}
-</script>
 
 </head>
+
 <body>
+<!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
     <h2>관심 목록</h2>
     
@@ -105,6 +98,8 @@ function deletePost() {
             <th width="5%">관심 여부</th>
         </tr>
         <!-- 목록의 내용 -->
+        
+ <!-- 게시물이 없을 때 -->       
 <%
 if (ActLists.isEmpty()) {
     // 게시물이 하나도 없을 때
@@ -116,7 +111,10 @@ if (ActLists.isEmpty()) {
         </tr>
 <%
 }
-else {
+else {%>
+
+	 <!-- 게시물이 있을 때 -->   
+	<%
     // 게시물이 있을 때
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
@@ -124,8 +122,8 @@ else {
     {	
     	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
     	int upd = rdao.updateRoom(Integer.parseInt(dto.getActNumber())); // 남은 객실수 업데이트
-    	ScoreDAO sdao = new ScoreDAO(application);
-    	ScoreDTO sdto = sdao.scoreView(dto.getActNumber());
+    	ScoreDAO sdao = new ScoreDAO(application); //평균점수 dao 연결
+    	ScoreDTO sdto = sdao.scoreView(dto.getActNumber()); // 평균점수 dto
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
         virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
         String bmchk = "O";
@@ -159,6 +157,9 @@ else {
 }
 %>
     </table>
+    <!-- 게시물 목록 테이블(표) 끝 -->
+    
+    <!-- 페이징 버튼 -->
     <table border="1" style="width:90%">
         <tr align="center">
             <!--페이징 처리-->

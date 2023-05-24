@@ -13,7 +13,7 @@ if (!sessionId.equals(dto.getId())) {      // 본인인지 확인
     return;
 }
 dao.close();  // DB 연결 해제
-String actname = (String)session.getAttribute("actname");
+String actname = (String)session.getAttribute("actname"); //숙소명 가져오기
 %>
 <!DOCTYPE html>
 <html>
@@ -21,6 +21,8 @@ String actname = (String)session.getAttribute("actname");
 
 <meta charset="UTF-8">
 <title>숙소정보 수정</title>
+
+ <!-- 리뷰 수정 예외처리 함수 -->
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {
@@ -35,28 +37,38 @@ function validateForm(form) {  // 폼 내용 검증
     }
 }
 </script>
+ <!-- 리뷰 수정 예외처리함수 끝 -->
 </head>
 <body>
+
+<!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>
+
 <h2>숙소정보 수정</h2>
+
+<!-- 리뷰수정 폼 --> 
 <form name="ReviewEditFrm" method="post" action="revEditProcess.jsp"
       onsubmit="return validateForm(this);">
+      
+      <!-- 리뷰번호 입력 -->
       <input type="hidden" name="rev_num" value="<%= dto.getNum() %>" />
     <table border="1" style="width:90%">
         <tr>
-        
+        <!-- 리뷰 제목 입력 -->
             <td>제목</td>
             <td>
                 <input type="text" name="rev_title" style="width: 90%;" />
             </td>
         </tr>
         <tr>
+        <!-- 리뷰 내용 입력 -->
             <td>내용</td>
             <td>
                 <textarea name="rev_content" style="width: 90%; height: 100px;"></textarea>
             </td>
         </tr>
         <tr> 
+        <!-- 리뷰 점수 입력 -->
         	<td>별점</td>
         	<td>
         		<input type="radio" name="rev_score" value=1 />1
@@ -66,6 +78,7 @@ function validateForm(form) {  // 폼 내용 검증
         		<input type="radio" name="rev_score" value=5 />5
         	</td>
         </tr>
+        <!-- 버튼 목록 -->
         <tr>
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
@@ -76,11 +89,10 @@ function validateForm(form) {  // 폼 내용 검증
         </tr>
         <tr>
             <td>숙소명</td>
-            <td>
-            	<%= actname %>
-            </td>
+            <td><%= actname %></td>
         </tr>
     </table>
 </form>
+<!-- 리뷰수정 폼 끝 -->
 </body>
 </html>

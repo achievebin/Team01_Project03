@@ -20,8 +20,7 @@ if (sessionId.equals(dto.getResid())) {  // 작성자가 본인인지 확인
     dto.setResnumber(Integer.parseInt(num));
     delResult = dao.cancleReserve(dto);  // 삭제!!! 
     dao.updateRoom(dto.getActnumber());
-/*     int delRev = dao.deleteReview(dto);
-    int delSco = dao.deleteScore(dto); */
+
     dao.close();
 
     // 성공/실패 처리

@@ -17,17 +17,21 @@
 <%
 // DAO를 생성해 DB에 연결
 ReviewDAO dao = new ReviewDAO(application);
-ActDTO adt = new ActDTO();
+ActDTO adt = new ActDTO(); //숙소 dto 
 
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();
 String searchField = request.getParameter("searchField");
-String searchWord = (String)request.getAttribute("actnumber");
-param.put("actnumber", searchWord);
+String searchWord = request.getParameter("searchword");
+String actnumber = (String)request.getAttribute("actnumber"); // 숙소 번호 변수지정
+
+param.put("actnumber", actnumber); //숙소 번호 map에 입력
+
+//검색어 map에입력
 if (searchWord != null) {
     param.put("searchField", searchField);
-    param.put("actnumber", searchWord);
+    param.put("searchword", searchWord);
 }
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
@@ -55,12 +59,12 @@ param.put("end", end);
 
 dao.close();  // DB 연결 닫기
 
-String hotel = (String)request.getAttribute("actnumber");
-request.setAttribute("hotelname", hotel);
+String hotel = (String)request.getAttribute("actnumber"); //숙소번호 얻기
+request.setAttribute("hotelname", hotel); //숙소번호 리퀘스트 지정
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
 ScoreDTO sdto = sdao.scoreView(hotel); //점수 가져오기
-sdao.close();
+sdao.close(); //점수 db연결해제
 %>
 <!DOCTYPE html>
 
@@ -71,23 +75,13 @@ sdao.close();
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
-<script>
-/* function deletePost() {
-    var confirmed = confirm("정말로 삭제하겠습니까?"); 
-    if (confirmed) {
-        var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
-        form.method = "post";               // 전송 방식 
-        form.action = "RevDeleteProcess.jsp";  // 전송 경로
-        form.submit();                      // 폼값 전송
-    }
-} */
-</script>
+
 </head>
 <body>
 
 
 
-   <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
+   <!-- 점수 db에서 값 가져와서 점수현황 표시 -->
     <h2>현재 숙소: <%= request.getAttribute("actname") %>  </h2>
    
 
@@ -105,9 +99,10 @@ sdao.close();
     
     1점:<%= sdto.getCount1()%>개    </h2>
     
+    <!-- 점수 db에서 값 가져와서 점수현황 표시 끝 -->
 
 
-<!-- // 차트를 그릴 영역으로 canvas태그를 사용한다. -->
+<!-- 별점 시각화 -->
 
 <div class="chart-container" style="position: relative; height:200px; width:40vw">
 	<canvas id="myChart"></canvas>
@@ -154,8 +149,10 @@ var myChart = new Chart(chartArea, {
     }
 });
 </script>
+<!-- 별점 시각화 끝 -->
 
-    <!-- 검색폼 -->
+
+    <!-- 검색, 글쓰기버튼폼 -->
     <form method="get">
     <table border="1" style="width:90%">
     <tr>
@@ -184,6 +181,8 @@ var myChart = new Chart(chartArea, {
         </tr>
     </table>
     </form>
+    <!-- 검색, 글쓰기버튼폼 끝 -->
+    
     <!-- 게시물 목록 테이블(표) -->
     <table border="1" style="width:90%">
         <!-- 각 칼럼의 이름 -->
@@ -198,6 +197,9 @@ var myChart = new Chart(chartArea, {
             
         </tr>
         <!-- 목록의 내용 -->
+        
+        
+     <!-- 게시물이 없을경우 -->   
 <%
 if (ReviewLists.isEmpty()) {
     // 게시물이 하나도 없을 때
@@ -209,12 +211,15 @@ if (ReviewLists.isEmpty()) {
         </tr>
 <%
 }
-else {
+else { %> 
+
+	<!-- 게시물이 있는경우 -->
+	<%
     // 게시물이 있을 때
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     int countNum = 0;
     
-    for (ReviewDTO dto : ReviewLists)
+    for (ReviewDTO dto : ReviewLists) //게시물 목록 가져오기
     {
     	
         // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
@@ -226,27 +231,15 @@ else {
             <td><%= dto.getNum() 
             %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="../revPage/revView.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a>
+                <a href="../revPage/revView.jsp?num=<%= dto.getNum() %>">
+                <%= dto.getTitle() %></a> <!-- 리뷰 제목 -->
             </td>
             <td width="100px" height="100px" style = "word-break: break-all">O</td> 
-            <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
+            <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td><!--리뷰내용-->
             <td ><%= dto.getId() %></td>          <!--작성자 아이디-->
             <td ><%= dto.getScore() %></td>  <!--점수-->
             <td ><%= dto.getPostdate() %></td>    <!--작성일-->
-            <td ><%= dto.getPostdate() %></td>    <!--작성일-->
-<%--                         <td colspan="4" align="center">
-            <%
-            if (session.getAttribute("signInId") != null
-                && session.getAttribute("signInId").toString().equals(dto.getId())) {
-            %>
-                <button type="button"
-                        onclick="location.href='RevEdit.jsp?num=<%= dto.getActNumber() %>';">
-                    수정하기</button>
-                <!-- <button type="button" onclick="deletePost();">삭제하기</button>  -->
-            <%
-            }
-            %>
-            </td> --%>
+            
         </tr>
 
 
@@ -257,7 +250,7 @@ else {
 %>
 
     </table>
-    
+     <!-- 게시물 목록 테이블(표) 끝 -->
 
 
 </body>

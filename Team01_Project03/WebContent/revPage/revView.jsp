@@ -16,7 +16,11 @@ dao.close();                               // DB 연결 해제
 <head>
 
 <meta charset="UTF-8">
+
+<!-- 타이틀 -->
 <title>리뷰 상세</title>
+
+<!--리뷰 삭제 함수 -->
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -28,47 +32,52 @@ function deletePost() {
     }
 }
 </script>
-<%@ include file="../common/header.jsp" %>	
+<!--리뷰 삭제 함수 끝 -->
+
+
 </head>
 <body>
+
+<!-- 헤더 -->
+<%@ include file="../common/header.jsp" %>	
+
 <h2>리뷰 상세</h2>
+
+<!-- 리뷰출력 폼 -->
 <form name="ReViewFrm" method="post">
             <input type="hidden" name="revId" value="<%= dto.getId() %>" />
             <input type="hidden" name="revNum" value="<%= dto.getNum() %>" />
 
     <table border="1" style="width:90%">
+    
         <tr>
-            <td>번호</td>
+            <td>번호</td><td><%= dto.getNum() %></td>
             
-            <td><%= dto.getNum() %></td>
-            <td>작성자</td>
-            <td><%= dto.getId() %></td>
+            <td>작성자</td><td><%= dto.getId() %></td>
         </tr>
+
         <tr>
+            <td>제목</td><td colspan="3"><%= dto.getTitle() %></td>
 
         </tr>
-        <tr>
-            <td>제목</td>
-            
-            <td colspan="3"><%= dto.getTitle() %></td>
-
+        
+        <tr>            
+        	<td>숙소</td><td colspan="3"><%= dto.getHotel() %></td>
         </tr>
-        <tr>            <td>숙소</td>
-            
-            <td colspan="3"><%= dto.getHotel() %></td></tr>
+        
         <tr>
             <td>내용</td>
-            <td colspan="3" height="100">
-                <%= dto.getContent() %></td> 
+            <td colspan="3" height="100"><%= dto.getContent() %></td> 
         </tr>
         <tr>
             <td>점수</td>
-            <td colspan="3" height="100">
-                <%= dto.getScore() %></td> 
+            <td colspan="3" height="100"><%= dto.getScore() %></td> 
         </tr>
         <tr>
             <td colspan="4" align="center">
-            <%
+            
+            
+            <%//글 작성자인경우 수정, 삭제버튼 출력
             if (session.getAttribute("signInId") != null
                 && session.getAttribute("signInId").toString().equals(dto.getId())) {
             %>
@@ -86,7 +95,9 @@ function deletePost() {
         </tr>
                
     </table>
+    
 </form>
+<!-- 리뷰출력 폼 끝 -->
 </body>
 </html>
 

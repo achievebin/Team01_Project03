@@ -19,18 +19,23 @@
 <%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 
+// 날짜 포맷 설정
 String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 Date sysdate = new Date(dateFormat.parse(todayfm).getTime());
 
 // DAO를 생성해 DB에 연결
 ReserveDAO dao = new ReserveDAO(application);
-ActDTO adt = new ActDTO();
+ActDTO adt = new ActDTO(); //dto 변수설정
 
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();
-String searchField = request.getParameter("searchField");
+
+//검색 목록
+String searchField = request.getParameter("searchField"); 
+
+//아이디를 map에 입력
 String searchWord = (String)session.getAttribute("signInId");
 param.put("actnumber", searchWord);
 if (searchWord != null) {
@@ -64,35 +69,25 @@ param.put("end", end);
 dao.close();  // DB 연결 닫기
 
 String hotel = (String)request.getAttribute("actnumber");
-request.setAttribute("hotelname", hotel);
+request.setAttribute("hotelname", hotel); //호텔명 리퀘스트 설정
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
 ScoreDTO sdto = sdao.scoreView(hotel); //점수 가져오기
-sdao.close();
+sdao.close(); //점수 dao 연결해제
 %>
 <!DOCTYPE html>
 
 <html>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
 <head>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
 <meta charset="UTF-8">
 <title>예약 정보</title>
-<script>
-function deletePost() {
-    var confirmed = confirm("정말로 삭제하겠습니까?"); 
-    if (confirmed) {
-        var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
-        form.method = "post";               // 전송 방식 
-        form.action = "revDeleteProcess.jsp";  // 전송 경로
-        form.submit();                      // 폼값 전송
-    }
-}
-</script>
 </head>
+
 <body>
+<!-- 헤더 -->
 <jsp:include page="/common/header.jsp" />
 
 
@@ -101,6 +96,7 @@ function deletePost() {
 
     <!-- 검색폼 -->
     <form method="get">
+    <!-- 검색 테이블 -->
     <table border="1" style="width:90%">
     <tr>
         <td align="left">
@@ -114,7 +110,10 @@ function deletePost() {
         </td>
     </tr>
     </table>
-        <!--목록 하단의 [글쓰기] 버튼-->
+    <!-- 검색테이블 끝 -->
+    
+    
+        <!--페이징 버튼-->
     <table border="1" style="width:90%">
         <tr align="right">
             <!--페이징 처리-->
@@ -124,8 +123,11 @@ function deletePost() {
             </td>
         </tr>
     </table>
+    <!--페이징 버튼 끝-->
     </form>
-    <!-- 게시물 목록 테이블(표) -->
+    <!-- 검색폼 끝 -->
+    
+    <!-- 예약정보 출력 -->
     <table border="1" style="width:90%">
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
@@ -165,33 +167,19 @@ else {
 %>
 
         <tr align="center">
-            <td><%= dto.getResnumber() 
-            %></td>  <!--게시물 번호-->
+            <td><%= dto.getResnumber() %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
                 <a href="reservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
-            </td>
-            <td ><%= dto.getResstart() %></td>
-			<td ><%= dto.getResend() %></td>
+            </td>	<!-- 숙소명 -->
+            <td ><%= dto.getResstart() %></td>	<!-- 체크인 시작날짜 -->
+			<td ><%= dto.getResend() %></td>	<!-- 체크인 끝날짜 -->
             <td ><%= dto.getResid() %></td>          <!--작성자 아이디-->
-            <td ><%= dto.getResname() %></td>
-            <td ><%= dto.getResprice() %></td>  <!--점수-->
-            <td ><%= dto.getRespurchase() %></td>    <!--작성일-->
-            <td ><%= dto.getRescancle() %></td>
-<%--                         <td colspan="4" align="center">
-            <%
-            if (session.getAttribute("signInId") != null
-                && session.getAttribute("signInId").toString().equals(dto.getId())) {
-            %>
-                <button type="button"
-                        onclick="location.href='RevEdit.jsp?num=<%= dto.getActNumber() %>';">
-                    수정하기</button>
-                <!-- <button type="button" onclick="deletePost();">삭제하기</button>  -->
-            <%
-            }
-            %>
-            </td> --%>
+            <td ><%= dto.getResname() %></td>	<!-- 예약자명 -->
+            <td ><%= dto.getResprice() %></td>  <!--숙소가격-->
+            <td ><%= dto.getRespurchase() %></td>    <!--예약 결제-->
+            <td ><%= dto.getRescancle() %></td> <!-- 예약 취소여부 -->
         </tr>
-
+		<!-- 예약정보 출력 끝 -->
 
 <%
     	
@@ -200,7 +188,7 @@ else {
 %>
 
     </table>
-    
+     <!-- 게시물 목록 테이블(표) 끝 -->
 
 
 </body>
