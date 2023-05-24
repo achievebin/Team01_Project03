@@ -5,15 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>헤더 영역</title>
-<link href="${pageContext.request.contextPath}/Common/header.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/common/css/header.css" rel="stylesheet" type="text/css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg headcolor">
 			<div class="container-fluid"> <!-- first start -->
-				<a href="../Common/index.jsp">
-					<img class="navbar-brnad" src="../Common/logo.png" alt="로고">
+				<a href="../common/index.jsp">
+					<img class="navbar-brnad" src="../common/images/logo.png" alt="로고">
 				</a>
 			 	<!-- -------------------------검색창------------------------------ -->  
 				<%@ include file="../common/search.jsp" %>
@@ -28,8 +28,8 @@
 								<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 									          role="button" data-bs-toggle="dropdown" aria-expanded="false">안내</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="../Common/introduce.jsp">소개</a></li>
-									<li><a class="dropdown-item" href="../Common/history.jsp">연혁</a></li>  
+									<li><a class="dropdown-item" href="../common/introduce.jsp">소개</a></li>
+									<li><a class="dropdown-item" href="../common/history.jsp">연혁</a></li>  
 								</ul>
 							</li>
 						</ul>
@@ -38,8 +38,8 @@
 							<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 								          role="button" data-bs-toggle="dropdown" aria-expanded="false">고객지원</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="../Notice/NoticeList.jsp">공지사항</a></li>
-								<li><a class="dropdown-item" href="../QnA/QnaList.jsp">고객센터</a></li>  
+								<li><a class="dropdown-item" href="../notice/noticeList.jsp">공지사항</a></li>
+								<li><a class="dropdown-item" href="../qna/qnaList.jsp">고객센터</a></li>  
 							</ul>
 							</li>
 						</ul>
