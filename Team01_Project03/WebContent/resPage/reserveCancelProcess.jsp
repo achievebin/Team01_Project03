@@ -2,7 +2,7 @@
 <%@ page import="reserve.ReserveDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./isLoggedIn.jsp"%>
+<%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 String num = request.getParameter("num");  // 일련번호 얻기 
 

@@ -89,7 +89,7 @@ function addBookMark() {
     if (confirmed) {
         var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식 
-        form.action = "addBmProcess.jsp";  // 전송 경로
+        form.action = "../bmPage/addBmProcess.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
         
     }
@@ -102,7 +102,7 @@ function delBookMark() {
     if (confirmed) {
         var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식 
-        form.action = "delBmProcess.jsp";  // 전송 경로
+        form.action = "../bmPage/delBmProcess.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
         
     }
@@ -178,14 +178,14 @@ function delBookMark() {
             }
             %>
             <% if (dto.getActLeftRoom() != 0){ %>
-                <button type="button" onclick="location.href='reserve.jsp';">
+                <button type="button" onclick="location.href='../resPage/reserve.jsp';">
                     예약 하기
                 </button>
                 <%} %>
                 <button type="button" onclick="location.href='actList.jsp';">
                     목록 보기
                 </button>
-                <button type="button" onclick="location.href='reviewWrite.jsp';">
+                <button type="button" onclick="location.href='../revPage/reviewWrite.jsp';">
                     리뷰 쓰기
                 </button>
                 <%if (bmchk.equals("X")){ %>
@@ -199,7 +199,7 @@ function delBookMark() {
            
     		
     </table>
-    <jsp:include page="./reviewList.jsp" />
+    <jsp:include page="../revPage/reviewList.jsp" />
 </form>
 
 </body>

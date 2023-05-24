@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../common/header.jsp" %>	
 <meta charset="UTF-8">
 <title>숙소목록</title>
 <script type="text/javascript">

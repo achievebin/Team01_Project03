@@ -85,9 +85,9 @@ String yourGrade = (String)request.getAttribute("mypageGrade");
 	</section>
 	<aside>
 		<ul>
-			<li><a href="./myReview.jsp">활동내역</a></li>
-			<li><a href="../actPage/myReservation.jsp">예약정보</a></li>
-			<li><a href="./bookMark.jsp">관심목록</a></li>
+			<li><a href="../revPage/myReview.jsp">활동내역</a></li>
+			<li><a href="../resPage/myReservation.jsp">예약정보</a></li>
+			<li><a href="../bmPage/bookMark.jsp">관심목록</a></li>
 		</ul>
 	</aside>
 	<jsp:include page="../common/footer.jsp"/>

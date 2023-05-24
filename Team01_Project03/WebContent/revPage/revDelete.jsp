@@ -2,7 +2,7 @@
 <%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./isLoggedIn.jsp"%>
+<%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 String num = (String)request.getParameter("revNum");  // 일련번호 얻기 
 String id = (String)request.getParameter("revId");
@@ -25,7 +25,7 @@ if (sessionId.equals(id)) {  // 작성자가 본인인지 확인
     // 성공/실패 처리
     if (delResult == 1) { 
         // 성공 시 목록 페이지로 이동
-        JSFunction.alertLocation("삭제되었습니다.", "actList.jsp", out); 
+        JSFunction.alertLocation("삭제되었습니다.", "../actPage/actList.jsp", out); 
     } else {
         // 실패 시 이전 페이지로 이동
         JSFunction.alertBack("삭제에 실패하였습니다.", out);
