@@ -46,5 +46,5 @@ function validateForm(form) {  // 폼 내용 검증
 <!-- 댓글 추가 후 게시물 상세보기 페이지로 이동 -->
 <script>
     alert("댓글이 추가되었습니다.");
-    location.href = "QnaList.jsp";
+    location.href = "qnaList.jsp";
 </script>

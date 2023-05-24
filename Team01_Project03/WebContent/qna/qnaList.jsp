@@ -106,7 +106,7 @@ dao.close(); // DB 연결 닫기
                 <!--게시물 번호-->
                 <td align="left">
                     <!--제목(+ 하이퍼링크)-->
-                    <a href="QnaView.jsp?num=<%= dto.getQna_number() %>"><%= dto.getQna_title() %></a>
+                    <a href="qnaView.jsp?num=<%= dto.getQna_number() %>"><%= dto.getQna_title() %></a>
                 </td>
                 <td align="center"><%= dto.getMit_id() %></td>
                 <!--작성자 아이디-->
@@ -127,7 +127,7 @@ dao.close(); // DB 연결 닫기
         </td>
        
          <td>
-             <button type="button" onclick="location.href='QnaWrite.jsp';">글쓰기</button>
+             <button type="button" onclick="location.href='qnaWrite.jsp';">글쓰기</button>
          </td>
        
     </tr>

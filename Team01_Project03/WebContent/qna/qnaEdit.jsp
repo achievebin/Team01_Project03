@@ -38,7 +38,7 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 	<jsp:include page="../common/header.jsp" />
 <h2>공지사항 - 수정하기(Edit)</h2>
-<form name="writeFrm" method="post" action="EditProcess.jsp"
+<form name="writeFrm" method="post" action="editProcess.jsp"
       onsubmit="return validateForm(this);">
     <input type="hidden" name="num" value="<%= dto.getQna_number() %>" /> 
     <table border="1" style="width:90%">
@@ -59,7 +59,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <!-- <button type="reset">다시 입력</button> -->
-                <button type="button" onclick="location.href='QnaList.jsp';">
+                <button type="button" onclick="location.href='qnaList.jsp';">
                     목록 보기</button>
             </td>
         </tr>
