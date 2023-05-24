@@ -2,17 +2,17 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="QnA.QnAtblDAO" %>
-<%@ page import="QnA.QnAtblDTO" %>
+<%@ page import="qna.QnAtblDAO" %>
+<%@ page import="qna.QnAtblDTO" %>
 <%@ page import="member.MemberDao" %>
 <%@ page import="member.MemberDto" %>
 <%@ page import="utils.BoardPage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
-// DAO를 생성해 DB에 연결
-QnAtblDAO dao = new QnAtblDAO(application);
-QnAtblDTO gdto = dao.selectView("qna_number"); // 게시물 가져오기
+	// DAO를 생성해 DB에 연결
+qna.QnAtblDAO dao = new qna.QnAtblDAO(application);
+qna.QnAtblDTO gdto = dao.selectView("qna_number"); // 게시물 가져오기
 /* String myGrade = (String) session.getAttribute("signInGrade"); */
 
 // 사용자가 입력한 검색 조건을 Map에 저장
@@ -45,7 +45,7 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
-List<QnAtblDTO> boardLists = dao.selectList(param); // 게시물 목록 받기
+List<qna.QnAtblDTO> boardLists = dao.selectList(param); // 게시물 목록 받기
 dao.close(); // DB 연결 닫기
 %>
 
@@ -86,21 +86,21 @@ dao.close(); // DB 연결 닫기
     </tr>
     <!-- 목록의 내용 -->
     <%
-    if (boardLists.isEmpty()) {
-        // 게시물이 하나도 없을 때
-        %>
+    	if (boardLists.isEmpty()) {
+                // 게시물이 하나도 없을 때
+    %>
         <tr>
             <td colspan="5" align="center">
                 등록된 게시물이 없습니다^^*
             </td>
         </tr>
         <%
-    } else {
-        // 게시물이 있을 때
-        int virtualNum = 0; // 화면상에서의 게시물 번호
-        for (QnAtblDTO dto : boardLists) {
-            virtualNum = totalCount--; // 전체 게시물 수에서 시작해 1씩 감소
-            %>
+        	} else {
+                        // 게시물이 있을 때
+                        int virtualNum = 0; // 화면상에서의 게시물 번호
+                        for (qna.QnAtblDTO dto : boardLists) {
+                            virtualNum = totalCount--; // 전체 게시물 수에서 시작해 1씩 감소
+        %>
             <tr align="center">
                 <td><%= virtualNum %></td>
                 <!--게시물 번호-->

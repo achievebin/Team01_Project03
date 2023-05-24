@@ -5,13 +5,14 @@
   참고한 홈페이지 url
   https://kimgom2.tistory.com/294
 */
-package QnA;
+package qna;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import javax.servlet.ServletContext;
+
 import connect.JDBConnect;
 
 public class QnAtblDAO extends JDBConnect {

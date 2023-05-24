@@ -1,4 +1,4 @@
-package QnA;
+package qna;
 
 public class QnAtblDTO {
     // 멤버 변수 선언

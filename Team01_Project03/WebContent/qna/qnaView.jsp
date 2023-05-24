@@ -1,15 +1,15 @@
-<%@ page import="QnA.QnAtblDAO" %>
-<%@ page import="QnA.QnAtblDTO" %>
+<%@ page import="qna.QnAtblDAO" %>
+<%@ page import="qna.QnAtblDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%
-String num = request.getParameter("num");  // 일련번호 받기
+	String num = request.getParameter("num");  // 일련번호 받기
 String postId = request.getParameter("postId");
 
-QnAtblDAO dao = new QnAtblDAO(application);  // DAO 생성
+qna.QnAtblDAO dao = new qna.QnAtblDAO(application);  // DAO 생성
 
 //dao.updateVisitCount(num);                 // 조회수 증가
-QnAtblDTO dto = dao.selectView(num);        // 게시물 가져오기
+qna.QnAtblDTO dto = dao.selectView(num);        // 게시물 가져오기
 dao.close();                               // DB 연결 해제
 %>
 <!DOCTYPE html>

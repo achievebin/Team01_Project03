@@ -1,13 +1,13 @@
-<%@ page import="QnA.QnAtblDAO" %>
-<%@ page import="QnA.QnAtblDTO" %>
+<%@ page import="qna.QnAtblDAO" %>
+<%@ page import="qna.QnAtblDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/IsLoggedIn.jsp"%>
 <%
-String num = request.getParameter("num");  // 일련번호 얻기 
+	String num = request.getParameter("num");  // 일련번호 얻기 
 
-QnAtblDTO dto = new QnAtblDTO();             // DTO 객체 생성
-QnAtblDAO dao = new QnAtblDAO(application);  // DAO 객체 생성
+qna.QnAtblDTO dto = new qna.QnAtblDTO();             // DTO 객체 생성
+qna.QnAtblDAO dao = new qna.QnAtblDAO(application);  // DAO 객체 생성
 dto = dao.selectView(num);  // 주어진 일련번호에 해당하는 기존 게시물 얻기
 
 // 로그인된 사용자 ID 얻기

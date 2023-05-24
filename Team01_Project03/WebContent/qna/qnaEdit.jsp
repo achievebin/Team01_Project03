@@ -1,12 +1,12 @@
-<%@ page import="QnA.QnAtblDAO" %>
-<%@ page import="QnA.QnAtblDTO" %>
+<%@ page import="qna.QnAtblDAO" %>
+<%@ page import="qna.QnAtblDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/IsLoggedIn.jsp"%>
 <%
-String num = request.getParameter("num");  // 일련번호 받기 
-QnAtblDAO dao = new QnAtblDAO(application);  // DAO 생성
-QnAtblDTO dto = dao.selectView(num);        // 게시물 가져오기 
+	String num = request.getParameter("num");  // 일련번호 받기 
+qna.QnAtblDAO dao = new qna.QnAtblDAO(application);  // DAO 생성
+qna.QnAtblDTO dto = dao.selectView(num);        // 게시물 가져오기 
 String sessionId = session.getAttribute("signInId").toString(); // 로그인 ID 얻기 
 if (!sessionId.equals(dto.getMit_id())) {      // 본인인지 확인
     JSFunction.alertBack("작성자 본인만 수정할 수 있습니다.", out);
