@@ -1,5 +1,5 @@
-<%@ page import="board.noticetblDAO"%>
-<%@ page import="board.noticetblDTO"%>
+<%@ page import="board.NoticetblDAO"%>
+<%@ page import="board.NoticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/IsLoggedIn.jsp"%>
@@ -10,13 +10,13 @@ String title = request.getParameter("title");
 String content = request.getParameter("content");
 
 // DTO에 저장
-noticetblDTO dto = new noticetblDTO();
+NoticetblDTO dto = new NoticetblDTO();
 dto.setNoc_num(num);
 dto.setNoc_title(title);
 dto.setNoc_content(content);
 
 // DB에 반영
-noticetblDAO dao = new noticetblDAO(application);
+NoticetblDAO dao = new NoticetblDAO(application);
 int affected = dao.updateEdit(dto);
 dao.close();
 

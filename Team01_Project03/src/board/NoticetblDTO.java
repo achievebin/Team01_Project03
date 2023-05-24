@@ -1,6 +1,6 @@
 package board;
 
-public class noticetblDTO {
+public class NoticetblDTO {
     // 멤버 변수 선언
     private String noc_num;
     private String noc_title;
@@ -9,6 +9,7 @@ public class noticetblDTO {
     private java.sql.Date postdate;
     private String noc_date;
     
+    // 게터 세터
    	public String getNoc_date() {
 		return noc_date;
 	}

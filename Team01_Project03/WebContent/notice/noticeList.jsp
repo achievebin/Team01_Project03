@@ -7,8 +7,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="board.noticetblDAO" %>
-<%@ page import="board.noticetblDTO" %>
+<%@ page import="board.NoticetblDAO" %>
+<%@ page import="board.NoticetblDTO" %>
 <%@ page import="member.MemberDao" %>
 <%@ page import="member.MemberDto" %>
 <%@ page import="utils.BoardPage" %>
@@ -17,8 +17,8 @@
 
 <%
 	// DAO를 생성해 DB에 연결
-noticetblDAO dao = new noticetblDAO(application);
-noticetblDTO gdto = dao.selectView("noc_num"); // 게시물 가져오기
+NoticetblDAO dao = new NoticetblDAO(application);
+NoticetblDTO gdto = dao.selectView("noc_num"); // 게시물 가져오기
 String myGrade = (String) session.getAttribute("signInGrade");
 
 
@@ -52,7 +52,7 @@ param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
 
-List<noticetblDTO> boardLists = dao.selectList(param); // 게시물 목록 받기
+List<NoticetblDTO> boardLists = dao.selectList(param); // 게시물 목록 받기
 dao.close(); // DB 연결 닫기
 %>
 
@@ -94,7 +94,7 @@ dao.close(); // DB 연결 닫기
     <!-- 목록의 내용 -->
     <%
     	if (boardLists.isEmpty()) {
-            // 게시물이 하나도 없을 때
+                // 게시물이 하나도 없을 때
     %>
         <tr>
             <td colspan="5" align="center">
@@ -103,10 +103,10 @@ dao.close(); // DB 연결 닫기
         </tr>
         <%
         	} else {
-                // 게시물이 있을 때
-                int virtualNum = 0; // 화면상에서의 게시물 번호
-                for (noticetblDTO dto : boardLists) {
-                    virtualNum = totalCount--; // 전체 게시물 수에서 시작해 1씩 감소
+                        // 게시물이 있을 때
+                        int virtualNum = 0; // 화면상에서의 게시물 번호
+                        for (NoticetblDTO dto : boardLists) {
+                            virtualNum = totalCount--; // 전체 게시물 수에서 시작해 1씩 감소
         %>
             <tr align="center">
                 <td><%= virtualNum %></td>

@@ -18,15 +18,12 @@ public class QnAtblDAO extends JDBConnect {
     public QnAtblDAO(ServletContext application) {
         super(application);
     }
-    
+
+    // 구조화된 데이터베이스의 내용을 반환
     public List<QnAtblDTO> Allboard() {
     	List<QnAtblDTO> QnaBoard = new ArrayList<>();
     	try {
-			/*
-			 * String Query = "SELECT LEVEL, qna_number, qna_pb, qna_title," +
-			 * "qna_content, qna_date, mit_id " + "from qnatbl" +" START WHIT qna_pb=0" +
-			 * " CONNECT BY PRIOR qna_number=qna_pb" +" ORDER SIBLINGS BY qna_number DESC";
-			 */
+
     		String Query = "SELECT LEVEL, qna_number, qna_pb, qna_title, qna_content, qna_date, mit_id "
     	             + "FROM qnatbl "
     	             + "START WITH qna_pb = 0 "
@@ -217,14 +214,7 @@ public class QnAtblDAO extends JDBConnect {
 
     // 지정한 게시물을 찾아 내용을 반환합니다.
     public QnAtblDTO selectView(String num) { 
-    	QnAtblDTO dto = new QnAtblDTO();
-        
-        // 쿼리문 준비
-		/*
-		 * String query = "SELECT B.*, M.name " +
-		 * " FROM memberidtbl M INNER JOIN Noticetbl B " + " ON M.id=B.id " +
-		 * " WHERE noc_num=?";
-		 */
+    	QnAtblDTO dto = new QnAtblDTO();      
     	
     	String query = "SELECT *" 
                 + " FROM Qnatbl" 

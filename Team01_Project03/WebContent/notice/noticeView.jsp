@@ -1,13 +1,13 @@
-<%@ page import="board.noticetblDAO"%>
-<%@ page import="board.noticetblDTO"%>
+<%@ page import="board.NoticetblDAO"%>
+<%@ page import="board.NoticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%
 	String num = request.getParameter("num");  // 일련번호 받기
 
-noticetblDAO dao = new noticetblDAO(application);  // DAO 생성
+NoticetblDAO dao = new NoticetblDAO(application);  // DAO 생성
 //dao.updateVisitCount(num);                 // 조회수 증가
-noticetblDTO dto = dao.selectView(num);        // 게시물 가져오기
+NoticetblDTO dto = dao.selectView(num);        // 게시물 가져오기
 dao.close();                               // DB 연결 해제
 %>
 <!DOCTYPE html>

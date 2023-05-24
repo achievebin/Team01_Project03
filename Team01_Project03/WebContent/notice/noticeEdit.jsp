@@ -1,12 +1,12 @@
-<%@ page import="board.noticetblDAO"%>
-<%@ page import="board.noticetblDTO"%>
+<%@ page import="board.NoticetblDAO"%>
+<%@ page import="board.NoticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/IsLoggedIn.jsp"%>
 <%
 	String num = request.getParameter("num");  // 일련번호 받기 
-noticetblDAO dao = new noticetblDAO(application);  // DAO 생성
-noticetblDTO dto = dao.selectView(num);        // 게시물 가져오기 
+NoticetblDAO dao = new NoticetblDAO(application);  // DAO 생성
+NoticetblDTO dto = dao.selectView(num);        // 게시물 가져오기 
 String sessionId = session.getAttribute("signInId").toString(); // 로그인 ID 얻기 
 if (!sessionId.equals(dto.getMit_id())) {      // 본인인지 확인
     JSFunction.alertBack("작성자 본인만 수정할 수 있습니다.", out);
@@ -21,6 +21,7 @@ dao.close();  // DB 연결 해제
 
 <title>공지사항</title>
 <script type="text/javascript">
+	// 내용이 비어있을시 경고메세지 출력
 function validateForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {
         alert("제목을 입력하세요.");
@@ -38,6 +39,8 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 	<jsp:include page="../common/header.jsp" />
 <h2>공지사항 - 수정하기(Edit)</h2>
+
+<!-- 수정 폼 전송 -->
 <form name="writeFrm" method="post" action="editProcess.jsp"
       onsubmit="return validateForm(this);">
     <input type="hidden" name="num" value="<%= dto.getNoc_num() %>" /> 
@@ -58,6 +61,7 @@ function validateForm(form) {  // 폼 내용 검증
         <tr>
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
+                
                 <!-- <button type="reset">다시 입력</button> -->
                 <button type="button" onclick="location.href='noticeList.jsp';">
                     목록 보기</button>

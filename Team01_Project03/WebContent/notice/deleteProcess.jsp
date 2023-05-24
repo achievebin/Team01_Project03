@@ -1,19 +1,19 @@
-<%@ page import="board.noticetblDAO"%>
-<%@ page import="board.noticetblDTO"%>
+<%@ page import="board.NoticetblDAO"%>
+<%@ page import="board.NoticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/IsLoggedIn.jsp"%>
+
 <%
 	String num = request.getParameter("num");  // 일련번호 얻기 
 
-noticetblDTO dto = new noticetblDTO();             // DTO 객체 생성
-noticetblDAO dao = new noticetblDAO(application);  // DAO 객체 생성
+NoticetblDTO dto = new NoticetblDTO();             // DTO 객체 생성
+NoticetblDAO dao = new NoticetblDAO(application);  // DAO 객체 생성
 dto = dao.selectView(num);  // 주어진 일련번호에 해당하는 기존 게시물 얻기
 
 // 로그인된 사용자 ID 얻기
 String sessionId = session.getAttribute("signInId").toString(); 
-
-int delResult = 0;
+int delResult = 0; 
 
 if (sessionId.equals(dto.getMit_id())) {  // 작성자가 본인인지 확인 
     // 작성자가 본인이면...

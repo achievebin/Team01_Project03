@@ -2,15 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/IsLoggedIn.jsp"%>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지사항 글쓰기</title>
 <script type="text/javascript">
-
+	// 내용이 비어있을시 경고메세지 출력
 function NoticeWriteForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {
         alert("제목을 입력하세요.");
@@ -29,6 +27,8 @@ function NoticeWriteForm(form) {  // 폼 내용 검증
 
 	<jsp:include page="../common/header.jsp" /> 
 	<h2>글쓰기</h2>
+	
+	<!-- 수정 폼 전송 -->
 	<form name="writeFrm" method="post" action="writeProcess.jsp"
      	 onsubmit="return noticeWriteForm(this);">
    	 <table border="1" style="width:90%">
