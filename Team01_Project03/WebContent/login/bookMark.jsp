@@ -3,22 +3,20 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="act.ActDAO"%>
 <%@ page import="act.ActDTO"%>
-<%@ page import="bookmark.bmDAO"%>
-<%@ page import="bookmark.bmDTO"%>
+<%@ page import="bookmark.BmDAO"%>
+<%@ page import="bookmark.BmDTO"%>
 <%@ page import="utils.Page"%>
 <%@ page import="reserve.ReserveDAO"%>
 <%@ page import="reserve.ReserveDTO"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
-<%@ page import="bookmark.bmDAO"%>
-<%@ page import="bookmark.bmDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 // DAO를 생성해 DB에 연결
-bmDAO dao = new bmDAO(application);
+BmDAO dao = new BmDAO(application);
 ActDAO adao = new ActDAO(application);
 ActDTO adt = new ActDTO();
 String accsearch = request.getParameter("accsearch");
@@ -61,7 +59,7 @@ dao.close();  // DB 연결 닫기
 
 String hotel = (String)request.getAttribute("actnumber");
 request.setAttribute("hotelname", hotel);
-List<bmDTO> bmLists = dao.selectList(param);
+List<BmDTO> bmLists = dao.selectList(param);
 %>
 <!DOCTYPE html>
 
