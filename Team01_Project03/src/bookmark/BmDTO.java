@@ -1,6 +1,6 @@
 package bookmark;
 
-public class bmDTO {
+public class BmDTO {
 	// 멤버 변수 선언
     private String actNumber;
     private String bmNumber;

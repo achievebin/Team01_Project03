@@ -9,14 +9,14 @@ import act.ActDTO;
 import connect.JDBConnect;
 
 
-public class bmDAO extends JDBConnect {
-    public bmDAO(ServletContext application) {
+public class BmDAO extends JDBConnect {
+    public BmDAO(ServletContext application) {
         super(application);
     }
 
     
  // 북마크 등록
-    public int addBookmark(bmDTO dto) { 
+    public int addBookmark(BmDTO dto) { 
         int result = 0;
     	try {
             // 쿼리문 템플릿
@@ -41,7 +41,7 @@ public class bmDAO extends JDBConnect {
     }
     
     // 북마크 삭제
-    public int delBookmark(bmDTO dto) { 
+    public int delBookmark(BmDTO dto) { 
         int result = 0;
     	try {
             // 쿼리문 템플릿
@@ -67,8 +67,8 @@ public class bmDAO extends JDBConnect {
     }
     
     // 지정한 게시물을 찾아 내용을 반환합니다.
-    public bmDTO selectView(String id) { 
-    	bmDTO dto = new bmDTO();
+    public BmDTO selectView(String id) { 
+    	BmDTO dto = new BmDTO();
     	
         
         // 쿼리문 준비
@@ -96,8 +96,8 @@ public class bmDAO extends JDBConnect {
     }
     
     // 검색 조건에 맞는 게시물 목록을 반환합니다.
-    public List<bmDTO> selectList(Map<String, Object> map) { 
-        List<bmDTO> bbs = new Vector<bmDTO>();  // 결과(게시물 목록)를 담을 변수
+    public List<BmDTO> selectList(Map<String, Object> map) { 
+        List<BmDTO> bbs = new Vector<BmDTO>();  // 결과(게시물 목록)를 담을 변수
 
         String query = "SELECT * FROM bookmarktbl where bm_id = '" + map.get("bmid")+"'" ; 
 
@@ -109,7 +109,7 @@ public class bmDAO extends JDBConnect {
 
             while (rs.next()) {  // 결과를 순화하며...
                 // 한 행(게시물 하나)의 내용을 DTO에 저장
-            	bmDTO dto = new bmDTO(); 
+            	BmDTO dto = new BmDTO(); 
 
                 dto.setActNumber(rs.getString("act_number"));          // 일련번호
                 dto.setBmId(rs.getString("bm_id"));
@@ -126,8 +126,8 @@ public class bmDAO extends JDBConnect {
     }
     
     // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
-    public List<bmDTO> selectListPage(Map<String, Object> map) {
-        List<bmDTO> bbs = new Vector<bmDTO>();  // 결과(게시물 목록)를 담을 변수
+    public List<BmDTO> selectListPage(Map<String, Object> map) {
+        List<BmDTO> bbs = new Vector<BmDTO>();  // 결과(게시물 목록)를 담을 변수
         
         // 쿼리문 템플릿  
         String query = " SELECT * FROM ( "
@@ -157,7 +157,7 @@ public class bmDAO extends JDBConnect {
             
             while (rs.next()) {
                 // 한 행(게시물 하나)의 데이터를 DTO에 저장
-            	bmDTO dto = new bmDTO();
+            	BmDTO dto = new BmDTO();
                 dto.setActNumber(rs.getString("act_number"));
                 dto.setBmId(rs.getString("act_name"));
                 dto.setBmNumber(rs.getString("bm_number"));
