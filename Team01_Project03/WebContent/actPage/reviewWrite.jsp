@@ -84,7 +84,7 @@ dao.close();  // DB 연결 닫기
 %>
 <h2>리뷰 쓰기</h2>
 <%-- <h2>현재 숙소: <%=hotelname%>  </h2> --%>
-<form name="ReviewwriteFrm" method="post" action="ReviewWriteProcess.jsp"
+<form name="ReviewwriteFrm" method="post" action="reviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
     <table border="1" style="width:90%">
         <tr>
@@ -114,7 +114,7 @@ dao.close();  // DB 연결 닫기
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='ActList.jsp';">
+                <button type="button" onclick="location.href='actList.jsp';">
                     목록 보기</button>
             </td>
         </tr>

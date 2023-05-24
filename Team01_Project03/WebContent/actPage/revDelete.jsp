@@ -2,9 +2,10 @@
 <%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/IsLoggedIn.jsp"%>
+<%@ include file="./isLoggedIn.jsp"%>
 <%
-String num = (String)request.getAttribute("num");  // 일련번호 얻기 
+String num = (String)request.getParameter("revNum");  // 일련번호 얻기 
+String id = (String)request.getParameter("revId");
 
 ReviewDTO dto = new ReviewDTO();             // DTO 객체 생성
 ReviewDAO dao = new ReviewDAO(application);  // DAO 객체 생성
@@ -15,16 +16,16 @@ String sessionId = session.getAttribute("signInId").toString();
 
 int delResult = 0;
 
-if (sessionId.equals(dto.getId())) {  // 작성자가 본인인지 확인 
+if (sessionId.equals(id)) {  // 작성자가 본인인지 확인 
     // 작성자가 본인이면...
     dto.setActNumber(num);
     delResult = dao.deletePost(dto);  // 삭제!!! 
-    dao.close();
-
+    int revUpdate = dao.scoreUpdate(dto);
+    
     // 성공/실패 처리
     if (delResult == 1) { 
         // 성공 시 목록 페이지로 이동
-        JSFunction.alertLocation("삭제되었습니다.", "ActList.jsp", out); 
+        JSFunction.alertLocation("삭제되었습니다.", "actList.jsp", out); 
     } else {
         // 실패 시 이전 페이지로 이동
         JSFunction.alertBack("삭제에 실패하였습니다.", out);
@@ -36,4 +37,5 @@ else {
 
     return;
 }
+dao.close();
 %>

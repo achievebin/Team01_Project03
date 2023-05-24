@@ -11,9 +11,9 @@
         <% } %>
             <!-- 회원제 게시판 프로젝트에서 사용할 링크 -->   
             &nbsp;&nbsp;&nbsp; 
-            <a href="../actPage/ActList.jsp">숙소목록</a>
+            <a href="../actPage/actList.jsp">숙소목록</a>
             &nbsp;&nbsp;&nbsp; 
-            <a href="../actPage/ReviewList.jsp">리뷰</a>
+            <a href="../actPage/reviewList.jsp">리뷰</a>
         </td>
     </tr>
 </table>

@@ -41,8 +41,8 @@ sdao.close();// DB 연결 해제
         
         
         </div>    --%>
-        <script type="text/javascript" src="../ActPage/reservercheck.js"></script>
-<form name="ReserverFrm" action="./ReserveProcess.jsp" method="post" method="post">
+        
+<form name="ReserverFrm" action="./reserveProcess.jsp" method="post" method="post">
     <h2>예약자 정보</h2>
     <table border="1" style="width:50%">
 

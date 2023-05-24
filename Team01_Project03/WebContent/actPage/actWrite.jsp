@@ -1,26 +1,11 @@
-<%@ page import="act.ActDAO"%>
-<%@ page import="act.ActDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/IsLoggedIn.jsp"%>
-<%
-String num = request.getParameter("num");  // 일련번호 받기 
-ActDAO dao = new ActDAO(application);  // DAO 생성
-ActDTO dto = dao.selectView(num);        // 게시물 가져오기 
-String sessionId = session.getAttribute("signInId").toString(); // 로그인 ID 얻기 
-if (!sessionId.equals(dto.getActId())) {      // 본인인지 확인
-    JSFunction.alertBack("작성자 본인만 수정할 수 있습니다.", out);
-    return;
-}
-dao.close();  // DB 연결 해제
-%>
+<%@ include file="../actPage/isLoggedIn.jsp"%> <!--로그인 확인-->
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/common/header.jsp" />
 <meta charset="UTF-8">
-
-<title>숙소정보 수정</title>
+<title>숙소목록</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
     if (form.title.value == "") {
@@ -37,10 +22,8 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
-<jsp:include page="../common/Link.jsp" />
-<h2>숙소정보 수정</h2>
-<form name="ActEditFrm" method="post" action="EditProcess.jsp"
-    <input type="hidden" name="act_number" value="<%= dto.getActNumber() %>" /> 
+<h2>숙소목록 - 글쓰기(Write)</h2>
+<form name="ActwriteFrm" method="post" action="actWriteProcess.jsp"
       onsubmit="return validateForm(this);">
     <table border="1" style="width:90%">
         <tr>
@@ -61,18 +44,19 @@ function validateForm(form) {  // 폼 내용 검증
                 <input type="text" name="act_phone" style="width: 90%;" />
             </td>
         </tr>
-                <tr>
+         <tr>
             <td>숙소 주소</td>
             <td>
                 <input type="text" name="act_address" style="width: 90%;" />
             </td>
+        </tr>
          <tr>
             <td>숙소 가격</td>
             <td>
                 <input type="text" name="act_price" style="width: 90%;" />
             </td>
         </tr>
-        <tr>
+                <tr>
             <td>숙소 총 객실수</td>
             <td>
                 <select name="act_room">
@@ -87,7 +71,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='ActList.jsp';">
+                <button type="button" onclick="location.href='actList.jsp';">
                     목록 보기</button>
             </td>
         </tr>

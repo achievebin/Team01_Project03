@@ -4,7 +4,7 @@
 <%@ page import="bookmark.bmDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/IsLoggedIn.jsp"%>
+<%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 String num = (String)request.getParameter("num");  // 일련번호 얻기 
 
@@ -32,7 +32,7 @@ if (sessionId != null ) {  //
     // 성공/실패 처리
     if (delResult == 1) { 
         // 성공 시 목록 페이지로 이동
-        JSFunction.alertLocation("추가되었습니다.", "ActView.jsp?num=" + num, out); 
+        JSFunction.alertLocation("추가되었습니다.", "actView.jsp?num=" + num, out); 
     } else {
         // 실패 시 이전 페이지로 이동
         JSFunction.alertBack("추가를 실패하였습니다.", out);

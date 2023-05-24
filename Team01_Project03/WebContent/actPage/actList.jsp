@@ -169,7 +169,7 @@ else {
 				%>
             </td>
                         <!--글쓰기 버튼-->
-            <td><button type="button" onclick="location.href='ActWrite.jsp';">글쓰기
+            <td><button type="button" onclick="location.href='actWrite.jsp';">글쓰기
                 </button></td>
         </tr>
     </table>

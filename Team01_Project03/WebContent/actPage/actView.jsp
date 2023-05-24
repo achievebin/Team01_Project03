@@ -199,7 +199,7 @@ function delBookMark() {
            
     		
     </table>
-    <jsp:include page="./ReviewList.jsp" />
+    <jsp:include page="./reviewList.jsp" />
 </form>
 
 </body>

@@ -22,7 +22,7 @@ function deletePost() {
     if (confirmed) {
         var form = document.ReViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식 
-        form.action = "RevDelete.jsp";  // 전송 경로
+        form.action = "revDelete.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
     }
 }
@@ -72,7 +72,7 @@ function deletePost() {
                 && session.getAttribute("signInId").toString().equals(dto.getId())) {
             %>
                 <button type="button"
-                        onclick="location.href='RevEdit.jsp?num=<%= dto.getNum() %>';">
+                        onclick="location.href='revEdit.jsp?num=<%= dto.getNum() %>';">
                     수정하기</button>
                 <button type="button" onclick="deletePost();">삭제하기</button> 
             <%
