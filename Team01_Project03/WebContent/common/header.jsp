@@ -45,7 +45,7 @@
 						</ul>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="../ActPage/ActList.jsp">숙소목록</a>
+								<a class="nav-link active" aria-current="page" href="../actPage/ActList.jsp">숙소목록</a>
 							</li>
 						</ul>
 						<ul class="navbar-nav">
