@@ -18,6 +18,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../common/header.jsp" %>
 <meta charset="UTF-8">
 <title>리뷰 쓰기</title>
 <script type="text/javascript">
@@ -114,7 +115,7 @@ dao.close();  // DB 연결 닫기
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='actList.jsp';">
+                <button type="button" onclick="location.href='../actPage/actList.jsp';">
                     목록 보기</button>
             </td>
         </tr>

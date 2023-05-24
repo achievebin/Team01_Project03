@@ -2,7 +2,7 @@
 <%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/IsLoggedIn.jsp"%>
+<%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
 ReviewDAO dao = new ReviewDAO(application);  // DAO 생성
@@ -18,8 +18,8 @@ String actname = (String)session.getAttribute("actname");
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../common/header.jsp" %>
 <meta charset="UTF-8">
-<jsp:include page="./actLink.jsp" />
 <title>숙소정보 수정</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증

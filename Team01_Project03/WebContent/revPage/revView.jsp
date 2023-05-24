@@ -14,6 +14,7 @@ dao.close();                               // DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>리뷰 상세</title>
 <script>

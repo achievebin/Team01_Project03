@@ -3,7 +3,7 @@
 <%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./isLoggedIn.jsp"%>
+<%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 // 수정 내용 얻기
 String num = (String)session.getAttribute("actnumber");
