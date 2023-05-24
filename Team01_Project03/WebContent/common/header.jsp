@@ -56,7 +56,7 @@
 						<% if (session.getAttribute("signInId") == null) { %>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="../Login/signIn.jsp">로그인</a>
+								<a class="nav-link active" aria-current="page" href="../login/signIn.jsp">로그인</a>
 							</li>
 						</ul>
 				        <% } else { %>
