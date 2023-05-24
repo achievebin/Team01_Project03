@@ -16,20 +16,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 // DAO를 생성해 DB에 연결
-BmDAO dao = new BmDAO(application);
-ActDAO adao = new ActDAO(application);
-ActDTO adt = new ActDTO();
-String accsearch = request.getParameter("accsearch");
+BmDAO dao = new BmDAO(application); //북마크 dao
+ActDAO adao = new ActDAO(application); // 숙소 dao
+ActDTO adt = new ActDTO(); // 숙소dto 
+String accsearch = request.getParameter("accsearch"); //검색어
 
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();
-String searchField = request.getParameter("searchField");
-String searchWord = (String)session.getAttribute("signInId");
+String searchField = request.getParameter("searchField"); //검색목록
+String searchWord = request.getParameter("searchword"); //검색어
 
-param.put("id", searchWord);
+String id = (String)session.getAttribute("signInId"); //현재 아이디
+
+param.put("id", id); //map에 아이디 입력
+
+//검색어를 map 에 입력
 if (searchWord != null) {
     param.put("searchField", searchField);
-    param.put("id", searchWord);
+    param.put("searchword", searchWord);
 }
 
 int totalCount = dao.selectCount(param);  // 게시물 수 확인
@@ -54,12 +58,12 @@ param.put("end", end);
 /*** 페이지 처리 end ***/
 
  List<ActDTO> ActLists = dao.actList(param);  // 게시물 목록 받기
- List<ActDTO> chkLists = adao.bmCheck(param);
+ List<ActDTO> chkLists = adao.bmCheck(param); // 현재 아이디의 북마크 목록 받기
 dao.close();  // DB 연결 닫기
 
-String hotel = (String)request.getAttribute("actnumber");
-request.setAttribute("hotelname", hotel);
-List<BmDTO> bmLists = dao.selectList(param);
+String hotel = (String)request.getAttribute("actnumber"); //숙소 번호 받기
+request.setAttribute("hotelname", hotel); // 숙소번호 request에 입력
+List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 %>
 <!DOCTYPE html>
 

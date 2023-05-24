@@ -3,30 +3,32 @@
 <%@ page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@ include file="./IsLoggedIn.jsp"%> --%>
+<%@ include file="./isLoggedIn.jsp"%>
 <%
 
 // 폼값 받기
-String name = request.getParameter("act_name");
-String info = request.getParameter("act_info");
-String address = request.getParameter("act_address");
-String phone = request.getParameter("act_phone");
-String room = request.getParameter("act_room");
-String price = request.getParameter("act_price");
+String name = request.getParameter("act_name"); //숙소명
+String info = request.getParameter("act_info"); //숙소정보
+String address = request.getParameter("act_address"); //숙소주소
+String phone = request.getParameter("act_phone"); //숙소 전화번호
+String room = request.getParameter("act_room"); //숙소 객실수
+String price = request.getParameter("act_price"); // 숙소 가격
 
 
 // 폼값을 DTO 객체에 저장
 ActDTO dto = new ActDTO();
-dto.setActName(name);
-dto.setActInfo(info);
-dto.setActAddress(address);
-dto.setActPhone(phone);
-dto.setActRoom(Integer.parseInt(room));
-dto.setActId(session.getAttribute("signInId").toString());
-dto.setActPrice(Integer.parseInt(price));
+dto.setActName(name); //숙소명
+dto.setActInfo(info); //숙소정보
+dto.setActAddress(address); //숙소주소
+dto.setActPhone(phone);  //숙소 전화번호
+dto.setActRoom(Integer.parseInt(room)); //숙소 객실수
+dto.setActId(session.getAttribute("signInId").toString()); //작성자 아이디
+dto.setActPrice(Integer.parseInt(price)); // 숙소 가격
 
 // DAO 객체를 통해 DB에 DTO 저장
 ActDAO dao = new ActDAO(application);
+
+//더미데이터용 랜덤함수
 Random random = new Random();
 // 기존 코드
 int iResult = dao.insertWrite(dto);
@@ -40,12 +42,12 @@ int iResult = dao.insertWrite(dto);
      iResult = dao.insertWrite(dto);
  } */
 
-dao.close();
+dao.close(); //db연결종료
 
 // 성공 or 실패? 
 if (iResult == 1) {
     response.sendRedirect("actList.jsp");
 } else {
-//    JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
+    JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
 }
 %>

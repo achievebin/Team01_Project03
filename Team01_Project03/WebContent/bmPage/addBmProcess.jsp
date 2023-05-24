@@ -13,21 +13,23 @@ BmDAO dao = new BmDAO(application);  // DAO 객체 생성
 
 
 
-dto.setActNumber((String)num);
+/* dto.setActNumber((String)num); // 일련번호를 dto에 입력 */
 
 // 로그인된 사용자 ID 얻기
 String sessionId = session.getAttribute("signInId").toString(); 
-dto.setBmId(sessionId);
+/* dto.setBmId(sessionId); //dto에 id 입력 */
 int delResult = 0;
 
-if (sessionId != null ) {  // 
- 
+// 세션id가 공백이 아닐경우(로그인상태)
+if (sessionId != null ) {  
+ 	//일련번호를 dto에 입력
     dto.setActNumber(num);
+ 	//아이디를 dto에 입력
     dto.setBmId(sessionId);
-    delResult = dao.addBookmark(dto);  // 관심목록에 추가
-/*     int delRev = dao.deleteReview(dto);
-    int delSco = dao.deleteScore(dto); */
-    dao.close();
+ 	// 관심목록에 추가
+    delResult = dao.addBookmark(dto);  
+
+    dao.close(); //db연결종료
 
     // 성공/실패 처리
     if (delResult == 1) { 
@@ -39,7 +41,7 @@ if (sessionId != null ) {  //
     } 
 } 
 else { 
-    // 작성자 본인이 아니라면 이전 페이지로 이동
+    // 로그인상태가 아니라면 이전 페이지로 이동
     JSFunction.alertBack("로그인.", out);
 
     return;
