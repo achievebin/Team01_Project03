@@ -55,7 +55,7 @@ function resCancel() {
     if (confirmed) {
         var form = document.ReserverFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식 
-        form.action = "ReserveCancelProcess.jsp";  // 전송 경로
+        form.action = "reserveCancelProcess.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
     }
 }

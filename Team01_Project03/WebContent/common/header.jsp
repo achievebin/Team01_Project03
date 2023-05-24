@@ -45,18 +45,18 @@
 						</ul>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="../ActPage/ActList.jsp">숙소목록</a>
+								<a class="nav-link active" aria-current="page" href="../actPage/actList.jsp">숙소목록</a>
 							</li>
 						</ul>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="../ActPage/myReservation.jsp">예약정보</a>
+								<a class="nav-link active" aria-current="page" href="../actPage/myReservation.jsp">예약정보</a>
 							</li>
 						</ul>
 						<% if (session.getAttribute("signInId") == null) { %>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="../Login/signIn.jsp">로그인</a>
+								<a class="nav-link active" aria-current="page" href="../login/signIn.jsp">로그인</a>
 							</li>
 						</ul>
 				        <% } else { %>

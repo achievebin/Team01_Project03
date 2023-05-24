@@ -128,7 +128,7 @@ else {
         <tr align="center">
             <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="ActView.jsp?num=<%= dto.getActNumber() %>"><%= dto.getActName() %></a>
+                <a href="actView.jsp?num=<%= dto.getActNumber() %>"><%= dto.getActName() %></a>
             </td>
             <td ><%= dto.getActInfo() %></td>          <!--숙소정보-->
             <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
@@ -169,7 +169,7 @@ else {
 				%>
             </td>
                         <!--글쓰기 버튼-->
-            <td><button type="button" onclick="location.href='ActWrite.jsp';">글쓰기
+            <td><button type="button" onclick="location.href='actWrite.jsp';">글쓰기
                 </button></td>
         </tr>
     </table>

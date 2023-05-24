@@ -16,7 +16,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="./IsLoggedIn.jsp"%>
+<%@ include file="../actPage/isLoggedIn.jsp"%>
 <%
 
 String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
@@ -86,7 +86,7 @@ function deletePost() {
     if (confirmed) {
         var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식 
-        form.action = "RevDeleteProcess.jsp";  // 전송 경로
+        form.action = "revDeleteProcess.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
     }
 }
@@ -168,7 +168,7 @@ else {
             <td><%= dto.getResnumber() 
             %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="ReservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
+                <a href="reservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
             </td>
             <td ><%= dto.getResstart() %></td>
 			<td ><%= dto.getResend() %></td>

@@ -77,7 +77,7 @@ function deletePost() {
     if (confirmed) {
         var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식 
-        form.action = "DeleteProcess.jsp";  // 전송 경로
+        form.action = "deleteProcess.jsp";  // 전송 경로
         form.submit();                      // 폼값 전송
     }
 }
@@ -171,21 +171,21 @@ function delBookMark() {
                 && session.getAttribute("signInId").toString().equals(dto.getActId())) {
             %>
                 <button type="button"
-                        onclick="location.href='Edit.jsp?num=<%= dto.getActNumber() %>';">
+                        onclick="location.href='edit.jsp?num=<%= dto.getActNumber() %>';">
                     수정하기</button>
                 <button type="button" onclick="deletePost();">삭제하기</button> 
             <%
             }
             %>
             <% if (dto.getActLeftRoom() != 0){ %>
-                <button type="button" onclick="location.href='Reserve.jsp';">
+                <button type="button" onclick="location.href='reserve.jsp';">
                     예약 하기
                 </button>
                 <%} %>
-                <button type="button" onclick="location.href='ActList.jsp';">
+                <button type="button" onclick="location.href='actList.jsp';">
                     목록 보기
                 </button>
-                <button type="button" onclick="location.href='ReviewWrite.jsp';">
+                <button type="button" onclick="location.href='reviewWrite.jsp';">
                     리뷰 쓰기
                 </button>
                 <%if (bmchk.equals("X")){ %>
@@ -199,7 +199,7 @@ function delBookMark() {
            
     		
     </table>
-    <jsp:include page="./ReviewList.jsp" />
+    <jsp:include page="./reviewList.jsp" />
 </form>
 
 </body>

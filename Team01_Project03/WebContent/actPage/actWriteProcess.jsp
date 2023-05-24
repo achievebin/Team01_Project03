@@ -44,7 +44,7 @@ dao.close();
 
 // 성공 or 실패? 
 if (iResult == 1) {
-    response.sendRedirect("ActList.jsp");
+    response.sendRedirect("actList.jsp");
 } else {
 //    JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
 }

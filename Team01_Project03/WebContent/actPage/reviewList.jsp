@@ -11,8 +11,6 @@
 <%@ page import="connect.JDBConnect"%>
 <%@ page import="score.ScoreDAO"%>
 <%@ page import="score.ScoreDTO"%>
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -181,7 +179,7 @@ var myChart = new Chart(chartArea, {
                        blockPage, pageNum, request.getRequestURI()) %>  
             </td>
             <!--글쓰기 버튼-->
-            <td><button type="button" onclick="location.href='ReviewWrite.jsp';">글쓰기
+            <td><button type="button" onclick="location.href='reviewWrite.jsp';">글쓰기
                 </button></td>
         </tr>
     </table>
@@ -228,7 +226,7 @@ else {
             <td><%= dto.getNum() 
             %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="RevView.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a>
+                <a href="revView.jsp?num=<%= dto.getNum() %>"><%= dto.getTitle() %></a>
             </td>
             <td width="100px" height="100px" style = "word-break: break-all">O</td> 
             <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
