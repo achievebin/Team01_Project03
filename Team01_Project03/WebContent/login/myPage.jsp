@@ -10,7 +10,7 @@
 </head>
 <body>
 <%
-//세션
+//세션 정보에서 아이디 값을 String으로 변환하여 가져옴
 String myId = (String) session.getAttribute("signInId");
 
 // web.xml에서 가져온 데이터베이스 연결 정보
@@ -19,7 +19,7 @@ String oracleURL = application.getInitParameter("OracleURL");
 String oracleId = application.getInitParameter("OracleId");
 String oraclePwd = application.getInitParameter("OraclePwd");
 
-//
+// 회원 테이블 DAO를 통해 회원 정보 DTO 획득
 MemberDao dao = new MemberDao(oracleDriver, oracleURL, oracleId, oraclePwd);
 MemberDto memberDto = dao.getInfo(myId);
 dao.close();

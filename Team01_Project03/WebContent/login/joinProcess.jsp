@@ -16,6 +16,7 @@ String joinId = request.getParameter("id");
 String joinPwd = request.getParameter("pw");
 String joinName = request.getParameter("name");
 String joinNickname = request.getParameter("nickname");
+//java.util.date를 오라클 DB에서 읽을 수 있는 java.sql.date로 변환하기 위한 simpleDateFormat를 이용하여 변환
 //https://stackoverflow.com/questions/21575253/classcastexception-java-util-date-cannot-be-cast-to-java-sql-date
 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 java.util.Date utildate = formatter.parse(request.getParameter("birth"));

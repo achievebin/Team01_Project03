@@ -24,8 +24,7 @@ function NoticeWriteForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
-
-	<jsp:include page="../common/header.jsp" /> 
+<jsp:include page="../common/header.jsp" /> 
 	<h2>글쓰기</h2>
 	
 	<!-- 수정 폼 전송 -->
@@ -56,5 +55,6 @@ function NoticeWriteForm(form) {  // 폼 내용 검증
         </tr>
     </table>
 </form>
+<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
