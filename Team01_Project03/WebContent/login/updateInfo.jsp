@@ -25,6 +25,7 @@ String changeEmail = request.getParameter("prevEmail");
 </head>
 <body>
 	<script type="text/javascript" src="./js/checkForm.js"></script>
+	<jsp:include page="/common/header.jsp" />
 	<span style="color: red; font-size: 1.2em;"> 
 		        <%= request.getAttribute("updateInfoErrMsg") == null ?
 		                "" : request.getAttribute("updateInfoErrMsg") %>
@@ -87,5 +88,6 @@ String changeEmail = request.getParameter("prevEmail");
 			<input type="button" value="회원수정" onclick="updateInfoFormCheck()">
 			<input type="button" value="돌아가기" onclick="history.back()">
 		</form>
+		<jsp:include page="/common/footer.jsp" />
 </body>
 </html>
