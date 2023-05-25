@@ -31,8 +31,8 @@ function signInFormCheck() {
 
 //아이디 찾기 폼 유효성 검증
 function findMyIdFormCheck() {
-	let name = document.getElementById("name");
-	let phone = document.getElementById("phone");
+	let name = document.getElementById("findIdName");
+	let phone = document.getElementById("findIdPhone");
 	
 	let regName = /^[가-힇a-zA-Z]+$/;
 	let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -62,9 +62,9 @@ function findMyIdFormCheck() {
 	
 //비밀번호 찾기 폼 유효성 검증
 function findMyPwdFormCheck() {
-	let name = document.getElementById("name");
-	let phone = document.getElementById("phone");
-	let id = document.getElementById("id");
+	let name = document.getElementById("findPwdName");
+	let phone = document.getElementById("findPwdPhone");
+	let id = document.getElementById("findPwdId");
 	
 	let regName = /^[가-힇a-zA-Z]+$/;
 	let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
