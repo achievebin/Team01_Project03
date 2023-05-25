@@ -55,10 +55,10 @@ begin
     execute immediate 'drop table MEMBERIDTBL';
   end if;
   -- 회원가입 시퀀스의 존재 여부 확인
-  select count(*) into i from user_sequences where sequence_name = 'MEMBER_SEQ';
+  select count(*) into i from user_sequences where sequence_name = 'SEQ_MEMBER_NUM';
   -- 시퀀스가 존재하는 경우 삭제
   if i > 0 then
-    execute immediate 'drop sequence MEMBER_SEQ';
+    execute immediate 'drop sequence SEQ_MEMBER_NUM';
   end if;
   -- 질문과 답변
   -- 질문과 답변 테이블의 존재 여부 확인
@@ -124,7 +124,8 @@ begin
     act_info varchar2(1000),
     act_id varchar2(30),
     act_price number(30),
-    act_leftroom number(4))';
+    act_leftroom number(4),
+    act_div varchar2(30))';
   -- 공지사항 시퀀스 생성
   execute immediate 'CREATE SEQUENCE SEQ_NOTICE_NUM
     START WITH 1
@@ -154,7 +155,7 @@ begin
     act_number number(5)
   )';
   -- 회원가입 시퀀스 생성
-  execute immediate 'create sequence MEMBER_SEQ 
+  execute immediate 'create sequence SEQ_MEMBER_NUM 
     increment by 1
     start with 1
     minvalue 1
@@ -242,4 +243,36 @@ begin
     count3 number(30),
     count2 number(30),
     count1 number(30))';
+  --관리자 계정 생성
+  INSERT INTO memberidtbl (mit_number, mit_id, mit_pw, mit_name, mit_nickname, mit_birth, mit_sex, mit_address, mit_phone, mit_email, mit_grade, mit_sdate)
+  VALUES (
+    SEQ_MEMBER_NUM.nextval,
+    'admin01',
+    'Admin!@pw01',
+    '관리자',
+    'admin',
+    TO_DATE('1990-01-01', 'YYYY-MM-DD'),
+    'Male',
+    '서울',
+    '010-1234-1234',
+    'sample@example.com',
+    'admin',
+    SYSDATE
+);  
+  --유저 계정 생성
+  INSERT INTO memberidtbl (mit_number, mit_id, mit_pw, mit_name, mit_nickname, mit_birth, mit_sex, mit_address, mit_phone, mit_email, mit_grade, mit_sdate)
+  VALUES (
+    SEQ_MEMBER_NUM.nextval,
+    'user01',
+    'User!@pw01',
+    '유저',
+    'user',
+    TO_DATE('1991-01-01', 'YYYY-MM-DD'),
+    'Male',
+    '서울',
+    '010-1234-5678',
+    'sample1@example.com',
+    'bronze',
+    SYSDATE
+);
 end;
