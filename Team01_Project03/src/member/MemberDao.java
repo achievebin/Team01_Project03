@@ -33,15 +33,15 @@ public class MemberDao extends JDBConnect {
 		return result;
 	}
 	
-	//아이디 중복 체크
-	public int findId(String fid) {
+	//아이디 중복 체크: 기입한 아이디가 회원정보에 존재할 경우 0을, 부존재할 경우 1을 반환합니다.
+	public int checkValidId(String cvid) {
 		int result = -1;
 		String query = "SELECT mit_id FROM memberidtbl WHERE mit_id=?";
 		
 		try {
 			// 쿼리 실행
 			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
-			psmt.setString(1, fid);
+			psmt.setString(1, cvid);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				result = 0;
@@ -78,6 +78,46 @@ public class MemberDao extends JDBConnect {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+	
+	//아이디 찾기: 기입한 이름·전화번호와 일치하는 회원의 아이디를 반환합니다.
+	public String findMyId(String yname, String yphone) {
+		String yid = null;
+		String query = "SELECT mit_id FROM memberidtbl WHERE mit_name=? AND mit_phone=?";
+		
+		try {
+			// 쿼리 실행
+			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
+			psmt.setString(1, yname);
+			psmt.setString(2, yphone);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				yid = rs.getString("mit_id");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return yid;
+	}
+	//비밀번호 찾기: 기입한 이름·전화번호·아이디와 일치하는 회원의 패스워드를 반환합니다.
+	public String findMyPwd(String yname, String yphone, String yid) {
+		String ypw = null;
+		String query = "SELECT mit_pw FROM memberidtbl WHERE mit_name=? AND mit_phone=? AND mit_id=?";
+		
+		try {
+			// 쿼리 실행
+			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
+			psmt.setString(1, yname);
+			psmt.setString(1, yphone);
+			psmt.setString(1, yid);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				yid = rs.getString("mit_pw");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ypw;
 	}
 	
 	//내 페이지: 아이디와 일치하는 회원 정보를 반환합니다.
