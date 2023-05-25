@@ -213,7 +213,8 @@ begin
     res_purchase varchar2(30),
     res_price varchar2(30),
     res_hotel varchar2(30),
-    res_id varchar2(30))';
+    res_id varchar2(30),
+    res_cancle varchar2(15) default ''예약됨'')';
   -- 리뷰번호 시퀀스 생성
   execute immediate 'create sequence SEQ_REV_NUM 
     increment by 1
