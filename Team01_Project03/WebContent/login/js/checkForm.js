@@ -29,6 +29,80 @@ function signInFormCheck() {
 	document.signInForm.submit();
 	}
 
+//아이디 찾기 폼 유효성 검증
+function findMyIdFormCheck() {
+	let name = document.getElementById("name");
+	let phone = document.getElementById("phone");
+	
+	let regName = /^[가-힇a-zA-Z]+$/;
+	let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+	
+	if (!name.value) {
+		alert("이름을 입력해주세요.");
+		name.focus();
+		return false;
+	}
+	if (regName.test(name.value) == false) {
+			alert("한글 혹은 영어로 된 이름이어야 합니다.");
+			phone.focus();
+			return false;
+			}
+	if (!phone.value) {
+		alert("전화번호를 입력해주세요.");
+		name.focus();
+		return false;
+	}
+	if (regPhone.test(phone.value) == false) {
+			alert("잘못된 형식의 전화번호입니다.");
+			phone.focus();
+			return false;
+			}
+	document.findMyIdForm.submit();
+	}
+	
+//비밀번호 찾기 폼 유효성 검증
+function findMyPwdFormCheck() {
+	let name = document.getElementById("name");
+	let phone = document.getElementById("phone");
+	let id = document.getElementById("id");
+	
+	let regName = /^[가-힇a-zA-Z]+$/;
+	let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+	let regId = /^(?=.*[a-z0-9])[a-z0-9]{5,12}$/;
+	
+	if (!name.value) {
+		alert("이름을 입력해주세요.");
+		name.focus();
+		return false;
+	}
+	if (regName.test(name.value) == false) {
+			alert("한글 혹은 영어로 된 이름이어야 합니다.");
+			phone.focus();
+			return false;
+			}
+	if (!phone.value) {
+		alert("전화번호를 입력해주세요.");
+		name.focus();
+		return false;
+	}
+	if (regPhone.test(phone.value) == false) {
+			alert("잘못된 형식의 전화번호입니다.");
+			phone.focus();
+			return false;
+			}
+	if (!id.value) {
+		alert("아이디를 입력해주세요.");
+		id.focus();
+		return false;
+		}
+	if (regId.test(id.value) == false) {
+		alert("영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.");
+		id.focus();
+		return false;
+		}
+	document.findMyIdForm.submit();
+	}
+
 //회원가입 유효성 검증
 function joinFormCheck() {
 		let id = document.getElementById("id");
@@ -43,6 +117,7 @@ function joinFormCheck() {
 		
 		let regId = /^(?=.*[a-z0-9])[a-z0-9]{5,12}$/;
 		let regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
+		let regName = /^[가-힇a-zA-Z]+$/;
 		let regNickname = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
 		let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 		let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -75,6 +150,11 @@ function joinFormCheck() {
 		if (!name.value) {
 			alert("이름을 입력해주세요.");
 			name.focus();
+			return false;
+			}
+		if (regName.test(name.value) == false) {
+			alert("한글 혹은 영어로 된 이름이어야 합니다.");
+			phone.focus();
 			return false;
 			}
 		if (!nickname.value) {
@@ -118,7 +198,7 @@ function joinFormCheck() {
 			return false;
 			}
 		document.joinForm.submit();
-	}
+		}
 	
 //정보수정 유효성 검증	
 function updateInfoFormCheck() {
@@ -133,6 +213,7 @@ function updateInfoFormCheck() {
 	
 	let regId = /^(?=.*[a-z0-9])[a-z0-9]{5,12}$/;
 	let regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
+	let regName = /^[가-힇a-zA-Z]+$/;
 	let regNickname = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
 	let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 	let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -162,6 +243,11 @@ function updateInfoFormCheck() {
 		name.focus();
 		return false;
 		}
+	if (regName.test(name.value) == false) {
+			alert("한글 혹은 영어로 된 이름이어야 합니다.");
+			phone.focus();
+			return false;
+			}
 	if (!nickname.value) {
 		alert("닉네임을 입력해주세요.");
 		nickname.focus();
