@@ -13,7 +13,7 @@ public class MemberDao extends JDBConnect {
 	public int join(MemberDto dto) {
 		int result = 0;
 		String query =  "INSERT INTO memberidtbl VALUES"
-		+ "(member_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, DEFAULT, TRUNC(SYSDATE))";
+		+ "(SEQ_MEMBER_NUM.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, DEFAULT, TRUNC(SYSDATE))";
 		
 		try {
 			psmt = con.prepareStatement(query);
