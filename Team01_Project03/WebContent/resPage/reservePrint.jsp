@@ -69,10 +69,10 @@ function resCancel() {
 <title>예약 정보</title>
 
 </head>
+
 <body>
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>
-<div style=""></div>
 
 <h2>예약 정보</h2>
  <!-- 예약 정보 출력  폼-->

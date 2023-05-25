@@ -173,7 +173,7 @@ var myChart = new Chart(chartArea, {
     <!-- 게시물 목록 테이블(표) -->
     <table border="1" style="width:90%">
         <!-- 각 칼럼의 이름 -->
-        <tr>
+        <tr align="center">
             <th width="5%">번호</th>
             <th width="10%">제목</th>
             <th width="10%">사진</th>
@@ -217,7 +217,7 @@ else { %>
         <tr align="center">
             <td><%= dto.getNum() 
             %></td>  <!--게시물 번호-->
-            <td align="left">  <!--제목(+ 하이퍼링크)-->
+            <td>  <!--제목(+ 하이퍼링크)-->
                 <a href="../revPage/revView.jsp?num=<%= dto.getNum() %>">
                 <%= dto.getTitle() %></a> <!-- 리뷰 제목 -->
             </td>

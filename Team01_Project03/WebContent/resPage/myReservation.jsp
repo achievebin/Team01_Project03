@@ -81,7 +81,8 @@ sdao.close(); //점수 dao 연결해제
 
 <head>
 
-
+<!-- css 연결 -->
+<link href="./css/rescss.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>예약 정보</title>
 </head>
@@ -90,7 +91,7 @@ sdao.close(); //점수 dao 연결해제
 <!-- 헤더 -->
 <jsp:include page="/common/header.jsp" />
 
-
+<div id="resList">
    <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
     <h2>예약 목록</h2>
 
@@ -128,7 +129,7 @@ sdao.close(); //점수 dao 연결해제
     <!-- 검색폼 끝 -->
     
     <!-- 예약정보 출력 -->
-    <table border="1" style="width:90%">
+    <table border="1" style="width:90%" id="resListTable">
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="5%">번호</th>
@@ -173,7 +174,7 @@ else {
             </td>	<!-- 숙소명 -->
             <td ><%= dto.getResstart() %></td>	<!-- 체크인 시작날짜 -->
 			<td ><%= dto.getResend() %></td>	<!-- 체크인 끝날짜 -->
-            <td ><%= dto.getResid() %></td>          <!--작성자 아이디-->
+            <td ><%= dto.getResid() %></td>     <!--작성자 아이디-->
             <td ><%= dto.getResname() %></td>	<!-- 예약자명 -->
             <td ><%= dto.getResprice() %></td>  <!--숙소가격-->
             <td ><%= dto.getRespurchase() %></td>    <!--예약 결제-->
@@ -188,6 +189,7 @@ else {
 %>
 
     </table>
+    </div>
      <!-- 게시물 목록 테이블(표) 끝 -->
 
 

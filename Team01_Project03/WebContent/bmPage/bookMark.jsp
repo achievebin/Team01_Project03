@@ -81,6 +81,7 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 
 <body>
 <!-- 헤더 -->
+<div align="center">
 <%@ include file="../common/header.jsp" %>	
     <h2>관심 목록</h2>
     
@@ -88,11 +89,12 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
     <table border="1" style="width:90%" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
-            <th width="10%">번호</th>
+            <th width="3%">번호</th>
             <th width="10%">숙소명</th>
-            <th width="30%">숙소정보</th>
-            <th width="10%">숙소주소</th>
-            <th width="10%">전화번호</th>
+            <th width="5%">숙소종류</th>
+            <th width="20%">숙소주소</th>
+            <th width="7%">전화번호</th>
+            <th width="10%">숙소가격</th>
             <th width="5%">남은객실수</th>
             <th width="5%">평균 점수</th>
             <th width="5%">관심 여부</th>
@@ -131,11 +133,13 @@ else {%>
         <tr align="center">
             <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="../actPage/actView.jsp?num=<%= dto.getActNumber() %>"><%= dto.getActName() %></a>
+                <a href="actView.jsp?num=<%= dto.getActNumber() %>">
+                <%= dto.getActName() %></a>
             </td>
-            <td ><%= dto.getActInfo() %></td>          <!--숙소정보-->
+            <td ><%= dto.getActDiv() %></td>          <!--숙소종류-->
             <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
-            <td ><%= dto.getActPhone() %></td>  <!--숙소번호-->
+            <td ><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
+            <td ><%= dto.getActPrice() %></td>  <!--숙소가격-->
             <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
             <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
             
@@ -180,5 +184,6 @@ else {%>
                 </button></td> -->
         </tr>
     </table>
+</div>
 </body>
 </html>

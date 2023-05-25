@@ -42,7 +42,7 @@ function deletePost() {
 <%@ include file="../common/header.jsp" %>	
 
 <h2>리뷰 상세</h2>
-
+<div align="center">
 <!-- 리뷰출력 폼 -->
 <form name="ReViewFrm" method="post">
             <input type="hidden" name="revId" value="<%= dto.getId() %>" />
@@ -97,6 +97,7 @@ function deletePost() {
     </table>
     
 </form>
+</div>
 <!-- 리뷰출력 폼 끝 -->
 </body>
 </html>
