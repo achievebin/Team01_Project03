@@ -51,6 +51,10 @@ public class ActDAO extends JDBConnect {
             query += " WHERE " + map.get("searchText")
                    + " LIKE '%" + map.get("accsearch") + "%' ";
         }
+        if (map.get("actdiv") != null) {
+            query += " WHERE act_div = '"+ map.get("actdiv") +"'";
+                   
+        }
         
         // 정렬 조건 추가
         String sortname = (String) map.get("sortname");
@@ -90,6 +94,7 @@ public class ActDAO extends JDBConnect {
             	String actid = rs.getString("act_id");
             	int actpr = rs.getInt("act_price");
             	int actle = rs.getInt("act_leftroom");
+            	String actdiv = rs.getString("act_div");
             	ActDTO dto = new ActDTO();
                 dto.setActNumber(actnum);
                 dto.setActName(actname);
@@ -100,7 +105,7 @@ public class ActDAO extends JDBConnect {
                 dto.setActId(actid);
                 dto.setActPrice(actpr);
                 dto.setActLeftRoom(actle);	
-                
+                dto.setActDiv(actdiv);
             	bbs.add(dto);
                 
             }
@@ -162,9 +167,10 @@ public class ActDAO extends JDBConnect {
             		+ "                             act_phone,\n"
             		+ "                             act_room,\n"
             		+ "                             act_info,\n"
-            		+ "                             act_id, act_price, act_leftroom) "
+            		+ "                             act_id, act_price, act_leftroom,"
+            		+ "act_div) "
                          + " VALUES ( "
-                         + " seq_act_num.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";  
+                         + " seq_act_num.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
             psmt.setString(1, dto.getActName());  
@@ -175,7 +181,7 @@ public class ActDAO extends JDBConnect {
             psmt.setString(6, dto.getActId());
             psmt.setInt(7, dto.getActPrice()); 
             psmt.setInt(8, dto.getActRoom()); 
-            
+            psmt.setString(9, dto.getActDiv());
             result = psmt.executeUpdate(); 
             if (result == 1) {
             	try {
@@ -234,7 +240,7 @@ public class ActDAO extends JDBConnect {
                 dto.setActId(rs.getString(7));
                 dto.setActPrice(rs.getInt(8));
                 dto.setActLeftRoom(rs.getInt(9));
-               
+                dto.setActDiv(rs.getString(10));
             }
         } 
         catch (Exception e) {

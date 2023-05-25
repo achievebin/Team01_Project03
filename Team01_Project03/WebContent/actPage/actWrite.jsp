@@ -106,7 +106,7 @@ function validateForm(form) {  // 폼 내용 검증
                 <input type="text" name="act_price" style="width: 90%;" />
             </td>
         </tr>
-                <tr>
+        <tr>
                 <!-- 숙소 객실수 입력 -->
             <td>숙소 총 객실수</td>
             <td>
@@ -118,6 +118,19 @@ function validateForm(form) {  // 폼 내용 검증
             	</select><br />
             </td>
         </tr>
+        <tr>
+                <!-- 숙소 객실수 입력 -->
+            <td>숙소 구분</td>
+            <td>
+                <select name="act_div">
+               	 	<option value="호텔,리조트">호텔,리조트</option>
+                	<option value="모텔">모텔</option>
+               		<option value="펜션">펜션</option>
+                	<option value="게스트하우스">게스트하우스</option>
+            	</select><br />
+            </td>
+        </tr>
+        
         <tr>
         <!-- 버튼목록 -->
             <td colspan="2" align="center">

@@ -28,11 +28,15 @@ BmDTO bdto = bdao.selectView(id);
 	String searchText = request.getParameter("searchText");
 	String accsearch = request.getParameter("accsearch");
 	String sortname = request.getParameter("sortname");
-		
+	String actdiv = request.getParameter("actdiv");
 	if (accsearch != null) {
 		param.put("searchText", searchText);
 		param.put("accsearch", accsearch);
 		param.put("sortname", sortname);
+		 
+}
+	if (actdiv != null) {
+		param.put("actdiv", actdiv);
 		 
 }
 
@@ -97,12 +101,25 @@ dao.close();  // DB 연결 닫기
 	</form>
     <!-- 정렬 기능 끝 -->
     
+        <!-- 숙소 구분 폼 -->
+    <form action="../actPage/actList.jsp" method="get">
+            <select name="actdiv" onchange="this.form.submit()">
+            	<option value="">숙소종류</option>
+            	<option value="호텔,리조트">호텔,리조트</option>
+            	<option value="모텔">모텔</option>
+               	<option value="펜션">펜션</option>
+                <option value="게스트하우스">게스트하우스</option>
+           	</select>
+    </form>
+    <!-- 숙소 구분 폼 끝 -->
+    
     <!-- 게시물 목록 테이블(표) -->
     <table border="1" style="width:90%" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="3%">번호</th>
             <th width="10%">숙소명</th>
+            <th width="5%">숙소종류</th>
             <th width="20%">숙소주소</th>
             <th width="7%">전화번호</th>
             <th width="10%">숙소가격</th>
@@ -146,8 +163,10 @@ if (ActLists.isEmpty()) {
         <tr align="center">
             <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="actView.jsp?num=<%= dto.getActNumber() %>"><%= dto.getActName() %></a>
+                <a href="actView.jsp?num=<%= dto.getActNumber() %>">
+                <%= dto.getActName() %></a>
             </td>
+            <td ><%= dto.getActDiv() %></td>          <!--숙소종류-->
             <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
             <td ><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
             <td ><%= dto.getActPrice() %></td>  <!--숙소가격-->

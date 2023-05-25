@@ -147,7 +147,10 @@ function delBookMark() {
         <tr>
             <td>숙소명</td>
             
-            <td colspan="3"><%= dto.getActName() %></td>
+            <td><%= dto.getActName() %></td>
+            
+            <td>숙소종류</td>
+            <td><%= dto.getActDiv() %></td>
         </tr>
         <tr>
             <td>숙소정보</td>

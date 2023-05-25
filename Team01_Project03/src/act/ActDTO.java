@@ -12,27 +12,21 @@ public class ActDTO {
     private int actPrice;
     private int actLeftRoom;
     private String actBookMark;
-    
+    private String actDiv;
     
 	// 게터/세터
    
     
-    
+	public String getActDiv() {
+		return actDiv;
+	}
+	public void setActDiv(String actDiv) {
+		this.actDiv = actDiv;
+	}
 	public String getActNumber() {
 		return actNumber;
 	}
-	public String getActBookMark() {
-		return actBookMark;
-	}
-	public void setActBookMark(String actBookMark) {
-		this.actBookMark = actBookMark;
-	}
-	public int getActLeftRoom() {
-		return actLeftRoom;
-	}
-	public void setActLeftRoom(int actLeftRoom) {
-		this.actLeftRoom = actLeftRoom;
-	}
+
 	public void setActNumber(String actNumber) {
 		this.actNumber = actNumber;
 	}
@@ -78,7 +72,18 @@ public class ActDTO {
 	public void setActPrice(int actPrice) {
 		this.actPrice = actPrice;
 	}
-	
+	public String getActBookMark() {
+		return actBookMark;
+	}
+	public void setActBookMark(String actBookMark) {
+		this.actBookMark = actBookMark;
+	}
+	public int getActLeftRoom() {
+		return actLeftRoom;
+	}
+	public void setActLeftRoom(int actLeftRoom) {
+		this.actLeftRoom = actLeftRoom;
+	}
 }
 
    

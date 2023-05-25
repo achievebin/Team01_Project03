@@ -13,7 +13,7 @@ String address = request.getParameter("act_address"); //숙소주소
 String phone = request.getParameter("act_phone"); //숙소 전화번호
 String room = request.getParameter("act_room"); //숙소 객실수
 String price = request.getParameter("act_price"); // 숙소 가격
-
+String div = request.getParameter("act_div"); //숙소 구분
 
 // 폼값을 DTO 객체에 저장
 ActDTO dto = new ActDTO();
@@ -24,7 +24,7 @@ dto.setActPhone(phone);  //숙소 전화번호
 dto.setActRoom(Integer.parseInt(room)); //숙소 객실수
 dto.setActId(session.getAttribute("signInId").toString()); //작성자 아이디
 dto.setActPrice(Integer.parseInt(price)); // 숙소 가격
-
+dto.setActDiv(div);
 // DAO 객체를 통해 DB에 DTO 저장
 ActDAO dao = new ActDAO(application);
 
