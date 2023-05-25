@@ -25,14 +25,14 @@
 <!-- 리뷰 작성 예외처리 -->
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
-    if (form.title.value == "") {
+    if (form.rev_title.value == "") {
         alert("제목을 입력하세요.");
-        form.title.focus();
+        form.rev_title.focus();
         return false;
     }
-    if (form.content.value == "") {
+    if (form.rev_content.value == "") {
         alert("내용을 입력하세요.");
-        form.content.focus();
+        form.rev_content.focus();
         return false;
     }
 }

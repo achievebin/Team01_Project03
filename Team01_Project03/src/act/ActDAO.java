@@ -280,8 +280,8 @@ public class ActDAO extends JDBConnect {
             psmt.setString(3, dto.getActAddress());
             psmt.setString(4, dto.getActPhone());
             psmt.setInt(5, dto.getActRoom());
-            psmt.setString(6, dto.getActNumber());
-            psmt.setInt(7, dto.getActPrice());
+            psmt.setInt(6, dto.getActPrice());
+            psmt.setString(7, dto.getActNumber());
             // 쿼리문 실행 
             result = psmt.executeUpdate();
 

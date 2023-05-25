@@ -14,7 +14,7 @@
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
 	let regPhone = /([0-9]{2,4})-?([0-9]{3,4})-?([0-9]{4})$/;
-	let regPrice = /([0-9],{1,100})$/;
+	let regPrice = /([0-9])$/;
 	
     if (form.act_name.value == "") {
         alert("제목을 입력하세요.");

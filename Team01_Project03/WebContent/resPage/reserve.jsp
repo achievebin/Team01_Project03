@@ -31,6 +31,46 @@ sdao.close();// 점수DB 연결 해제
 <!-- 타이틀 -->
 <title>숙소 예약</title>
 
+<!-- 폼 예외처리 -->
+<script type="text/javascript">
+function validateForm(form) {  // 폼 내용 검증
+	let regPhone = /([0-9]{2,4})-?([0-9]{3,4})-?([0-9]{4})$/;
+	let regPrice = /([0-9])$/;
+	
+    if (form.reserv_name.value == "") {
+        alert("예약자 성함을 입력하세요.");
+        form.reserv_name.focus();
+        return false;
+    }
+    
+    if (form.reserv_phone.value == "") {
+        alert("전화번호를 입력하세요.");
+        form.reserv_phone.focus();
+        return false;
+    }
+    
+	if (regPhone.test(form.reserv_phone.value) == false) {
+		alert("잘못된 형식의 전화번호입니다.");
+		form.reserv_phone.focus();
+		return false;
+		}
+	
+    if (form.intera.checked == false) {
+        alert("약관A에 동의해주세요");
+        form.intera.focus();
+        return false;
+    }
+    if (form.interb.checked == false) {
+        alert("약관B에 동의해주세요");
+        form.interb.focus();
+        return false;
+    }
+
+    
+}
+</script>
+<!-- 폼 예외처리 끝 -->
+
 </head>
 <body>
 <!-- 헤더 -->
@@ -41,7 +81,8 @@ sdao.close();// 점수DB 연결 해제
 <h2><%=actname%> 예약</h2>
         
         <!-- 예약 정보 입력 폼 -->
-<form name="ReserverFrm" action="./reserveProcess.jsp" method="post" method="post">
+<form name="ReserverFrm" action="./reserveProcess.jsp" method="post" method="post"
+	onsubmit="return validateForm(this);">
     <h2>예약자 정보</h2>
     <table border="1" style="width:50%">
 
@@ -95,8 +136,8 @@ sdao.close();// 점수DB 연결 해제
             </select><br />
         <hr width="50%" align="left">
                 
-            <input type="checkbox" name="inter" value="terms_a" />약관A
-            <input type="checkbox" name="inter" value="terms_b" />약관B
+            <input type="checkbox" name="intera" value="terms_a" />약관A
+            <input type="checkbox" name="interb" value="terms_b" />약관B
             
             <input type="submit" value="예약하기">
        

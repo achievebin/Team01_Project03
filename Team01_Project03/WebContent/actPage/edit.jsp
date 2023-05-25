@@ -25,6 +25,9 @@ dao.close();  // DB 연결 해제
 <!-- 폼 예외처리 -->
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
+	let regPhone = /([0-9]{2,4})-?([0-9]{3,4})-?([0-9]{4})$/;
+	let regPrice = /([0-9])$/;
+	
     if (form.act_name.value == "") {
         alert("제목을 입력하세요.");
         form.act_name.focus();
@@ -42,6 +45,12 @@ function validateForm(form) {  // 폼 내용 검증
         return false;
     }
     
+	if (regPhone.test(form.act_phone.value) == false) {
+		alert("잘못된 형식의 전화번호입니다.");
+		form.act_phone.focus();
+		return false;
+		}
+    
     if (form.act_address.value == "") {
         alert("주소를 입력하세요.");
         form.act_address.focus();
@@ -53,6 +62,11 @@ function validateForm(form) {  // 폼 내용 검증
         form.act_price.focus();
         return false;
     }
+	if (regPrice.test(form.act_price.value) == false) {
+		alert("잘못된 형식의 가격입니다.");
+		form.act_price.focus();
+		return false;
+		}
     
 }
 </script>
