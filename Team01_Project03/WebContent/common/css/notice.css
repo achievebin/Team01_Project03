@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+* { 
+    margin: 0; 
+    padding: 0;
+}  
+
+/* 온점(bullet) 제거  */
+li {
+    list-style: none;
+}
+
+/* 밑줄제거  */
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0;
+}
+
+#searchbar{
+	width: 960px;
+    height: 160px;
+    margin: 0 auto; /* 상하는 0, 좌우는 자동*/
+/*     position: relative; */	
+}

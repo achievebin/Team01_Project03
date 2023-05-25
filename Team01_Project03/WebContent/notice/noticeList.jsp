@@ -61,85 +61,90 @@ dao.close(); // DB 연결 닫기
 <head>
     <meta charset="UTF-8">
     <title>공지사항</title>
+<link href="${pageContext.request.contextPath}/common/css/notice.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<jsp:include page="../common/header.jsp"/>
+<%-- <jsp:include page="../common/header.jsp"/> --%>
 
 <h2>공지사항</h2>
 <!-- 검색폼 -->
-<form method="get">
-    <table border="1" style="width:90%">
-        <tr>
-            <td align="center">
-                <select name="searchField">
-                    <option value="noc_title">제목</option>
-                    <option value="noc_content">내용</option>
-                </select>
-                <input type="text" name="searchWord"/>
-                <input type="submit" value="검색하기"/>
-            </td>
-        </tr>
-    </table>
-</form>
+<div>
+	<div class="searchbar">
+		<form method="get">
+		    <table border="1" style="width:90%">
+		        <tr>
+		            <td align="center">
+		                <select name="searchField">
+		                    <option value="noc_title">제목</option>
+		                    <option value="noc_content">내용</option>
+		                </select>
+		                <input type="text" name="searchWord"/>
+		                <input type="submit" value="검색하기"/>
+		            </td>
+		        </tr>
+		    </table>
+		</form>
+	</div>	
 <!-- 게시물 목록 테이블(표) -->
-<table border="1" style="width:90%">
-    <!-- 각 칼럼의 이름 -->
-    <tr>
-        <th width="10%">번호</th>
-        <th width="50%">제목</th>
-        <th width="15%">작성자</th>
-        <!-- <th width="10%">조회수</th> -->
-        <th width="15%">작성일</th>
-    </tr>
-    <!-- 목록의 내용 -->
-    <%
-    	if (boardLists.isEmpty()) {
-                // 게시물이 하나도 없을 때
-    %>
-        <tr>
-            <td colspan="5" align="center">
-                등록된 게시물이 없습니다^^*
-            </td>
-        </tr>
-        <%
-        	} else {
-                        // 게시물이 있을 때
-                        int virtualNum = 0; // 화면상에서의 게시물 번호
-                        for (NoticetblDTO dto : boardLists) {
-                            virtualNum = totalCount--; // 전체 게시물 수에서 시작해 1씩 감소
-        %>
-            <tr align="center">
-                <td><%= virtualNum %></td>
-                <!--게시물 번호-->
-                <td align="left">
-                    <!--제목(+ 하이퍼링크)-->
-                    <a href="noticeView.jsp?num=<%= dto.getNoc_num() %>"><%= dto.getNoc_title() %></a>
-                </td>
-                <td align="center"><%= dto.getMit_id() %></td>
-                <!--작성자 아이디-->
-                <td align="center"><%= dto.getPostdate() %></td>
-                <!--작성일-->
-            </tr>
-            <%
-        }
-    }
-    %>
-</table>
-<!--목록 하단의 [글쓰기] 버튼-->
-<table border="1" style="width:90%">
-    <tr align="center">
-        <!--페이징 처리-->
-        <td>
-            <%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %>
-        </td>
-        <!--글쓰기 버튼-->
-        <% if (myGrade != null && myGrade.equals("admin")) { %>
-         <td>
-             <button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button>
-         </td>
-        <% } %>
-    </tr>
-</table>
+	<table border="1" style="width:90%">
+	    <!-- 각 칼럼의 이름 -->
+	    <tr>
+	        <th width="10%">번호</th>
+	        <th width="50%">제목</th>
+	        <th width="15%">작성자</th>
+	        <!-- <th width="10%">조회수</th> -->
+	        <th width="15%">작성일</th>
+	    </tr>
+	    <!-- 목록의 내용 -->
+	    <%
+	    	if (boardLists.isEmpty()) {
+	                // 게시물이 하나도 없을 때
+	    %>
+	        <tr>
+	            <td colspan="5" align="center">
+	                등록된 게시물이 없습니다^^*
+	            </td>
+	        </tr>
+	        <%
+	        	} else {
+	                        // 게시물이 있을 때
+	                        int virtualNum = 0; // 화면상에서의 게시물 번호
+	                        for (NoticetblDTO dto : boardLists) {
+	                            virtualNum = totalCount--; // 전체 게시물 수에서 시작해 1씩 감소
+	        %>
+	            <tr align="center">
+	                <td><%= virtualNum %></td>
+	                <!--게시물 번호-->
+	                <td align="left">
+	                    <!--제목(+ 하이퍼링크)-->
+	                    <a href="noticeView.jsp?num=<%= dto.getNoc_num() %>"><%= dto.getNoc_title() %></a>
+	                </td>
+	                <td align="center"><%= dto.getMit_id() %></td>
+	                <!--작성자 아이디-->
+	                <td align="center"><%= dto.getPostdate() %></td>
+	                <!--작성일-->
+	            </tr>
+	            <%
+	        }
+	    }
+	    %>
+	</table>
+	<!--목록 하단의 [글쓰기] 버튼-->
+	<table border="1" style="width:90%">
+	    <tr align="center">
+	        <!--페이징 처리-->
+	        <td>
+	            <%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %>
+	        </td>
+	        <!--글쓰기 버튼-->
+	        <% if (myGrade != null && myGrade.equals("admin")) { %>
+	         <td>
+	             <button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button>
+	         </td>
+	        <% } %>
+	    </tr>
+	</table>
+</div>
 <jsp:include page="/common/footer.jsp"/>
 </body>
 </html>

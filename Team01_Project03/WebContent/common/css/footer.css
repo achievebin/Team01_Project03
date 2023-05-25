@@ -1,0 +1,25 @@
+@charset "UTF-8";
+#terms ul {
+	list-style: none;
+	background-color: #e0e0e0; /* 배경색을 검정색으로 지정 */
+	color: white; /* 글자색을 흰색으로 지정 */
+}
+#contact ul {
+	list-style: none;
+}
+    
+/* 온점(bullet) 제거  */
+li {
+    list-style: none;
+}
+
+/* 밑줄제거  */
+a {
+    text-decoration: none;
+}
+
+/* 마우스 토글시 */
+#terms > ul > li > a:hover {
+    color:white;
+    background:black;
+}
