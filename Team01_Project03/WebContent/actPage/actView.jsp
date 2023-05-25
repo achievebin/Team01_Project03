@@ -116,11 +116,14 @@ function delBookMark() {
 }
 </script>
 
+<!-- css 연결 -->
+<link href="./css/actcss.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
+<div id="actView">
 <h2>숙소 소개</h2>
 
 <!-- 숙소소개 폼  -->
@@ -129,7 +132,7 @@ function delBookMark() {
 	<input type="hidden" name="actnum" value="<%= dto.getActNumber() %>" />
 	<input type="hidden" name="actname" value="<%= dto.getActName() %>" />
 	<!-- 숙소 소개 테이블  -->
-    <table border="1" style="width:90%">
+    <table border="1" style="width:90%" id="actViewTable">
     	<!-- 숙소 데이터 출력 -->
         <tr>
             <td>번호</td>
@@ -225,6 +228,7 @@ function delBookMark() {
     <!-- 아래쪽에 리뷰리스트 출력 -->
     <jsp:include page="../revPage/reviewList.jsp" />
 </form>
+</div>
 <!-- 숙소소개 폼 끝 -->
 </body>
 </html>

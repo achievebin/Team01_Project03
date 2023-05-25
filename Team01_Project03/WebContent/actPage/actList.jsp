@@ -76,18 +76,24 @@ dao.close();  // DB 연결 닫기
 <html>
 <head>
 
+<!-- css 연결 -->
+<link href="./css/actcss.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>숙소 목록</title>
 </head>
+
 <body>
-<!-- 헤더 -->
+
+<!-- 헤더 --> 
 <%@ include file="../common/header.jsp" %>	
+<div id="actList">
     <!-- 날짜 입력용 달력 -->
 	<%@ include file = "../actPage/accommodationDate.jsp" %>
 
     <h2>숙소 목록</h2>
     
   	<!-- 정렬 기능 -->
+  	
 	<form action="../actPage/actList.jsp" method="GET">
 	    <input type="hidden" name="accsearch" value="<%=searchValue%>">
 	    <input type="hidden" name="searchText" value="act_name">
@@ -110,16 +116,20 @@ dao.close();  // DB 연결 닫기
                	<option value="펜션">펜션</option>
                 <option value="게스트하우스">게스트하우스</option>
            	</select>
+           	<button type="button" onclick="location.href='actList.jsp';">전체보기
+            </button>
     </form>
-    <!-- 숙소 구분 폼 끝 -->
     
+    
+    <!-- 숙소 구분 폼 끝 -->
+ 
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" style="width:90%" >
+    <table border="1" style="width:90%" id="actListTable" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="3%">번호</th>
             <th width="10%">숙소명</th>
-            <th width="5%">숙소종류</th>
+            <th width="8%">숙소종류</th>
             <th width="20%">숙소주소</th>
             <th width="7%">전화번호</th>
             <th width="10%">숙소가격</th>
@@ -219,6 +229,10 @@ if (ActLists.isEmpty()) {
             </td>
         </tr>
     </table>
+</div>
     <!-- 페이징 및 글쓰기 버튼 끝 -->
+
+
 </body>
+
 </html>

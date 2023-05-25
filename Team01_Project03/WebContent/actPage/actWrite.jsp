@@ -60,17 +60,21 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 <!-- 폼 예외처리 끝 -->
 
+<!-- css 연결 -->
+<link href="./css/actcss.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
+
+<div id="actWrite">
 <h2>숙소목록 - 글쓰기(Write)</h2>
 
 <!-- 숙소 작성 폼 -->
 <form name="ActwriteFrm" method="post" action="actWriteProcess.jsp"
       onsubmit="return validateForm(this);">
-    <table border="1" style="width:90%">
+    <table border="1" style="width:90%" id="actWriteTable">
         <tr>
         <!-- 숙소명 입력 -->
             <td>숙소명</td>
@@ -142,6 +146,7 @@ function validateForm(form) {  // 폼 내용 검증
         </tr>
     </table>
 </form>
+</div>
 <!-- 숙소 작성 폼 끝 -->
 </body>
 </html>
