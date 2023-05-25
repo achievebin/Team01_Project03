@@ -101,11 +101,11 @@ dao.close();  // DB 연결 닫기
     <table border="1" style="width:90%" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
-            <th width="10%">번호</th>
+            <th width="3%">번호</th>
             <th width="10%">숙소명</th>
-            <th width="30%">숙소정보</th>
-            <th width="10%">숙소주소</th>
-            <th width="10%">전화번호</th>
+            <th width="20%">숙소주소</th>
+            <th width="7%">전화번호</th>
+            <th width="10%">숙소가격</th>
             <th width="5%">남은객실수</th>
             <th width="5%">평균 점수</th>
             <th width="5%">관심 여부</th>
@@ -148,9 +148,9 @@ if (ActLists.isEmpty()) {
             <td align="left">  <!--제목(+ 하이퍼링크)-->
                 <a href="actView.jsp?num=<%= dto.getActNumber() %>"><%= dto.getActName() %></a>
             </td>
-            <td ><%= dto.getActInfo() %></td>          <!--숙소정보-->
             <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
-            <td ><%= dto.getActPhone() %></td>  <!--숙소번호-->
+            <td ><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
+            <td ><%= dto.getActPrice() %></td>  <!--숙소가격-->
             <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
             <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
             
@@ -178,7 +178,7 @@ if (ActLists.isEmpty()) {
     <table border="1" style="width:90%">
         <tr align="center">
             <!--페이징 처리-->
-            <td>
+            <td  align="center" style="width:90%">
                 <%
 			    String reqUrl = request.getRequestURI(); // 현재 요청의 URI를 가져옴
 			    if (accsearch == null) { // accsearch가 null인 경우
@@ -190,9 +190,12 @@ if (ActLists.isEmpty()) {
 			    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
 				%>
             </td>
+            
+            
              <!--글쓰기 버튼-->
-            <td>
-            	<button type="button" onclick="location.href='actWrite.jsp';">글쓰기
+        
+            <td align="right" style="width:10%">
+            	<button type="button" onclick="location.href='actWrite.jsp';">숙소 등록
                 </button>
             </td>
         </tr>

@@ -104,8 +104,8 @@ sdao.close(); //점수 db연결해제
 
 <!-- 별점 시각화 -->
 
-<div class="chart-container" style="position: relative; height:200px; width:40vw">
-	<canvas id="myChart"></canvas>
+<div class="chart-container" align="center">
+	<canvas id="myChart" width="700" height="300" ></canvas>
 </div>
 
 <!-- // 해당 부분은 JS파일을 따로 만들어서 사용해도 된다. -->
@@ -152,7 +152,7 @@ var myChart = new Chart(chartArea, {
 <!-- 별점 시각화 끝 -->
 
 
-    <!-- 검색, 글쓰기버튼폼 -->
+<!--     검색, 글쓰기버튼폼
     <form method="get">
     <table border="1" style="width:90%">
     <tr>
@@ -167,21 +167,8 @@ var myChart = new Chart(chartArea, {
         </td>
     </tr>
     </table>
-        <!--목록 하단의 [글쓰기] 버튼-->
-    <table border="1" style="width:90%">
-        <tr align="right">
-            <!--페이징 처리-->
-            <td>
-<%--                 <%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>   --%>
-            </td>
-            <!--글쓰기 버튼-->
-            <td><button type="button" onclick="location.href='reviewWrite.jsp';">글쓰기
-                </button></td>
-        </tr>
-    </table>
     </form>
-    <!-- 검색, 글쓰기버튼폼 끝 -->
+    검색폼 끝 -->
     
     <!-- 게시물 목록 테이블(표) -->
     <table border="1" style="width:90%">
