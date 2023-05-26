@@ -87,8 +87,8 @@ function validateForm(form) {  // 폼 내용 검증
 
 <!-- 숙소정보 수정 폼 -->
 <form name="ActEditFrm" method="post" action="editProcess.jsp"
-    <input type="hidden" name="act_number" value="<%= dto.getActNumber() %>" /> 
       onsubmit="return validateForm(this);">
+       <input type="hidden" name="act_number" value="<%= dto.getActNumber() %>" /> 
       <!-- 숙소정보 수정 테이블 -->
     <table border="1" style="width:90%" id="actEditTable">
         <tr>

@@ -2,7 +2,7 @@
 
 
 /* revList 페이지 전체설정  */
-#revList{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+#revList{width:1600px; height: 200px; margin:0 auto; top:50px; position: relative;}
 
 /* revList 테이블 테두리설정  */
 #revListTable th{border:1px solid black; padding: 10px}

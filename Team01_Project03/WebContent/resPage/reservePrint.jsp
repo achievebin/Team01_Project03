@@ -104,8 +104,8 @@ function resCancel() {
             <td>예약자 휴대번호</td><td><%=rdto.getResphone()%> </td>
          </tr>
          <tr>
-         	<td><label>체크인 날짜</label><%= rdto.getResstart() %></td>
-			<td><label>체크아웃 날짜</label><%= rdto.getResend() %></td>   
+         	<td><label>체크인 날짜 : </label><%= rdto.getResstart() %></td>
+			<td><label>체크아웃 날짜 : </label><%= rdto.getResend() %></td>   
         </tr>
     </table>
         <hr width="50%" align="left">
@@ -132,14 +132,21 @@ function resCancel() {
 	        	<td><%=rdto.getRespurchase() %></td>
 	        </tr>
         </table>
-			<button type="button" onclick="location.href='myReservation.jsp';">목록 보기</button>
+        
+        <table>
+        	<tr>
+				<td><button type="button" onclick="location.href='myReservation.jsp';">목록 보기</button></td>
+					<!-- 날짜가 오늘보다 미래일경우 예약 취소버튼 출력 -->
+        		<td></td>
+        		<td><%if (rdto.getResstart().compareTo(sysdate) >=0 && rdto.getRescancle().equals("예약됨")){%>
+        			<button type="button" onclick="resCancel();">예약 취소</button>  	
+       			<%} %></td>
+       		</tr>
+       	</table>
 </form> 
 <!-- 결제수단 출력 폼 끝 -->
 
-		<!-- 날짜가 오늘보다 미래일경우 예약 취소버튼 출력 -->
-        <%if (rdto.getResstart().compareTo(sysdate) >=0 && rdto.getRescancle().equals("예약됨")){%>
-        	<button type="button" onclick="resCancel();">예약 취소</button>  	
-       <%} %>
+
        
 </div>
 </body>

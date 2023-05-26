@@ -21,7 +21,7 @@ String actname = (String)session.getAttribute("actname"); //숙소명 가져오�
 <!-- css 연결 -->
 <link href="./css/revcss.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
-<title>숙소정보 수정</title>
+<title>리뷰 수정</title>
 
  <!-- 리뷰 수정 예외처리 함수 -->
 <script type="text/javascript">
@@ -45,8 +45,8 @@ function validateForm(form) {  // 폼 내용 검증
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>
 
-<div id="revEditTable">
-<h2>숙소정보 수정</h2>
+<div id="revEdit">
+<h2>리뷰 수정</h2>
 
 <!-- 리뷰수정 폼 --> 
 <form name="ReviewEditFrm" method="post" action="revEditProcess.jsp"
@@ -69,6 +69,10 @@ function validateForm(form) {  // 폼 내용 검증
                 <textarea name="rev_content" style="width: 90%; height: 100px;"></textarea>
             </td>
         </tr>
+        <tr>
+            <td>숙소명</td>
+            <td><%= actname %></td>
+        </tr>
         <tr> 
         <!-- 리뷰 점수 입력 -->
         	<td>별점</td>
@@ -85,14 +89,11 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='actList.jsp';">
+                <button type="button" onclick="location.href='../actPage/actList.jsp';">
                     목록 보기</button>
             </td>
         </tr>
-        <tr>
-            <td>숙소명</td>
-            <td><%= actname %></td>
-        </tr>
+
     </table>
 </form>
 </div>

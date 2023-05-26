@@ -77,7 +77,7 @@ sdao.close(); //점수 db연결해제
 <title>리뷰 목록</title>
 
 <!-- css 연결 -->
-<link href="./css/revcss.css" rel="stylesheet" type="text/css">
+<link href="../revPage/css/revcss.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

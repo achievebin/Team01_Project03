@@ -99,7 +99,7 @@ function deletePost() {
 
   
 
-    <!-- 검색폼 -->
+<!--     검색폼
     <form method="get">
     <table border="1" style="width:90%">
     <tr>
@@ -113,19 +113,9 @@ function deletePost() {
             
         </td>
     </tr>
-    </table>
-        <!--목록 하단의 [글쓰기] 버튼-->
-    <table border="1" style="width:90%">
-        <tr align="right">
-            <!--페이징 처리-->
-            <td>
-                <%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>  
-            </td>
+    </table> 
 
-        </tr>
-    </table>
-    </form>
+    </form> -->
     <!-- 검색 폼 끝 -->
     
     <!-- 게시물 목록 테이블(표) -->
@@ -187,12 +177,24 @@ else { %>
         </tr>
 
 
+
 <%
     	
     	}
 	}
 %>
 
+    </table>
+                    <!--목록 하단의 [글쓰기] 버튼-->
+    <table border="1" style="width:90%">
+        <tr align="center">
+            <!--페이징 처리-->
+            <td>
+                <%= BoardPage.pagingStr(totalCount, pageSize,
+                       blockPage, pageNum, request.getRequestURI()) %>  
+            </td>
+
+        </tr>
     </table>
     <!-- 게시물 목록 끝 -->
 

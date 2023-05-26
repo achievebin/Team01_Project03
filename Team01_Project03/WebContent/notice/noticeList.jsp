@@ -151,6 +151,6 @@ dao.close(); // DB 연결 닫기
 	    </tr>
 	</table>
 </div>
-<jsp:include page="/common/footer.jsp"/>
+<%-- <jsp:include page="/common/footer.jsp"/> --%>
 </body>
 </html>

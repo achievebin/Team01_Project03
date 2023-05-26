@@ -91,6 +91,7 @@ function deletePost() {
 <!-- 관심목록추가 버튼 클릭시 해당함수 작동 -->
 <script>
 function addBookMark() {
+	 document.getElementById("Pop").style.display='inline'
     var confirmed = confirm("정말로 추가하겠습니까?"); 
     if (confirmed) {
         var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
@@ -120,6 +121,7 @@ function delBookMark() {
 <link href="./css/actcss.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
 
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
@@ -214,6 +216,7 @@ function delBookMark() {
                 <%if (bmchk.equals("X")){ %>
                 <button type="button" onclick="addBookMark();" >
                     관심목록에 추가</button>
+                   
                <%}else{%><button type="button" onclick="delBookMark();">
                     관심목록에 삭제</button><%} %>
             </td>
