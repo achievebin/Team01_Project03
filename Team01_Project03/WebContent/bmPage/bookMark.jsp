@@ -77,16 +77,20 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 <!-- 타이틀 -->
 <title>관심 목록</title>
 
+<!-- css 연결 -->
+<link href="./css/bmcss.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
 <!-- 헤더 -->
-<div align="center">
+
 <%@ include file="../common/header.jsp" %>	
+<div id="bmList">
     <h2>관심 목록</h2>
     
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" style="width:90%" >
+    <table border="1" style="width:90%" id="bmListTable" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="3%">번호</th>

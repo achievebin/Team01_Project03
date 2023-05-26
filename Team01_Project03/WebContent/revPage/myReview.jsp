@@ -87,10 +87,13 @@ function deletePost() {
 }
 </script>
 <!-- 리뷰 삭제 함수 끝 -->
+<!-- css 연결 -->
+<link href="./css/revcss.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
+<div id="revList">
 <h2>활동내역 - 내가 쓴 리뷰</h2>
 
 
@@ -126,7 +129,7 @@ function deletePost() {
     <!-- 검색 폼 끝 -->
     
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" style="width:90%" >
+    <table border="1" style="width:90%" id="revListTable" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="5%">번호</th>
@@ -193,6 +196,6 @@ else { %>
     </table>
     <!-- 게시물 목록 끝 -->
 
-
+</div>
 </body>
 </html>

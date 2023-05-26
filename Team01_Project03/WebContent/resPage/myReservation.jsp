@@ -95,9 +95,9 @@ sdao.close(); //점수 dao 연결해제
    <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
     <h2>예약 목록</h2>
 
-    <!-- 검색폼 -->
+<!--     검색폼
     <form method="get">
-    <!-- 검색 테이블 -->
+    검색 테이블
     <table border="1" style="width:90%">
     <tr>
         <td align="left">
@@ -111,21 +111,11 @@ sdao.close(); //점수 dao 연결해제
         </td>
     </tr>
     </table>
+    </form> -->
     <!-- 검색테이블 끝 -->
     
-    
-        <!--페이징 버튼-->
-    <table border="1" style="width:90%">
-        <tr align="right">
-            <!--페이징 처리-->
-            <td>
-                <%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>  
-            </td>
-        </tr>
-    </table>
     <!--페이징 버튼 끝-->
-    </form>
+  
     <!-- 검색폼 끝 -->
     
     <!-- 예약정보 출력 -->
@@ -188,6 +178,16 @@ else {
 }
 %>
 
+    </table>
+            <!--페이징 버튼-->
+    <table border="1" style="width:90%" >
+        <tr align="center">
+            <!--페이징 처리-->
+            <td>
+                <%= BoardPage.pagingStr(totalCount, pageSize,
+                       blockPage, pageNum, request.getRequestURI()) %>  
+            </td>
+        </tr>
     </table>
     </div>
      <!-- 게시물 목록 테이블(표) 끝 -->

@@ -133,8 +133,8 @@ dao.close();  // DB 연결 닫기
             <th width="10%">숙소명</th>
             <th width="8%">숙소종류</th>
             <th width="20%">숙소주소</th>
-            <th width="7%">전화번호</th>
-            <th width="10%">숙소가격</th>
+            <th width="12%">전화번호</th>
+            <th width="7%">숙소가격</th>
             <th width="5%">남은객실수</th>
             <th width="5%">평균 점수</th>
             <th width="5%">관심 여부</th>

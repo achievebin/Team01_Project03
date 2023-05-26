@@ -48,7 +48,8 @@ rdao.close();//예약 DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
-
+<!-- css 연결 -->
+<link href="./css/rescss.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 
 <!-- 예약취소 함수 -->
@@ -65,6 +66,8 @@ function resCancel() {
 </script>
 <!-- 예약취소 함수 끝 -->
 
+
+
 <!-- 타이틀 -->
 <title>예약 정보</title>
 
@@ -74,11 +77,12 @@ function resCancel() {
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>
 
+<div id="resView">
 <h2>예약 정보</h2>
  <!-- 예약 정보 출력  폼-->
 <form name="ReserverFrm" method="post">
 <input type="hidden" name="num" value="<%= rdto.getResnumber() %>" />
-    <table border="1" style="width=50%">
+    <table border="1" style="width=50%" id="resViewTable">
         <tr>
 
         
@@ -136,5 +140,7 @@ function resCancel() {
         <%if (rdto.getResstart().compareTo(sysdate) >=0 && rdto.getRescancle().equals("예약됨")){%>
         	<button type="button" onclick="resCancel();">예약 취소</button>  	
        <%} %>
+       
+</div>
 </body>
 </html>

@@ -1,20 +1,20 @@
 @charset "UTF-8";
 
 
-/* actList 페이지 전체설정  */
-#resList{width:1600px; height: 200px; margin:0 auto;left: 80px; position: relative;}
+/* bmList 페이지 전체설정  */
+#bmList{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
-/* actList 테이블 테두리설정  */
-#resListTable th{border:1px solid black; padding: 10px}
+/* bmList 테이블 테두리설정  */
+#bmListTable th{border:1px solid black; padding: 10px}
 
-#resListTable tr{border:1px solid #e0e0e0; padding: 10px}
+#bmListTable tr{border:1px solid #e0e0e0; padding: 10px}
 
-#resListTable td{border:1px solid #e0e0e0; padding: 10px}
-/* actList 테이블 테두리설정 끝  */
+#bmListTable td{border:1px solid #e0e0e0; padding: 10px}
+/* bmList 테이블 테두리설정 끝  */
 
 
 /* actView 페이지 전체설정  */
-#actView{width:1600px; height: 200px; margin:0 auto;left: 80px; position: relative;}
+#actView{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 
 /* actView 테이블 테두리설정  */
