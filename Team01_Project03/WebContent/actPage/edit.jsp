@@ -18,8 +18,12 @@ dao.close();  // DB 연결 해제
 <html>
 <head>
 
+<!-- css 연결 -->
+<link href="./css/actcss.css" rel="stylesheet" type="text/css">
+
 <meta charset="UTF-8">
 <!-- 타이틀 -->
+
 <title>숙소정보 수정</title>
 
 <!-- 폼 예외처리 -->
@@ -78,7 +82,7 @@ function validateForm(form) {  // 폼 내용 검증
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
 
-
+<div id = "actEdit">
 <h2>숙소정보 수정</h2>
 
 <!-- 숙소정보 수정 폼 -->
@@ -86,7 +90,7 @@ function validateForm(form) {  // 폼 내용 검증
     <input type="hidden" name="act_number" value="<%= dto.getActNumber() %>" /> 
       onsubmit="return validateForm(this);">
       <!-- 숙소정보 수정 테이블 -->
-    <table border="1" style="width:90%">
+    <table border="1" style="width:90%" id="actEditTable">
         <tr>
         <!-- 숙소명 입력 -->
             <td>숙소명</td>
@@ -148,5 +152,6 @@ function validateForm(form) {  // 폼 내용 검증
     <!-- 숙소정보 수정 테이블 끝 -->
 </form>
 <!-- 숙소정보 수정 폼 끝 -->
+</div>
 </body>
 </html>

@@ -14,7 +14,8 @@ dao.close();                               // DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
-
+<!-- css 연결 -->
+<link href="./css/revcss.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 
 <!-- 타이틀 -->
@@ -40,11 +41,11 @@ function deletePost() {
 
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
-
+<div id="revView">
 <h2>리뷰 상세</h2>
-<div align="center">
+
 <!-- 리뷰출력 폼 -->
-<form name="ReViewFrm" method="post">
+<form name="ReViewFrm" method="post" id="revViewTable">
             <input type="hidden" name="revId" value="<%= dto.getId() %>" />
             <input type="hidden" name="revNum" value="<%= dto.getNum() %>" />
 

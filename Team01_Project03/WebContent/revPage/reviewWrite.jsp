@@ -19,6 +19,9 @@
 <html>
 <head>
 
+<!-- css 연결 -->
+<link href="./css/revcss.css" rel="stylesheet" type="text/css">
+
 <meta charset="UTF-8">
 <title>리뷰 쓰기</title>
 
@@ -91,11 +94,13 @@ dao.close();  // DB 연결 닫기
 
 
 %>
+
+<div id="revWrite">
 <h2>리뷰 쓰기</h2>
  <!-- 리뷰 입력 폼 -->
 <form name="ReviewwriteFrm" method="post" action="reviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
-    <table border="1" style="width:90%">
+    <table border="1" style="width:90%" id="revWriteTable">
         <tr>
         <!-- 리뷰 제목 -->
             <td>제목</td>
@@ -141,6 +146,7 @@ dao.close();  // DB 연결 닫기
         </tr>
     </table>
 </form>
+</div>
  <!-- 리뷰 입력 끝 -->
 </body>
 </html>

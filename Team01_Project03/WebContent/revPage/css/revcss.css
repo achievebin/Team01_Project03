@@ -36,3 +36,12 @@
 
 #revWriteTable td{border:1px solid #e0e0e0; padding: 10px}
 
+/* revEdit 페이지 전체설정  */
+#revEdit{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+
+#revEditTable th{border:1px solid black; padding: 10px}
+
+#revEditTable tr{border:1px solid black; padding: 10px}
+
+#revEditTable td{border:1px solid #e0e0e0; padding: 10px}
+

@@ -18,7 +18,8 @@ String actname = (String)session.getAttribute("actname"); //숙소명 가져오�
 <!DOCTYPE html>
 <html>
 <head>
-
+<!-- css 연결 -->
+<link href="./css/revcss.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>숙소정보 수정</title>
 
@@ -44,6 +45,7 @@ function validateForm(form) {  // 폼 내용 검증
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>
 
+<div id="revEditTable">
 <h2>숙소정보 수정</h2>
 
 <!-- 리뷰수정 폼 --> 
@@ -52,7 +54,7 @@ function validateForm(form) {  // 폼 내용 검증
       
       <!-- 리뷰번호 입력 -->
       <input type="hidden" name="rev_num" value="<%= dto.getNum() %>" />
-    <table border="1" style="width:90%">
+    <table border="1" style="width:90%" id="revEditTable">
         <tr>
         <!-- 리뷰 제목 입력 -->
             <td>제목</td>
@@ -93,6 +95,7 @@ function validateForm(form) {  // 폼 내용 검증
         </tr>
     </table>
 </form>
+</div>
 <!-- 리뷰수정 폼 끝 -->
 </body>
 </html>
