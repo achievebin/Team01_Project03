@@ -99,10 +99,12 @@ dao.close();  // DB 연결 닫기
 	    <input type="hidden" name="searchText" value="act_name">
 	    <select name="sortname" onchange="this.form.submit()">
 	        <option value="">정렬</option>
-	        <option value="asc_name">이름순(오름차순)</option>
-	        <option value="desc_name">이름순(내림차순)</option>
-	        <option value="asc_leftroom">남은객실수(오름차순)</option>
-	        <option value="desc_leftroom">남은객실수(내림차순)</option>
+	        <option value="asc_name">숙소명(↑)</option>
+	        <option value="desc_name">숙소명(↓)</option>
+	        <option value="asc_leftroom">남은객실수(↑)</option>
+	        <option value="desc_leftroom">남은객실수(↓)</option>
+	        <option value="asc_price">숙소가격(↑)</option>
+	        <option value="desc_price">숙소가격(↓)</option>
 	    </select>
 	</form>
     <!-- 정렬 기능 끝 -->

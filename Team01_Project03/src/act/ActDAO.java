@@ -56,20 +56,24 @@ public class ActDAO extends JDBConnect {
                    
         }
         
-        // 정렬 조건 추가
+     // 정렬 조건 추가
         String sortname = (String) map.get("sortname");
         if (sortname != null && !sortname.isEmpty()) {
-            if (sortname.equals("asc_name")) {
-                query += " ORDER BY act_name ASC, act_leftroom ASC";
-            } else if (sortname.equals("desc_name")) {
-                query += " ORDER BY act_name DESC, act_leftroom DESC";
+            if (sortname.equals("asc")) {
+                query += " ORDER BY act_name ASC, act_leftroom ASC, act_price ASC";
+            } else if (sortname.equals("desc")) {
+                query += " ORDER BY act_name DESC, act_leftroom DESC, act_price DESC";
             } else if (sortname.equals("asc_leftroom")) {
-                query += " ORDER BY act_leftroom ASC, act_name ASC";
+                query += " ORDER BY act_leftroom ASC, act_name ASC, act_price ASC";
             } else if (sortname.equals("desc_leftroom")) {
-                query += " ORDER BY act_leftroom DESC, act_name DESC";
+                query += " ORDER BY act_leftroom DESC, act_name DESC, act_price DESC";
+            } else if (sortname.equals("asc_price")) {
+                query += " ORDER BY act_price ASC, act_name ASC, act_leftroom ASC";
+            } else if (sortname.equals("desc_price")) {
+                query += " ORDER BY act_price DESC, act_name DESC, act_leftroom DESC";
             }
-        } else {query += " ORDER BY act_number DESC "; // 기본적으로 게시물 번호를 기준으로 내림차순 정렬
-           
+        } else {
+            query += " ORDER BY act_number DESC "; // 기본적으로 게시물 번호를 기준으로 내림차순 정렬
         }
         
         query += "     ) Tb "
