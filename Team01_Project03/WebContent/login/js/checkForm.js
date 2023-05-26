@@ -1,5 +1,11 @@
 //로그인 유효성 검증
 function signInFormCheck() {
+	/*
+	EcmaScript6에서 const, let 키워드가 추가되어 단점이 많은 var 키워드를 대체하였다.
+	var 키워드는 식별자를 중복 선언할 수 있어 의도치 않은 오류를 발생할 수 있다.
+	var 키워드는 함수 레벨의 스코프를 가져 외부 선언한 변수를 블록 내에 변경할 수 있어 전역 변수가 중복 선언될 수 있다.
+	var 키워드는 호이스팅에 의해 변수 선언 전에 값을 참조할 수 있어 프로그램의 흐름을 파악하기 어려워진다.
+	*/
 	let id = document.getElementById("sinid");
 	let pw = document.getElementById("sinpw");
 	

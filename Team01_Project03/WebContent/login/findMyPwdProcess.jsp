@@ -1,5 +1,6 @@
 <%@ page import="member.MemberDto"%>
 <%@ page import="member.MemberDao"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,8 +30,21 @@ dao.close();
 //비밀번호 찾기 성공 여부에 따른 처리
 if (foundYourPwd != null) {
 	//비밀번호 찾기 성공
+	%>
+	<form>
+	<div></div>
+	<input type="button" value="로그인하기" onClick="a href='./signIn.jsp'">
+	</form>
+	<%
 } else {
 	//비밀번호 찾기 실패
+	%>
+	<form>
+	<div>비밀번호를 찾을 수 없습니다.</div>
+	<input type="button" value="다시 찾기" onClick="history.back()">
+	<input type="button" value="회원가입하기" onClick="a href='./join.jsp'">
+	</form>
+	<%
 }
 %>
 </body>
