@@ -97,6 +97,7 @@ public class MemberDao extends JDBConnect {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.print(yid);
 		return yid;
 	}
 	//비밀번호 찾기: 기입한 이름·전화번호·아이디와 일치하는 회원의 패스워드를 반환합니다.
@@ -108,11 +109,11 @@ public class MemberDao extends JDBConnect {
 			// 쿼리 실행
 			psmt = con.prepareStatement(query); // 동적 쿼리문 준비
 			psmt.setString(1, yname);
-			psmt.setString(1, yphone);
-			psmt.setString(1, yid);
+			psmt.setString(2, yphone);
+			psmt.setString(3, yid);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-				yid = rs.getString("mit_pw");
+				ypw = rs.getString("mit_pw");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

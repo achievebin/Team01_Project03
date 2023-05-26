@@ -32,7 +32,8 @@ if (foundYourPwd != null) {
 	//비밀번호 찾기 성공
 	%>
 	<form>
-	<div></div>
+	<div>회원님의 비밀번호는<strong>${fn.substring(foundYourPwd,0,4)}<c:forEach begin="1" end="${fn.length(foundYourPwd)-4}">*</c:forEach></strong></div>
+	<div>회원님의 비밀번호는 <%= foundYourPwd%>입니다.</div>
 	<input type="button" value="로그인하기" onClick="a href='./signIn.jsp'">
 	</form>
 	<%

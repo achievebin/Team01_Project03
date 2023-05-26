@@ -106,7 +106,7 @@ function findMyPwdFormCheck() {
 		id.focus();
 		return false;
 		}
-	document.findMyIdForm.submit();
+	document.findMyPwdForm.submit();
 	}
 
 //회원가입 유효성 검증

@@ -31,7 +31,8 @@ if (foundYourId != null) {
 	//아이디 찾기 성공
 	%>
 	<form>
-	<div>회원님의 아이디는</div>
+	<%-- <div>회원님의 아이디는<strong>${fn.substring(foundYourId,0,4)}<c:forEach begin="1" end="${fn.length(foundYourId)-4}">*</c:forEach></strong></div> --%>
+	<div>회원님의 아이디는 <%= foundYourId%>입니다.</div>
 	<input type="button" value="로그인하기" onClick="a href='./signIn.jsp'">
 	</form>
 	<%
