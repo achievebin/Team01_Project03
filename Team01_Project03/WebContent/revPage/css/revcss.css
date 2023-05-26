@@ -14,7 +14,7 @@
 
 
 /* revView 페이지 전체설정  */
-#revView{width:1600px; height: 200px; margin:0 auto;left: 80px; position: relative;}
+#revView{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 
 /* revView 테이블 테두리설정  */
@@ -28,7 +28,7 @@
 
 
 /* revWrite 페이지 전체설정  */
-#revWrite{width:1600px; height: 200px; margin:0 auto;left: 80px; position: relative;}
+#revWrite{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 #revWriteTable th{border:1px solid black; padding: 10px}
 

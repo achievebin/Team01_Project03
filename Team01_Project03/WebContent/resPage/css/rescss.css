@@ -14,7 +14,7 @@
 
 
 /* actView 페이지 전체설정  */
-#resView{width:1600px; height: 200px; margin:0 auto;left: 80px; position: relative;}
+#resView{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 
 /* actView 테이블 테두리설정  */
@@ -28,11 +28,11 @@
 
 
 /* actWrite 페이지 전체설정  */
-#actWrite{width:1600px; height: 200px; margin:0 auto;left: 80px; position: relative;}
+#resWrite{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
-#actWriteTable th{border:1px solid black; padding: 10px}
+#resWriteTable th{border:1px solid black; padding: 10px}
 
-#actWriteTable tr{border:1px solid black; padding: 10px}
+#resWriteTable tr{border:1px solid black; padding: 10px}
 
-#actWriteTable td{border:1px solid #e0e0e0; padding: 10px}
+#resWriteTable td{border:1px solid #e0e0e0; padding: 10px}
 

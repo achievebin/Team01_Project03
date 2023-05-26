@@ -27,6 +27,8 @@ sdao.close();// 점수DB 연결 해제
 <!DOCTYPE html>
 <html>
 <head>
+<!-- css 연결 -->
+<link href="./css/rescss.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <!-- 타이틀 -->
 <title>숙소 예약</title>
@@ -75,7 +77,7 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 <!-- 헤더 -->
 <jsp:include page="/common/header.jsp" />
-<div style=""></div>
+<div id="resWrite">
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
 <!-- 숙소명 예약 출력 -->
 <h2><%=actname%> 예약</h2>
@@ -84,7 +86,7 @@ function validateForm(form) {  // 폼 내용 검증
 <form name="ReserverFrm" action="./reserveProcess.jsp" method="post" method="post"
 	onsubmit="return validateForm(this);">
     <h2>예약자 정보</h2>
-    <table border="1" style="width:50%">
+    <table border="1" style="width:50%" id="resWriteTable">
 
         <tr>
             <td>예약자 성함</td>
@@ -100,12 +102,14 @@ function validateForm(form) {  // 폼 내용 검증
          <tr>
          <td>
 		<label>체크인 날짜</label>
-		<input type="date" name="chk_in" id="chk_in" required>
+		
 		</td>
+		<td><input type="date" name="chk_in" id="chk_in" required></td>
 		<td>
 		<label>체크아웃 날짜</label>
-		<input type="date" name="chk_out" id="chk_out" required>
+		
 		</td>
+		<td><input type="date" name="chk_out" id="chk_out" required></td>
             
         </tr>
         </table>
@@ -148,6 +152,6 @@ function validateForm(form) {  // 폼 내용 검증
 
     
 
-
+</div>
 </body>
 </html>

@@ -168,7 +168,7 @@ else {%>
     <!-- 게시물 목록 테이블(표) 끝 -->
     
     <!-- 페이징 버튼 -->
-    <table border="1" style="width:90%">
+    <%-- <table border="1" style="width:90%">
         <tr align="center">
             <!--페이징 처리-->
             <td>
@@ -187,7 +187,7 @@ else {%>
             <td><button type="button" onclick="location.href='ActWrite.jsp';">글쓰기
                 </button></td> -->
         </tr>
-    </table>
+    </table> --%>
 </div>
 </body>
 </html>
