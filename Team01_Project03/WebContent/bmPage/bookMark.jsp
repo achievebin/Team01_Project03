@@ -137,7 +137,7 @@ else {%>
         <tr align="center">
             <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
             <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="actView.jsp?num=<%= dto.getActNumber() %>">
+                <a href="../actPage/actView.jsp?num=<%= dto.getActNumber() %>">
                 <%= dto.getActName() %></a>
             </td>
             <td ><%= dto.getActDiv() %></td>          <!--숙소종류-->
