@@ -144,10 +144,21 @@ var myChart = new Chart(chartArea, {
         // ⑪축에 관한 설정(Object)
         scales: {
             // ⑫y축에 대한 설정(Object)
-            y: {
-                // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
-                beginAtZero: true
-            }
+			yAxes: [{
+
+				display: true,
+
+				ticks: {
+
+					suggestedMax: 10,    // minimum will be 0, unless there is a lower value.
+
+					// OR //
+
+					beginAtZero: true   // minimum value will be 0.
+
+				}
+
+			}]
         }
     }
 });
