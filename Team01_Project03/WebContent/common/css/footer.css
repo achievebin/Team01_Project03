@@ -23,3 +23,38 @@ a {
     color:white;
     background:black;
 }
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+#content {
+  padding-bottom: 100px; /* 푸터의 높이와 동일한 값으로 설정 */
+}
+
+footer {
+  height: 100px; /* 푸터의 높이 */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#wrapper {
+  flex: 1;
+}

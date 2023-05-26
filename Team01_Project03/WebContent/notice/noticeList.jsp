@@ -1,9 +1,3 @@
-<!-- 
-공지사항 게시판
-관리자(admin)계정이 아니면 글쓰기 버튼이 보이지 않도록 처리
-현재 url로 직접 접근시 계정 등급과 상관없이 글이 써지는 문제가 있음
--->
-
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
@@ -73,23 +67,8 @@ dao.close(); // DB 연결 닫기
 
 <!-- 검색폼 -->
 <div id="searchbarlist">
-	<div class="searchbar">
-		<h2>공지사항</h2>
-		<form method="get">
-		    <table border="1" style="width:90%">
-		        <tr>
-		            <td align="center">
-		                <select name="searchField">
-		                    <option value="noc_title">제목</option>
-		                    <option value="noc_content">내용</option>
-		                </select>
-		                <input type="text" name="searchWord"/>
-		                <input type="submit" value="검색하기"/>
-		            </td>
-		        </tr>
-		    </table>
-		</form>
-	</div>
+<h2>공지사항</h2>
+
 		
 <!-- 게시물 목록 테이블(표) -->
 	<table border="1" style="width:90%" id="noticeListTable">
@@ -150,7 +129,25 @@ dao.close(); // DB 연결 닫기
 	        <% } %>
 	    </tr>
 	</table>
+	
+	<div class="searchbar">
+		<form method="get">
+		    <table border="1" style="width:90%">
+		        <tr>
+		            <td align="center">
+		                <select name="searchField">
+		                    <option value="noc_title">제목</option>
+		                    <option value="noc_content">내용</option>
+		                </select>
+		                <input type="text" name="searchWord"/>
+		                <input type="submit" value="검색하기"/>
+		            </td>
+		        </tr>
+		    </table>
+		</form>
+	</div>
+	
 </div>
-<%-- <jsp:include page="/common/footer.jsp"/> --%>
+<jsp:include page="/common/footer.jsp"/>
 </body>
 </html>
