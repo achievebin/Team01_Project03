@@ -2,7 +2,7 @@
 <%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../actPage/isLoggedIn.jsp"%>
+<%@ include file="../common/isLoggedIn.jsp"%>
 <%
 String num = (String)request.getAttribute("num");  // 일련번호 얻기 
 

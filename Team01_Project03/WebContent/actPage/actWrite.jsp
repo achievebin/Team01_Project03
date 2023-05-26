@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../actPage/isLoggedIn.jsp"%> <!--로그인 확인-->
+<%@ include file="../common/isLoggedIn.jsp"%> <!--로그인 확인-->
 <!DOCTYPE html>
 <html>
 <head>

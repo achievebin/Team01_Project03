@@ -2,7 +2,7 @@
 <%@ page import="act.ActDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../actPage/isLoggedIn.jsp"%>
+<%@ include file="../common/isLoggedIn.jsp"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
 ActDAO dao = new ActDAO(application);  // DAO 생성

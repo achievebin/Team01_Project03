@@ -2,7 +2,7 @@
 <%@ page import="review.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../actPage/isLoggedIn.jsp"%>
+<%@ include file="../common/isLoggedIn.jsp"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
 ReviewDAO dao = new ReviewDAO(application);  // DAO 생성
