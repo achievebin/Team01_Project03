@@ -233,7 +233,7 @@ if (ActLists.isEmpty()) {
     </table>
 </div>
     <!-- 페이징 및 글쓰기 버튼 끝 -->
-
+<jsp:include page="/common/footer.jsp"/>
 
 </body>
 

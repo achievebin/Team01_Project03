@@ -70,10 +70,11 @@ dao.close(); // DB 연결 닫기
 <jsp:include page="../common/header.jsp"/>
 
 
-<h2>공지사항</h2>
+
 <!-- 검색폼 -->
 <div id="searchbarlist">
 	<div class="searchbar">
+		<h2>공지사항</h2>
 		<form method="get">
 		    <table border="1" style="width:90%">
 		        <tr>

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .headcolor{
     color: white;
-    background-color:#ffa500;  
+    background-color:#808080;  
 }
 .bodycolor{
 	background-color:white;
@@ -43,7 +43,7 @@
 
 .list_set{
 	 color: white;
-     background-color:orange; 
+     background-color:white; 
      border:2px solid white;
      width:300px;
 }
@@ -56,7 +56,7 @@
   right: 0;
   transform: translateY(-50%);
   color: white;
-  background-color:orange; 
+  background-color:white; 
   border:2px solid white;
   width:300px;
   height:300px;
@@ -70,5 +70,10 @@
 	margin:80px
 }
 
+.navbar-brnad{
+	width:200px;
+	height:40px;
+/* 	object-fit: cover; */
+}
 
  
