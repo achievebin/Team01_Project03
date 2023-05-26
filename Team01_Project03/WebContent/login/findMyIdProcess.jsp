@@ -1,6 +1,7 @@
 <%@ page import="member.MemberDto"%>
 <%@ page import="member.MemberDao"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,8 +32,7 @@ if (foundYourId != null) {
 	//아이디 찾기 성공
 	%>
 	<form>
-	<%-- <div>회원님의 아이디는<strong>${fn.substring(foundYourId,0,4)}<c:forEach begin="1" end="${fn.length(foundYourId)-4}">*</c:forEach></strong></div> --%>
-	<div>회원님의 아이디는 <%= foundYourId%>입니다.</div>
+	<div>회원님의 아이디는<strong>${fn:substring(foundYourId,0,3)}<c:forEach begin="3" end="${fn:length(foundYourId)}">*</c:forEach></strong>입니다.</div>
 	<input type="button" value="로그인하기" onClick="a href='./signIn.jsp'">
 	</form>
 	<%

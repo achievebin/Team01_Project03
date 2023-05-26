@@ -15,7 +15,7 @@
 	</section>
 	<!-- 아이디 찾기 폼 -->
 	<div id="findIdTab">
-		<form name="findMyIdForm" id="findMyIdForm" action="findMyIdProcess.jsp">
+		<form name="findMyIdForm" id="findMyIdForm" action="findMyIdProcess.jsp" method="post">
 			<fieldset>
 				<label>이름</label>
 				<input type="text" maxlength="12" placeholder="성과 이름을 기입" name="findIdName" id="findIdName"><br>
@@ -27,7 +27,7 @@
 	</div> <!-- findIdTab End -->
 	<!-- 비밀번호 찾기 폼 -->
 	<div id="findPwdTab">
-		<form name="findMyPwdForm" id="findMyPwdForm" action="findMyPwdProcess.jsp">
+		<form name="findMyPwdForm" id="findMyPwdForm" action="findMyPwdProcess.jsp" method="post">
 			<fieldset>
 				<label>이름</label>
 				<input type="text" maxlength="12" placeholder="성과 이름을 기입" name="findPwdName" id="findPwdName"><br>
