@@ -2,7 +2,7 @@
 <%@ page import="qna.QnAtblDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/IsLoggedIn.jsp"%>
+<%@ include file="../common/isLoggedIn.jsp"%>
 <%
 	String num = request.getParameter("num");  // 일련번호 받기 
 qna.QnAtblDAO dao = new qna.QnAtblDAO(application);  // DAO 생성

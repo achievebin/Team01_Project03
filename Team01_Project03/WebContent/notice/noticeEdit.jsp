@@ -2,7 +2,7 @@
 <%@ page import="board.NoticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/IsLoggedIn.jsp"%>
+<%@ include file="../common/isLoggedIn.jsp"%>
 <%
 	String num = request.getParameter("num");  // 일련번호 받기 
 NoticetblDAO dao = new NoticetblDAO(application);  // DAO 생성

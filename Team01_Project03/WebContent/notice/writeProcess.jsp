@@ -2,7 +2,7 @@
 <%@ page import="board.NoticetblDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/IsLoggedIn.jsp"%> <!-- 경고페이지 -->
+<%@ include file="../common/isLoggedIn.jsp"%> <!-- 경고페이지 -->
 <%
 	// 폼값 받기
 String title = request.getParameter("title");
