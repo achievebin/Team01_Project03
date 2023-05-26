@@ -87,8 +87,8 @@ dao.close();  // DB 연결 닫기
 <!-- 헤더 --> 
 <%@ include file="../common/header.jsp" %>	
 <div id="actList">
-    <!-- 날짜 입력용 달력 -->
-	<%@ include file = "../actPage/accommodationDate.jsp" %>
+	<%--     <!-- 날짜 입력용 달력 -->
+	<%@ include file = "../actPage/accommodationDate.jsp" %> --%>
 
     <h2>숙소 목록</h2>
     

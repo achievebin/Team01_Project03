@@ -35,38 +35,74 @@ sdao.close();// 점수DB 연결 해제
 
 <!-- 폼 예외처리 -->
 <script type="text/javascript">
-function validateForm(form) {  // 폼 내용 검증
-	let regPhone = /([0-9]{2,4})-?([0-9]{3,4})-?([0-9]{4})$/;
-	let regPrice = /([0-9])$/;
+window.onload = function() {
+    var today = new Date();
+    var startDateInput = document.getElementById("chk_in");
+    var endDateInput = document.getElementById("chk_out");
+
+    // 체크인 날짜를 오늘 날짜로 설정
+    var startDate = today.toISOString().split('T')[0];
+    startDateInput.value = startDate;
+
+    // 체크인 날짜의 최소값을 오늘 날짜로 설정
+    startDateInput.setAttribute("min", startDate);
+
+    // 체크인 날짜의 최대값을 오늘로부터 3개월 후로 설정
+    var maxStartDate = new Date(today.getFullYear(), today.getMonth() + 3, today.getDate());
+    var maxStartDateStr = maxStartDate.toISOString().split('T')[0];
+    startDateInput.setAttribute("max", maxStartDateStr);
+
+    startDateInput.addEventListener("input", function() {
+        var selectedStartDate = new Date(startDateInput.value);
+
+        // 체크아웃 날짜의 최소값을 선택된 체크인 날짜로 설정
+        endDateInput.setAttribute("min", selectedStartDate.toISOString().split('T')[0]);
+
+        // 체크아웃 날짜의 최대값을 선택된 체크인 날짜 + 7일 또는 오늘로부터 3개월 후로 설정
+        var maxEndDate = new Date(selectedStartDate.getTime() + (7 * 24 * 60 * 60 * 1000));
+        var maxEndDate3Months = new Date(today.getFullYear(), today.getMonth() + 3, today.getDate());
+        var maxEndDateStr = (maxEndDate < maxEndDate3Months) ? maxEndDate.toISOString().split('T')[0] : maxEndDate3Months.toISOString().split('T')[0];
+        endDateInput.setAttribute("max", maxEndDateStr);
+    });
+
+    // 체크아웃 날짜의 최대값을 오늘로부터 3개월 후로 설정
+    var maxEndDate = new Date(today.getFullYear(), today.getMonth() + 3, today.getDate());
+    var maxEndDateStr = maxEndDate.toISOString().split('T')[0];
+    endDateInput.setAttribute("max", maxEndDateStr);
+	}
 	
-    if (form.reserv_name.value == "") {
-        alert("예약자 성함을 입력하세요.");
-        form.reserv_name.focus();
-        return false;
-    }
-    
-    if (form.reserv_phone.value == "") {
-        alert("전화번호를 입력하세요.");
-        form.reserv_phone.focus();
-        return false;
-    }
-    
-	if (regPhone.test(form.reserv_phone.value) == false) {
-		alert("잘못된 형식의 전화번호입니다.");
-		form.reserv_phone.focus();
-		return false;
-		}
-	
-    if (form.intera.checked == false) {
-        alert("약관A에 동의해주세요");
-        form.intera.focus();
-        return false;
-    }
-    if (form.interb.checked == false) {
-        alert("약관B에 동의해주세요");
-        form.interb.focus();
-        return false;
-    }
+	function validateForm(form) {  // 폼 내용 검증
+		let regPhone = /([0-9]{2,4})-?([0-9]{3,4})-?([0-9]{4})$/;
+		let regPrice = /([0-9])$/;
+		
+	    if (form.reserv_name.value == "") {
+	        alert("예약자 성함을 입력하세요.");
+	        form.reserv_name.focus();
+	        return false;
+	    }
+	    
+	    if (form.reserv_phone.value == "") {
+	        alert("전화번호를 입력하세요.");
+	        form.reserv_phone.focus();
+	        return false;
+	    }
+	    
+		if (regPhone.test(form.reserv_phone.value) == false) {
+			alert("잘못된 형식의 전화번호입니다.");
+			form.reserv_phone.focus();
+			return false;
+			}
+		
+	    if (form.intera.checked == false) {
+	        alert("약관A에 동의해주세요");
+	        form.intera.focus();
+	        return false;
+	    }
+	    if (form.interb.checked == false) {
+	        alert("약관B에 동의해주세요");
+	        form.interb.focus();
+	        return false;
+	    }
 
     
 }
