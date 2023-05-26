@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+
+/* actList 페이지 전체설정  */
+#searchbarlist{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+
+/* actList 테이블 테두리설정  */
+#noticeListTable th{border:1px solid black; padding: 10px}
+
+#noticeListTable tr{border:1px solid #e0e0e0; padding: 10px}
+
+#noticeListTable td{border:1px solid #e0e0e0; padding: 10px}
+/* actList 테이블 테두리설정 끝  */
+
+
+/* actView 페이지 전체설정  */
+#noticeView{width:1600px; height: 200px; margin:0 auto;left: 80px; position: relative;}
+
+
+/* actView 테이블 테두리설정  */
+#noticeTable th{border:1px solid black; padding: 10px}
+
+#noticeTable tr{border:1px solid black; padding: 10px}
+
+#noticeTable td{border:1px solid #e0e0e0; padding: 10px}
+
+/* actView 테이블 테두리설정 끝  */
+
+
+/* actWrite 페이지 전체설정  */
+#noticeWrite{width:1600px; height: 200px; margin:0 auto;left: 80px; position: relative;}
+
+#writeFrm th{border:1px solid black; padding: 10px}
+
+#writeFrm tr{border:1px solid black; padding: 10px}
+
+#writeFrm td{border:1px solid #e0e0e0; padding: 10px}
+

@@ -61,14 +61,18 @@ dao.close(); // DB 연결 닫기
 <head>
     <meta charset="UTF-8">
     <title>공지사항</title>
-<link href="${pageContext.request.contextPath}/common/css/notice.css" rel="stylesheet" type="text/css" />
+<%-- <link href="${pageContext.request.contextPath}/common/css/notice.css" rel="stylesheet" type="text/css" /> --%>
+<link href="./css/notice.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%-- <jsp:include page="../common/header.jsp"/> --%>
+<!-- css 정보 -->
+
+<jsp:include page="../common/header.jsp"/>
+
 
 <h2>공지사항</h2>
 <!-- 검색폼 -->
-<div>
+<div id="searchbarlist">
 	<div class="searchbar">
 		<form method="get">
 		    <table border="1" style="width:90%">
@@ -84,9 +88,10 @@ dao.close(); // DB 연결 닫기
 		        </tr>
 		    </table>
 		</form>
-	</div>	
+	</div>
+		
 <!-- 게시물 목록 테이블(표) -->
-	<table border="1" style="width:90%">
+	<table border="1" style="width:90%" id="noticeListTable">
 	    <!-- 각 칼럼의 이름 -->
 	    <tr>
 	        <th width="10%">번호</th>
