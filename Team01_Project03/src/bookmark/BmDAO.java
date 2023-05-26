@@ -235,6 +235,7 @@ public class BmDAO extends JDBConnect {
                 dto.setActPhone(rs.getString("act_phone"));            // 작성자 아이디
                 dto.setActRoom(rs.getInt("act_room"));  // 조회수
                 dto.setActId(rs.getString("act_id"));
+                dto.setActDiv(rs.getString("act_div"));
 
                 bbs.add(dto);  // 결과 목록에 저장
             }

@@ -135,10 +135,10 @@ function delBookMark() {
     <table border="1" style="width:90%" id="actViewTable">
     	<!-- 숙소 데이터 출력 -->
         <tr>
-            <td>번호</td>
+            <td style="width:10%">번호</td>
             
             <td><%= dto.getActNumber() %></td>
-            <td>판매자</td>
+            <td style="width:10%">판매자</td>
             <td><%= dto.getActId() %></td>
         </tr>
         <tr>
