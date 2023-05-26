@@ -106,6 +106,12 @@ begin
   if i > 0 then
     execute immediate 'drop table REVIEW_SCORE';
   end if;
+  -- 리뷰점수번호 시퀀스의 존재 여부 확인
+  select count(*) into i from user_sequences where sequence_name = 'SEQ_REVSC_NUM';
+  -- 시퀀스가 존재하는 경우 삭제
+  if i > 0 then
+    execute immediate 'drop sequence SEQ_REVSC_NUM';
+  end if;
   -- seq_act_num 시퀀스 생성
   execute immediate 'create sequence seq_act_num 
     increment by 1
@@ -231,8 +237,16 @@ begin
     rev_date date default(sysdate),
     rev_score number(2) default(10),
     rev_id varchar2(20),
-    rev_hotel varchar2(20),
+    rev_hotel varchar2(100),
     act_number number(4))';
+  -- 리뷰점수번호 시퀀스 생성
+  execute immediate 'create sequence SEQ_REVSC_NUM 
+    increment by 1
+    start with 1
+    minvalue 1
+    nomaxvalue
+    nocycle
+    nocache';  
   -- 리뷰점수 테이블 생성
   execute immediate 'create table REVIEW_SCORE (
     act_number number(30) primary key,
