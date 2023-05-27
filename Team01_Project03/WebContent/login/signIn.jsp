@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link href="./css/signin.css" rel="stylesheet" type="text/css">
+<link href="./css/signIn.css" rel="stylesheet" type="text/css">
 </head>
 <style>
 
@@ -26,18 +26,18 @@
 			<div class="contents">
 				<ul>
 					<li>
-						<div class="idpw">
+						<div id="idpw">
 							<label>아이디</label>
 							<input type="text" name="sinid" id="sinid" placeholder="아이디를 입력하세요"><br/>
 							<label>비밀번호</label>
 							<input type="password" name="sinpw" id="sinpw" placeholder="비밀번호를 입력하세요"><br/>
 						</div>
 						<!-- 버튼 -->
-						<div class="buttons">					
+						<div id="buttons">					
 							<button class="my-button" onclick="signInFormCheck()">로그인</button>
 							<button class="my-button" onclick="history.back()">돌아가기</button>
 						</div>
-						<div class="join-Acc">
+						<div id="join-Acc">
 							<ul>
 								<li>								
 									<label>아직 회원이 아니신가요? <a href="./join.jsp">회원가입하기</a></label><br>

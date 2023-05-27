@@ -47,7 +47,7 @@ input[type="password"] {
 }
 
 
-.idpw{
+#idpw{
     display: block;
 /*   display: table;
     table-layout: fixed; */
@@ -55,13 +55,13 @@ input[type="password"] {
     width: 350px;
 }
 
-.buttons {
+#buttons {
   display: flex;
   justify-content: center; /* 수평 가운데 정렬 */
   align-items: center; /* 수직 가운데 정렬 */
 }
 
-.buttons button {
+#buttons button {
   margin: 0 30px; /* 좌우로 10px의 간격 */
   float: left;
 }
@@ -72,7 +72,7 @@ input[type="password"] {
 	align-items: center; /* 수직 가운데 정렬 */	
 }
 
-.join-Acc {
+#join-Acc {
 	margin-top: 20px; /* 위쪽 여백 설정 */
 	display: flex;
 	justify-content: center; /* 수평 가운데 정렬 */
