@@ -9,12 +9,15 @@
 <body>
 	<script type="text/javascript" src="./js/checkForm.js"></script>
 	<%@ include file="../common/header.jsp" %>
+	<!-- 탭 메뉴 -->
 	<section>
-		<input type="radio" name="index" value="findId">아이디 찾기
-		<input type="radio" name="index" value="findPw">비밀번호 찾기
+		<input type="radio" name="index" id="tab1" value="findId" checked>
+		<input type="radio" name="index" id="tab2" value="findPw">
+		<label for="tab1">아이디 찾기</label>
+		<label for="tab2">비밀번호 찾기</label>
 	</section>
 	<!-- 아이디 찾기 폼 -->
-	<div id="findIdTab">
+	<div id="findIdTabMenu">
 		<form name="findMyIdForm" id="findMyIdForm" action="findMyIdProcess.jsp" method="post">
 			<fieldset>
 				<label>이름</label>
@@ -26,7 +29,7 @@
 		</form>
 	</div> <!-- findIdTab End -->
 	<!-- 비밀번호 찾기 폼 -->
-	<div id="findPwdTab">
+	<div id="findPwdTabMenu">
 		<form name="findMyPwdForm" id="findMyPwdForm" action="findMyPwdProcess.jsp" method="post">
 			<fieldset>
 				<label>이름</label>
