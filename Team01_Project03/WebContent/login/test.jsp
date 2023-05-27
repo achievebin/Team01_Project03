@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link href="./css/signin.css" rel="stylesheet" type="text/css">
+<link href="./css/test.css" rel="stylesheet" type="text/css">
 </head>
 <style>
 
@@ -42,8 +42,6 @@
 								<input type="button" value="돌아가기" onclick="history.back()"><br> -->
 								
 								<button class="my-button" onclick="signInFormCheck()">로그인</button>
-								
-								<!--------- 확인 바람 -------->
 								<button class="my-button" onclick="history.back()">돌아가기</button>
 							
 						</div>
