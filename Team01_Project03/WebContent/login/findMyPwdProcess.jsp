@@ -31,9 +31,10 @@ dao.close();
 //비밀번호 찾기 성공 여부에 따른 처리
 if (foundYourPwd != null) {
 	//비밀번호 찾기 성공
+	pageContext.setAttribute("pw", foundYourPwd);
 	%>
 	<form>
-	<div>회원님의 비밀번호는<strong>${fn:substring(foundYourPwd,0,3)}<c:forEach begin="3" end="${fn:length(foundYourPwd)}">*</c:forEach></strong>입니다.</div>
+	<div>회원님의 비밀번호는 <strong>${fn:substring(pw,0,3)}<c:forEach begin="4" end="${fn:length(pw)}">*</c:forEach></strong>입니다.</div>
 	<input type="button" value="로그인하기" onClick="a href='./signIn.jsp'">
 	</form>
 	<%

@@ -30,9 +30,10 @@ dao.close();
 // 아이디 찾기 성공 여부에 따른 처리
 if (foundYourId != null) {
 	//아이디 찾기 성공
+	pageContext.setAttribute("id", foundYourId);
 	%>
 	<form>
-	<div>회원님의 아이디는<strong>${fn:substring(foundYourId,0,3)}<c:forEach begin="3" end="${fn:length(foundYourId)}">*</c:forEach></strong>입니다.</div>
+	<div>회원님의 아이디는 <strong>${fn:substring(id,0,3)}<c:forEach begin="4" end="${fn:length(id)}">*</c:forEach></strong>입니다.</div>
 	<input type="button" value="로그인하기" onClick="a href='./signIn.jsp'">
 	</form>
 	<%
