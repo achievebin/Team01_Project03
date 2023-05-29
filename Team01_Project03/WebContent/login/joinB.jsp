@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- css 연결 -->
-<link href="./css/joincss.css" rel="stylesheet" type="text/css">
+<link href="./css/joinB.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
@@ -20,7 +20,7 @@
 	<form name="joinForm" id="joinForm" action="./joinProcess.jsp" method="post">
 	
 	<table id="joinTable">
-		<tr ><td colspan = '2'><legend>신규 회원 정보</legend></td></tr>
+		<tr ><td colspan = '2'>신규 회원 정보</td></tr>
 			
 			<tr>
 				<td><label>아이디</label></td>
@@ -37,7 +37,7 @@
 			</tr>
 		
 		
-			<tr><td colspan = '2'><legend>개인 정보</legend></td></tr>
+			<tr><td colspan = '2'>개인 정보</td></tr>
 			
 			<tr>
 				<td><label>이름</label></td>

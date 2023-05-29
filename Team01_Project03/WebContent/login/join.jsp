@@ -70,5 +70,33 @@
 		<input type="button" value="돌아가기" onclick="history.back()">
 	</form>
 	<%@ include file="../common/footer.jsp" %>
+	<!-- 제이쿼리 사용을 위한 CDN(Contents Delivery Network) 삽입 -->
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+	//아이디 중복 체크
+	function isIdDuplicate() {
+		let uncheckedId = $('#id').val();
+		
+		//페이지 변경 없이 값을 전달하기 위해 비동기 방식인 ajax 통신 사용
+		$.ajax({
+			url: "isIdDuplicate.jsp",
+			type: "post",
+			data: {uncheckedId: uncheckedId},
+			dataType: "json",
+			success: function(result) {
+				if (result == 0) {
+					$("#idDuplicateResult").html("사용 불가능한 아이디입니다.");
+					$("#idDuplicateResult").attr('color', 'red');
+				} else {
+					$("#idDuplicateResult").html('사용 가능한 아이디입니다.');
+					$("#idDuplicateResult").attr('color', 'green');
+				}
+			},
+			error: function() {
+				alert("서버 요청에 실패했습니다.");
+			}
+		});
+	}
+	</script>
 </body>
 </html>

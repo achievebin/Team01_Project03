@@ -1,3 +1,4 @@
+<%@ page import="java.io.PrintWriter"%>
 <%@ page import="member.MemberDto"%>
 <%@ page import="member.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -24,12 +25,9 @@ MemberDao dao = new MemberDao(oracleDriver, oracleURL, oracleId, oraclePwd);
 int DuplicateResult = dao.checkValidId(uncheckedId);
 dao.close();
 
-// 아이디 중복 여부에 따른 처리
-if (DuplicateResult == 1) {
-	//가입된 아이디가 존재하지 않는 경우 사용 가능
-} else if (DuplicateResult == 0) {
-	//가입된 아이디가 존재하는 경우 사용 불가
-}
+PrintWriter prw = response.getWriter();
+
+prw.write(DuplicateResult + "");
 %>
 </body>
 </html>

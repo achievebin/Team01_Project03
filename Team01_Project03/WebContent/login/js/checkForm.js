@@ -206,29 +206,6 @@ function joinFormCheck() {
 		document.joinForm.submit();
 		}
 
-//아이디 중복 체크
-function isIdDuplicate() {
-	let id = $("#id").val();
-	
-	//페이지 변경 없이 값을 전달하기 위해 비동기 방식인 ajax 통신 사용
-	$.ajax({
-		url: "./isIdDuplicate.jsp",
-		type: "post",
-		data: {uncheckedId: id},
-		dataType: "json",
-		success: function(result) {
-			if (result == 0) {
-				
-			} else {
-				
-			}
-		},
-		error: function() {
-			
-		}
-	})
-}
-
 //정보수정 폼 유효성 검증	
 function updateInfoFormCheck() {
 	let id = document.getElementById("newId");
