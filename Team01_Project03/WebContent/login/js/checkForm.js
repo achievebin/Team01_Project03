@@ -1,4 +1,4 @@
-//로그인 유효성 검증
+//로그인 폼 유효성 검증
 function signInFormCheck() {
 	/*
 	EcmaScript6에서 const, let 키워드가 추가되어 단점이 많은 var 키워드를 대체하였다.
@@ -109,7 +109,7 @@ function findMyPwdFormCheck() {
 	document.findMyPwdForm.submit();
 	}
 
-//회원가입 유효성 검증
+//회원가입 폼 유효성 검증
 function joinFormCheck() {
 		let id = document.getElementById("id");
 		let pw = document.getElementById("pw");
@@ -205,8 +205,31 @@ function joinFormCheck() {
 			}
 		document.joinForm.submit();
 		}
+
+//아이디 중복 체크
+function isIdDuplicate() {
+	let id = $("#id").val();
 	
-//정보수정 유효성 검증	
+	//페이지 변경 없이 값을 전달하기 위해 비동기 방식인 ajax 통신 사용
+	$.ajax({
+		url: "./isIdDuplicate.jsp",
+		type: "post",
+		data: {uncheckedId: id},
+		dataType: "json",
+		success: function(result) {
+			if (result == 0) {
+				
+			} else {
+				
+			}
+		},
+		error: function() {
+			
+		}
+	})
+}
+
+//정보수정 폼 유효성 검증	
 function updateInfoFormCheck() {
 	let id = document.getElementById("newId");
 	let pw = document.getElementById("newPw");
@@ -297,7 +320,7 @@ function updateInfoFormCheck() {
 	document.updateInfoForm.submit();
 	}
 	
-//회원탈퇴 유효성 검증
+//회원탈퇴 폼 유효성 검증
 function withdrawFormCheck() {
 	let pw = document.getElementById("widpw");
 	let regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;

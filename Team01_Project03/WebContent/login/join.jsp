@@ -20,7 +20,9 @@
 			<div>
 				<label>아이디</label>
 				<input type="text" maxlength="12" placeholder="아이디" name="id" id="id">
-				<input type="button" value="중복확인">
+				<input type="button" value="중복확인" onclick="isIdDuplicate()">
+				<input type="hidden" name="isIdChecked" value="unchecked">
+				<span id="idDuplicateResult"></span>
 			</div> <!-- 아이디 div -->
 			<div>
 				<label>비밀번호</label>
