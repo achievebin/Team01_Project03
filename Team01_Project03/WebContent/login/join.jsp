@@ -21,7 +21,7 @@
 				<label>아이디</label>
 				<input type="text" maxlength="12" placeholder="아이디" name="id" id="id">
 				<input type="button" value="중복확인" onclick="isIdDuplicate()">
-				<input type="hidden" name="isIdChecked" value="unchecked">
+				<input type="hidden" name="isIdChecked" value="unchecked"><br>
 				<span id="idDuplicateResult"></span>
 			</div> <!-- 아이디 div -->
 			<div>
@@ -75,21 +75,20 @@
 	<script>
 	//아이디 중복 체크
 	function isIdDuplicate() {
-		let uncheckedId = $('#id').val();
+		let id = $('#id').val();
 		
 		//페이지 변경 없이 값을 전달하기 위해 비동기 방식인 ajax 통신 사용
 		$.ajax({
 			url: "isIdDuplicate.jsp",
 			type: "post",
-			data: {uncheckedId: uncheckedId},
-			dataType: "json",
+			data: {userId: id},
 			success: function(result) {
 				if (result == 0) {
 					$("#idDuplicateResult").html("사용 불가능한 아이디입니다.");
-					$("#idDuplicateResult").attr('color', 'red');
+					$("#idDuplicateResult").css('color', 'red');
 				} else {
 					$("#idDuplicateResult").html('사용 가능한 아이디입니다.');
-					$("#idDuplicateResult").attr('color', 'green');
+					$("#idDuplicateResult").css('color', 'green');
 				}
 			},
 			error: function() {
