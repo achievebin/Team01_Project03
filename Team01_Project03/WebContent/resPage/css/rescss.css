@@ -2,7 +2,7 @@
 
 
 /* actList 페이지 전체설정  */
-#resList{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+#resList{width:1600px; height: 900px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 /* actList 테이블 테두리설정  */
 #resListTable th{border:1px solid black; padding: 10px}
