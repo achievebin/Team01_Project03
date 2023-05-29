@@ -13,27 +13,24 @@
 <body>
 
 <div class="wrapper">
-	<div>
-		<img src="./images/main.png" width=100%/>
+	<!-- 대 배너 -->
+	<div class="contents">
+		<div class="main" id="main">
+			<img src="./images/main.png"/>
+		</div>
 	</div>
-	<div class="img">
-		<ul>
-			<li>
-				<img src="./images/ad_02_171013.png" width=100%/>	
-				<img src="./images/ad_mo_01_171013.png" width=100%/>
-			</li>
-			<li>
-				<img src="./images/ad_02_171013.png" width=100%/>	
-				<img src="./images/ad_mo_01_171013.png" width=100%/>
-			</li>
-		</ul>
-	
+	<!-- 중배너 -->
+	<div class="banner">	
+		<div class="sbanner">
+			<div class="abanner"> 
+				<img src="./images/main.png"/>
+			</div>
+			<div class="abanner">
+				<img src="./images/main.png"/>
+ 			</div>
+		</div>
 	</div>
-	
-	
-	
 </div>
-
 </body>
 <jsp:include page="/common/footer.jsp" />
 </html>

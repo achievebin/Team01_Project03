@@ -11,7 +11,7 @@
 
 <footer>
 <!-- 약관 등 내용이 들어갈 영역 -->
-<div class="wrapper">
+<!-- <div class="wrapper"> -->
 	<div class="bottom">
 		<div id="to-top">
 			<ul>
@@ -32,7 +32,7 @@
 		</div>
 	
 	</div>
-</div>
+<!-- </div> -->
 </footer>
 <script>
   document.getElementById('to-top').addEventListener('click', function () {
