@@ -64,10 +64,10 @@ dao.close(); // DB 연결 닫기
 <jsp:include page="../common/header.jsp"/>
 
 
-
+<div class="wrapper">
 <!-- 검색폼 -->
-<div id="searchbarlist">
-<h2>공지사항</h2>
+	<div id="searchbarlist">
+	<h2>공지사항</h2>
 
 		
 <!-- 게시물 목록 테이블(표) -->
@@ -147,7 +147,9 @@ dao.close(); // DB 연결 닫기
 		</form>
 	</div>
 	
+	</div>
 </div>
 <jsp:include page="/common/footer.jsp"/>
+
 </body>
 </html>

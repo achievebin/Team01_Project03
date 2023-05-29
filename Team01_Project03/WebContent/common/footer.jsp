@@ -11,16 +11,33 @@
 
 <footer>
 <!-- 약관 등 내용이 들어갈 영역 -->
-<div class="sticky-bottom">
-	<div id = "terms" align="center" >
-		<ul>
-			<li><a href=>서비스이용약관</a></li>
-			<li><a href="${pageContext.request.contextPath}/common/htm/privacy.htm">개인정보 보호법</a></li>	
-			<li><a href="${pageContext.request.contextPath}/common/htm/ict.htm">정보통신망 이용법률</a></li>
-			<li><a href="https://github.com/achievebin/Team01_Project03">개발 깃허브</a></li>	
-		</ul>
+<div class="wrapper">
+	<div class="bottom">
+		<div id="to-top">
+			<ul>
+	          <li>
+	            <a href="#" onclick="scrollToTop()" target="_self">
+	              <img id="scrollToTop" src="${pageContext.request.contextPath}/common/images/up.png" height="45" width="40">
+	            </a>
+	          </li>
+	        </ul>
+	    </div>  
+		<div id = "info" align="center" >
+			<ul>
+				<li><a href=>서비스이용약관</a></li>
+				<li><a href="${pageContext.request.contextPath}/common/htm/privacy.htm">개인정보 보호법</a></li>	
+				<li><a href="${pageContext.request.contextPath}/common/htm/ict.htm">정보통신망 이용법률</a></li>
+				<li><a href="https://github.com/achievebin/Team01_Project03">개발 깃허브</a></li>	
+			</ul>
+		</div>
+	
 	</div>
 </div>
 </footer>
+<script>
+  document.getElementById('to-top').addEventListener('click', function () {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+</script>
 </body>
 </html>

@@ -35,40 +35,43 @@ function validateForm(form) {  // 폼 내용 검증
     }
 }
 </script>
+<link href="./css/notice.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <jsp:include page="../common/header.jsp" />
-<h2>공지사항 - 수정하기(Edit)</h2>
 
-<!-- 수정 폼 전송 -->
-<form name="writeFrm" method="post" action="editProcess.jsp"
-      onsubmit="return validateForm(this);">
-    <input type="hidden" name="num" value="<%= dto.getNoc_num() %>" /> 
-    <table border="1" style="width:90%">
-        <tr>
-            <td>제목</td>
-            <td>
-                <input type="text" name="title" style="width: 90%;" 
-                       value="<%= dto.getNoc_title() %>"/> 
-            </td>
-        </tr>
-        <tr>
-            <td>내용</td>
-            <td>
-                <textarea name="content" style="width: 90%; height: 100px;"><%= dto.getNoc_content() %></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <button type="submit">작성 완료</button>
-                
-                <!-- <button type="reset">다시 입력</button> -->
-                <button type="button" onclick="location.href='noticeList.jsp';">
-                    목록 보기</button>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="wrapper" id="noticeEdit">
+	<h2>공지사항 - 수정하기(Edit)</h2>
+	<!-- 수정 폼 전송 -->
+	<form name="writeFrm" method="post" action="editProcess.jsp"
+	      onsubmit="return validateForm(this);">
+	    <input type="hidden" name="num" value="<%= dto.getNoc_num() %>" /> 
+	    <table border="1" style="width:90%" id="noticeEditTable">
+	        <tr>
+	            <td>제목</td>
+	            <td>
+	                <input type="text" name="title" style="width: 90%;" 
+	                       value="<%= dto.getNoc_title() %>"/> 
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>내용</td>
+	            <td>
+	                <textarea name="content" style="width: 90%; height: 100px;"><%= dto.getNoc_content() %></textarea>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td colspan="2" align="center">
+	                <button type="submit">작성 완료</button>
+	                
+	                <!-- <button type="reset">다시 입력</button> -->
+	                <button type="button" onclick="location.href='noticeList.jsp';">
+	                    목록 보기</button>
+	            </td>
+	        </tr>
+	    </table>
+	</form>
+</div>
 <jsp:include page="../common/footer.jsp" />
 </body>
 </html>

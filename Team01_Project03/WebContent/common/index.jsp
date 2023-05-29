@@ -12,7 +12,7 @@
 <jsp:include page="/common/header.jsp" />
 <body>
 
-<div>
+<div class="wrapper">
 	<div>
 		<img src="./images/main.png" width=100%/>
 	</div>
