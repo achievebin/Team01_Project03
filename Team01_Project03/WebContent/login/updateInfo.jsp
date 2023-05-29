@@ -39,7 +39,8 @@ String changeEmail = request.getParameter("prevEmail");
 				</div>
 				<div>
 					<label>비밀번호</label>
-					<input type="password" name="newPw" id="newPw" value=<%=changePw %>>
+					<input type="password" name="newPw" id="newPw" value=<%=changePw %>><br>
+					<br><span class="ErrMsg" id="pwErrMsg"></span>
 				</div>
 			</fieldset> <!-- first fieldset end -->
 			<fieldset>
@@ -47,14 +48,17 @@ String changeEmail = request.getParameter("prevEmail");
 				<div>
 					<label>이름</label>
 					<input type="text" name="newName" id="newName" value=<%=changeName %>>
+					<br><span class="ErrMsg" id="nameErrMsg"></span>
 				</div>
 				<div>
 					<label>닉네임</label>
 					<input type="text" name="newNickname" id="newNickname" value=<%=changeNickname %>>
+					<br><span class="ErrMsg" id="nicknameErrMsg"></span>
 				</div>
 				<div>
 					<label>생년월일</label>
 					<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %> required>
+					<br><span class="ErrMsg" id="birthErrMsg"></span>
 				</div>
 				<div>
 					<label>성별</label>
@@ -71,23 +75,40 @@ String changeEmail = request.getParameter("prevEmail");
 					<input type="radio" name="newSex" value="female">여자
 					<input type="radio" name="newSex" value="none" checked>선택 안 함
 					<%} %>
+					<br><span class="ErrMsg" id="sexErrMsg"></span>
 				</div>
 				<div>
 					<label>주소</label>
-					<input type="text" name="newAddress" id="newAddress" value=<%=changeAddress %>>
+					<input type="text" name="newAddress" id="newAddress" value=<%=changeAddress %> onclick="execDaumPostcode()">
+					<br><span class="ErrMsg" id="addressErrMsg"></span>
 				</div>
 				<div>
 					<label>휴대폰번호</label>
 					<input type="tel" name="newPhone" id="newPhone" value=<%=changePhone %>>
+					<br><span class="ErrMsg" id="phoneErrMsg"></span>
 				</div>
 				<div>
 					<label>e-mail</label>
 					<input type="email" name="newEmail" id="newEmail" value=<%=changeEmail %>>
+					<br><span class="ErrMsg" id="emailErrMsg"></span>
 				</div>
 			</fieldset> <!-- second fieldset end -->
 			<input type="button" value="회원수정" onclick="updateInfoFormCheck()">
 			<input type="button" value="돌아가기" onclick="history.back()">
 		</form>
 		<jsp:include page="/common/footer.jsp" />
+		<!-- 다음 주소 API 사용을 위한 CDN 삽입 -->
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script>
+		//다음 API를 호출하는 함수
+		function execDaumPostcode() {
+			//다음에서 제공하는 API 가이드(https://postcode.map.daum.net/guide)를 참고하여 작성함.
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	            	document.getElementById("newAddress").value = data.address;
+	            }
+	        }).open();
+	    }
+		</script>
 </body>
 </html>

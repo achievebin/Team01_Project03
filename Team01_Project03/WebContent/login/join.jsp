@@ -21,16 +21,19 @@
 				<label>아이디</label>
 				<input type="text" maxlength="12" placeholder="아이디" name="id" id="id">
 				<input type="button" value="중복확인" onclick="isIdDuplicate()">
-				<input type="hidden" name="isIdChecked" value="unchecked"><br>
+				<input type="hidden" name="isIdChecked" value="unchecked">
 				<span id="idDuplicateResult"></span>
+				<br><span class="ErrMsg" id="idErrMsg"></span>
 			</div> <!-- 아이디 div -->
 			<div>
 				<label>비밀번호</label>
 				<input type="password" maxlength="12" placeholder="비밀번호 입력" name="pw" id="pw">
+				<br><span class="ErrMsg" id="pwErrMsg"></span>
 			</div> <!-- 비밀번호 div -->
 			<div>
 				<label>비밀번호 확인</label>
 				<input type="password" maxlength="12" placeholder="비밀번호 재입력" name="pwCheck" id="pwCheck">
+				<br><span class="ErrMsg" id="pwCheckErrmsg"></span>
 			</div> <!-- 비밀번호 확인 div -->
 		</fieldset> <!-- first fieldset end -->
 		<fieldset>
@@ -38,32 +41,39 @@
 			<div>
 				<label>이름</label>
 				<input type="text" maxlength="12" placeholder="성과 이름을 기입" name="name" id="name">
+				<br><span class="ErrMsg" id="nameCheckErrmsg"></span>
 			</div> <!-- 이름 div -->
 			<div>
 				<label>닉네임</label>
 				<input type="text" maxlength="48" placeholder="닉네임을 기입" name="nickname" id="nickname">
+				<br><span class="ErrMsg" id="nicknameErrmsg"></span>
 			</div> <!-- 닉네임 div -->
 			<div>
 				<label>생년월일</label>
 				<input type="date" name="birth" id="birth">
+				<br><span class="ErrMsg" id="birthErrmsg"></span>
 			</div> <!-- 생년월일 div -->
 			<div>
 				<label>성별</label>
 				<input type="radio" name="sex" value="male">남자
 				<input type="radio" name="sex" value="female">여자
 				<input type="radio" name="sex" value="none" checked>선택 안 함
+				<br><span class="ErrMsg" id="sexErrmsg"></span>
 			</div> <!-- 성별 div -->
 			<div>
 				<label>주소</label>
-				<input type="text" maxlength="50" name="address" id="address">
+				<input type="text" maxlength="50" name="address" id="address" onclick="execDaumPostcode()">
+				<br><span class="ErrMsg" id="adrressErrmsg"></span>
 			</div> <!-- 주소 div -->
 			<div>
 				<label>휴대폰번호</label>
 				<input type="tel" maxlength="20" placeholder="010-1234-5678" name="phone" id="phone">
+				<br><span class="ErrMsg" id="phoneErrmsg"></span>
 			</div> <!-- 휴대폰번호 div -->
 			<div>
 				<label>e-mail</label>
 				<input type="email" maxlength="40" placeholder="example@example.org" name="email" id="email">
+				<br><span class="ErrMsg" id="emailErrmsg"></span>
 			</div> <!-- 이메일 div -->
 		</fieldset> <!-- second fieldset end -->
 		<input type="button" value="가입하기" onclick="joinFormCheck()">
@@ -72,6 +82,8 @@
 	<%@ include file="../common/footer.jsp" %>
 	<!-- 제이쿼리 사용을 위한 CDN(Contents Delivery Network) 삽입 -->
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- 다음 주소 API 사용을 위한 CDN 삽입 -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	//아이디 중복 체크
 	function isIdDuplicate() {
@@ -96,6 +108,16 @@
 			}
 		});
 	}
+	
+	//다음 API를 호출하는 함수
+	function execDaumPostcode() {
+		//다음에서 제공하는 API 가이드(https://postcode.map.daum.net/guide)를 참고하여 작성함.
+        new daum.Postcode({
+            oncomplete: function(data) {
+            	document.getElementById("address").value = data.address;
+            }
+        }).open();
+    }
 	</script>
 </body>
 </html>

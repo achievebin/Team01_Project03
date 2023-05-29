@@ -111,6 +111,7 @@ function findMyPwdFormCheck() {
 
 //회원가입 폼 유효성 검증
 function joinFormCheck() {
+		//회원가입에 필요한 요소
 		let id = document.getElementById("id");
 		let pw = document.getElementById("pw");
 		let pwCheck = document.getElementById("pwCheck");
@@ -121,6 +122,18 @@ function joinFormCheck() {
 		let phone = document.getElementById("phone");
 		let email = document.getElementById("email");
 		
+		//에러 메시지 출력을 위한 변수
+		let idErrMsg = document.getElementById("idErrMsg");
+		let pwErrMsg = document.getElementById("pwErrMsg");
+		let pwCheckErrMsg = document.getElementById("pwCheckErrMsg");
+		let nameErrMsg = document.getElementById("nameErrMsg");
+		let nicknameErrMsg = document.getElementById("nicknameErrMsg");
+		let birthErrMsg = document.getElementById("birthErrMsg");
+		let addressErrMsg = document.getElementById("addressErrMsg");
+		let phoneErrMsg = document.getElementById("phoneErrMsg");
+		let emailErrMsg = document.getElementById("emailErrMsg");
+		
+		//유효성 검증을 위한 정규식
 		let regId = /^(?=.*[a-z0-9])[a-z0-9]{5,12}$/;
 		let regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
 		let regName = /^[가-힇a-zA-Z]+$/;
@@ -129,77 +142,77 @@ function joinFormCheck() {
 		let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		
 		if (!id.value) {
-			alert("아이디를 입력해주세요.");
+			idErrMsg.innerText = "아이디를 입력해주세요.";
 			id.focus();
 			return false;
 			}
 		if (regId.test(id.value) == false) {
-			alert("영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.");
+			idErrMsg.innerText = "영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.";
 			id.focus();
 			return false;
 			}
 		if (!pw.value) {
-			alert("비밀번호를 입력해주세요.");
+			pwErrMsg.innerText = "비밀번호를 입력해주세요.";
 			pw.focus();
 			return false;
 			}
 		if (regPw.test(pw.value) == false) {
-			alert("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
+			pwErrMsg.innerText = "숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요";
 			pw.focus();
 			return false;
 			}
 		if (pw.value != pwCheck.value) {
-			alert("입력하신 비밀번호와 다릅니다.");
+			pwCheckErrMsg.innerText = "입력하신 비밀번호와 다릅니다.";
 			pwCheck.focus();
 			return false;
 			}
 		if (!name.value) {
-			alert("이름을 입력해주세요.");
+			nameErrMsg.innerText = "이름을 입력해주세요.";
 			name.focus();
 			return false;
 			}
 		if (regName.test(name.value) == false) {
-			alert("한글 혹은 영어로 된 이름이어야 합니다.");
+			nameErrMsg.innerText = "한글 혹은 영어로 된 이름이어야 합니다.";
 			phone.focus();
 			return false;
 			}
 		if (!nickname.value) {
-			alert("닉네임을 입력해주세요.");
+			nicknameErrMsg.innerText = "닉네임을 입력해주세요.";
 			nickname.focus();
 			return false;
 			}
 		if (regNickname.test(nickname.value) == false) {
-			alert("영어 또는 숫자 또는 한글로 된 2~16자리의 닉네임을 입력해주세요");
+			nicknameErrMsg.innerText = "영어 또는 숫자 또는 한글로 된 2~16자리의 닉네임을 입력해주세요";
 			nickname.focus();
 			return false;
 			}
 		if (!birth.value) {
-			alert("생년월일을 입력해주세요");
+			birthErrMsg.innerText = "생년월일을 입력해주세요";
 			birth.focus();
 			return false;
 		}
 		if (!address.value) {
-			alert("주소를 입력해주세요.");
+			addressErrMsg.innerText = "주소를 입력해주세요.";
 			address.focus();
 			return false;
 			}
 		if (!phone.value) {
-			alert("전화번호를 입력해주세요.");
+			phoneErrMsg.innerText = "전화번호를 입력해주세요.";
 			phone.focus();
 			return false;
 			}
 		if (regPhone.test(phone.value) == false) {
-			alert("잘못된 형식의 전화번호입니다.");
+			phoneErrMsg.innerText = "잘못된 형식의 전화번호입니다.";
 			phone.focus();
 			return false;
 			}
 		if (!email.value) {
-			alert("이메일을 입력해주세요.");
+			emailErrMsg.innerText = "이메일을 입력해주세요.";
 			phone.focus();
 			return false;
 			}
 		if (regEmail.test(email.value) == false) {
-			alert("잘못된 형식의 이메일입니다.");
+			emailErrMsg.innerText = "잘못된 형식의 이메일입니다.";
 			email.focus();
 			return false;
 			}
@@ -208,7 +221,6 @@ function joinFormCheck() {
 
 //정보수정 폼 유효성 검증	
 function updateInfoFormCheck() {
-	let id = document.getElementById("newId");
 	let pw = document.getElementById("newPw");
 	let name = document.getElementById("newName");
 	let nickname = document.getElementById("newNickname");
@@ -217,80 +229,78 @@ function updateInfoFormCheck() {
 	let phone = document.getElementById("newPhone");
 	let email = document.getElementById("newEmail");
 	
-	let regId = /^(?=.*[a-z0-9])[a-z0-9]{5,12}$/;
+	//에러 메시지 출력을 위한 변수
+	let pwErrMsg = document.getElementById("pwErrMsg");
+	let nameErrMsg = document.getElementById("nameErrMsg");
+	let nicknameErrMsg = document.getElementById("nicknameErrMsg");
+	let birthErrMsg = document.getElementById("birthErrMsg");
+	let addressErrMsg = document.getElementById("addressErrMsg");
+	let phoneErrMsg = document.getElementById("phoneErrMsg");
+	let emailErrMsg = document.getElementById("emailErrMsg");
+	
 	let regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
 	let regName = /^[가-힇a-zA-Z]+$/;
 	let regNickname = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
 	let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 	let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		
-	if (!id.value) {
-		alert("아이디를 입력해주세요.");
-		id.focus();
-		return false;
-		}
-	if (regId.test(id.value) == false) {
-		alert("영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.");
-		id.focus();
-		return false;
-		}
+	
 	if (!pw.value) {
-		alert("비밀번호를 입력해주세요.");
+		pwErrMsg.innerText("비밀번호를 입력해주세요.");
 		pw.focus();
 		return false;
 		}
 	if (regPw.test(pw.value) == false) {
-		alert("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
+		pwErrMsg.innerText("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
 		pw.focus();
 		return false;
 		}
 	if (!name.value) {
-		alert("이름을 입력해주세요.");
+		nameErrMsg.innerText("이름을 입력해주세요.");
 		name.focus();
 		return false;
 		}
 	if (regName.test(name.value) == false) {
-			alert("한글 혹은 영어로 된 이름이어야 합니다.");
+			nameErrMsg.innerText("한글 혹은 영어로 된 이름이어야 합니다.");
 			phone.focus();
 			return false;
 			}
 	if (!nickname.value) {
-		alert("닉네임을 입력해주세요.");
+		nicknameErrMsg.innerText("닉네임을 입력해주세요.");
+		nickname.focus();
+		return false;
+		}
+	if (regNickname.test(nickname.value) == false) {
+		nicknameErrMsg.innerText("영어 또는 숫자 또는 한글로 된 2~16자리의 닉네임을 입력해주세요");
 		nickname.focus();
 		return false;
 		}
 	if (!birth.value) {
-		alert("생년월일을 입력해주세요");
+		birthErrMsg.innerText("생년월일을 입력해주세요");
 		birth.focus();
 		return false;
 		}
-	if (regNickname.test(nickname.value) == false) {
-		alert("영어 또는 숫자 또는 한글로 된 2~16자리의 닉네임을 입력해주세요");
-		nickname.focus();
-		return false;
-		}
 	if (!address.value) {
-		alert("주소를 입력해주세요.");
+		addressErrMsg.innerText("주소를 입력해주세요.");
 		address.focus();
 		return false;
 		}
 	if (!phone.value) {
-		alert("전화번호를 입력해주세요.");
+		phoneErrMsg.innerText("전화번호를 입력해주세요.");
 		phone.focus();
 		return false;
 		}
 	if (regPhone.test(phone.value) == false) {
-		alert("잘못된 형식의 전화번호입니다.");
+		phoneErrMsg.innerText("잘못된 형식의 전화번호입니다.");
 		phone.focus();
 		return false;
 		}
 	if (!email.value) {
-		alert("이메일을 입력해주세요.");
+		emailErrMsg.innerText("이메일을 입력해주세요.");
 		phone.focus();
 		return false;
 		}
 	if (regEmail.test(email.value) == false) {
-		alert("잘못된 형식의 이메일입니다.");
+		emailErrMsg.innerText("잘못된 형식의 이메일입니다.");
 		email.focus();
 		return false;
 		}
