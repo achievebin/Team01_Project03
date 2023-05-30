@@ -86,28 +86,28 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	//아이디 중복 체크
-	function isIdDuplicate() {
-		let id = $('#id').val();
-		
-		//페이지 변경 없이 값을 전달하기 위해 비동기 방식인 ajax 통신 사용
-		$.ajax({
-			url: "isIdDuplicate.jsp",
-			type: "post",
-			data: {userId: id},
-			success: function(result) {
-				if (result == 0) {
-					$("#idDuplicateResult").html("사용 불가능한 아이디입니다.");
-					$("#idDuplicateResult").css('color', 'red');
-				} else {
-					$("#idDuplicateResult").html('사용 가능한 아이디입니다.');
-					$("#idDuplicateResult").css('color', 'green');
-				}
-			},
-			error: function() {
-				alert("서버 요청에 실패했습니다.");
-			}
-		});
-	}
+function isIdDuplicate() {
+    let id = $('#id').val();
+    
+    $.ajax({
+        url: "isIdDuplicate.jsp",
+        type: "post",
+        data: { userId: id },
+        success: function(result) {
+            if (result.trim() === "0") {
+                $("#idDuplicateResult").html("사용 불가능한 아이디입니다.");
+                $("#idDuplicateResult").css('color', 'red');
+            } else {
+                $("#idDuplicateResult").html('사용 가능한 아이디입니다.');
+                $("#idDuplicateResult").css('color', 'green');
+            }
+        },
+        error: function() {
+            alert("서버 요청에 실패했습니다.");
+        }
+    });
+}
+
 	
 	//다음 API를 호출하는 함수
 	function execDaumPostcode() {
