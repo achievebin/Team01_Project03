@@ -178,13 +178,13 @@ dao.close();  // DB 연결 닫기
 				       }
 				    } %>
 				    <!--관심목록 표시-->
-				    <div id= "act-bookmark-div">
-				      <% if (bmchk.equals("O")) { %>
-				        ★
-				      <% } else { %>
-				        ☆
-				      <% } %>
-				    </div><br>
+				    <div id="act-bookmark-div" class="<%= bmchk.equals("O") ? "star" : "" %>">
+					  <% if (bmchk.equals("O")) { %>
+					    ★
+					  <% } else { %>
+					    ☆
+					  <% } %>
+					</div><br>
 				  </div>
 			</div>
 
