@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="./css/join.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<script type="text/javascript" src="./js/checkForm.js"></script>
@@ -18,7 +19,7 @@
 		<fieldset>
 			<legend>신규 회원 정보</legend>
 			<div>
-				<label>아이디</label>
+				<label for="id">아이디</label>
 				<input type="text" maxlength="12" placeholder="아이디" name="id" id="id">
 				<input type="button" value="중복확인" onclick="isIdDuplicate()">
 				<input type="hidden" name="isIdChecked" value="unchecked">
@@ -26,12 +27,12 @@
 				<br><span class="ErrMsg" id="idErrMsg"></span>
 			</div> <!-- 아이디 div -->
 			<div>
-				<label>비밀번호</label>
+				<label for="pw">비밀번호</label>
 				<input type="password" maxlength="12" placeholder="비밀번호 입력" name="pw" id="pw">
 				<br><span class="ErrMsg" id="pwErrMsg"></span>
 			</div> <!-- 비밀번호 div -->
 			<div>
-				<label>비밀번호 확인</label>
+				<label for="pwCheck">비밀번호 확인</label>
 				<input type="password" maxlength="12" placeholder="비밀번호 재입력" name="pwCheck" id="pwCheck">
 				<br><span class="ErrMsg" id="pwCheckErrmsg"></span>
 			</div> <!-- 비밀번호 확인 div -->
@@ -39,39 +40,40 @@
 		<fieldset>
 			<legend>개인 정보</legend>
 			<div>
-				<label>이름</label>
+				<label for="name">이름</label>
 				<input type="text" maxlength="12" placeholder="성과 이름을 기입" name="name" id="name">
 				<br><span class="ErrMsg" id="nameCheckErrmsg"></span>
 			</div> <!-- 이름 div -->
 			<div>
-				<label>닉네임</label>
+				<label for="nickname">닉네임</label>
 				<input type="text" maxlength="48" placeholder="닉네임을 기입" name="nickname" id="nickname">
 				<br><span class="ErrMsg" id="nicknameErrmsg"></span>
 			</div> <!-- 닉네임 div -->
 			<div>
-				<label>생년월일</label>
+				<label for="birth">생년월일</label>
 				<input type="date" name="birth" id="birth">
 				<br><span class="ErrMsg" id="birthErrmsg"></span>
 			</div> <!-- 생년월일 div -->
 			<div>
-				<label>성별</label>
+				<label>성별
 				<input type="radio" name="sex" value="male">남자
 				<input type="radio" name="sex" value="female">여자
 				<input type="radio" name="sex" value="none" checked>선택 안 함
+				</label>
 				<br><span class="ErrMsg" id="sexErrmsg"></span>
 			</div> <!-- 성별 div -->
 			<div>
-				<label>주소</label>
+				<label for="address">주소</label>
 				<input type="text" maxlength="50" name="address" id="address" onclick="execDaumPostcode()">
 				<br><span class="ErrMsg" id="adrressErrmsg"></span>
 			</div> <!-- 주소 div -->
 			<div>
-				<label>휴대폰번호</label>
+				<label for="phone">휴대폰번호</label>
 				<input type="tel" maxlength="20" placeholder="010-1234-5678" name="phone" id="phone">
 				<br><span class="ErrMsg" id="phoneErrmsg"></span>
 			</div> <!-- 휴대폰번호 div -->
 			<div>
-				<label>e-mail</label>
+				<label for="email">e-mail</label>
 				<input type="email" maxlength="40" placeholder="example@example.org" name="email" id="email">
 				<br><span class="ErrMsg" id="emailErrmsg"></span>
 			</div> <!-- 이메일 div -->
@@ -86,29 +88,28 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	//아이디 중복 체크
-function isIdDuplicate() {
-    let id = $('#id').val();
-    
-    $.ajax({
-        url: "isIdDuplicate.jsp",
-        type: "post",
-        data: { userId: id },
-        success: function(result) {
-            if (result.trim() === "0") {
-                $("#idDuplicateResult").html("사용 불가능한 아이디입니다.");
-                $("#idDuplicateResult").css('color', 'red');
-            } else {
-                $("#idDuplicateResult").html('사용 가능한 아이디입니다.');
-                $("#idDuplicateResult").css('color', 'green');
-            }
-        },
-        error: function() {
-            alert("서버 요청에 실패했습니다.");
-        }
-    });
-}
+	function isIdDuplicate() {
+	    let id = $('#id').val();
+	    
+	    $.ajax({
+	        url: "isIdDuplicate.jsp",
+	        type: "post",
+	        data: { userId: id },
+	        success: function(result) {
+	            if (result.trim() === "0") {
+	                $("#idDuplicateResult").html("사용 불가능한 아이디입니다.");
+	                $("#idDuplicateResult").css('color', 'red');
+	            } else {
+	                $("#idDuplicateResult").html('사용 가능한 아이디입니다.');
+	                $("#idDuplicateResult").css('color', 'green');
+	            }
+	        },
+	        error: function() {
+	            alert("서버 요청에 실패했습니다.");
+	        }
+	    });
+	}
 
-	
 	//다음 API를 호출하는 함수
 	function execDaumPostcode() {
 		//다음에서 제공하는 API 가이드(https://postcode.map.daum.net/guide)를 참고하여 작성함.
@@ -119,6 +120,6 @@ function isIdDuplicate() {
         }).open();
     }
 	</script>
-		<%@ include file="../common/footer.jsp" %>
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

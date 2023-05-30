@@ -18,9 +18,9 @@ String myId = (String) session.getAttribute("signInId");
 			</span>
 	<div>
 		<form name="withdrawForm" id="withdrawForm" action="./withdrawProcess.jsp" method="post">
-			<label>아이디</label>
+			<label for="widid">아이디</label>
 			<input type="text" name="widid" id="widid" value=<%= myId%> readonly><br/>
-			<label>비밀번호</label>
+			<label for="widpw">비밀번호</label>
 			<input type="password" name="widpw" id="widpw"><br/>
 			<input type="button" value="회원탈퇴" onclick="withdrawFormCheck()">
 			<input type="button" value="돌아가기" onclick="history.back()"><br>

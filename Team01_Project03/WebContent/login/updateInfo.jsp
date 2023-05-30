@@ -34,11 +34,11 @@ String changeEmail = request.getParameter("prevEmail");
 			<fieldset>
 				<legend>내 회원 정보</legend>
 				<div>
-					<label>아이디</label>
+					<label for="newId">아이디</label>
 					<input type="text" name="newId" id="newId" value=<%=changeId %> readonly>
 				</div>
 				<div>
-					<label>비밀번호</label>
+					<label for="newPw">비밀번호</label>
 					<input type="password" name="newPw" id="newPw" value=<%=changePw %>><br>
 					<br><span class="ErrMsg" id="pwErrMsg"></span>
 				</div>
@@ -46,22 +46,22 @@ String changeEmail = request.getParameter("prevEmail");
 			<fieldset>
 				<legend>내 개인 정보</legend>
 				<div>
-					<label>이름</label>
+					<label for="newName">이름</label>
 					<input type="text" name="newName" id="newName" value=<%=changeName %>>
 					<br><span class="ErrMsg" id="nameErrMsg"></span>
 				</div>
 				<div>
-					<label>닉네임</label>
+					<label for="newNickname">닉네임</label>
 					<input type="text" name="newNickname" id="newNickname" value=<%=changeNickname %>>
 					<br><span class="ErrMsg" id="nicknameErrMsg"></span>
 				</div>
 				<div>
-					<label>생년월일</label>
+					<label for="newBirth">생년월일</label>
 					<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %> required>
 					<br><span class="ErrMsg" id="birthErrMsg"></span>
 				</div>
 				<div>
-					<label>성별</label>
+					<label>성별
 					<% if (changeSex.equals("male")) {%>
 					<input type="radio" name="newSex" value="male" checked>남자
 					<input type="radio" name="newSex" value="female">여자
@@ -75,20 +75,21 @@ String changeEmail = request.getParameter("prevEmail");
 					<input type="radio" name="newSex" value="female">여자
 					<input type="radio" name="newSex" value="none" checked>선택 안 함
 					<%} %>
+					</label>
 					<br><span class="ErrMsg" id="sexErrMsg"></span>
 				</div>
 				<div>
-					<label>주소</label>
+					<label for="newAddressh">주소</label>
 					<input type="text" name="newAddress" id="newAddress" value=<%=changeAddress %> onclick="execDaumPostcode()">
 					<br><span class="ErrMsg" id="addressErrMsg"></span>
 				</div>
 				<div>
-					<label>휴대폰번호</label>
+					<label for="newPhone">휴대폰번호</label>
 					<input type="tel" name="newPhone" id="newPhone" value=<%=changePhone %>>
 					<br><span class="ErrMsg" id="phoneErrMsg"></span>
 				</div>
 				<div>
-					<label>e-mail</label>
+					<label for="newEmail">e-mail</label>
 					<input type="email" name="newEmail" id="newEmail" value=<%=changeEmail %>>
 					<br><span class="ErrMsg" id="emailErrMsg"></span>
 				</div>

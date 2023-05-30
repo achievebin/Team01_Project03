@@ -27,9 +27,9 @@
 				<ul>
 					<li>
 						<div id="idpw">
-							<label>아이디</label>
+							<label for="sinid">아이디</label>
 							<input type="text" name="sinid" id="sinid" placeholder="아이디를 입력하세요"><br/>
-							<label>비밀번호</label>
+							<label for="sinpw">비밀번호</label>
 							<input type="password" name="sinpw" id="sinpw" placeholder="비밀번호를 입력하세요"><br/>
 						</div>
 						<!-- 버튼 -->
