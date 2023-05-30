@@ -20,22 +20,25 @@
 		</div>
 	</div>
 	<!-- 중배너 -->
+	<!-- 슬라이드 배너로 바꿀예정 -->
 	<div class="banner">	
 		<div class="sbanner">
 			<div class="abanner"> 
-				<img src="./images/main.png"/>
+				<img src="./images/hotel1.jpg"/>
 			</div>
 			<div class="abanner">
-				<img src="./images/main.png"/>
+				<img src="./images/hotel2.jpg"/>
  			</div>
 		</div>
 	</div>
+	<div class="banner">
 	<!-- 숙소 종류별 버튼 -->
-	<div class="actDivButton" align="center">
-	   <button id="hotelButton" type="button" onclick="location.href='../actPage/actList.jsp?actdiv=호텔%2C리조트';"><img src="./images/hotel.png"/></button>
-       <button id="motelButton" type="button" onclick="location.href='../actPage/actList.jsp?actdiv=모텔';"><img src="./images/motel.png"/></button>
-       <button id="pensionButton" type="button" onclick="location.href='../actPage/actList.jsp?actdiv=펜션';"><img src="./images/pension.png"/></button>
-       <button id="guesthouseButton" type="button" onclick="location.href='../actPage/actList.jsp?actdiv=게스트하우스';"><img src="./images/guesthouse.png"/></button>
+		<div class="actDivButton" align="center">
+		   <button id="hotelButton" type="button" onclick="location.href='../actPage/actList.jsp?actdiv=호텔%2C리조트';"><img width="250px" src="./images/hotelresort.png"/></button>
+	       <button id="motelButton" type="button" onclick="location.href='../actPage/actList.jsp?actdiv=모텔';"><img width="250px" src="./images/motel.png"/></button>
+	       <button id="pensionButton" type="button" onclick="location.href='../actPage/actList.jsp?actdiv=펜션';"><img width="250px" src="./images/pension.png"/></button>
+	       <button id="guesthouseButton" type="button" onclick="location.href='../actPage/actList.jsp?actdiv=게스트하우스';"><img width="250px" src="./images/guesthouse.png"/></button>
+		</div>
 	</div>
 </div>
 </body>
