@@ -127,8 +127,8 @@ dao.close();  // DB 연결 닫기
 	    <!-- 숙소 구분 폼 끝 -->
 	 
 	    <!-- 게시물 목록 테이블(표) -->
-	    <table border="1" style="width:90%" id="actListTable" >
-	        <!-- 각 칼럼의 이름 -->
+	    <!-- <table border="1" style="width:90%" id="actListTable" >
+	        각 칼럼의 이름
 	        <tr align="center">
 	            <th width="3%">번호</th>
 	            <th width="10%">숙소명</th>
@@ -139,7 +139,7 @@ dao.close();  // DB 연결 닫기
 	            <th width="5%">남은객실수</th>
 	            <th width="5%">평균 점수</th>
 	            <th width="5%">관심 여부</th>
-	        </tr>
+	        </tr> -->
 	        <!-- 목록의 내용 -->
 	        
 	        <!-- 목록이 없을경우 -->
@@ -173,65 +173,75 @@ dao.close();  // DB 연결 닫기
 	       
 	        String bmchk = "X";  //북마크 체크용 변수 지정
 	%>		
-	        <tr align="center">
-	            <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
-	            <td align="left">  <!--제목(+ 하이퍼링크)-->
-	                <a href="actView.jsp?num=<%= dto.getActNumber() %>">
-	                <%= dto.getActName() %></a>
-	            </td>
-	            <td ><%= dto.getActDiv() %></td>          <!--숙소종류-->
-	            <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
-	            <td ><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
-	            <td ><%= dto.getActPrice() %></td>  <!--숙소가격-->
-	            <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
-	            <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
-	            
-	            <!--관심목록 표시용 반복문-->
-	            <%for(ActDTO adt : chkLists){
-	            	
-	            	if (adt.getActBookMark().equals(dto.getActNumber())){
-	            		bmchk = "O"; // 관심목록 데이터에 해당 숙소가 있을경우 O로 표시
-	            		
-	            	}%> <% }; %>
-	            <!--관심목록 표시-->	
-				<td><%=bmchk %></td>
-	           
-	        </tr>
-	<%
-	   rdao.close();
-		sdao.close();	
-	    	}
-	}
-	%>
-	    </table>
-	    <!-- 게시물 목록 테이블 끝 -->
-	    
-	    <!-- 페이징 및 글쓰기 버튼 -->
-	    <table border="1" style="width:90%">
-	        <tr align="center">
-	            <!--페이징 처리-->
-	            <td  align="center" style="width:90%">
-	                <%
-				    String reqUrl = request.getRequestURI(); // 현재 요청의 URI를 가져옴
-				    if (accsearch == null) { // accsearch가 null인 경우
-				        reqUrl += "?"; // reqUrl에 ?를 추가
-				    } else { // accsearch가 null이 아닌 경우
-				        reqUrl += "?accsearch=" + accsearch; // reqUrl에 ?accsearch=값을 추가
-				    }
-				    reqUrl += "&searchText=act_name"; // reqUrl에 &searchText=act_name을 추가
-				    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
-					%>
-	            </td>
-	            
-	            
-	             <!--글쓰기 버튼-->
-	        
-	            <td align="right" style="width:10%">
-	            	<button type="button" onclick="location.href='actWrite.jsp';">숙소 등록
-	                </button>
-	            </td>
-	        </tr>
-	    </table>
+	        <div class="act-list-group">
+				  <div id="act-number-div">
+				    <td><%= dto.getActNumber()  %></td><br>
+				  </div>
+				
+				  <div id="act-name-div">
+				    <td align="left"><!--제목(+ 하이퍼링크)-->
+				      <a href="actView.jsp?num=<%= dto.getActNumber() %>">
+				        <%= dto.getActName() %>
+				      </a>
+				    </td><br>
+				  </div>
+				
+				  <div id="act-info-div">
+				    <td>숙소종류: <%= dto.getActDiv() %></td><br>
+				    <td>숙소주소: <%= dto.getActAddress() %></td><br>
+				    <td>숙소전화번호: <%= dto.getActPhone() %></td><br>
+				    <td>숙소가격: <%= dto.getActPrice() %></td><br>
+				    <td>남은객실수: <%= dto.getActLeftRoom() %></td><br>
+				    <td>평균점수: <%= sdto.getAvgScore() %></td><br>
+				    
+				    <!--관심목록 표시용 반복문-->
+				    <% for (ActDTO adt : chkLists) {
+				       if (adt.getActBookMark().equals(dto.getActNumber())) {
+				         bmchk = "O"; // 관심목록 데이터에 해당 숙소가 있을 경우 O로 표시
+				       }
+				    } %>
+				    <!--관심목록 표시-->
+				    <td>
+				      <% if (bmchk.equals("O")) { %>
+				        ★
+				      <% } else { %>
+				        ☆
+				      <% } %>
+				    </td><br>
+				  </div>
+			</div>
+
+			<%
+			   rdao.close();
+				sdao.close();	
+			    	}
+			}
+			%>
+		    <!-- </table> -->
+		    <!-- 게시물 목록 테이블 끝 -->
+		    
+		    <!-- 페이징 및 글쓰기 버튼 -->
+	    	<!-- 페이징 및 글쓰기 버튼 -->
+			<div class="act-page-group">
+			  <!-- 페이징 처리 -->
+			  <div class="paging">
+			    <% String reqUrl = request.getRequestURI();
+			       if (accsearch == null) {
+			           reqUrl += "?";
+			       } else {
+			           reqUrl += "?accsearch=" + accsearch;
+			       }
+			       reqUrl += "&searchText=act_name";
+			       out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl));
+			    %>
+			  </div>
+			
+			  <!-- 글쓰기 버튼 -->
+			  <div class="write-button">
+			    <button type="button" onclick="location.href='actWrite.jsp';">숙소 등록</button>
+			  </div>
+			</div>
+
 	</div>
 </div>
     <!-- 페이징 및 글쓰기 버튼 끝 -->

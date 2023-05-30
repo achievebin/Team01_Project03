@@ -2,14 +2,84 @@
 
 
 /* actList 페이지 전체설정  */
-#actList{width:1600px; height: 600px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
-/* actList 테이블 테두리설정  */
-#actListTable th{border:1px solid black; padding: 10px}
+h2 {
+  margin: 0 auto;
+  margin-left: 30px;
+}
 
-#actListTable tr{border:1px solid #e0e0e0; padding: 10px}
+form {
+  margin: 0 auto;
+  margin-left: 30px;
+}
 
-#actListTable td{border:1px solid #e0e0e0; padding: 10px}
+.act-list-group {
+  overflow: hidden;
+  border: 1px solid black;
+  border-bottom: none;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+  width: 90%;
+  margin: 0 auto;
+  margin-left: 30px;
+  background-color: #FCFCF5;
+  border-color: #F5F5DC; 
+}
+
+.act-list-group #act-name-div {
+  cursor: pointer;
+  display: block;
+}
+
+.act-list-group #act-name-div:hover {
+  text-decoration: underline;
+}
+
+#act-number-div {
+  width: 25%;
+}
+
+#act-name-div {
+  width: 50%;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#act-info-div {
+  width: 25%;
+  text-align: right;
+  font-size: 20px;
+}
+
+/* 페이징, 글쓰기 버튼 */
+.act-page-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+  flex-wrap: wrap;
+  height: 50px; 
+  width: 90%; 
+  margin: 0 auto; 
+  margin-left: 30px;
+  background-color: #f7f7f7;
+  border-color: #e0e0e0;
+}
+
+.act-page-group .paging {
+  text-align: center;
+  width: 90%;
+}
+
+.act-page-group .write-button {
+  text-align: right;
+  width: 10%;
+}
+
 /* actList 테이블 테두리설정 끝  */
 
 
