@@ -13,10 +13,12 @@
 <%@ page import="score.ScoreDTO"%>
 <%@ page import="java.time.LocalDate"%>
 <%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
+<%@ page import="utils.FormatUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/isLoggedIn.jsp"%>
+
 <%
 
 // 날짜 포맷 설정
@@ -75,11 +77,19 @@ ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 ScoreDTO sdto = sdao.scoreView(hotel); //점수 가져오기
 sdao.close(); //점수 dao 연결해제
 %>
+
 <!DOCTYPE html>
 
 <html>
 
 <head>
+<!-- <script>
+function addComma(num) {
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  return num.toString().replace(regexp, ',');
+}
+</script> -->
+
 
 <!-- css 연결 -->
 <link href="./css/rescss.css" rel="stylesheet" type="text/css">
@@ -166,7 +176,7 @@ else {
 			<td ><%= dto.getResend() %></td>	<!-- 체크인 끝날짜 -->
             <td ><%= dto.getResid() %></td>     <!--작성자 아이디-->
             <td ><%= dto.getResname() %></td>	<!-- 예약자명 -->
-            <td ><%= dto.getResprice() %></td>  <!--숙소가격-->
+			<td><%= FormatUtil.addComma(dto.getResprice()) %></td>  <!--숙소가격-->
             <td ><%= dto.getRespurchase() %></td>    <!--예약 결제-->
             <td ><%= dto.getRescancle() %></td> <!-- 예약 취소여부 -->
         </tr>
@@ -191,7 +201,12 @@ else {
     </table>
     </div>
      <!-- 게시물 목록 테이블(표) 끝 -->
-
+<script>
+function addComma(num) {
+	  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+	  return num.toString().replace(regexp, ',');
+	}
+</script>
 <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

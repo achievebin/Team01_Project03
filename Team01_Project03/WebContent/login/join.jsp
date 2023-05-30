@@ -79,7 +79,7 @@
 		<input type="button" value="가입하기" onclick="joinFormCheck()">
 		<input type="button" value="돌아가기" onclick="history.back()">
 	</form>
-	<%@ include file="../common/footer.jsp" %>
+
 	<!-- 제이쿼리 사용을 위한 CDN(Contents Delivery Network) 삽입 -->
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- 다음 주소 API 사용을 위한 CDN 삽입 -->
@@ -119,5 +119,6 @@
         }).open();
     }
 	</script>
+		<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
