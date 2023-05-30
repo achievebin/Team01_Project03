@@ -20,7 +20,7 @@
 			<label for="tab1">아이디 찾기</label>
 			<label for="tab2">비밀번호 찾기</label>
 		</section>
-<!-- 		<!-- 아이디 찾기 폼 -->
+		<!-- 아이디 찾기 폼 -->
 		<div id="findIdTabMenu">
 			<form name="findMyIdForm" id="findMyIdForm" action="findMyIdProcess.jsp" method="post">
 				<fieldset>
@@ -31,8 +31,8 @@
 					<input type="button" onclick="findMyIdFormCheck()" value="아이디 찾기">
 				</fieldset>
 			</form>
-		</div> findIdTab End
-		비밀번호 찾기 폼
+		</div> <!-- findIdTab End -->
+		<!-- 비밀번호 찾기 폼 -->
 		<div id="findPwdTabMenu">
 			<form name="findMyPwdForm" id="findMyPwdForm" action="findMyPwdProcess.jsp" method="post">
 				<fieldset>

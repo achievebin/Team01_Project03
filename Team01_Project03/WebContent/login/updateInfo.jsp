@@ -40,7 +40,7 @@ String changeEmail = request.getParameter("prevEmail");
 				<div>
 					<label for="newPw">비밀번호</label>
 					<input type="password" name="newPw" id="newPw" value=<%=changePw %>><br>
-					<br><span class="ErrMsg" id="pwErrMsg"></span>
+					<br><span class="errMsg" id="pwErrMsg"></span>
 				</div>
 			</fieldset> <!-- first fieldset end -->
 			<fieldset>
@@ -48,17 +48,17 @@ String changeEmail = request.getParameter("prevEmail");
 				<div>
 					<label for="newName">이름</label>
 					<input type="text" name="newName" id="newName" value=<%=changeName %>>
-					<br><span class="ErrMsg" id="nameErrMsg"></span>
+					<br><span class="errMsg" id="nameErrMsg"></span>
 				</div>
 				<div>
 					<label for="newNickname">닉네임</label>
 					<input type="text" name="newNickname" id="newNickname" value=<%=changeNickname %>>
-					<br><span class="ErrMsg" id="nicknameErrMsg"></span>
+					<br><span class="errMsg" id="nicknameErrMsg"></span>
 				</div>
 				<div>
 					<label for="newBirth">생년월일</label>
 					<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %> required>
-					<br><span class="ErrMsg" id="birthErrMsg"></span>
+					<br><span class="errMsg" id="birthErrMsg"></span>
 				</div>
 				<div>
 					<label>성별
@@ -76,22 +76,22 @@ String changeEmail = request.getParameter("prevEmail");
 					<input type="radio" name="newSex" value="none" checked>선택 안 함
 					<%} %>
 					</label>
-					<br><span class="ErrMsg" id="sexErrMsg"></span>
+					<br><span class="errMsg" id="sexErrMsg"></span>
 				</div>
 				<div>
 					<label for="newAddressh">주소</label>
 					<input type="text" name="newAddress" id="newAddress" value=<%=changeAddress %> onclick="execDaumPostcode()">
-					<br><span class="ErrMsg" id="addressErrMsg"></span>
+					<br><span class="errMsg" id="addressErrMsg"></span>
 				</div>
 				<div>
 					<label for="newPhone">휴대폰번호</label>
 					<input type="tel" name="newPhone" id="newPhone" value=<%=changePhone %>>
-					<br><span class="ErrMsg" id="phoneErrMsg"></span>
+					<br><span class="errMsg" id="phoneErrMsg"></span>
 				</div>
 				<div>
 					<label for="newEmail">e-mail</label>
 					<input type="email" name="newEmail" id="newEmail" value=<%=changeEmail %>>
-					<br><span class="ErrMsg" id="emailErrMsg"></span>
+					<br><span class="errMsg" id="emailErrMsg"></span>
 				</div>
 			</fieldset> <!-- second fieldset end -->
 			<input type="button" value="회원수정" onclick="updateInfoFormCheck()">

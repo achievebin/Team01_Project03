@@ -24,17 +24,17 @@
 				<input type="button" value="중복확인" onclick="isIdDuplicate()">
 				<input type="hidden" name="isIdChecked" value="unchecked">
 				<span id="idDuplicateResult"></span>
-				<br><span class="ErrMsg" id="idErrMsg"></span>
+				<br><span class="errMsg" id="idErrMsg"></span>
 			</div> <!-- 아이디 div -->
 			<div>
 				<label for="pw">비밀번호</label>
 				<input type="password" maxlength="12" placeholder="비밀번호 입력" name="pw" id="pw">
-				<br><span class="ErrMsg" id="pwErrMsg"></span>
+				<br><span class="errMsg" id="pwErrMsg"></span>
 			</div> <!-- 비밀번호 div -->
 			<div>
 				<label for="pwCheck">비밀번호 확인</label>
 				<input type="password" maxlength="12" placeholder="비밀번호 재입력" name="pwCheck" id="pwCheck">
-				<br><span class="ErrMsg" id="pwCheckErrmsg"></span>
+				<br><span class="errMsg" id="pwCheckErrmsg"></span>
 			</div> <!-- 비밀번호 확인 div -->
 		</fieldset> <!-- first fieldset end -->
 		<fieldset>
@@ -42,17 +42,17 @@
 			<div>
 				<label for="name">이름</label>
 				<input type="text" maxlength="12" placeholder="성과 이름을 기입" name="name" id="name">
-				<br><span class="ErrMsg" id="nameCheckErrmsg"></span>
+				<br><span class="errMsg" id="nameCheckErrmsg"></span>
 			</div> <!-- 이름 div -->
 			<div>
 				<label for="nickname">닉네임</label>
 				<input type="text" maxlength="48" placeholder="닉네임을 기입" name="nickname" id="nickname">
-				<br><span class="ErrMsg" id="nicknameErrmsg"></span>
+				<br><span class="errMsg" id="nicknameErrmsg"></span>
 			</div> <!-- 닉네임 div -->
 			<div>
 				<label for="birth">생년월일</label>
 				<input type="date" name="birth" id="birth">
-				<br><span class="ErrMsg" id="birthErrmsg"></span>
+				<br><span class="errMsg" id="birthErrmsg"></span>
 			</div> <!-- 생년월일 div -->
 			<div>
 				<label>성별
@@ -60,22 +60,22 @@
 				<input type="radio" name="sex" value="female">여자
 				<input type="radio" name="sex" value="none" checked>선택 안 함
 				</label>
-				<br><span class="ErrMsg" id="sexErrmsg"></span>
+				<br><span class="errMsg" id="sexErrmsg"></span>
 			</div> <!-- 성별 div -->
 			<div>
 				<label for="address">주소</label>
 				<input type="text" maxlength="50" name="address" id="address" onclick="execDaumPostcode()">
-				<br><span class="ErrMsg" id="adrressErrmsg"></span>
+				<br><span class="errMsg" id="adrressErrmsg"></span>
 			</div> <!-- 주소 div -->
 			<div>
 				<label for="phone">휴대폰번호</label>
 				<input type="tel" maxlength="20" placeholder="010-1234-5678" name="phone" id="phone">
-				<br><span class="ErrMsg" id="phoneErrmsg"></span>
+				<br><span class="errMsg" id="phoneErrmsg"></span>
 			</div> <!-- 휴대폰번호 div -->
 			<div>
 				<label for="email">e-mail</label>
 				<input type="email" maxlength="40" placeholder="example@example.org" name="email" id="email">
-				<br><span class="ErrMsg" id="emailErrmsg"></span>
+				<br><span class="errMsg" id="emailErrmsg"></span>
 			</div> <!-- 이메일 div -->
 		</fieldset> <!-- second fieldset end -->
 		<input type="button" value="가입하기" onclick="joinFormCheck()">
