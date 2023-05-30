@@ -114,6 +114,7 @@ sdao.close(); //점수 db연결해제
 <!-- // 해당 부분은 JS파일을 따로 만들어서 사용해도 된다. -->
 <script>
 // 차트를 그럴 영역을 dom요소로 가져온다.
+
 var chartArea = document.getElementById('myChart').getContext('2d');
 // 차트를 생성한다. 
 var myChart = new Chart(chartArea, {
@@ -150,7 +151,7 @@ var myChart = new Chart(chartArea, {
 
 				ticks: {
 
-					suggestedMax: 10,    // minimum will be 0, unless there is a lower value.
+					suggestedMax: <%=sdto.getCountAll()%>,    // minimum will be 0, unless there is a lower value.
 
 					// OR //
 

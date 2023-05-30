@@ -93,7 +93,7 @@ function deletePost() {
 <body>
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
-<div class="revList">
+<div id="myReview">
 <h2>활동내역 - 내가 쓴 리뷰</h2>
 
 
