@@ -34,8 +34,8 @@
 						</div>
 						<!-- 버튼 -->
 						<div id="buttons">					
-							<button class="my-button" onclick="signInFormCheck()">로그인</button>
-							<button class="my-button" onclick="history.back()">돌아가기</button>
+							<button type="button" class="my-button" onclick="signInFormCheck()">로그인</button>
+							<button type="button" class="my-button" onclick="history.back()">돌아가기</button>
 						</div>
 						<div id="join-Acc">
 							<ul>
@@ -50,8 +50,6 @@
 			</div>
 		</form>
 	</div>
-	<form class="fixed-bottom">
 	<jsp:include page="/common/footer.jsp" />
-	</form>
 </body>
 </html>
