@@ -11,9 +11,10 @@ h2 {
 form {
   margin: 0 auto;
   margin-left: 30px;
+  font-size: 20px;
 }
 
-.act-list-group {
+#act-list-group {
   overflow: hidden;
   border: 1px solid black;
   border-bottom: none;
@@ -28,12 +29,12 @@ form {
   border-color: #F5F5DC; 
 }
 
-.act-list-group #act-name-div {
+#act-list-group #act-name {
   cursor: pointer;
   display: block;
 }
 
-.act-list-group #act-name-div:hover {
+#act-list-group #act-name:hover {
   text-decoration: underline;
 }
 
@@ -41,11 +42,10 @@ form {
   width: 25%;
 }
 
-#act-name-div {
-  width: 50%;
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
+#act-name-div a {
+        font-size: 28px; 
+        font-weight: bold;
+        text-decoration: none;
 }
 
 #act-info-div {
@@ -54,8 +54,13 @@ form {
   font-size: 20px;
 }
 
+
+#act-bookmark-div {
+  font-size: 35px; 
+}
+
 /* 페이징, 글쓰기 버튼 */
-.act-page-group {
+#act-page-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,14 +75,16 @@ form {
   border-color: #e0e0e0;
 }
 
-.act-page-group .paging {
-  text-align: center;
-  width: 90%;
+#act-page-group .paging {
+	font-size: 22px; /* 페이징 폰트 크기 조절 */
+    text-align: center;
+    width: 90%;
 }
-
-.act-page-group .write-button {
-  text-align: right;
-  width: 10%;
+    
+#act-page-group .write-button {
+    font-size: 18px; /* 버튼 폰트 크기 조절 */
+    text-align: right;
+    width: 10%;
 }
 
 /* actList 테이블 테두리설정 끝  */

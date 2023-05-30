@@ -86,7 +86,7 @@ dao.close();  // DB 연결 닫기
 
 <!-- 헤더 --> 
 <%@ include file="../common/header.jsp" %>	
-<div class="wrapper">
+<div id="wrapper">
 	<div id="actList">
 		<%--     <!-- 날짜 입력용 달력 -->
 		<%@ include file = "../actPage/accommodationDate.jsp" %> --%>
@@ -124,44 +124,23 @@ dao.close();  // DB 연결 닫기
 	    </form>
 	    
 	    
-	    <!-- 숙소 구분 폼 끝 -->
-	 
-	    <!-- 게시물 목록 테이블(표) -->
-	    <!-- <table border="1" style="width:90%" id="actListTable" >
-	        각 칼럼의 이름
-	        <tr align="center">
-	            <th width="3%">번호</th>
-	            <th width="10%">숙소명</th>
-	            <th width="8%">숙소종류</th>
-	            <th width="20%">숙소주소</th>
-	            <th width="12%">전화번호</th>
-	            <th width="7%">숙소가격</th>
-	            <th width="5%">남은객실수</th>
-	            <th width="5%">평균 점수</th>
-	            <th width="5%">관심 여부</th>
-	        </tr> -->
-	        <!-- 목록의 내용 -->
-	        
-	        <!-- 목록이 없을경우 -->
+	    <!-- 목록이 없을경우 -->
 	<%
 	if (ActLists.isEmpty()) {
 	    // 게시물이 하나도 없을 때
 	%>
-	        <tr>
-	            <td colspan="5" align="center">
-	                첫 숙소를 등록해주세요!
-	            </td>
-	        </tr>
+	        <div id="no-acts">
+                    첫 숙소를 등록해주세요!
+            </div>
+            
+    <!-- 목록이 있을경우 -->
 	<%
-	}
-		else {%>
-	<!-- 목록이 있을경우 -->
-				<%
+	} else {
 	    // 게시물이 있을 때
 	    int virtualNum = 0;  // 화면상에서의 게시물 번호
 	    int countNum = 0;
-	    for (ActDTO dto : ActLists)	
-	    {	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
+	    for (ActDTO dto : ActLists)	{	
+	    	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
 	    	int upd = rdao.updateRoom(Integer.parseInt(dto.getActNumber())); // 남은 객실수 업데이트
 	    	
 	    	ScoreDAO sdao = new ScoreDAO(application); // 숙소별 점수 DB연결
@@ -173,26 +152,24 @@ dao.close();  // DB 연결 닫기
 	       
 	        String bmchk = "X";  //북마크 체크용 변수 지정
 	%>		
-	        <div class="act-list-group">
+	        <div id="act-list-group">
 				  <div id="act-number-div">
-				    <td><%= dto.getActNumber()  %></td><br>
+				    <span><%= dto.getActNumber()  %></span><br>
 				  </div>
 				
 				  <div id="act-name-div">
-				    <td align="left"><!--제목(+ 하이퍼링크)-->
-				      <a href="actView.jsp?num=<%= dto.getActNumber() %>">
-				        <%= dto.getActName() %>
-				      </a>
-				    </td><br>
-				  </div>
+	                  <a href="actView.jsp?num=<%= dto.getActNumber() %>">
+	                      <%= dto.getActName() %>
+	                  </a>
+	              </div>
 				
 				  <div id="act-info-div">
-				    <td>숙소종류: <%= dto.getActDiv() %></td><br>
-				    <td>숙소주소: <%= dto.getActAddress() %></td><br>
-				    <td>숙소전화번호: <%= dto.getActPhone() %></td><br>
-				    <td>숙소가격: <%= dto.getActPrice() %></td><br>
-				    <td>남은객실수: <%= dto.getActLeftRoom() %></td><br>
-				    <td>평균점수: <%= sdto.getAvgScore() %></td><br>
+				    <div>숙소종류: <%= dto.getActDiv() %></div>
+	                <div>숙소주소: <%= dto.getActAddress() %></div>
+	                <div>숙소전화번호: <%= dto.getActPhone() %></div>
+	                <div>숙소가격: <%= dto.getActPrice() %></div>
+	                <div>남은객실수: <%= dto.getActLeftRoom() %></div>
+	                <div>평균점수: <%= sdto.getAvgScore() %></div>
 				    
 				    <!--관심목록 표시용 반복문-->
 				    <% for (ActDTO adt : chkLists) {
@@ -201,13 +178,13 @@ dao.close();  // DB 연결 닫기
 				       }
 				    } %>
 				    <!--관심목록 표시-->
-				    <td>
+				    <div id= "act-bookmark-div">
 				      <% if (bmchk.equals("O")) { %>
 				        ★
 				      <% } else { %>
 				        ☆
 				      <% } %>
-				    </td><br>
+				    </div><br>
 				  </div>
 			</div>
 
@@ -222,7 +199,7 @@ dao.close();  // DB 연결 닫기
 		    
 		    <!-- 페이징 및 글쓰기 버튼 -->
 	    	<!-- 페이징 및 글쓰기 버튼 -->
-			<div class="act-page-group">
+			<div id="act-page-group">
 			  <!-- 페이징 처리 -->
 			  <div class="paging">
 			    <% String reqUrl = request.getRequestURI();
