@@ -192,6 +192,6 @@ else {
     </div>
      <!-- 게시물 목록 테이블(표) 끝 -->
 
-
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

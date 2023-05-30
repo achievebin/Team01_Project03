@@ -153,5 +153,7 @@ function validateForm(form) {  // 폼 내용 검증
 </form>
 <!-- 숙소정보 수정 폼 끝 -->
 </div>
+
 </body>
+<jsp:include page="../common/footer.jsp"/>
 </html>

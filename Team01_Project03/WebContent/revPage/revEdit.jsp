@@ -99,4 +99,5 @@ function validateForm(form) {  // 폼 내용 검증
 </div>
 <!-- 리뷰수정 폼 끝 -->
 </body>
+<jsp:include page="../common/footer.jsp"/>
 </html>

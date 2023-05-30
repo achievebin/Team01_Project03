@@ -101,5 +101,6 @@ function deletePost() {
 </div>
 <!-- 리뷰출력 폼 끝 -->
 </body>
+<jsp:include page="../common/footer.jsp"/>
 </html>
 

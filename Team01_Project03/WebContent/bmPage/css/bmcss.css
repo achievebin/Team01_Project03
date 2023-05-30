@@ -2,7 +2,7 @@
 
 
 /* bmList 페이지 전체설정  */
-#bmList{width:1600px; height: 900px; margin:0 auto;left: 80px; top:50px; position: relative;}
+#bmList{width:1600px; height: 575px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 /* bmList 테이블 테두리설정  */
 #bmListTable th{border:1px solid black; padding: 10px}
@@ -14,7 +14,7 @@
 
 
 /* actView 페이지 전체설정  */
-#actView{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+#actView{width:1600px; height: auto; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 
 /* actView 테이블 테두리설정  */

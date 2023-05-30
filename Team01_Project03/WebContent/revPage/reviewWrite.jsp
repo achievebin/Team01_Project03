@@ -149,4 +149,5 @@ dao.close();  // DB 연결 닫기
 </div>
  <!-- 리뷰 입력 끝 -->
 </body>
+<jsp:include page="../common/footer.jsp"/>
 </html>

@@ -82,7 +82,7 @@ sdao.close(); //점수 db연결해제
 </head>
 <body>
 
-<div id="revList">
+<div class="revList">
 
    <!-- 점수 db에서 값 가져와서 점수현황 표시 -->
     <h2>현재 숙소: <%= request.getAttribute("actname") %>  </h2>
@@ -185,7 +185,7 @@ var myChart = new Chart(chartArea, {
     검색폼 끝 -->
     
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" style="width:90%" id="revListTable">
+    <table border="1" style="width:90%" class="revListTable">
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="5%">번호</th>
@@ -254,5 +254,7 @@ else { %>
      <!-- 게시물 목록 테이블(표) 끝 -->
 
 </div>
+
 </body>
+
 </html>

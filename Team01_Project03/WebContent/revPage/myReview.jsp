@@ -93,7 +93,7 @@ function deletePost() {
 <body>
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
-<div id="revList">
+<div class="revList">
 <h2>활동내역 - 내가 쓴 리뷰</h2>
 
 
@@ -119,7 +119,7 @@ function deletePost() {
     <!-- 검색 폼 끝 -->
     
     <!-- 게시물 목록 테이블(표) -->
-    <table border="1" style="width:90%" id="revListTable" >
+    <table border="1" style="width:90%" class="revListTable" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="5%">번호</th>
@@ -199,5 +199,7 @@ else { %>
     <!-- 게시물 목록 끝 -->
 
 </div>
+
 </body>
+<jsp:include page="/common/footer.jsp"/>
 </html>

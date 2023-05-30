@@ -19,6 +19,7 @@ div에 .wrapper요소를 추가하지않으면 정상적인 동작을 하지 않
 /* 푸터(footer)의 배경색과 상단 경계선 */
 footer {
   position: static; /* 푸터를 각 body 밑에 고정 */
+  margin-top: 200px;
   bottom: 0;
   left: 0;
   right: 0;

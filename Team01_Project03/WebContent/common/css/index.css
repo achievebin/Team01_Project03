@@ -40,6 +40,9 @@
   gap: 150px;
   margin-left : 300px;
 }
+
+.actDivButton button {border: none;  background-color: white; margin: auto;}
+
 /* 
 #abanner {
 	margin-left : 10px;

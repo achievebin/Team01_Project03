@@ -2,7 +2,7 @@
 
 
 /* actList 페이지 전체설정  */
-#actList{width:1600px; height: 900px; margin:0 auto;left: 80px; top:50px; position: relative;}
+#actList{width:1600px; height: 600px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 /* actList 테이블 테두리설정  */
 #actListTable th{border:1px solid black; padding: 10px}
@@ -14,7 +14,7 @@
 
 
 /* actView 페이지 전체설정  */
-#actView{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+#actView{width:1600px; height: auto; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 
 /* actView 테이블 테두리설정  */
@@ -28,7 +28,7 @@
 
 
 /* actWrite 페이지 전체설정  */
-#actWrite{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+#actWrite{width:1600px; height: 575px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 #actWriteTable th{border:1px solid black; padding: 10px}
 
@@ -39,7 +39,7 @@
 
 /* actEdit 페이지 전체설정  */
 
-#actEdit{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+#actEdit{width:1600px; height: 575px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 #actEditTable th{border:1px solid black; padding: 10px}
 

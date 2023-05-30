@@ -1,34 +1,34 @@
 @charset "UTF-8";
 
 
-/* actList 페이지 전체설정  */
-#resList{width:1600px; height: 900px; margin:0 auto;left: 80px; top:50px; position: relative;}
+/* resList 페이지 전체설정  */
+#resList{width:1600px; height: 575px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
-/* actList 테이블 테두리설정  */
+/* resList 테이블 테두리설정  */
 #resListTable th{border:1px solid black; padding: 10px}
 
 #resListTable tr{border:1px solid #e0e0e0; padding: 10px}
 
 #resListTable td{border:1px solid #e0e0e0; padding: 10px}
-/* actList 테이블 테두리설정 끝  */
+/* resList 테이블 테두리설정 끝  */
 
 
-/* actView 페이지 전체설정  */
-#resView{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+/* resView 페이지 전체설정  */
+#resView{width:1600px; height: 575px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 
-/* actView 테이블 테두리설정  */
+/* resView 테이블 테두리설정  */
 #resViewTable th{border:1px solid black; padding: 10px}
 
 #resViewTable tr{border:1px solid black; padding: 10px}
 
 #resViewTable td{border:1px solid #e0e0e0; padding: 10px}
 
-/* actView 테이블 테두리설정 끝  */
+/* resView 테이블 테두리설정 끝  */
 
 
-/* actWrite 페이지 전체설정  */
-#resWrite{width:1600px; height: 200px; margin:0 auto;left: 80px; top:50px; position: relative;}
+/* resWrite 페이지 전체설정  */
+#resWrite{width:1600px; height: 575px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
 #resWriteTable th{border:1px solid black; padding: 10px}
 

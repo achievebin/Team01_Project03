@@ -189,5 +189,7 @@ window.onload = function() {
     
 
 </div>
+
 </body>
+<jsp:include page="../common/footer.jsp"/>
 </html>

@@ -91,7 +91,6 @@ function deletePost() {
 <!-- 관심목록추가 버튼 클릭시 해당함수 작동 -->
 <script>
 function addBookMark() {
-	 document.getElementById("Pop").style.display='inline'
     var confirmed = confirm("정말로 추가하겠습니까?"); 
     if (confirmed) {
         var form = document.ActViewFrm;       // 이름(name)이 "writeFrm"인 폼 선택
@@ -233,5 +232,7 @@ function delBookMark() {
 </form>
 </div>
 <!-- 숙소소개 폼 끝 -->
+
 </body>
+<jsp:include page="../common/footer.jsp"/>
 </html>

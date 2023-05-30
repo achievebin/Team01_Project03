@@ -149,5 +149,7 @@ function resCancel() {
 
        
 </div>
+
 </body>
+<jsp:include page="../common/footer.jsp"/>
 </html>
