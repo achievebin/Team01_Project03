@@ -30,6 +30,11 @@
  			</div>
 		</div>
 	</div>
+	<!-- 숙소 종류별 버튼 -->
+	   <button type="button" onclick="location.href='../actPage/actList.jsp?actdiv=호텔%2C리조트';">호텔,리조트</button>
+       <button type="button" onclick="location.href='../actPage/actList.jsp?actdiv=모텔';">모텔</button>
+       <button type="button" onclick="location.href='../actPage/actList.jsp?actdiv=펜션';">펜션</button>
+       <button type="button" onclick="location.href='../actPage/actList.jsp?actdiv=게스트하우스';">게스트하우스</button>
 </div>
 </body>
 <jsp:include page="/common/footer.jsp" />
