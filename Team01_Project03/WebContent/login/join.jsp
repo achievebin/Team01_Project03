@@ -14,7 +14,7 @@
 	        <%= request.getAttribute("joinErrMsg") == null ?
 	                "" : request.getAttribute("joinErrMsg") %>
 	</span>
-	<div id="jformbox">
+	<div id="formbox">
 		<h2>회원가입</h2>
 		<form name="joinForm" id="joinForm" action="./joinProcess.jsp" method="post">
 			<fieldset>

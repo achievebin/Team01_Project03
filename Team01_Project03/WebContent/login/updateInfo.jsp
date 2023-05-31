@@ -22,6 +22,7 @@ String changeEmail = request.getParameter("prevEmail");
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정</title>
+<link href="./css/join.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<script type="text/javascript" src="./js/checkForm.js"></script>
@@ -30,73 +31,77 @@ String changeEmail = request.getParameter("prevEmail");
 		        <%= request.getAttribute("updateInfoErrMsg") == null ?
 		                "" : request.getAttribute("updateInfoErrMsg") %>
 		</span>
-	<form name="updateInfoForm" id="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
-			<fieldset>
-				<legend>내 회원 정보</legend>
-				<div>
-					<label for="newId">아이디</label>
-					<input type="text" name="newId" id="newId" value=<%=changeId %> readonly>
+	<div id="formbox">
+		<form name="updateInfoForm" id="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
+				<fieldset>
+					<legend>내 회원 정보</legend>
+					<div>
+						<label for="newId">아이디</label>
+						<input type="text" name="newId" id="newId" value=<%=changeId %> readonly>
+					</div>
+					<div>
+						<label for="newPw">비밀번호</label>
+						<input type="password" name="newPw" id="newPw" value=<%=changePw %>><br>
+						<br><span class="errMsg" id="pwErrMsg"></span>
+					</div>
+				</fieldset> <!-- first fieldset end -->
+				<fieldset>
+					<legend>내 개인 정보</legend>
+					<div>
+						<label for="newName">이름</label>
+						<input type="text" name="newName" id="newName" value=<%=changeName %>>
+						<br><span class="errMsg" id="nameErrMsg"></span>
+					</div>
+					<div>
+						<label for="newNickname">닉네임</label>
+						<input type="text" name="newNickname" id="newNickname" value=<%=changeNickname %>>
+						<br><span class="errMsg" id="nicknameErrMsg"></span>
+					</div>
+					<div>
+						<label for="newBirth">생년월일</label>
+						<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %> required>
+						<br><span class="errMsg" id="birthErrMsg"></span>
+					</div>
+					<div>
+						<label>성별
+						<% if (changeSex.equals("male")) {%>
+						<input type="radio" name="newSex" value="male" checked>남자
+						<input type="radio" name="newSex" value="female">여자
+						<input type="radio" name="newSex" value="none">선택 안 함
+						<%} else if (changeSex.equals("female")) {%>
+						<input type="radio" name="newSex" value="male">남자
+						<input type="radio" name="newSex" value="female" checked>여자
+						<input type="radio" name="newSex" value="none">선택 안 함
+						<%} else {%>
+						<input type="radio" name="newSex" value="male">남자
+						<input type="radio" name="newSex" value="female">여자
+						<input type="radio" name="newSex" value="none" checked>선택 안 함
+						<%} %>
+						</label>
+						<br><span class="errMsg" id="sexErrMsg"></span>
+					</div>
+					<div>
+						<label for="newAddressh">주소</label>
+						<input type="text" name="newAddress" id="newAddress" value=<%=changeAddress %> onclick="execDaumPostcode()">
+						<br><span class="errMsg" id="addressErrMsg"></span>
+					</div>
+					<div>
+						<label for="newPhone">휴대폰번호</label>
+						<input type="tel" name="newPhone" id="newPhone" value=<%=changePhone %>>
+						<br><span class="errMsg" id="phoneErrMsg"></span>
+					</div>
+					<div>
+						<label for="newEmail">e-mail</label>
+						<input type="email" name="newEmail" id="newEmail" value=<%=changeEmail %>>
+						<br><span class="errMsg" id="emailErrMsg"></span>
+					</div>
+				</fieldset> <!-- second fieldset end -->
+				<div id="buttons">
+					<input class="my-button" type="button" value="회원수정" onclick="updateInfoFormCheck()">
+					<input class="my-button" type="button" value="돌아가기" onclick="history.back()">
 				</div>
-				<div>
-					<label for="newPw">비밀번호</label>
-					<input type="password" name="newPw" id="newPw" value=<%=changePw %>><br>
-					<br><span class="errMsg" id="pwErrMsg"></span>
-				</div>
-			</fieldset> <!-- first fieldset end -->
-			<fieldset>
-				<legend>내 개인 정보</legend>
-				<div>
-					<label for="newName">이름</label>
-					<input type="text" name="newName" id="newName" value=<%=changeName %>>
-					<br><span class="errMsg" id="nameErrMsg"></span>
-				</div>
-				<div>
-					<label for="newNickname">닉네임</label>
-					<input type="text" name="newNickname" id="newNickname" value=<%=changeNickname %>>
-					<br><span class="errMsg" id="nicknameErrMsg"></span>
-				</div>
-				<div>
-					<label for="newBirth">생년월일</label>
-					<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %> required>
-					<br><span class="errMsg" id="birthErrMsg"></span>
-				</div>
-				<div>
-					<label>성별
-					<% if (changeSex.equals("male")) {%>
-					<input type="radio" name="newSex" value="male" checked>남자
-					<input type="radio" name="newSex" value="female">여자
-					<input type="radio" name="newSex" value="none">선택 안 함
-					<%} else if (changeSex.equals("female")) {%>
-					<input type="radio" name="newSex" value="male">남자
-					<input type="radio" name="newSex" value="female" checked>여자
-					<input type="radio" name="newSex" value="none">선택 안 함
-					<%} else {%>
-					<input type="radio" name="newSex" value="male">남자
-					<input type="radio" name="newSex" value="female">여자
-					<input type="radio" name="newSex" value="none" checked>선택 안 함
-					<%} %>
-					</label>
-					<br><span class="errMsg" id="sexErrMsg"></span>
-				</div>
-				<div>
-					<label for="newAddressh">주소</label>
-					<input type="text" name="newAddress" id="newAddress" value=<%=changeAddress %> onclick="execDaumPostcode()">
-					<br><span class="errMsg" id="addressErrMsg"></span>
-				</div>
-				<div>
-					<label for="newPhone">휴대폰번호</label>
-					<input type="tel" name="newPhone" id="newPhone" value=<%=changePhone %>>
-					<br><span class="errMsg" id="phoneErrMsg"></span>
-				</div>
-				<div>
-					<label for="newEmail">e-mail</label>
-					<input type="email" name="newEmail" id="newEmail" value=<%=changeEmail %>>
-					<br><span class="errMsg" id="emailErrMsg"></span>
-				</div>
-			</fieldset> <!-- second fieldset end -->
-			<input type="button" value="회원수정" onclick="updateInfoFormCheck()">
-			<input type="button" value="돌아가기" onclick="history.back()">
-		</form>
+			</form>
+		</div>
 		<jsp:include page="/common/footer.jsp" />
 		<!-- 다음 주소 API 사용을 위한 CDN 삽입 -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

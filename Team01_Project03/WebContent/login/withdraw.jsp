@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 탈퇴</title>
+<link href="./css/signIn.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <%
@@ -16,14 +17,26 @@ String myId = (String) session.getAttribute("signInId");
 			        <%= request.getAttribute("withdrawErrMsg") == null ?
 			                "" : request.getAttribute("withdrawErrMsg") %>
 			</span>
-	<div>
+	<div class="box">
 		<form name="withdrawForm" id="withdrawForm" action="./withdrawProcess.jsp" method="post">
-			<label for="widid">아이디</label>
-			<input type="text" name="widid" id="widid" value=<%= myId%> readonly><br/>
-			<label for="widpw">비밀번호</label>
-			<input type="password" name="widpw" id="widpw"><br/>
-			<input type="button" value="회원탈퇴" onclick="withdrawFormCheck()">
-			<input type="button" value="돌아가기" onclick="history.back()"><br>
+			<div class="contents">
+				<ul>
+					<li>
+						<!-- 아이디 패스워드 -->
+						<div id="idpw">
+							<label for="widid">아이디</label>
+							<input type="text" name="widid" id="widid" value=<%= myId%> readonly><br/>
+							<label for="widpw">비밀번호</label>
+							<input type="password" name="widpw" id="widpw"><br/>
+						</div>
+						<!-- 버튼 -->
+						<div id="buttons">					
+							<button type="button" class="my-button" onclick="withdrawFormCheck()">회원탈퇴</button>
+							<button type="button" class="my-button" onclick="history.back()">돌아가기</button>
+						</div>
+					<li>
+				</ul>
+			</div>
 		</form>
 	</div>
 	<%@ include file="../common/footer.jsp" %>

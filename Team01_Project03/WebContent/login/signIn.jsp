@@ -22,10 +22,10 @@
     <!-- 로그인 박스 -->
 	<div class="box">
 		<form name="signInForm" id="signInForm" action="./signInProcess.jsp" method="post">
-			<!-- 아이디 패스워드 -->
 			<div class="contents">
 				<ul>
 					<li>
+						<!-- 아이디 패스워드 -->
 						<div id="idpw">
 							<label for="sinid">아이디</label>
 							<input type="text" name="sinid" id="sinid" placeholder="아이디를 입력하세요"><br/>
