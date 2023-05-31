@@ -38,25 +38,25 @@
 							<a class="nav-link active drodown-toggle" aria-current="page" href=""  id="navbarDropdown" 
 								          role="button" data-bs-toggle="dropdown" aria-expanded="false">고객지원</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="../notice/noticeList.jsp">공지사항</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice/noticeList.jsp">공지사항</a></li>
 								<!-- <li><a class="dropdown-item" href="../qna/qnaList.jsp">고객센터</a></li>   -->
 							</ul>
 							</li>
 						</ul>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="../actPage/actList.jsp">숙소목록</a>
+								<a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/actPage/actList.jsp">숙소목록</a>
 							</li>
 						</ul>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="../resPage/myReservation.jsp">예약정보</a>
+								<a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/resPage/myReservation.jsp">예약정보</a>
 							</li>
 						</ul>
 						<% if (session.getAttribute("signInId") == null) { %>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="../login/signIn.jsp">로그인</a>
+								<a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/login/signIn.jsp">로그인</a>
 							</li>
 						</ul>
 				        <% } else { %>
@@ -67,8 +67,8 @@
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><%= session.getAttribute("signInNickname") %>님 환영합니다.<li>
 								<li><%= session.getAttribute("signInGrade") %><li>
-								<li><a class="dropdown-item" href="../login/myPage.jsp">내 페이지</a></li>
-								<li><a class="dropdown-item" href="../login/signOut.jsp">로그아웃</a></li>  
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/login/myPage.jsp">내 페이지</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/login/signOut.jsp">로그아웃</a></li>  
 							</ul>
 							</li>
 						</ul>
