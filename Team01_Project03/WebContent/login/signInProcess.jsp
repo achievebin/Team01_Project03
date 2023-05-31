@@ -31,7 +31,7 @@ if (memberDto.getId() != null) {
     session.setAttribute("signInId", memberDto.getId());
     session.setAttribute("signInNickname", memberDto.getNickname());
     session.setAttribute("signInGrade", memberDto.getGrade());
-    response.sendRedirect("../common/index.jsp");
+    response.sendRedirect("../index.jsp");
 }
 else {
     // 로그인 실패
