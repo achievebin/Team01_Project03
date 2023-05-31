@@ -59,11 +59,15 @@ param.put("end", end);
 
  List<ActDTO> ActLists = dao.actList(param);  // 게시물 목록 받기
  List<ActDTO> chkLists = adao.bmCheck(param); // 현재 아이디의 북마크 목록 받기
-dao.close();  // DB 연결 닫기
+  // DB 연결 닫기  
+
+
 
 String hotel = (String)request.getAttribute("actnumber"); //숙소 번호 받기
 request.setAttribute("hotelname", hotel); // 숙소번호 request에 입력
 List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
+
+
 %>
 <!DOCTYPE html>
 
@@ -161,7 +165,10 @@ else {%>
 <%
    rdao.close();
 	sdao.close();	
+
     	}
+	adao.close();
+	dao.close();
 }
 %>
     </table>

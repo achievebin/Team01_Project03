@@ -1,0 +1,40 @@
+
+/* actView 페이지 전체설정  */
+#myPage{width:550px; height: auto; margin:0 auto; top:50px; position: relative; font-size: large;}
+
+
+/* actView 테이블 테두리설정  */
+#myPageTable{width:100%; background-color: #e0e0e0;}
+
+#myPageTable th{border:1px solid black; padding: 3px}
+
+#myPageTable tr{border:1px solid black; padding: 3px}
+
+#myPageTable td{border:1px solid #e0e0e0; padding: 3px}
+
+/* actView 테이블 테두리설정 끝  */
+
+
+/* actWrite 페이지 전체설정  */
+#updateInfo{width:550px; height: auto; margin:0 auto; top:50px; position: relative; font-size: large;}
+
+#updateInfoTable{width:100%; background-color: #e0e0e0;}
+/* #updateInfoTable th{border:1px solid black; padding: 10px}
+
+#updateInfoTable tr{border:1px solid black; padding: 10px}
+
+#updateInfoTable td{border:1px solid black; padding: 10px} */
+
+
+/* actEdit 페이지 전체설정  */
+
+#actEdit{width:1600px; height: 575px; margin:0 auto;left: 80px; top:50px; position: relative;}
+
+#actEditTable th{border:1px solid black; padding: 10px}
+
+#actEditTable tr{border:1px solid black; padding: 10px}
+
+#actEditTable td{border:1px solid #e0e0e0; padding: 10px}
+
+
+
