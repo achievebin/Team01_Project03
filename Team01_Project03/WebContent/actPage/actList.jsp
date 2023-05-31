@@ -157,19 +157,19 @@ dao.close();  // DB 연결 닫기
 				    <span><%= dto.getActNumber()  %></span><br>
 				  </div>
 				
-				  <div id="act-name-div">
+				  <div id="act-info1-div">
 	                  <a href="actView.jsp?num=<%= dto.getActNumber() %>">
 	                      <%= dto.getActName() %>
 	                  </a>
+	                  <div id="act-div-type">숙소종류: <%= dto.getActDiv() %></div>
+	                  <div id="act-div-address">숙소주소: <%= dto.getActAddress() %></div>
+	                  <div id="act-div-phone">숙소전화번호: <%= dto.getActPhone() %></div>
 	              </div>
 				
-				  <div id="act-info-div">
-				    <div>숙소종류: <%= dto.getActDiv() %></div>
-	                <div>숙소주소: <%= dto.getActAddress() %></div>
-	                <div>숙소전화번호: <%= dto.getActPhone() %></div>
-	                <div>숙소가격: <%= dto.getActPrice() %></div>
-	                <div>남은객실수: <%= dto.getActLeftRoom() %></div>
-	                <div>평균점수: <%= sdto.getAvgScore() %></div>
+				  <div id="act-info2-div">
+	                <div id="act-div-left-room">남은객실수: <%= dto.getActLeftRoom() %></div>
+	                <div id="act-div-avg-score">평균점수: <%= sdto.getAvgScore() %></div>
+				    <div id="act-div-price">숙소가격: <%= dto.getActPrice() %></div>
 				    
 				    <!--관심목록 표시용 반복문-->
 				    <% for (ActDTO adt : chkLists) {

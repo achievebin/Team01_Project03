@@ -43,32 +43,47 @@ form {
 
 /* act-number-div 설정 */
 #act-number-div {
-  width: 25%;
+  width: 15%;
 }
 
-/* act-name-div 설정 */
-#act-name-div a {
-        font-size: 32px; 
-        font-weight: bold;
-        text-decoration: none;
+
+
+/* act-info1-div 설정 */
+#act-info1-div {
+  width: 30%;	
+  font-size: 20px; 
+  font-weight: bold;
+  text-align: left;
+  text-decoration: none;
 }
 
-/* act-info-div 전체 설정 */
-#act-info-div {
-  width: 25%;
+#act-info1-div a {
+  font-size: 32px; 
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+/* act-info2-div 전체 설정 */
+#act-info2-div {
+  width: 20%;
   text-align: left;
   font-size: 20px;
+  margin-top: 40px;
 }
 
 /* 관심목록 ☆크기 */
 #act-bookmark-div {
   font-size: 35px;
   color: black; /* 기본적으로 검은색으로 설정합니다. */
+  text-align: right;
+  margin-top: 100px;
 }
 
 #act-bookmark-div.star {
   color: yellow; /* ☆일 때는 노란색으로 설정합니다. */
 }
+
 
 /* 페이징, 글쓰기 버튼 영역 */
 #act-page-group {
