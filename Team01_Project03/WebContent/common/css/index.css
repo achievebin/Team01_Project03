@@ -13,35 +13,70 @@
     display: block;
 }
 
-
-
-.banner {
+.sub {
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 0;
   margin-top: 40px;
-/*   float: left; */
-
 }
 
-.banner > .sbanner {
-	margin: auto;
+.sub > .banner {
+	width: 60%;
+	margin: 912 px;
     display: block;
-	margin-top: 40px;
+/* 	margin-top: 40px; */
 	justify-content: center;
-
+	float:left;
 }
 
-.abanner img {
+.sub > .banner > .abanner {
+/* 	float:left; */
+	width: 100%;
+	margin-top: 40px;
+	display: flex; /* Flexbox를 사용하여 요소를 정렬합니다 */
+  	justify-content: space-between; /* 요소를 왼쪽과 오른쪽으로 정렬합니다 */
+}
+
+.sub > .banner > .abanner img {
+/* 	height: 30%;
+	width: 40%; */
+	height: 400px;
+	width: auto;
+}
+
+div.banner > div.abanner > img:first-child {
+  align-self: flex-start; /* 첫 번째 이미지를 왼쪽으로 정렬합니다 */
+}
+
+div.banner > div.abanner > img:nth-child(2) {
+  align-self: flex-end; /* 두 번째 이미지를 오른쪽으로 정렬합니다 */
+}
+
+
+/* .sub > .banner > .bbanner {
+	float:right;
+	width: 100%;
+} */
+
+
+
+
+/* .abanner {
   float:left;
   width: 25%;
   display: block;
-  gap: 150px;
   margin-left : 300px;
 }
 
-.banner > .actDivbutoon {
+.bbanner {
+  float:right;
+  width: 25%;
+  display: block;
+  margin-left : 300px;
+} */
+
+.sub > .actDivbutoon {
 	float:left;
 	display: block;
 	margin: auto;

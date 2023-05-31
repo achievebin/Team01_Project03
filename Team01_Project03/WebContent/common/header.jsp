@@ -12,8 +12,8 @@
 	<header>
 		<nav class="navbar navbar-expand-lg headcolor">
 			<div class="container-fluid"> <!-- first start -->
-				<a href="../common/index.jsp">
-					<img class="navbar-brnad" src="../common/images/logo.png" alt="로고">
+				<a href="${pageContext.request.contextPath}/index.jsp">
+					<img class="navbar-brnad" src="${pageContext.request.contextPath}/common/images/logo.png" alt="로고">
 				</a>
 			 	<!-- -------------------------검색창------------------------------ -->  
 				<%@ include file="../common/search.jsp" %>
