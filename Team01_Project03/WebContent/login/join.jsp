@@ -93,14 +93,14 @@
 	//아이디 중복 체크
 	function isIdDuplicate() {
 	    let id = $('#id').val();
-	    
+	    //화면 전환을 하지 않는 비동기 방식을 사용하기 위한 ajax 문 실행
 	    $.ajax({
 	        url: "isIdDuplicate.jsp",
 	        type: "post",
 	        data: { userId: id },
 	        success: function(result) {
 	            if (result.trim() === "0") {
-	                $("#idDuplicateResult").html("✕");
+	                $("#idDuplicateResult").html("✘");
 	                $("#idDuplicateResult").css('color', 'red');
 	                $("#isIdChecked").val("N");
 	            } else {
