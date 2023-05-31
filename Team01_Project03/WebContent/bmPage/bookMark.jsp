@@ -144,10 +144,10 @@ else {%>
                 <a href="../actPage/actView.jsp?num=<%= dto.getActNumber() %>">
                 <%= dto.getActName() %></a>
             </td>
-            <td ><%= dto.getActDiv() %></td>          <!--숙소종류-->
-            <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
-            <td ><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
-            <td ><%= dto.getActPrice() %></td>  <!--숙소가격-->
+            <td style="text-align: left"><%= dto.getActDiv() %></td>          <!--숙소종류-->
+            <td style="text-align: left"><%= dto.getActAddress() %></td>          <!--숙소주소-->
+            <td style="text-align: left"><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
+            <td style="text-align: right"><%= dto.getActPrice() %></td>  <!--숙소가격-->
             <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
             <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
             

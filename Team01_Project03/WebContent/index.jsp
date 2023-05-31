@@ -35,10 +35,10 @@
 	<div class="sub">
 	<!-- 숙소 종류별 버튼 -->
 		<div class="actDivButton" align="center">
-		   <button id="hotelButton" type="button" style="font-size: 1.4em;" onclick="location.href='../actPage/actList.jsp?actdiv=호텔%2C리조트';"><img width="250px" src="./common/images/hotelresort.png" /><br>호텔,리조트</button>
-	       <button id="motelButton" type="button" style="font-size: 1.4em;" onclick="location.href='../actPage/actList.jsp?actdiv=모텔';"><img width="250px" src="./common/images/motel.png"/><br>모텔</button>
-	       <button id="pensionButton" type="button" style="font-size: 1.4em;" onclick="location.href='../actPage/actList.jsp?actdiv=펜션';"><img width="250px" src="./common/images/pension.png"/><br>펜션</button>
-	       <button id="guesthouseButton" type="button" style="font-size: 1.4em;" onclick="location.href='../actPage/actList.jsp?actdiv=게스트하우스';"><img width="250px" src="./common/images/guesthouse.png"/><br>게스트하우스</button>
+		   <button id="hotelButton" type="button" style="font-size: 1.4em;" onclick="location.href='./actPage/actList.jsp?actdiv=호텔%2C리조트';"><img width="250px" src="./common/images/hotelresort.png" /><br>호텔,리조트</button>
+	       <button id="motelButton" type="button" style="font-size: 1.4em;" onclick="location.href='./actPage/actList.jsp?actdiv=모텔';"><img width="250px" src="./common/images/motel.png"/><br>모텔</button>
+	       <button id="pensionButton" type="button" style="font-size: 1.4em;" onclick="location.href='./actPage/actList.jsp?actdiv=펜션';"><img width="250px" src="./common/images/pension.png"/><br>펜션</button>
+	       <button id="guesthouseButton" type="button" style="font-size: 1.4em;" onclick="location.href='./actPage/actList.jsp?actdiv=게스트하우스';"><img width="250px" src="./common/images/guesthouse.png"/><br>게스트하우스</button>
 		</div>
 	</div>
 </div>

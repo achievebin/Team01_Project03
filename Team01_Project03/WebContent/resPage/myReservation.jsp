@@ -133,7 +133,7 @@ function addComma(num) {
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="5%">번호</th>
-            <th width="10%">숙소명</th>
+            <th width="15%">숙소명</th>
             <th width="10%">체크인</th>
             <th width="10%">체크아웃</th>
             <th width="10%">예약 아이디</th>

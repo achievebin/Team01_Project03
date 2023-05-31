@@ -131,7 +131,7 @@ dao.close();  // DB 연결 닫기
 	        <!-- 각 칼럼의 이름 -->
 	        <tr align="center">
 	            <th width="3%">번호</th>
-	            <th width="10%">숙소명</th>
+	            <th width="13%">숙소명</th>
 	            <th width="8%">숙소종류</th>
 	            <th width="20%">숙소주소</th>
 	            <th width="12%">전화번호</th>
@@ -179,10 +179,10 @@ dao.close();  // DB 연결 닫기
 	                <a href="actView.jsp?num=<%= dto.getActNumber() %>">
 	                <%= dto.getActName() %></a>
 	            </td>
-	            <td ><%= dto.getActDiv() %></td>          <!--숙소종류-->
-	            <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
-	            <td ><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
-	            <td ><%= dto.getActPrice() %></td>  <!--숙소가격-->
+	            <td style="text-align: left"><%= dto.getActDiv() %></td>          <!--숙소종류-->
+	            <td style="text-align: left;"><%= dto.getActAddress() %></td>          <!--숙소주소-->
+	            <td style="text-align: left"><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
+	            <td style="text-align: right"><%= dto.getActPrice() %></td>  <!--숙소가격-->
 	            <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
 	            <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
 	            

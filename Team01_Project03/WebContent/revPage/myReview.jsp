@@ -123,7 +123,7 @@ function deletePost() {
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
             <th width="5%">번호</th>
-            <th width="10%">숙소명</th>
+            <th width="20%">숙소명</th>
             <th width="10%">제목</th>
             <th width="40%" style="word-break:break-all">내용</th>
             <th width="10%">작성자</th>
@@ -161,7 +161,7 @@ else { %>
 
         <tr align="center">
             <td><%= dto.getNum()%></td>  <!--게시물 번호-->
-            <td align="center"><%= dto.getHotel() %></td> <!-- 숙소명 -->
+            <td align="left"><%= dto.getHotel() %></td> <!-- 숙소명 -->
             
             <td align="left">  <!--제목(+ 하이퍼링크)-->
                 <a href="../revPage/revView.jsp?num=<%= dto.getNum() %>">
@@ -169,7 +169,7 @@ else { %>
             </td>
             
             <!-- <td width="100px" height="100px" style = "word-break: break-all">O</td>  -->
-            <td width="400px" style = "word-break: break-all"><%= dto.getContent() %></td>    <!--내용-->
+            <td width="400px" style = "word-break: break-all; text-align: left"><%= dto.getContent() %></td>    <!--내용-->
             <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
             <td align="center"><%= dto.getScore() %></td>  <!--숙소점수-->
             <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->

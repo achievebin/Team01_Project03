@@ -35,34 +35,34 @@ String changeEmail = request.getParameter("prevEmail");
 		</span>
 	<form name="updateInfoForm" id="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
 			<table id="updateInfoTable">
-				<tr><td>내 회원 정보</td></tr>
+				<tr><td style="text-align: center;" colspan="2"><font size="5">내 회원 정보</font></td></tr>
 				<tr>
-					<td><label for="newId">아이디</label></td>
+					<td style="text-align: right; padding-right: 10px;"><label for="newId">아이디</label></td>
 					<td><input type="text" name="newId" id="newId" value=<%=changeId %> readonly></td>
 				</tr>
 				<tr>
-					<td><label for="newPw">비밀번호</label></td>
-					<td><input type="password" name="newPw" id="newPw" value=<%=changePw %>>
+					<td style="text-align: right; padding-right: 10px;"><label for="newPw">비밀번호</label></td>
+					<td ><input type="password" name="newPw" id="newPw" value=<%=changePw %>>
 					<br><span class="errMsg" id="pwErrMsg"></span></td>
 				</tr>
-				<tr><td>내 개인 정보</td></tr>
+				<tr><td style="text-align: center;" colspan="2"><font size="5">내 개인 정보</font></td></tr>
 				<tr>
-					<td><label for="newName">이름</label></td>
+					<td style="text-align: right; padding-right: 10px;"><label for="newName">이름</label></td>
 					<td><input type="text" name="newName" id="newName" value=<%=changeName %>>
 					<br><span class="errMsg" id="nameErrMsg"></span></td>
 				</tr>
 				<tr>
-					<td><label for="newNickname">닉네임</label></td>
+					<td style="text-align: right; padding-right: 10px;"><label for="newNickname">닉네임</label></td>
 					<td><input type="text" name="newNickname" id="newNickname" value=<%=changeNickname %>>
 					<br><span class="errMsg" id="nicknameErrMsg"></span></td>
 				</tr>
 				<tr>
-					<td><label for="newBirth">생년월일</label></td>
+					<td style="text-align: right; padding-right: 10px;"><label for="newBirth">생년월일</label></td>
 					<td><input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %> required>
 					<br><span class="errMsg" id="birthErrMsg"></span></td>
 				</tr>
 				<tr>
-					<td>성별</td>
+					<td style="text-align: right; padding-right: 10px;">성별</td>
 					<td><% if (changeSex.equals("male")) {%>
 					<input type="radio" name="newSex" value="male" checked>남자
 					<input type="radio" name="newSex" value="female">여자
@@ -80,18 +80,18 @@ String changeEmail = request.getParameter("prevEmail");
 					<br><span class="errMsg" id="sexErrMsg"></span></td>
 				</tr>
 				<tr>
-					<td><label for="newAddressh">주소</label></td>
+					<td style="text-align: right; padding-right: 10px;"><label for="newAddressh">주소</label></td>
 					<td><input type="text" name="newAddress" id="newAddress" value=<%=changeAddress %> onclick="execDaumPostcode()">
 					<br><span class="errMsg" id="addressErrMsg"></span></td>
 				</tr>
 				<tr>
 				
-					<td><label for="newPhone">휴대폰번호</label></td>
+					<td style="text-align: right; padding-right: 10px;"><label for="newPhone">휴대폰번호</label></td>
 					<td><input type="tel" name="newPhone" id="newPhone" value=<%=changePhone %>>
 					<br><span class="errMsg" id="phoneErrMsg"></span></td>
 				</tr>
 				<tr>
-					<td><label for="newEmail">e-mail</label></td>
+					<td style="text-align: right; padding-right: 10px;"><label for="newEmail">e-mail</label></td>
 					<td><input type="email" name="newEmail" id="newEmail" value=<%=changeEmail %>>
 					<br><span class="errMsg" id="emailErrMsg"></span></td>
 				</tr>

@@ -50,42 +50,42 @@ String yourGrade = (String)request.getAttribute("mypageGrade");
 	<input type="hidden" name="prevEmail" value=<%=dto.getEmail() %> readonly>
 	
 	<table id="myPageTable">
-		<tr ><td colspan = '2' ><font size="6">회원 정보</font></td></tr>
+		<tr ><td colspan = '2' style="text-align: center;" ><font size="5">회원 정보</font></td></tr>
 			
 			<tr>
-				<td><label>아이디</label></td>
+				<td style="text-align: right; padding-right: 10px;"><label>아이디</label></td>
 				<td><%=dto.getId() %></td>
 			</tr>
 			
 			
 			
 			<tr>
-				<td><label>이름</label></td>
+				<td style="text-align: right; padding-right: 10px;"><label>이름</label></td>
 				<td><%=dto.getName()%></td>
 			</tr>
 			<tr>
-				<td><label>닉네임</label></td>
+				<td style="text-align: right; padding-right: 10px;"><label>닉네임</label></td>
 				<td><%=dto.getNickname()%></td>
 			</tr>
 			<tr>
-				<td><label>생년월일</label></td>
+				<td style="text-align: right; padding-right: 10px;"><label>생년월일</label></td>
 				<td><%=dto.getBirth()%></td>
 			</tr>
 			<tr>
-				<td><label>성별</label></td>
+				<td style="text-align: right; padding-right: 10px;"><label>성별</label></td>
 				<td><%=dto.getSex()%></td>
 
 			</tr>
 			<tr>
-				<td><label>주소</label></td>
+				<td style="text-align: right; padding-right: 10px;"><label>주소</label></td>
 				<td><%=dto.getAddress()%></td>
 			</tr>
 			<tr>
-				<td><label>휴대폰번호</label></td>
+				<td style="text-align: right; padding-right: 10px;"><label>휴대폰번호</label></td>
 				<td><%=dto.getPhone()%></td>
 			</tr>
 			<tr>
-				<td><label>e-mail</label></td>
+				<td style="text-align: right; padding-right: 10px;"><label>e-mail</label></td>
 				<td><%=dto.getEmail()%></td>
 			</tr>
 			<tr align="center">
