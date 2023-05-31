@@ -35,7 +35,7 @@ String changeEmail = request.getParameter("prevEmail");
 		</span>
 	<form name="updateInfoForm" id="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
 			<table id="updateInfoTable">
-				<tr><td><legend>내 회원 정보</legend></td></tr>
+				<tr><td>내 회원 정보</td></tr>
 				<tr>
 					<td><label for="newId">아이디</label></td>
 					<td><input type="text" name="newId" id="newId" value=<%=changeId %> readonly></td>
@@ -45,8 +45,7 @@ String changeEmail = request.getParameter("prevEmail");
 					<td><input type="password" name="newPw" id="newPw" value=<%=changePw %>>
 					<br><span class="errMsg" id="pwErrMsg"></span></td>
 				</tr>
-
-				<tr><td><legend>내 개인 정보</legend></td></tr>
+				<tr><td>내 개인 정보</td></tr>
 				<tr>
 					<td><label for="newName">이름</label></td>
 					<td><input type="text" name="newName" id="newName" value=<%=changeName %>>
