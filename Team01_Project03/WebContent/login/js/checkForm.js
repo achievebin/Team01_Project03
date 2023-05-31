@@ -113,6 +113,7 @@ function findMyPwdFormCheck() {
 function joinFormCheck() {
 		//회원가입에 필요한 요소
 		let id = document.getElementById("id");
+		let idCheck = document.getElementById("isIdChecked");
 		let pw = document.getElementById("pw");
 		let pwCheck = document.getElementById("pwCheck");
 		let name = document.getElementById("name");
@@ -150,6 +151,12 @@ function joinFormCheck() {
 			idErrMsg.innerText = "영어와 숫자로 구성된 5~12자리의 아이디를 입력해주세요.";
 			id.focus();
 			return false;
+			}
+		if (idCheck.value == "unchecked") {
+			idErrMsg.innerText = "아이디 중복 체크를 실행해주세요";
+			}
+		if (idCheck.value == "N") {
+			idErrMsg.innerText = "중복되지 않는 아이디를 입력해주세요";
 			}
 		if (!pw.value) {
 			pwErrMsg.innerText = "비밀번호를 입력해주세요.";
@@ -218,6 +225,13 @@ function joinFormCheck() {
 			}
 		document.joinForm.submit();
 		}
+
+function resetIdCheck() {
+	let idCheckButton = document.getElementById("idCheckButton");
+	
+	document.getElementById("isIdChecked").value = "unchecked";
+	idCheckButton.disabled = false;
+}
 
 //정보수정 폼 유효성 검증	
 function updateInfoFormCheck() {

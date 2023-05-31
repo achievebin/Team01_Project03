@@ -21,9 +21,9 @@
 				<legend>신규 회원 정보</legend>
 				<div>
 					<label for="id">아이디</label>
-					<input type="text" maxlength="12" placeholder="아이디" name="id" id="id">
-					<input type="button" value="중복확인" onclick="isIdDuplicate()">
-					<input type="hidden" name="isIdChecked" value="unchecked">
+					<input type="text" maxlength="12" placeholder="아이디" name="id" id="id" onclick="resetIdCheck()">
+					<input type="button" id="idCheckButton" name="idCheckButton" value="중복확인" onclick="isIdDuplicate()">
+					<input type="hidden" id="isIdChecked" name="isIdChecked" value="unchecked">
 					<span id="idDuplicateResult"></span>
 					<br><span class="errMsg" id="idErrMsg"></span>
 				</div> <!-- 아이디 div -->
@@ -100,11 +100,14 @@
 	        data: { userId: id },
 	        success: function(result) {
 	            if (result.trim() === "0") {
-	                $("#idDuplicateResult").html("사용 불가능한 아이디입니다.");
+	                $("#idDuplicateResult").html("✕");
 	                $("#idDuplicateResult").css('color', 'red');
+	                $("#isIdChecked").val("N");
 	            } else {
-	                $("#idDuplicateResult").html('사용 가능한 아이디입니다.');
+	                $("#idDuplicateResult").html('✓');
 	                $("#idDuplicateResult").css('color', 'green');
+	                $("#idCheckButton").attr('disabled', true);
+	                $("#isIdChecked").val("Y");
 	            }
 	        },
 	        error: function() {
