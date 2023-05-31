@@ -86,7 +86,7 @@ dao.close();  // DB 연결 닫기
 
 <!-- 헤더 --> 
 <%@ include file="../common/header.jsp" %>	
-<div id="wrapper">
+<div class="wrapper">
 	<div id="actList">
 		<%--     <!-- 날짜 입력용 달력 -->
 		<%@ include file = "../actPage/accommodationDate.jsp" %> --%>
@@ -124,23 +124,44 @@ dao.close();  // DB 연결 닫기
 	    </form>
 	    
 	    
-	    <!-- 목록이 없을경우 -->
+	    <!-- 숙소 구분 폼 끝 -->
+	 
+	    <!-- 게시물 목록 테이블(표) -->
+	    <table border="1" style="width:90%" id="actListTable" >
+	        <!-- 각 칼럼의 이름 -->
+	        <tr align="center">
+	            <th width="3%">번호</th>
+	            <th width="10%">숙소명</th>
+	            <th width="8%">숙소종류</th>
+	            <th width="20%">숙소주소</th>
+	            <th width="12%">전화번호</th>
+	            <th width="7%">숙소가격</th>
+	            <th width="5%">남은객실수</th>
+	            <th width="5%">평균 점수</th>
+	            <th width="5%">관심 여부</th>
+	        </tr>
+	        <!-- 목록의 내용 -->
+	        
+	        <!-- 목록이 없을경우 -->
 	<%
 	if (ActLists.isEmpty()) {
 	    // 게시물이 하나도 없을 때
 	%>
-	        <div id="no-acts">
-                    첫 숙소를 등록해주세요!
-            </div>
-            
-    <!-- 목록이 있을경우 -->
+	        <tr>
+	            <td colspan="5" align="center">
+	                첫 숙소를 등록해주세요!
+	            </td>
+	        </tr>
 	<%
-	} else {
+	}
+		else {%>
+	<!-- 목록이 있을경우 -->
+				<%
 	    // 게시물이 있을 때
 	    int virtualNum = 0;  // 화면상에서의 게시물 번호
 	    int countNum = 0;
-	    for (ActDTO dto : ActLists)	{	
-	    	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
+	    for (ActDTO dto : ActLists)	
+	    {	ReserveDAO rdao = new ReserveDAO(application); //예약 정보 가져오기
 	    	int upd = rdao.updateRoom(Integer.parseInt(dto.getActNumber())); // 남은 객실수 업데이트
 	    	
 	    	ScoreDAO sdao = new ScoreDAO(application); // 숙소별 점수 DB연결
@@ -152,73 +173,65 @@ dao.close();  // DB 연결 닫기
 	       
 	        String bmchk = "X";  //북마크 체크용 변수 지정
 	%>		
-	        <div id="act-list-group">
-				  <div id="act-number-div">
-				    <span><%= dto.getActNumber()  %></span><br>
-				  </div>
-				
-				  <div id="act-info1-div">
-	                  <a href="actView.jsp?num=<%= dto.getActNumber() %>">
-	                      <%= dto.getActName() %>
-	                  </a>
-	                  <div id="act-div-type">숙소종류: <%= dto.getActDiv() %></div>
-	                  <div id="act-div-address">숙소주소: <%= dto.getActAddress() %></div>
-	                  <div id="act-div-phone">숙소전화번호: <%= dto.getActPhone() %></div>
-	              </div>
-				
-				  <div id="act-info2-div">
-	                <div id="act-div-left-room">남은객실수: <%= dto.getActLeftRoom() %></div>
-	                <div id="act-div-avg-score">평균점수: <%= sdto.getAvgScore() %></div>
-				    <div id="act-div-price">숙소가격: <%= dto.getActPrice() %></div>
-				    
-				    <!--관심목록 표시용 반복문-->
-				    <% for (ActDTO adt : chkLists) {
-				       if (adt.getActBookMark().equals(dto.getActNumber())) {
-				         bmchk = "O"; // 관심목록 데이터에 해당 숙소가 있을 경우 O로 표시
-				       }
-				    } %>
-				    <!--관심목록 표시-->
-				    <div id="act-bookmark-div" class="<%= bmchk.equals("O") ? "heart" : "" %>">
-					  <% if (bmchk.equals("O")) { %>
-					    ♥
-					  <% } else { %>
-					    ♡
-					  <% } %>
-					</div><br>
-				  </div>
-			</div>
-
-			<%
-			   rdao.close();
-				sdao.close();	
-			    	}
-			}
-			%>
-		    <!-- </table> -->
-		    <!-- 게시물 목록 테이블 끝 -->
-		    
-		    <!-- 페이징 및 글쓰기 버튼 -->
-	    	<!-- 페이징 및 글쓰기 버튼 -->
-			<div id="act-page-group">
-			  <!-- 페이징 처리 -->
-			  <div class="paging">
-			    <% String reqUrl = request.getRequestURI();
-			       if (accsearch == null) {
-			           reqUrl += "?";
-			       } else {
-			           reqUrl += "?accsearch=" + accsearch;
-			       }
-			       reqUrl += "&searchText=act_name";
-			       out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl));
-			    %>
-			  </div>
-			
-			  <!-- 글쓰기 버튼 -->
-			  <div class="write-button">
-			    <button type="button" onclick="location.href='actWrite.jsp';">숙소 등록</button>
-			  </div>
-			</div>
-
+	        <tr align="center">
+	            <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
+	            <td align="left">  <!--제목(+ 하이퍼링크)-->
+	                <a href="actView.jsp?num=<%= dto.getActNumber() %>">
+	                <%= dto.getActName() %></a>
+	            </td>
+	            <td ><%= dto.getActDiv() %></td>          <!--숙소종류-->
+	            <td ><%= dto.getActAddress() %></td>          <!--숙소주소-->
+	            <td ><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
+	            <td ><%= dto.getActPrice() %></td>  <!--숙소가격-->
+	            <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
+	            <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
+	            
+	            <!--관심목록 표시용 반복문-->
+	            <%for(ActDTO adt : chkLists){
+	            	
+	            	if (adt.getActBookMark().equals(dto.getActNumber())){
+	            		bmchk = "O"; // 관심목록 데이터에 해당 숙소가 있을경우 O로 표시
+	            		
+	            	}%> <% }; %>
+	            <!--관심목록 표시-->	
+				<td><%=bmchk %></td>
+	           
+	        </tr>
+	<%
+	   rdao.close();
+		sdao.close();	
+	    	}
+	}
+	%>
+	    </table>
+	    <!-- 게시물 목록 테이블 끝 -->
+	    
+	    <!-- 페이징 및 글쓰기 버튼 -->
+	    <table border="1" style="width:90%">
+	        <tr align="center">
+	            <!--페이징 처리-->
+	            <td  align="center" style="width:90%">
+	                <%
+				    String reqUrl = request.getRequestURI(); // 현재 요청의 URI를 가져옴
+				    if (accsearch == null) { // accsearch가 null인 경우
+				        reqUrl += "?"; // reqUrl에 ?를 추가
+				    } else { // accsearch가 null이 아닌 경우
+				        reqUrl += "?accsearch=" + accsearch; // reqUrl에 ?accsearch=값을 추가
+				    }
+				    reqUrl += "&searchText=act_name"; // reqUrl에 &searchText=act_name을 추가
+				    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
+					%>
+	            </td>
+	            
+	            
+	             <!--글쓰기 버튼-->
+	        
+	            <td align="right" style="width:10%">
+	            	<button type="button" onclick="location.href='actWrite.jsp';">숙소 등록
+	                </button>
+	            </td>
+	        </tr>
+	    </table>
 	</div>
 </div>
     <!-- 페이징 및 글쓰기 버튼 끝 -->

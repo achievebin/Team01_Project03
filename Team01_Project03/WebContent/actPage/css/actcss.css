@@ -2,119 +2,14 @@
 
 
 /* actList 페이지 전체설정  */
+#actList{width:1600px; height: 600px; margin:0 auto;left: 80px; top:50px; position: relative;}
 
-/* h2 설정 */
-h2 {
-  margin: 0 auto;
-  margin-left: 30px;
-}
+/* actList 테이블 테두리설정  */
+#actListTable th{border:1px solid black; padding: 10px}
 
-/* from 설정 */
-form {
-  margin: 0 auto;
-  margin-left: 30px;
-  font-size: 20px;
-}
+#actListTable tr{border:1px solid #e0e0e0; padding: 10px}
 
-/* act-list-group영역 설정 */
-#act-list-group {
-  overflow: hidden;
-  border: 1px solid black;
-  border-bottom: none;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  height: 300px;
-  width: 90%;
-  margin: 0 auto;
-  margin-left: 30px;
-  background-color: #FCFCF5;
-  border-color: #F5F5DC; 
-}
-
-#act-list-group #act-name {
-  cursor: pointer;/* 커서를 가리킬 때 포인터로 변경 */
-  display: block;/* 해당 요소를 블록 수준 요소로 설정하여 가로폭을 최대한 차지 */
-}
-
-#act-list-group #act-name:hover {
-  text-decoration: underline;/* 해당 요소에 마우스를 올렸을 때 텍스트에 밑줄을 추가 */
-}
-
-/* act-number-div 설정 */
-#act-number-div {
-  width: 15%;
-}
-
-
-
-/* act-info1-div 설정 */
-#act-info1-div {
-  width: 30%;	
-  font-size: 20px; 
-  font-weight: bold;
-  text-align: left;
-  text-decoration: none;
-}
-
-#act-info1-div a {
-  font-size: 32px; 
-  font-weight: bold;
-  text-decoration: none;
-}
-
-
-/* act-info2-div 전체 설정 */
-#act-info2-div {
-  width: 20%;
-  text-align: left;
-  font-size: 20px;
-  margin-top: 40px;
-}
-
-/* 관심목록 ♡ 설정 */
-#act-bookmark-div {
-  font-size: 35px;
-  color: black; /* 기본적으로 검은색으로 설정합니다. */
-  text-align: right;
-  margin-top: 100px;
-}
-
-#act-bookmark-div.heart {
-  color: pink; /* ♥일 때는 핑크색으로 설정합니다. */
-}
-
-
-/* 페이징, 글쓰기 버튼 영역 */
-#act-page-group {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid black;
-  padding: 10px;
-  flex-wrap: wrap;
-  height: 50px; 
-  width: 90%; 
-  margin: 0 auto; 
-  margin-left: 30px;
-  background-color: #f7f7f7;
-  border-color: #e0e0e0;
-}
-
-/* 페이징 설정 */
-#act-page-group .paging {
-	font-size: 22px; 
-    text-align: center;
-    width: 90%;
-}
-
-/* 글쓰기 버튼 설정 */
-#act-page-group .write-button {
-    font-size: 18px; 
-    text-align: right;
-    width: 10%;
-}
-
+#actListTable td{border:1px solid #e0e0e0; padding: 10px}
 /* actList 테이블 테두리설정 끝  */
 
 
@@ -151,6 +46,5 @@ form {
 #actEditTable tr{border:1px solid black; padding: 10px}
 
 #actEditTable td{border:1px solid #e0e0e0; padding: 10px}
-
 
 
