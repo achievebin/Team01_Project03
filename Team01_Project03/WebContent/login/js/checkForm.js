@@ -154,9 +154,10 @@ function joinFormCheck() {
 			}
 		if (idCheck.value == "unchecked") {
 			idErrMsg.innerText = "아이디 중복 체크를 실행해주세요";
-			}
-		if (idCheck.value == "N") {
+			return false;
+			} else if (idCheck.value == "N") {
 			idErrMsg.innerText = "중복되지 않는 아이디를 입력해주세요";
+			return false;
 			}
 		if (!pw.value) {
 			pwErrMsg.innerText = "비밀번호를 입력해주세요.";
@@ -226,6 +227,7 @@ function joinFormCheck() {
 		document.joinForm.submit();
 		}
 
+//아이디 폼 클릭시 중복확인 값 리셋
 function resetIdCheck() {
 	let idCheckButton = document.getElementById("idCheckButton");
 	
