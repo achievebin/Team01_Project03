@@ -113,82 +113,82 @@ window.onload = function() {
 <body>
 <!-- 헤더 적용 -->
 <jsp:include page="/common/header.jsp" />
-
-<!-- resWrite div 시작 -->
-<div id="resWrite">
-<%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
-<!-- 숙소명 + 예약 출력 -->
-<h2><%=actname%> 예약</h2>
-        
-        <!-- 예약 정보 입력 폼 -->
-<form name="ReserverFrm" action="./reserveProcess.jsp" method="post" method="post"
-	onsubmit="return validateForm(this);">
-    <h2>예약자 정보</h2>
-    <table border="1" style="width:50%" id="resWriteTable">
-
-        <tr>
-            <td>예약자 성함</td>
-            <td>
-                <input type="text" name="reserv_name" style="width: 90%;" id="reserv_name" />
-            </td>
-            
-            <td>예약자 휴대번호</td>          
-            <td>
-                <input type="text" name="reserv_phone" style="width: 90%;" id="reserv_phone" />
-            </td>
-            </tr>
-         <tr>
-         <td>
-		<label>체크인 날짜</label>
+	<div class="wrapper">
+		<!-- resWrite div 시작 -->
+		<div id="resWrite">
+		<%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
+		<!-- 숙소명 + 예약 출력 -->
+		<h2><%=actname%> 예약</h2>
+		        
+		        <!-- 예약 정보 입력 폼 -->
+		<form name="ReserverFrm" action="./reserveProcess.jsp" method="post" method="post"
+			onsubmit="return validateForm(this);">
+		    <h2>예약자 정보</h2>
+		    <table border="1" style="width:50%" id="resWriteTable">
 		
-		</td>
-		<td><input type="date" name="chk_in" id="chk_in" required></td>
-		<td>
-		<label>체크아웃 날짜</label>
+		        <tr>
+		            <td>예약자 성함</td>
+		            <td>
+		                <input type="text" name="reserv_name" style="width: 90%;" id="reserv_name" />
+		            </td>
+		            
+		            <td>예약자 휴대번호</td>          
+		            <td>
+		                <input type="text" name="reserv_phone" style="width: 90%;" id="reserv_phone" />
+		            </td>
+		            </tr>
+		         <tr>
+		         <td>
+				<label>체크인 날짜</label>
+				
+				</td>
+				<td><input type="date" name="chk_in" id="chk_in" required></td>
+				<td>
+				<label>체크아웃 날짜</label>
+				
+				</td>
+				<td><input type="date" name="chk_out" id="chk_out" required></td>
+		            
+		        </tr>
+		        </table>
+		        <hr width="50%" align="left">
 		
-		</td>
-		<td><input type="date" name="chk_out" id="chk_out" required></td>
-            
-        </tr>
-        </table>
-        <hr width="50%" align="left">
-
-	<h2>총 금액</h2>
-    <table border="1" style="width:50%">
-        <tr>
-            <td width="15%">구매 총액</td>
-            
-            <td>
-            <input type="hidden" name="reserv_price" value=<%=act_price %>/>
-            <input type="hidden" name="reserv_hotel" value=<%=actname%>/>
-            <input type="hidden" name="num" value=<%=num%>/>
-                <%= act_price %></td>
-
-            
-        </tr>
-
-        </table>
-        <hr width="50%" align="left">
-
-        <h2>결제수단 선택</h2>
-            <select name="reserv_purchase" onchange="selectBoxChange(this.value);">
-                <option value="신용카드">신용카드</option>
-                <option value="무통장입금">무통장입금</option>
-                <option value="간편결제">간편결제</option>   
-            </select><br />
-        <hr width="50%" align="left">
-                
-            <input type="checkbox" name="intera" value="terms_a" />약관A
-            <input type="checkbox" name="interb" value="terms_b" />약관B
-            
-            <input type="submit" value="예약하기">
-       
-        </form> 
-        <!-- 예약 정보 입력 폼 끝 -->
-
-</div>
-<!-- resWrite div 끝 -->
-
+			<h2>총 금액</h2>
+		    <table border="1" style="width:50%">
+		        <tr>
+		            <td width="15%">구매 총액</td>
+		            
+		            <td>
+		            <input type="hidden" name="reserv_price" value=<%=act_price %>/>
+		            <input type="hidden" name="reserv_hotel" value=<%=actname%>/>
+		            <input type="hidden" name="num" value=<%=num%>/>
+		                <%= act_price %></td>
+		
+		            
+		        </tr>
+		
+		        </table>
+		        <hr width="50%" align="left">
+		
+		        <h2>결제수단 선택</h2>
+		            <select name="reserv_purchase" onchange="selectBoxChange(this.value);">
+		                <option value="신용카드">신용카드</option>
+		                <option value="무통장입금">무통장입금</option>
+		                <option value="간편결제">간편결제</option>   
+		            </select><br />
+		        <hr width="50%" align="left">
+		                
+		            <input type="checkbox" name="intera" value="terms_a" />약관A
+		            <input type="checkbox" name="interb" value="terms_b" />약관B
+		            
+		            <input type="submit" value="예약하기">
+		       
+		        </form> 
+		        <!-- 예약 정보 입력 폼 끝 -->
+		
+		</div>
+		<!-- resWrite div 끝 -->
+	</div>
 </body>
 
 <!-- 푸터 적용 -->
