@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기 처리</title>
+<link href="${pageContext.request.contextPath}/common/css/header.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <%
@@ -35,7 +36,7 @@ if (foundYourPwd != null) {
 	%>
 	<form>
 	<div>회원님의 비밀번호는 <strong>${fn:substring(pw,0,3)}<c:forEach begin="4" end="${fn:length(pw)}">*</c:forEach></strong>입니다.</div>
-	<input type="button" value="로그인하기" onClick="a href='./signIn.jsp'">
+	<input type="button" value="로그인하기" onClick="location.href='${pageContext.request.contextPath}/login/signIn.jsp'">
 	</form>
 	<%
 } else {
@@ -44,7 +45,7 @@ if (foundYourPwd != null) {
 	<form>
 	<div>비밀번호를 찾을 수 없습니다.</div>
 	<input type="button" value="다시 찾기" onClick="history.back()">
-	<input type="button" value="회원가입하기" onClick="a href='./join.jsp'">
+	<input type="button" value="회원가입하기" onClick="location.href='${pageContext.request.contextPath}/login/join.jsp'">
 	</form>
 	<%
 }

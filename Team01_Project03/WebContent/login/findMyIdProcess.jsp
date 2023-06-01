@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기 처리</title>
+<link href="${pageContext.request.contextPath}/common/css/header.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <%
@@ -34,7 +35,8 @@ if (foundYourId != null) {
 	%>
 	<form>
 	<div>회원님의 아이디는 <strong>${fn:substring(id,0,3)}<c:forEach begin="4" end="${fn:length(id)}">*</c:forEach></strong>입니다.</div>
-	<input type="button" value="로그인하기" onClick="a href='./signIn.jsp'">
+	<input type="button" value="로그인하기" onclick="location.href='${pageContext.request.contextPath}/login/signIn.jsp'">
+
 	</form>
 	<%
 } else {
@@ -43,7 +45,8 @@ if (foundYourId != null) {
 	<form>
 	<div>아이디를 찾을 수 없습니다.</div>
 	<input type="button" value="다시 찾기" onClick="history.back()">
-	<input type="button" value="회원가입하기" onClick="a href='./join.jsp'">
+	<input type="button" value="로그인하기" onclick="location.href='${pageContext.request.contextPath}/login/join.jsp'">
+
 	</form>
 	<%
 }

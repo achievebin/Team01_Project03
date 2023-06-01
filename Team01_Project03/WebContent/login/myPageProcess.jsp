@@ -27,7 +27,6 @@ String yourGrade = (String)request.getAttribute("mypageGrade");
 			<h2><%=yourNickname %>님, 환영합니다.</h2>
 			<h3>회원 등급은 <%=yourGrade%>입니다.</h3>
 			<form name="myPageForm" action="./updateInfo.jsp" method="post">
-			
 				<fieldset>
 					<legend>내 회원 정보</legend>
 					<div>
