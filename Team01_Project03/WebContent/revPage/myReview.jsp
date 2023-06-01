@@ -93,117 +93,115 @@ function deletePost() {
 </head>
 <body>
 <!-- 헤더 -->
-<%@ include file="../common/header.jsp" %>
-
-<!-- myReview div 시작 -->	
-<div id="myReview">
-<h2>활동내역 - 내가 쓴 리뷰</h2>
-
-
-  
-
-<!--     검색폼
-    <form method="get">
-    <table border="1" style="width:90%">
-    <tr>
-        <td align="left">
-            <select name="searchField">
-                <option value="rev_title">제목</option>
-                <option value="rev_content">내용</option>
-            </select>
-            <input type="text" name="searchWord" />
-            <input type="submit" value="검색하기" />
-            
-        </td>
-    </tr>
-    </table> 
-
-    </form> -->
-    <!-- 검색 폼 끝 -->
-    
-    <!-- revListTable 시작 -->
-    <table border="1" style="width:90%" class="revListTable" >
-        <!-- 각 칼럼의 이름 -->
-        <tr align="center">
-            <th width="5%">번호</th>
-            <th width="20%">숙소명</th>
-            <th width="10%">제목</th>
-            <th width="40%" style="word-break:break-all">내용</th>
-            <th width="10%">작성자</th>
-            <th width="5%">별점</th>
-            <th width="10%">작성일</th>
-        </tr>
-        <!-- 목록의 내용 -->
-        
-        <!-- 게시물이 없을경우 -->
-<%
-if (ReviewLists.isEmpty()) {
-    // 게시물이 하나도 없을 때
-%>
-        <tr>
-            <td colspan="5" align="center">
-                첫 리뷰를 작성해보세요!
-            </td>
-        </tr>
-<%
-}
-else { %> 
-	<!-- 게시물이 있을경우 목록 출력 -->
-	<%
-    // 게시물이 있을 때
-    int virtualNum = 0;  // 화면상에서의 게시물 번호
-    int countNum = 0;
-    
-    for (ReviewDTO dto : ReviewLists) 
-    	{
-    	
-        // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
-        virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
-        request.setAttribute("num",dto.getNum());
-%>
-
-        <tr align="center">
-            <td><%= dto.getNum()%></td>  <!--게시물 번호-->
-            <td align="left"><%= dto.getHotel() %></td> <!-- 숙소명 -->
-            
-            <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="../revPage/revView.jsp?num=<%= dto.getNum() %>">
-                <%= dto.getTitle() %></a> <!-- 리뷰제목 -->
-            </td>
-            
-            <!-- <td width="100px" height="100px" style = "word-break: break-all">O</td>  -->
-            <td width="400px" style = "word-break: break-all; text-align: left"><%= dto.getContent() %></td>    <!--내용-->
-            <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
-            <td align="center"><%= dto.getScore() %></td>  <!--숙소점수-->
-            <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
-
-        </tr>
-
-
-
-<%
-    	
-    	}
-	}
-%>
-
-    </table>
-    <!-- revListTable 끝 -->
-                    <!--목록 하단의 [글쓰기] 버튼-->
-    <table border="1" style="width:90%">
-        <tr align="center">
-            <!--페이징 처리-->
-            <td>
-                <%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>  
-            </td>
-
-        </tr>
-    </table>
-    <!-- 게시물 목록 끝 -->
-
-</div>
-<!-- myReview div 끝 -->	
+<%@ include file="../common/header.jsp" %>	
+	<div class="wrapper">	
+		<div id="myReview">
+		<h2>활동내역 - 내가 쓴 리뷰</h2>
+		
+		
+		  
+		
+		<!--     검색폼
+		    <form method="get">
+		    <table border="1" style="width:90%">
+		    <tr>
+		        <td align="left">
+		            <select name="searchField">
+		                <option value="rev_title">제목</option>
+		                <option value="rev_content">내용</option>
+		            </select>
+		            <input type="text" name="searchWord" />
+		            <input type="submit" value="검색하기" />
+		            
+		        </td>
+		    </tr>
+		    </table> 
+		
+		    </form> -->
+		    <!-- 검색 폼 끝 -->
+		    
+		    <!-- 게시물 목록 테이블(표) -->
+		    <table border="1" style="width:90%" class="revListTable" >
+		        <!-- 각 칼럼의 이름 -->
+		        <tr align="center">
+		            <th width="5%">번호</th>
+		            <th width="20%">숙소명</th>
+		            <th width="10%">제목</th>
+		            <th width="40%" style="word-break:break-all">내용</th>
+		            <th width="10%">작성자</th>
+		            <th width="5%">별점</th>
+		            <th width="10%">작성일</th>
+		        </tr>
+		        <!-- 목록의 내용 -->
+		        
+		        <!-- 게시물이 없을경우 -->
+		<%
+		if (ReviewLists.isEmpty()) {
+		    // 게시물이 하나도 없을 때
+		%>
+		        <tr>
+		            <td colspan="5" align="center">
+		                첫 리뷰를 작성해보세요!
+		            </td>
+		        </tr>
+		<%
+		}
+		else { %> 
+			<!-- 게시물이 있을경우 목록 출력 -->
+			<%
+		    // 게시물이 있을 때
+		    int virtualNum = 0;  // 화면상에서의 게시물 번호
+		    int countNum = 0;
+		    
+		    for (ReviewDTO dto : ReviewLists) 
+		    	{
+		    	
+		        // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
+		        virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
+		        request.setAttribute("num",dto.getNum());
+		%>
+		
+		        <tr align="center">
+		            <td><%= dto.getNum()%></td>  <!--게시물 번호-->
+		            <td align="left"><%= dto.getHotel() %></td> <!-- 숙소명 -->
+		            
+		            <td align="left">  <!--제목(+ 하이퍼링크)-->
+		                <a href="../revPage/revView.jsp?num=<%= dto.getNum() %>">
+		                <%= dto.getTitle() %></a> <!-- 리뷰제목 -->
+		            </td>
+		            
+		            <!-- <td width="100px" height="100px" style = "word-break: break-all">O</td>  -->
+		            <td width="400px" style = "word-break: break-all; text-align: left"><%= dto.getContent() %></td>    <!--내용-->
+		            <td align="center"><%= dto.getId() %></td>          <!--작성자 아이디-->
+		            <td align="center"><%= dto.getScore() %></td>  <!--숙소점수-->
+		            <td align="center"><%= dto.getPostdate() %></td>    <!--작성일-->
+		
+		        </tr>
+		
+		
+		
+		<%
+		    	
+		    	}
+			}
+		%>
+		
+		    </table>
+		                    <!--목록 하단의 [글쓰기] 버튼-->
+		    <table border="1" style="width:90%">
+		        <tr align="center">
+		            <!--페이징 처리-->
+		            <td>
+		                <%= BoardPage.pagingStr(totalCount, pageSize,
+		                       blockPage, pageNum, request.getRequestURI()) %>  
+		            </td>
+		
+		        </tr>
+		    </table>
+		    <!-- 게시물 목록 끝 -->
+		
+		</div>
+	</div>
 </body>
 
 <!-- 푸터 적용 -->

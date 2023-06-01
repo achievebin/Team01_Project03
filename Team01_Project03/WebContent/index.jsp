@@ -7,7 +7,7 @@
 
 
 <title>첫 화면</title>
-<link href="./common/css/index.css" rel="stylesheet" type="text/css">
+<link href="./common/css/tindex.css" rel="stylesheet" type="text/css">
 </head>
 <jsp:include page="./common/header.jsp" />
 <body>

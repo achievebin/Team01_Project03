@@ -46,115 +46,109 @@ function validateForm(form) {
 <!-- 헤더 적용 -->
 <%@ include file="../common/header.jsp" %>
 
-
-<%
-// DAO를 생성해 DB에 연결
-ReviewDAO dao = new ReviewDAO(application);
-ActDTO adt = new ActDTO(); //숙소dto
-String actname = (String)session.getAttribute("actname");
-String actnumber = (String)session.getAttribute("actnumber");
-
-
-// 사용자가 입력한 검색 조건을 Map에 저장
-Map<String, Object> param = new HashMap<String, Object>();
-String searchField = request.getParameter("searchField");
-String searchWord = request.getParameter("searchword");
-
-String actnum = (String)request.getAttribute("actnumber"); // 숙소번호 변수지정
-param.put("actnumber", actnum); //map에 숙소번호 입력
-if (searchWord != null) {
-    param.put("searchField", searchField);
-    param.put("searchword", searchWord);
-}
-
-int totalCount = dao.selectCount(param);  // 게시물 수 확인
-
-/*** 페이지 처리 start ***/
-// 전체 페이지 수 계산
-int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
-int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
-int totalPage = (int)Math.ceil((double)totalCount / pageSize); // 전체 페이지 수
-
-// 현재 페이지 확인
-int pageNum = 1;  // 기본값
-String pageTemp = request.getParameter("pageNum");
-if (pageTemp != null && !pageTemp.equals(""))
-    pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
-
-// 목록에 출력할 게시물 범위 계산
-int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
-int end = pageNum * pageSize; // 마지막 게시물 번호
-param.put("start", start);
-param.put("end", end);
-/*** 페이지 처리 end ***/
-
-List<ReviewDTO> ReviewLists = dao.selectListPage(param);  // 게시물 목록 받기
-
-dao.close();  // DB 연결 닫기
-
-
-%>
-
-<!-- revWrite div 시작 -->
-<div id="revWrite">
-<h2>리뷰 쓰기</h2>
- <!-- 리뷰 입력 폼 시작 -->
-<form name="ReviewwriteFrm" method="post" action="reviewWriteProcess.jsp"
-      onsubmit="return validateForm(this);">
-      
-      <!-- revWriteTable 시작 -->
-    <table border="1" style="width:90%" id="revWriteTable">
-        <tr>
-        <!-- 리뷰 제목 -->
-            <td>제목</td>
-            <td>
-                <input type="text" name="rev_title" style="width: 90%;" />
-            </td>
-        </tr>
-        <tr>
-         <!-- 리뷰 내용 -->
-            <td>내용</td>
-            <td>
-                <textarea name="rev_content" style="width: 90%; height: 100px;"></textarea>
-            </td>
-        </tr>
-        <tr> 
-         <!-- 리뷰 점수 -->
-        	<td>별점</td>
-        	<td>
-        		<input type="radio" name="rev_score" value=1 />1
-        		<input type="radio" name="rev_score" value=2 />2
-        		<input type="radio" name="rev_score" value=3 />3
-        		<input type="radio" name="rev_score" value=4 />4
-        		<input type="radio" name="rev_score" value=5 checked="checked" />5
-        	</td>
-        </tr>
-        <tr>
-         <!-- 버튼 목록 -->
-            <td colspan="2" align="center">
-                <button type="submit">작성 완료</button>
-                <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='../actPage/actList.jsp';">
-                    목록 보기</button>
-            </td>
-        </tr>
-        <tr>
-         <!-- 숙소명 출력 -->
-            <td>숙소명</td>
-            <td>
-            	<%= actname %>
-               <input type="hidden" name="rev_hotel" value= <%= actname %> style="width: 90%;" />
-               <input type="hidden" name="act_number" value= <%= actnumber %> style="width: 90%;" />
-            </td>
-        </tr>
-    </table>
-    <!-- revWriteTable 끝 -->
-</form>
- <!-- 리뷰 입력 폼 끝 -->
-
-</div>
-<!-- revWrite div 끝 -->
-
+<div class="wrapper">
+	<%
+	// DAO를 생성해 DB에 연결
+	ReviewDAO dao = new ReviewDAO(application);
+	ActDTO adt = new ActDTO(); //숙소dto
+	String actname = (String)session.getAttribute("actname");
+	String actnumber = (String)session.getAttribute("actnumber");
+	
+	
+	// 사용자가 입력한 검색 조건을 Map에 저장
+	Map<String, Object> param = new HashMap<String, Object>();
+	String searchField = request.getParameter("searchField");
+	String searchWord = request.getParameter("searchword");
+	
+	String actnum = (String)request.getAttribute("actnumber"); // 숙소번호 변수지정
+	param.put("actnumber", actnum); //map에 숙소번호 입력
+	if (searchWord != null) {
+	    param.put("searchField", searchField);
+	    param.put("searchword", searchWord);
+	}
+	
+	int totalCount = dao.selectCount(param);  // 게시물 수 확인
+	
+	/*** 페이지 처리 start ***/
+	// 전체 페이지 수 계산
+	int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+	int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
+	int totalPage = (int)Math.ceil((double)totalCount / pageSize); // 전체 페이지 수
+	
+	// 현재 페이지 확인
+	int pageNum = 1;  // 기본값
+	String pageTemp = request.getParameter("pageNum");
+	if (pageTemp != null && !pageTemp.equals(""))
+	    pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
+	
+	// 목록에 출력할 게시물 범위 계산
+	int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
+	int end = pageNum * pageSize; // 마지막 게시물 번호
+	param.put("start", start);
+	param.put("end", end);
+	/*** 페이지 처리 end ***/
+	
+	List<ReviewDTO> ReviewLists = dao.selectListPage(param);  // 게시물 목록 받기
+	
+	dao.close();  // DB 연결 닫기
+	
+	
+	%>
+	
+	<div id="revWrite">
+	<h2>리뷰 쓰기</h2>
+	 <!-- 리뷰 입력 폼 -->
+	<form name="ReviewwriteFrm" method="post" action="reviewWriteProcess.jsp"
+	      onsubmit="return validateForm(this);">
+	    <table border="1" style="width:90%" id="revWriteTable">
+	        <tr>
+	        <!-- 리뷰 제목 -->
+	            <td>제목</td>
+	            <td>
+	                <input type="text" name="rev_title" style="width: 90%;" />
+	            </td>
+	        </tr>
+	        <tr>
+	         <!-- 리뷰 내용 -->
+	            <td>내용</td>
+	            <td>
+	                <textarea name="rev_content" style="width: 90%; height: 100px;"></textarea>
+	            </td>
+	        </tr>
+	        <tr> 
+	         <!-- 리뷰 점수 -->
+	        	<td>별점</td>
+	        	<td>
+	        		<input type="radio" name="rev_score" value=1 />1
+	        		<input type="radio" name="rev_score" value=2 />2
+	        		<input type="radio" name="rev_score" value=3 />3
+	        		<input type="radio" name="rev_score" value=4 />4
+	        		<input type="radio" name="rev_score" value=5 checked="checked" />5
+	        	</td>
+	        </tr>
+	        <tr>
+	         <!-- 버튼 목록 -->
+	            <td colspan="2" align="center">
+	                <button type="submit">작성 완료</button>
+	                <button type="reset">다시 입력</button>
+	                <button type="button" onclick="location.href='../actPage/actList.jsp';">
+	                    목록 보기</button>
+	            </td>
+	        </tr>
+	        <tr>
+	         <!-- 숙소명 출력 -->
+	            <td>숙소명</td>
+	            <td>
+	            	<%= actname %>
+	               <input type="hidden" name="rev_hotel" value= <%= actname %> style="width: 90%;" />
+	               <input type="hidden" name="act_number" value= <%= actnumber %> style="width: 90%;" />
+	            </td>
+	        </tr>
+	    </table>
+	</form>
+	</div>
+	 <!-- 리뷰 입력 끝 -->
+</div> 
 </body>
 
 <!-- 푸터 적용 -->
