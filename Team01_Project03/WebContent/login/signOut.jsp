@@ -15,7 +15,7 @@ session.removeAttribute("UserId");
 session.invalidate();
 
 // 속성 삭제 후 페이지 이동 
-response.sendRedirect("../common/index.jsp");
+response.sendRedirect("../index.jsp");
 %>
 </body>
 </html>
