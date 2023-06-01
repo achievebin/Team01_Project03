@@ -1,0 +1,110 @@
+@charset "UTF-8";
+/* find.css */
+
+/* 메인 영역 */
+.wrapper {
+	margin: auto;
+	max-width: 800px;
+	padding: 20px;
+}
+
+#content {
+	margin-top: 40px;
+}
+
+#content .radio {
+	display: none;
+}
+
+/* 탭 메뉴 버튼 */
+.buttons {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.buttons label {
+	display: inline-block;
+	padding: 10px 20px;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	border-bottom: none;
+	background-color: #f8f8f8;
+}
+
+.buttons label:first-child {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+/* 탭1(아이디 찾기)이 체크되면 아이디 찾기 폼이 나타나고 탭2는 숨겨짐 */
+input[type="radio"]:nth-of-type(1) {display:none;}
+#tab1:checked ~ #findIdTabMenu {
+	display: block;
+}
+
+#tab1:checked ~ #findPwdTabMenu {
+	display: none;
+}
+input[type="radio"]:nth-of-type(2) {display:none;}
+/* 탭2(비밀번호 찾기)이 체크되면 비밀번호 찾기 폼이 나타나고 탭1은 숨겨짐 */
+#tab2:checked ~ #findIdTabMenu {
+	display: none;
+}
+
+#tab2:checked ~ #findPwdTabMenu {
+	display: block;
+}
+
+
+/* 탭1(아이디 찾기)이 체크되면 해당 탭 버튼의 스타일 변경 */
+#tab1:checked ~ .buttons > label:nth-of-type(1) {
+    background-color: white;
+    color: black;
+}
+
+.buttons label:hover {
+	background-color: #eaeaea;
+}
+
+.buttons label:focus {
+	outline: none;
+}
+
+/* 폼 영역 */
+fieldset {
+	margin: 20px 0;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+fieldset label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+fieldset input {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+fieldset input[type="button"] {
+	margin-top: 10px;
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
+}
+
+
+/* 아이디 찾기 폼 */
+#findIdTabMenu {
+	display: block; /* 초기에는 아이디 찾기 폼이 보이도록 설정 */
+}
+
+/* 비밀번호 찾기 폼 */
+#findPwdTabMenu {
+	display: none; /* 초기에는 비밀번호 찾기 폼은 숨김 처리 */
+}

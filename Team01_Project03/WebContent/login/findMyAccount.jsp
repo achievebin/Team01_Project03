@@ -13,9 +13,9 @@
 	<div class="wrapper">
 		<div id="content">
 				<script type="text/javascript" src="./js/checkForm.js"></script>
-			<div id="radio">
-				<input type="radio" name="index" id="tab1" value="findId" checked>
-				<input type="radio" name="index" id="tab2" value="findPw">
+				<div id="radio">
+					<input type="radio" name="index" id="tab1" value="findId" checked>
+					<input type="radio" name="index" id="tab2" value="findPw">
 				<!-- 탭 메뉴 -->
 				<section class="buttons">	
 					<label for="tab1">아이디 찾기</label>
