@@ -59,6 +59,7 @@ if (pageTemp != null && !pageTemp.equals(""))
 // 목록에 출력할 게시물 범위 계산
 int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
 int end = pageNum * pageSize; // 마지막 게시물 번호
+/*** 페이지 처리 end ***/
 
 //체크인 시작 날짜 map에 입력
 param.put("start", start);
@@ -66,7 +67,7 @@ param.put("start", start);
 param.put("end", end);
 //북마크 조회용 아이디 map에 입력
 param.put("bmid",id);
-/*** 페이지 처리 end ***/
+
 
 //dao로 리스트 받기
 List<ActDTO> ActLists = dao.selectListPage(param);  // 게시물 목록 받기
@@ -206,7 +207,8 @@ dao.close();  // DB 연결 닫기
 	}
 	%>
 	    </table>
-	    <!-- 게시물 목록 테이블 끝 -->
+	    <!-- actListTable 끝 -->
+	   
 	    
 	    <!-- 페이징 및 글쓰기 버튼 -->
 	    <table border="1" style="width:90%">
@@ -234,7 +236,7 @@ dao.close();  // DB 연결 닫기
 	            </td>
 	        </tr>
 	    </table>
-	    <!-- actListTable 끝 -->
+	    <!-- 페이징 및 글쓰기 버튼 끝 -->
 	    
 	</div>
 	<!-- actList div 끝 -->

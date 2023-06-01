@@ -8,11 +8,11 @@ public class ScoreDAO extends JDBConnect {
         super(application);
     }
 
-    // 리뷰 스코어 출력
+    //  db에서 review_score테이블의 값을 가져와 ScoreDTO에 입력
     public ScoreDTO scoreView(String num) { 
     	ScoreDTO dto = new ScoreDTO();
         
-        // 쿼리문 준비
+        // 입력한 값을 review_score의 act_number와 비교해 같은 값일경우 가져오기
         String query = "SELECT * FROM review_score WHERE act_number=?" ;
 
         try {
@@ -21,7 +21,7 @@ public class ScoreDAO extends JDBConnect {
             rs = psmt.executeQuery();  // 쿼리 실행 
 
             // 결과 처리
-            if (rs.next()) {
+            if (rs.next()) { //rs가 존재할경우 ScoreDTO에 값 저장
                 dto.setActnum(rs.getInt("act_number")); 
                 dto.setCountAll(rs.getInt("count_all"));
                 dto.setHotel(rs.getString("hotel"));

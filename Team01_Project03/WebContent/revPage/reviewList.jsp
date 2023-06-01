@@ -152,11 +152,11 @@ var myChart = new Chart(chartArea, {
 
 				ticks: {
 
-					suggestedMax: <%=sdto.getCountAll()%>,    // minimum will be 0, unless there is a lower value.
+					suggestedMax: <%=sdto.getCountAll()%>,    // 최대값을 리뷰 총 갯수로 설정
 
-					// OR //
+				
 
-					beginAtZero: true   // minimum value will be 0.
+					beginAtZero: true   // 최저값을 0으로 설정
 
 				}
 
@@ -246,11 +246,11 @@ else { %>
         </tr>
 
 
-<%
+	<%
     	
-    }
-}
-%>
+    		}
+		}
+	%>
 
     </table>
      <!-- revListTable 끝 -->

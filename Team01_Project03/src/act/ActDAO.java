@@ -37,7 +37,7 @@ public class ActDAO extends JDBConnect {
     }
     
 	    
-    // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
+    // actList페이지에 표시할 값을 accommodationtbl에서 가져오기 (페이징 기능 지원).
     public List<ActDTO> selectListPage(Map<String, Object> map) {
         List<ActDTO> bbs = new Vector<ActDTO>();  // 결과(게시물 목록)를 담을 변수
         
@@ -89,16 +89,16 @@ public class ActDAO extends JDBConnect {
             // 쿼리문 실행
             rs = psmt.executeQuery();          
             while (rs.next()) { //rs에 값이 있을경우 해당값을 dto에 저장 
-            	String actnum = rs.getString("act_number");
-            	String actname = rs.getString("act_name");
-            	String actinfo = rs.getString("act_info");
-            	String actadd = rs.getString("act_address");
-            	String actph = rs.getString("act_phone");
-            	int actroom = rs.getInt("act_room");
-            	String actid = rs.getString("act_id");
-            	int actpr = rs.getInt("act_price");
-            	int actle = rs.getInt("act_leftroom");
-            	String actdiv = rs.getString("act_div");
+            	String actnum = rs.getString("act_number");		// 숙소 번호
+            	String actname = rs.getString("act_name");		// 숙소 이름
+            	String actinfo = rs.getString("act_info");		// 숙소 정보
+            	String actadd = rs.getString("act_address");	// 숙소 주소
+            	String actph = rs.getString("act_phone");		// 숙소 전화번호
+            	int actroom = rs.getInt("act_room");			// 숙소 총객실
+            	String actid = rs.getString("act_id");			// 숙소 작성자 아이디
+            	int actpr = rs.getInt("act_price");				// 숙소 가격
+            	int actle = rs.getInt("act_leftroom");			// 숙소 남은객실
+            	String actdiv = rs.getString("act_div");		// 숙소 종류
             	ActDTO dto = new ActDTO();
                 dto.setActNumber(actnum);
                 dto.setActName(actname);
@@ -121,10 +121,11 @@ public class ActDAO extends JDBConnect {
         return bbs;
     }
     
-    // 북마크 체킹
+    // 현재 로그인되있는 아이디의 관심목록을 리스트에 넣기
     public List<ActDTO> bmCheck(Map<String, Object> map) {
         List<ActDTO> bbs = new Vector<ActDTO>();  // 결과(게시물 목록)를 담을 변수
         
+        //현재 로그인되있는 아이디의 관심목록을 가져오는 쿼리문
         String quer = "select act_number from accommodationtbl where "
                 +"act_number in (select act_number from bookmarktbl where bm_id = '" + map.get("bmid")+"')" ;
 
@@ -137,7 +138,7 @@ public class ActDAO extends JDBConnect {
 			/* bmDTO */             
             while (rs.next()) {
             	ActDTO dto = new ActDTO();
-            	String bmAct = rs.getString("act_number");
+            	String bmAct = rs.getString("act_number");	// 숙소 번호
             	
                 // 한 행(게시물 하나)의 데이터를 DTO에 저장
 
@@ -159,12 +160,12 @@ public class ActDAO extends JDBConnect {
     
 
 
-    // 게시글 데이터를 받아 DB에 추가합니다. 
+    // actWrite에서 작성완료를 누를 경우 accommodationtbl에 입력값 추가
     public int insertWrite(ActDTO dto) {
         int result = 0;
         
         try {
-            // INSERT 쿼리문 작성 
+        	// actWrite에서 작성완료를 누를 경우 accommodationtbl에 입력값 추가하는 쿼리문 
             String query = "insert into accommodationtbl(act_number,\n"
             		+ "                             act_name,\n"
             		+ "                             act_address,\n"
@@ -177,19 +178,19 @@ public class ActDAO extends JDBConnect {
                          + " seq_act_num.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  
 
             psmt = con.prepareStatement(query);  // 동적 쿼리 
-            psmt.setString(1, dto.getActName());  
-            psmt.setString(2, dto.getActAddress());
-            psmt.setString(3, dto.getActPhone());  
-            psmt.setInt(4, dto.getActRoom()); 
-            psmt.setString(5, dto.getActInfo()); 
-            psmt.setString(6, dto.getActId());
-            psmt.setInt(7, dto.getActPrice()); 
-            psmt.setInt(8, dto.getActRoom()); 
-            psmt.setString(9, dto.getActDiv());
+            psmt.setString(1, dto.getActName());  	// 숙소 이름
+            psmt.setString(2, dto.getActAddress());	// 숙소 주소
+            psmt.setString(3, dto.getActPhone());  	// 숙소 전화번호
+            psmt.setInt(4, dto.getActRoom()); 		// 숙소 총객실
+            psmt.setString(5, dto.getActInfo()); 	// 숙소 정보
+            psmt.setString(6, dto.getActId());		// 숙소 작성자아이디
+            psmt.setInt(7, dto.getActPrice()); 		// 숙소 가격
+            psmt.setInt(8, dto.getActRoom()); 		// 숙소 남은객실
+            psmt.setString(9, dto.getActDiv());		// 숙소 종류
             result = psmt.executeUpdate(); 
             if (result == 1) {
             	try {
-                    // 쿼리문 템플릿
+                    // 숙소 작성 완료 시 해당숙소의 리뷰점수테이블(review_score) 작성
                     String quer = "insert into review_score"+
                     "(act_number,hotel,rev_avg,count_all,count5,count4,count3,count2,count1)" +
                     "values(seq_act_num.CURRVAL,?,0,0,0,0,0,0,0)"; 
@@ -218,12 +219,12 @@ public class ActDAO extends JDBConnect {
         return result;
     }
 
-    // 지정한 게시물을 찾아 내용을 반환합니다.
+    // actView에서 출력할 데이터 가져오기
     public ActDTO selectView(String num) { 
     	ActDTO dto = new ActDTO();
     	
         
-        // 쿼리문 준비
+        // 입력값(숙소번호)와 act_number가 같은 데이터 가져오는 쿼리문
         String query = "SELECT *" 
                      + " FROM accommodationtbl" 
                      + " WHERE act_number=?";
@@ -235,16 +236,16 @@ public class ActDAO extends JDBConnect {
 
             // 결과 처리
             if (rs.next()) { //rs에 값이 있을경우 dto에 저장
-                dto.setActNumber(rs.getString(1)); 
-                dto.setActName(rs.getString(2));             
-                dto.setActAddress(rs.getString(3));
-                dto.setActPhone(rs.getString(4));
-                dto.setActRoom(rs.getInt(5));
-                dto.setActInfo(rs.getString(6));
-                dto.setActId(rs.getString(7));
-                dto.setActPrice(rs.getInt(8));
-                dto.setActLeftRoom(rs.getInt(9));
-                dto.setActDiv(rs.getString(10));
+                dto.setActNumber(rs.getString(1)); 	// 숙소 번호
+                dto.setActName(rs.getString(2));    // 숙소 이름
+                dto.setActAddress(rs.getString(3)); // 숙소 주소
+                dto.setActPhone(rs.getString(4));	// 숙소 전화번호
+                dto.setActRoom(rs.getInt(5));		// 숙소 총객실
+                dto.setActInfo(rs.getString(6));	// 숙소 정보
+                dto.setActId(rs.getString(7));		// 숙소 작성자아이디
+                dto.setActPrice(rs.getInt(8));		// 숙소 가격
+                dto.setActLeftRoom(rs.getInt(9));	// 숙소 남은객실
+                dto.setActDiv(rs.getString(10));	// 숙소 종류
             }
         } 
         catch (Exception e) {
@@ -273,7 +274,7 @@ public class ActDAO extends JDBConnect {
 //        }
 //    }
     
-    // 숙소 데이터 수정
+    // edit 페이지에서 수정완료 시 db의 accommodationtbl를 수정
     public int updateEdit(ActDTO dto) { 
         int result = 0;
         
@@ -285,13 +286,13 @@ public class ActDAO extends JDBConnect {
             
             // 쿼리문 완성
             psmt = con.prepareStatement(query);
-            psmt.setString(1, dto.getActName());
-            psmt.setString(2, dto.getActInfo());
-            psmt.setString(3, dto.getActAddress());
-            psmt.setString(4, dto.getActPhone());
-            psmt.setInt(5, dto.getActRoom());
-            psmt.setInt(6, dto.getActPrice());
-            psmt.setString(7, dto.getActNumber());
+            psmt.setString(1, dto.getActName());	// 숙소 이름
+            psmt.setString(2, dto.getActInfo());	// 숙소 정보
+            psmt.setString(3, dto.getActAddress()); // 숙소 주소
+            psmt.setString(4, dto.getActPhone());	// 숙소 전화번호
+            psmt.setInt(5, dto.getActRoom());		// 숙소 총객실
+            psmt.setInt(6, dto.getActPrice());		// 숙소 가격
+            psmt.setString(7, dto.getActNumber());	// 숙소 번호
             // 쿼리문 실행 
             result = psmt.executeUpdate();
 
@@ -310,13 +311,13 @@ public class ActDAO extends JDBConnect {
         int result = 0;
         
     	try {
-            // 쿼리문 템플릿
+            // 리뷰테이블의 숙소명 수정하는 쿼리문
             String quer = "update reviewtbl SET rev_hotel = ?"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(quer); 
             
-            psmt.setString(1, dto.getActName()); 
+            psmt.setString(1, dto.getActName()); // 숙소 이름
 
             // 쿼리문 실행
             result = psmt.executeUpdate(); 

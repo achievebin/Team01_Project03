@@ -4,6 +4,7 @@
 <%@ page import="reserve.ReserveDAO"%>
 <%@ page import="reserve.ReserveDTO"%>
 <%@ page import="act.ActDTO"%>
+<%@ page import="utils.Page"%>
 <%@ page import="utils.BoardPage"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.Statement"%>
@@ -36,7 +37,7 @@ Map<String, Object> param = new HashMap<String, Object>();
 
 //검색 목록
 String searchField = request.getParameter("searchField"); 
-
+String accsearch = request.getParameter("accsearch");
 //아이디를 map에 입력
 String searchWord = (String)session.getAttribute("signInId");
 param.put("actnumber", searchWord);
@@ -45,23 +46,25 @@ if (searchWord != null) {
     param.put("resid", searchWord);
 }
 
-int totalCount = dao.selectCount(param);  // 게시물 수 확인
+int totalCount = dao.myselectCount(param);  // 게시물 수 확인
 
 /*** 페이지 처리 start ***/
-// 전체 페이지 수 계산
+//전체 페이지 수 계산
 int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
 int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
 int totalPage = (int)Math.ceil((double)totalCount / pageSize); // 전체 페이지 수
 
-// 현재 페이지 확인
+//현재 페이지 확인
 int pageNum = 1;  // 기본값
 String pageTemp = request.getParameter("pageNum");
 if (pageTemp != null && !pageTemp.equals(""))
-    pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
+ pageNum = Integer.parseInt(pageTemp); // 요청받은 페이지로 수정
 
-// 목록에 출력할 게시물 범위 계산
-int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
+//목록에 출력할 게시물 범위 계산
+int start = (pageNum - 1) * pageSize;  // 첫 게시물 번호
 int end = pageNum * pageSize; // 마지막 게시물 번호
+/*** 페이지 처리 end ***/
+
 param.put("start", start);
 param.put("end", end);
 /*** 페이지 처리 end ***/
@@ -189,16 +192,33 @@ function addComma(num) {
 		%>
 		
 		    </table>
-		            <!--페이징 버튼-->
-		    <table border="1" style="width:90%" >
-		        <tr align="center">
-		            <!--페이징 처리-->
-		            <td>
-		                <%= BoardPage.pagingStr(totalCount, pageSize,
-		                       blockPage, pageNum, request.getRequestURI()) %>  
-		            </td>
-		        </tr>
-		    </table>
+	    <!-- 페이징 및 글쓰기 버튼 -->
+	    <table border="1" style="width:90%">
+	        <tr align="center">
+	            <!--페이징 처리-->
+	            <td  align="center" style="width:90%">
+	                <%
+				    String reqUrl = request.getRequestURI(); // 현재 요청의 URI를 가져옴
+				    if (accsearch == null) { // accsearch가 null인 경우
+				        reqUrl += "?"; // reqUrl에 ?를 추가
+				    } else { // accsearch가 null이 아닌 경우
+				        reqUrl += "?accsearch=" + accsearch; // reqUrl에 ?accsearch=값을 추가
+				    }
+				    reqUrl += "&searchText=act_name"; // reqUrl에 &searchText=act_name을 추가
+				    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
+					%>
+	            </td>
+	            
+	            
+	             <!--글쓰기 버튼-->
+	        
+	            <td align="right" style="width:10%">
+	            	<button type="button" onclick="location.href='actWrite.jsp';">숙소 등록
+	                </button>
+	            </td>
+	        </tr>
+	    </table>
+	    <!-- 페이징 및 글쓰기 버튼 끝 -->
 		 </div>
 	     <!-- 게시물 목록 테이블(표) 끝 -->
 	</div>     

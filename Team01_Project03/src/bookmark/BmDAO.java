@@ -15,19 +15,19 @@ public class BmDAO extends JDBConnect {
     }
 
     
- // 북마크 등록
+ // actView 페이지에서 관심목록에 추가 버튼을 누를경우 db의 bookmarktbl에 값 입력
     public int addBookmark(BmDTO dto) { 
         int result = 0;
     	try {
-            // 쿼리문 템플릿
+    		// actView 페이지에서 관심목록에 추가 버튼을 누를경우 db의 bookmarktbl에 값 입력하는 쿼리문
             String quer = "insert into bookmarktbl"+
             "(bm_number,bm_id,act_number)" +
             "values(seq_bm_num.nextVAL,?,?)"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(quer); 
-            psmt.setString(1, dto.getBmId()); 
-            psmt.setString(2, dto.getActNumber()); 
+            psmt.setString(1, dto.getBmId()); 		// 현재 로그인되있는 아이디
+            psmt.setString(2, dto.getActNumber()); 	// 숙소 번호
 
             // 쿼리문 실행
             result = psmt.executeUpdate(); 
@@ -40,17 +40,17 @@ public class BmDAO extends JDBConnect {
         return result; // 결과 반환
     }
     
-    // 북마크 삭제
+ // actView 페이지에서 관심목록에 제거 버튼을 누를경우 db의 bookmarktbl에서 해당 값 삭제
     public int delBookmark(BmDTO dto) { 
         int result = 0;
     	try {
-            // 쿼리문 템플릿
+    		// actView 페이지에서 관심목록에 제거 버튼을 누를경우 db의 bookmarktbl에서 해당 값 삭제하는 쿼리문
             String quer = "delete from bookmarktbl where act_number =? and bm_id =?"; 
 
             // 쿼리문 완성
             psmt = con.prepareStatement(quer); 
-            psmt.setString(1, dto.getActNumber());
-            psmt.setString(2, dto.getBmId()); 
+            psmt.setString(1, dto.getActNumber());	// 숙소 번호
+            psmt.setString(2, dto.getBmId()); 		// 현재 로그인되있는 아이디
             
            
              

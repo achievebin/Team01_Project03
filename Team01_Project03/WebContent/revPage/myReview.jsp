@@ -4,7 +4,7 @@
 <%@ page import="review.ReviewDAO"%>
 <%@ page import="review.ReviewDTO"%>
 <%@ page import="act.ActDTO"%>
-<%@ page import="utils.BoardPage"%>
+<%@ page import="utils.Page"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.Statement"%>
 <%@ page import="java.sql.Connection"%>
@@ -32,7 +32,7 @@ if (searchWord != null) {
     param.put("id", searchWord);
 }
 
-int totalCount = dao.selectCount(param);  // 게시물 수 확인
+int totalCount = dao.myselectCount(param);  // 게시물 수 확인
 
 /*** 페이지 처리 start ***/
 // 전체 페이지 수 계산
@@ -60,7 +60,7 @@ dao.close();  // DB 연결 닫기
 String hotel = (String)request.getAttribute("actnumber");	//숙소번호 변수지정
 request.setAttribute("hotelname", hotel);	//숙소번호 리퀘스트지정
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
-
+String accsearch = request.getParameter("accsearch");
 ScoreDTO sdto = sdao.scoreView(hotel); //점수 가져오기
 sdao.close();	//점수db 연결해제
 %>
@@ -190,18 +190,33 @@ function deletePost() {
 		    </table>
 		    <!-- revListTable 끝 -->
 		    
-		    <!--페이징 버튼-->
-		    <table border="1" style="width:90%">
-		        <tr align="center">
-		            <!--페이징 처리-->
-		            <td>
-		                <%= BoardPage.pagingStr(totalCount, pageSize,
-		                       blockPage, pageNum, request.getRequestURI()) %>  
-		            </td>
-		
-		        </tr>
-		    </table>
-		    <!-- 페이징 버튼 끝 -->
+ <!-- 페이징 및 글쓰기 버튼 -->
+	    <table border="1" style="width:90%">
+	        <tr align="center">
+	            <!--페이징 처리-->
+	            <td  align="center" style="width:90%">
+	                <%
+				    String reqUrl = request.getRequestURI(); // 현재 요청의 URI를 가져옴
+				    if (accsearch == null) { // accsearch가 null인 경우
+				        reqUrl += "?"; // reqUrl에 ?를 추가
+				    } else { // accsearch가 null이 아닌 경우
+				        reqUrl += "?accsearch=" + accsearch; // reqUrl에 ?accsearch=값을 추가
+				    }
+				    reqUrl += "&searchText=act_name"; // reqUrl에 &searchText=act_name을 추가
+				    out.println(Page.pagingStr(totalCount, pageSize, blockPage, pageNum, reqUrl)); // 페이지 링크 출력
+					%>
+	            </td>
+	            
+	            
+	             <!--글쓰기 버튼-->
+	        
+	            <td align="right" style="width:10%">
+	            	<button type="button" onclick="location.href='actWrite.jsp';">숙소 등록
+	                </button>
+	            </td>
+	        </tr>
+	    </table>
+	    <!-- 페이징 및 글쓰기 버튼 끝 -->
 		
 		</div>
 		<!-- myReview div 끝 -->
