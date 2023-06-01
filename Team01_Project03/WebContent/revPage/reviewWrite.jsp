@@ -94,12 +94,13 @@ function validateForm(form) {
 	
 	
 	%>
-	
+	<!-- revWrite div 시작 -->
 	<div id="revWrite">
 	<h2>리뷰 쓰기</h2>
 	 <!-- 리뷰 입력 폼 -->
 	<form name="ReviewwriteFrm" method="post" action="reviewWriteProcess.jsp"
 	      onsubmit="return validateForm(this);">
+	    <!-- revWriteTable 시작 -->
 	    <table border="1" style="width:90%" id="revWriteTable">
 	        <tr>
 	        <!-- 리뷰 제목 -->
@@ -145,9 +146,12 @@ function validateForm(form) {
 	            </td>
 	        </tr>
 	    </table>
+	    <!-- revWriteTable 끝 -->
 	</form>
+	<!-- 리뷰 입력 폼 끝 -->
 	</div>
-	 <!-- 리뷰 입력 끝 -->
+	<!-- revWrite div 끝 -->
+	 
 </div> 
 </body>
 

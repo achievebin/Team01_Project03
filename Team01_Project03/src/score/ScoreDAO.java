@@ -8,7 +8,7 @@ public class ScoreDAO extends JDBConnect {
         super(application);
     }
 
-    // 지정한 게시물을 찾아 내용을 반환합니다.
+    // 리뷰 스코어 출력
     public ScoreDTO scoreView(String num) { 
     	ScoreDTO dto = new ScoreDTO();
         

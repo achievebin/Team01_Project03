@@ -94,7 +94,8 @@ function deletePost() {
 <body>
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
-	<div class="wrapper">	
+	<div class="wrapper">
+		<!-- myReview div 시작 -->		
 		<div id="myReview">
 		<h2>활동내역 - 내가 쓴 리뷰</h2>
 		
@@ -120,7 +121,7 @@ function deletePost() {
 		    </form> -->
 		    <!-- 검색 폼 끝 -->
 		    
-		    <!-- 게시물 목록 테이블(표) -->
+		    <!-- revListTable 시작 -->
 		    <table border="1" style="width:90%" class="revListTable" >
 		        <!-- 각 칼럼의 이름 -->
 		        <tr align="center">
@@ -187,7 +188,9 @@ function deletePost() {
 		%>
 		
 		    </table>
-		                    <!--목록 하단의 [글쓰기] 버튼-->
+		    <!-- revListTable 끝 -->
+		    
+		    <!--페이징 버튼-->
 		    <table border="1" style="width:90%">
 		        <tr align="center">
 		            <!--페이징 처리-->
@@ -198,10 +201,12 @@ function deletePost() {
 		
 		        </tr>
 		    </table>
-		    <!-- 게시물 목록 끝 -->
+		    <!-- 페이징 버튼 끝 -->
 		
 		</div>
+		<!-- myReview div 끝 -->
 	</div>
+	
 </body>
 
 <!-- 푸터 적용 -->

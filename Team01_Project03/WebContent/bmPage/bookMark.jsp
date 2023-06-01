@@ -87,10 +87,11 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 </head>
 
 <body>
-<!-- 헤더 -->
+<!-- 헤더 적용 -->
 
 <%@ include file="../common/header.jsp" %>
 	<div class="wrapper">
+	<!-- bmListTable 시작 -->
 		<div id="bmList">
 		    <h2>관심 목록</h2>
 		    
@@ -163,7 +164,7 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 		            
 		           
 		        </tr>
-		<%
+		<%// DB 연결 닫기  
 		   rdao.close();
 			sdao.close();	
 		
@@ -173,7 +174,7 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 		}
 		%>
 		    </table>
-		    <!-- 게시물 목록 테이블(표) 끝 -->
+		    <!-- bmListTable 끝 -->
 		    
 		    <!-- 페이징 버튼 -->
 		    <%-- <table border="1" style="width:90%">

@@ -2,20 +2,20 @@ package reserve;
 
 public class ReserveDTO {
     // 멤버 변수 선언
-    private int resnumber;
-    private int actnumber;
-    private java.sql.Date resstart;
-    private java.sql.Date resend;
-    private String resname;
-    private String resphone;
-    private String respurchase;
-    private String resprice;
-    private String reshotel;
-    private String resid;
-    private String rescancle;
+    private int resnumber;				// 예약 번호
+    private int actnumber;				// 숙소 번호
+    private java.sql.Date resstart;		// 체크인 날짜
+    private java.sql.Date resend;		// 체크아웃 날짜
+    private String resname;				// 예약자 명
+    private String resphone;			// 예약자 전화번호
+    private String respurchase;			// 예약 지불수단
+    private String resprice;			// 예약 가격
+    private String reshotel;			// 예약 숙소명
+    private String resid;				// 예약자 id
+    private String rescancle;			// 예약 취소여부
     
     
-    
+ // getter setter ---------------------------------------------
 	public String getRescancle() {
 		return rescancle;
 	}
@@ -82,9 +82,7 @@ public class ReserveDTO {
 	public void setResprice(String resprice) {
 		this.resprice = resprice;
 	}
-
-   
-	// 게터/세터
+	// getter setter ---------------------------------------------
     
 
    

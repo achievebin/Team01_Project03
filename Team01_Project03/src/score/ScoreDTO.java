@@ -2,30 +2,23 @@ package score;
 
 public class ScoreDTO {
     // 멤버 변수 선언
-    private int actnum;
-    private int countall;
-    private int count5;
-    private int count4;
-    private int count3;
-    private int count2;
-    private int count1;
-    private int avgscore;
-    private String hotel;
+    private int actnum;		// 숙소 번호
+    private int countall;	// 리뷰 총 갯수
+    private int count5;		// 5점 갯수
+    private int count4;		// 4점 갯수
+    private int count3;		// 3점 갯수
+    private int count2;		// 2점 갯수
+    private int count1;		// 1점 갯수
+    private int avgscore;	// 평균 점수
+    private String hotel;	// 숙소 명
 
-   
-	// 게터/세터
-    
-
+    // getter setter ---------------------------------------------
     public int getAvgScore() {
 		return avgscore;
 	}
 	public void setAvgScore(int avgScore) {
 		this.avgscore = avgScore;
 	}
-
-	
-
-
 	public int getCountAll() {
 		return countall;
 	}
@@ -74,5 +67,6 @@ public class ScoreDTO {
 	public void setActnum(int actnum) {
 		this.actnum = actnum;
 	}
+	// getter setter ---------------------------------------------
 
 }

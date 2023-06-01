@@ -2,12 +2,12 @@ package bookmark;
 
 public class BmDTO {
 	// 멤버 변수 선언
-    private String actNumber;
-    private String bmNumber;
-    private String bmId;
+    private String actNumber; 	// 숙소 번호
+    private String bmNumber;	// 관심 번호
+    private String bmId;		// 유저 ID
 
     
-    
+ // getter setter ---------------------------------------------
 	public String getActNumber() {
 		return actNumber;
 	}
@@ -31,9 +31,7 @@ public class BmDTO {
 	public void setBmNumber(String bmNumber) {
 		this.bmNumber = bmNumber;
 	}
-
-    
-	// 게터/세터
+	// getter setter ---------------------------------------------
    
     
     

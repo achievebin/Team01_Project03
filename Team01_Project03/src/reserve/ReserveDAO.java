@@ -162,7 +162,7 @@ public class ReserveDAO extends JDBConnect {
         return result;
     }
     
-    // 게시글 데이터를 받아 DB업데이트. 
+    // 예약, 예약 취소시 남은객실수 업데이트
     public int updateRoom(int actnumber) {
         int result = 0;
         

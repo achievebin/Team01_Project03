@@ -2,19 +2,19 @@ package review;
 
 public class ReviewDTO {
     // 멤버 변수 선언
-    private String num;
-    private String title;
-    private String content;
-    private String id;
-    private int score;
-	private java.sql.Date postdate;
-    private String visitcount;
-    private int avgScore;
-    private int cntScore;
-    private String hotel;
-    private String actNumber;
+    private String num;					// 리뷰 넘버
+    private String title;				// 리뷰 제목
+    private String content;				// 리뷰 내용
+    private String id;					// 리뷰 작성자 ID
+    private int score;					// 리뷰 점수
+	private java.sql.Date postdate;		// 리뷰 작성 날짜
+    private String visitcount;			// 리뷰 조회수
+    private int avgScore;				// 리뷰 평균점수
+    private int cntScore;				// 리뷰 총 갯수
+    private String hotel;				// 리뷰한 숙소 명
+    private String actNumber;			// 리뷰한 숙소 번호
    
-	// 게터/세터
+    // getter setter ---------------------------------------------
     public String getNum() {
         return num;
     }
@@ -81,5 +81,6 @@ public class ReviewDTO {
 	public void setActNumber(String actNumber) {
 		this.actNumber = actNumber;
 	}
+	// getter setter ---------------------------------------------
 	
 }

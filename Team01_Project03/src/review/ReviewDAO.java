@@ -300,7 +300,7 @@ public class ReviewDAO extends JDBConnect {
         
         return result; // 결과 반환
     }
-    
+    //리뷰 점수 업데이트
     public int scoreUpdate(ReviewDTO dto) {
     
     	int result = 0;
