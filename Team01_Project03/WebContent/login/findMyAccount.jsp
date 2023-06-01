@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- css 정보 추가  -->
-<link href="./css/tfind.css" rel="stylesheet" type="text/css">
+<link href="./css/find.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>아이디·비밀번호 찾기</title>
 </head>
