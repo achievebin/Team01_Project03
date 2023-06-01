@@ -100,107 +100,108 @@ function addComma(num) {
 <body>
 <!-- 헤더 -->
 <jsp:include page="/common/header.jsp" />
-
-<div id="resList">
-   <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
-    <h2>예약 목록</h2>
-
-<!--     검색폼
-    <form method="get">
-    검색 테이블
-    <table border="1" style="width:90%">
-    <tr>
-        <td align="left">
-            <select name="searchField">
-                <option value="rev_title">제목</option>
-                <option value="rev_content">내용</option>
-            </select>
-            <input type="text" name="searchWord" />
-            <input type="submit" value="검색하기" />
-            
-        </td>
-    </tr>
-    </table>
-    </form> -->
-    <!-- 검색테이블 끝 -->
-    
-    <!--페이징 버튼 끝-->
-  
-    <!-- 검색폼 끝 -->
-    
-    <!-- 예약정보 출력 -->
-    <table border="1" style="width:90%" id="resListTable">
-        <!-- 각 칼럼의 이름 -->
-        <tr align="center">
-            <th width="5%">번호</th>
-            <th width="15%">숙소명</th>
-            <th width="10%">체크인</th>
-            <th width="10%">체크아웃</th>
-            <th width="10%">예약 아이디</th>
-            <th width="10%">예약자 명</th>
-            <th width="10%">가격</th>
-            <th width="10%">지불수단</th>
-            <th width="10%">예약여부</th>
-        </tr>
-        <!-- 목록의 내용 -->
-<%
-if (ReserveLists.isEmpty()) {
-    // 게시물이 하나도 없을 때
-%>
-        <tr>
-            <td colspan="5" align="center">
-                예약 정보가 없습니다.
-            </td>
-        </tr>
-<%
-}
-else {
-    // 게시물이 있을 때
-    int virtualNum = 0;  // 화면상에서의 게시물 번호
-    int countNum = 0;
-    
-    for (ReserveDTO dto : ReserveLists)
-    {
-    	
-        // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
-        virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
-        request.setAttribute("num",dto.getResnumber());
-%>
-
-        <tr align="center">
-            <td><%= dto.getResnumber() %></td>  <!--게시물 번호-->
-            <td align="left">  <!--제목(+ 하이퍼링크)-->
-                <a href="reservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
-            </td>	<!-- 숙소명 -->
-            <td ><%= dto.getResstart() %></td>	<!-- 체크인 시작날짜 -->
-			<td ><%= dto.getResend() %></td>	<!-- 체크인 끝날짜 -->
-            <td ><%= dto.getResid() %></td>     <!--작성자 아이디-->
-            <td ><%= dto.getResname() %></td>	<!-- 예약자명 -->
-			<td><%= FormatUtil.addComma(dto.getResprice()) %></td>  <!--숙소가격-->
-            <td ><%= dto.getRespurchase() %></td>    <!--예약 결제-->
-            <td ><%= dto.getRescancle() %></td> <!-- 예약 취소여부 -->
-        </tr>
-		<!-- 예약정보 출력 끝 -->
-
-<%
-    	
-    }
-}
-%>
-
-    </table>
-            <!--페이징 버튼-->
-    <table border="1" style="width:90%" >
-        <tr align="center">
-            <!--페이징 처리-->
-            <td>
-                <%= BoardPage.pagingStr(totalCount, pageSize,
-                       blockPage, pageNum, request.getRequestURI()) %>  
-            </td>
-        </tr>
-    </table>
-    </div>
-     <!-- 게시물 목록 테이블(표) 끝 -->
+	<div class="wrapper">
+		<div id="resList">
+		   <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
+		    <h2>예약 목록</h2>
+		
+		<!--     검색폼
+		    <form method="get">
+		    검색 테이블
+		    <table border="1" style="width:90%">
+		    <tr>
+		        <td align="left">
+		            <select name="searchField">
+		                <option value="rev_title">제목</option>
+		                <option value="rev_content">내용</option>
+		            </select>
+		            <input type="text" name="searchWord" />
+		            <input type="submit" value="검색하기" />
+		            
+		        </td>
+		    </tr>
+		    </table>
+		    </form> -->
+		    <!-- 검색테이블 끝 -->
+		    
+		    <!--페이징 버튼 끝-->
+		  
+		    <!-- 검색폼 끝 -->
+		    
+		    <!-- 예약정보 출력 -->
+		    <table border="1" style="width:90%" id="resListTable">
+		        <!-- 각 칼럼의 이름 -->
+		        <tr align="center">
+		            <th width="5%">번호</th>
+		            <th width="15%">숙소명</th>
+		            <th width="10%">체크인</th>
+		            <th width="10%">체크아웃</th>
+		            <th width="10%">예약 아이디</th>
+		            <th width="10%">예약자 명</th>
+		            <th width="10%">가격</th>
+		            <th width="10%">지불수단</th>
+		            <th width="10%">예약여부</th>
+		        </tr>
+		        <!-- 목록의 내용 -->
+		<%
+		if (ReserveLists.isEmpty()) {
+		    // 게시물이 하나도 없을 때
+		%>
+		        <tr>
+		            <td colspan="5" align="center">
+		                예약 정보가 없습니다.
+		            </td>
+		        </tr>
+		<%
+		}
+		else {
+		    // 게시물이 있을 때
+		    int virtualNum = 0;  // 화면상에서의 게시물 번호
+		    int countNum = 0;
+		    
+		    for (ReserveDTO dto : ReserveLists)
+		    {
+		    	
+		        // virtualNumber = totalCount--;  // 전체 게시물 수에서 시작해 1씩 감소
+		        virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
+		        request.setAttribute("num",dto.getResnumber());
+		%>
+		
+		        <tr align="center">
+		            <td><%= dto.getResnumber() %></td>  <!--게시물 번호-->
+		            <td align="left">  <!--제목(+ 하이퍼링크)-->
+		                <a href="reservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
+		            </td>	<!-- 숙소명 -->
+		            <td ><%= dto.getResstart() %></td>	<!-- 체크인 시작날짜 -->
+					<td ><%= dto.getResend() %></td>	<!-- 체크인 끝날짜 -->
+		            <td ><%= dto.getResid() %></td>     <!--작성자 아이디-->
+		            <td ><%= dto.getResname() %></td>	<!-- 예약자명 -->
+					<td><%= FormatUtil.addComma(dto.getResprice()) %></td>  <!--숙소가격-->
+		            <td ><%= dto.getRespurchase() %></td>    <!--예약 결제-->
+		            <td ><%= dto.getRescancle() %></td> <!-- 예약 취소여부 -->
+		        </tr>
+				<!-- 예약정보 출력 끝 -->
+		
+		<%
+		    	
+		    }
+		}
+		%>
+		
+		    </table>
+		            <!--페이징 버튼-->
+		    <table border="1" style="width:90%" >
+		        <tr align="center">
+		            <!--페이징 처리-->
+		            <td>
+		                <%= BoardPage.pagingStr(totalCount, pageSize,
+		                       blockPage, pageNum, request.getRequestURI()) %>  
+		            </td>
+		        </tr>
+		    </table>
+		 </div>
+	     <!-- 게시물 목록 테이블(표) 끝 -->
+	</div>     
 <script>
 function addComma(num) {
 	  var regexp = /\B(?=(\d{3})+(?!\d))/g;
