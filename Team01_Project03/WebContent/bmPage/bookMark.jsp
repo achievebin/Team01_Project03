@@ -167,9 +167,10 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 		   rdao.close();
 			sdao.close();	
 		
-		    	}
+		    }
 			adao.close();
 			dao.close();
+		}
 		%>
 		    </table>
 		    <!-- 게시물 목록 테이블(표) 끝 -->

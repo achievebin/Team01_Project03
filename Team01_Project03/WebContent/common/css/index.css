@@ -33,16 +33,20 @@
 .sub > .banner > .abanner {
 /* 	float:left; */
 	width: 100%;
-	margin-top: 40px;
-	display: flex; /* Flexbox를 사용하여 요소를 정렬합니다 */
+	margin-top: 20px;
+	display: flex; 
   	justify-content: space-between; /* 요소를 왼쪽과 오른쪽으로 정렬합니다 */
+  	overflow: hidden;
 }
 
 .sub > .banner > .abanner img {
 /* 	height: 30%;
 	width: 40%; */
+	display: block;
 	height: 400px;
-	width: auto;
+	width: 60%;
+	object-fit: contain;
+	margin-right: 20px; /* 오른쪽 여백으로 이미지 간격 조정 */
 }
 
 div.banner > div.abanner > img:first-child {

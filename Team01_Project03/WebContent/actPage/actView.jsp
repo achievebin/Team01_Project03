@@ -7,6 +7,7 @@
 <%@ page import="score.ScoreDTO"%>
 <%@ page import="reserve.ReserveDAO"%>
 <%@ page import="reserve.ReserveDTO"%>
+<%@ page import="utils.FormatUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -169,7 +170,7 @@ function delBookMark() {
             <td><%= sdto.getAvgScore() %></td> 
             <td>숙소가격</td>
             
-            <td><%= dto.getActPrice() %></td> 
+            <td><%= FormatUtil.addComma(dto.getActPrice()) %></td> 
         </tr>
         <tr>
             <td>남은객실</td>

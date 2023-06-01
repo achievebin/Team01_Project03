@@ -13,7 +13,7 @@
 <%@ page import="score.ScoreDTO"%>
 <%@ page import="java.time.LocalDate"%>
 <%@ page import="java.sql.Date, java.io.*, java.util.*, java.text.*" %>
-<%@ page import="utils.FormatUtil" %>
+<%@ page import="utils.FormatUtilStr" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -101,7 +101,6 @@ function addComma(num) {
 <!-- 헤더 -->
 <jsp:include page="/common/header.jsp" />
 	<div class="wrapper">
-		<!-- resList div 시작 -->
 		<div id="resList">
 		   <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
 		    <h2>예약 목록</h2>
@@ -174,10 +173,10 @@ function addComma(num) {
 		                <a href="reservePrint.jsp?num=<%= dto.getResnumber() %>"><%= dto.getReshotel() %></a>
 		            </td>	<!-- 숙소명 -->
 		            <td ><%= dto.getResstart() %></td>	<!-- 체크인 시작날짜 -->
-					<td ><%= dto.getResend() %></td>	<!-- 체크인 끝날짜 -->
+			    <td ><%= dto.getResend() %></td>	<!-- 체크인 끝날짜 -->
 		            <td ><%= dto.getResid() %></td>     <!--작성자 아이디-->
 		            <td ><%= dto.getResname() %></td>	<!-- 예약자명 -->
-					<td><%= FormatUtil.addComma(dto.getResprice()) %></td>  <!--숙소가격-->
+			        <td><%= FormatUtilStr.addComma(dto.getResprice()) %></td><!--숙소가격-->
 		            <td ><%= dto.getRespurchase() %></td>    <!--예약 결제-->
 		            <td ><%= dto.getRescancle() %></td> <!-- 예약 취소여부 -->
 		        </tr>
@@ -201,7 +200,7 @@ function addComma(num) {
 		        </tr>
 		    </table>
 		 </div>
-	     <!-- resList div 끝 -->
+	     <!-- 게시물 목록 테이블(표) 끝 -->
 	</div>     
 <script>
 function addComma(num) {
