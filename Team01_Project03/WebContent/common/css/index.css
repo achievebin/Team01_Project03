@@ -1,18 +1,18 @@
 @charset "UTF-8";
-
+/* 메인 영역 */
 .contents {
 	margin: auto;
     display: block;
 	margin-top: 40px;
 }
-
+/* 메인화면 이미지 */
 .contents > .main > img {
   	margin-top: 20px;	
     width: 60%;
     margin: auto;
     display: block;
 }
-
+/* 서브 영역 */
 .sub {
   display: flex;
   justify-content: center;
@@ -24,7 +24,7 @@
 .sub > .banner {
 	width: 60%;
 	margin: 912 px;
-    display: block;
+    display: flex;
 /* 	margin-top: 40px; */
 	justify-content: center;
 	float:left;

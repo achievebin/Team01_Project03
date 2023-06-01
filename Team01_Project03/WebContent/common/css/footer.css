@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* 온점 제거 */
 li {
     list-style: none;
 }
@@ -66,12 +67,14 @@ footer .menu li a {
   display: block;
 }
 
+/*  */
 #goto-top > #maerial-icons {
   width: 42px;
   height: 42px;
 	  z-index: 8;
 }
 
+/* 위로가기 버튼 */
 #to-top a {
   display: block;
   position: fixed;
