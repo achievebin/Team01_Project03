@@ -21,7 +21,7 @@ String changeEmail = request.getParameter("prevEmail");
 <html>
 <head>
 <!-- css 연결 -->
-<link href="./css/myPage.css" rel="stylesheet" type="text/css">
+<link href="./css/myPageB.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>회원정보수정</title>
 </head>

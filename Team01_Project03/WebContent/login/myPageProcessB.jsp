@@ -30,7 +30,7 @@ String yourGrade = (String)request.getAttribute("mypageGrade");
 <html>
 <head>
 <!-- css 연결 -->
-<link href="./css/myPage.css" rel="stylesheet" type="text/css">
+<link href="./css/myPageB.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>내 페이지</title>
 </head>
