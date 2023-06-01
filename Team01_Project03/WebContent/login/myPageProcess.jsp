@@ -18,6 +18,7 @@ String yourGrade = (String)request.getAttribute("mypageGrade");
 <head>
 <meta charset="UTF-8">
 <title>내 페이지</title>
+<link href="./css/myPage.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>

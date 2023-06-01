@@ -33,37 +33,37 @@ String changeEmail = request.getParameter("prevEmail");
 		</span>
 	<div id="formbox">
 		<form name="updateInfoForm" id="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
-				<fieldset>
+				<fieldset class="fs" id="idpwfs">
 					<legend>내 회원 정보</legend>
-					<div>
-						<label for="newId">아이디</label>
+					<div class="my-input" id="idDiv">
+						<label for="newId">아이디</label><br>
 						<input type="text" name="newId" id="newId" value=<%=changeId %> readonly>
 					</div>
-					<div>
-						<label for="newPw">비밀번호</label>
+					<div class="my-input" id="pwDiv">
+						<label for="newPw">비밀번호</label><br>
 						<input type="password" name="newPw" id="newPw" value=<%=changePw %>><br>
 						<br><span class="errMsg" id="pwErrMsg"></span>
 					</div>
 				</fieldset> <!-- first fieldset end -->
-				<fieldset>
+				<fieldset class="fs" id="privacyfs">
 					<legend>내 개인 정보</legend>
-					<div>
-						<label for="newName">이름</label>
+					<div class="my-input" id="nameDiv">
+						<label for="newName">이름</label><br>
 						<input type="text" name="newName" id="newName" value=<%=changeName %>>
 						<br><span class="errMsg" id="nameErrMsg"></span>
 					</div>
-					<div>
-						<label for="newNickname">닉네임</label>
+					<div class="my-input" id="nicknameDiv">
+						<label for="newNickname">닉네임</label><br>
 						<input type="text" name="newNickname" id="newNickname" value=<%=changeNickname %>>
 						<br><span class="errMsg" id="nicknameErrMsg"></span>
 					</div>
-					<div>
-						<label for="newBirth">생년월일</label>
+					<div class="my-input" id="birthDiv">
+						<label for="newBirth">생년월일</label><br>
 						<input type="date" name="newBirth" id="newBirth" value=<%=changeBirth %> required>
 						<br><span class="errMsg" id="birthErrMsg"></span>
 					</div>
-					<div>
-						<label>성별
+					<div class="my-input" id="sexDiv">
+						<label>성별<br>
 						<% if (changeSex.equals("male")) {%>
 						<input type="radio" name="newSex" value="male" checked>남자
 						<input type="radio" name="newSex" value="female">여자
@@ -80,18 +80,18 @@ String changeEmail = request.getParameter("prevEmail");
 						</label>
 						<br><span class="errMsg" id="sexErrMsg"></span>
 					</div>
-					<div>
-						<label for="newAddressh">주소</label>
+					<div class="my-input" id="addressDiv">
+						<label for="newAddressh">주소</label><br>
 						<input type="text" name="newAddress" id="newAddress" value=<%=changeAddress %> onclick="execDaumPostcode()">
 						<br><span class="errMsg" id="addressErrMsg"></span>
 					</div>
-					<div>
-						<label for="newPhone">휴대폰번호</label>
+					<div class="my-input" id="phoneDiv">
+						<label for="newPhone">휴대폰번호</label><br>
 						<input type="tel" name="newPhone" id="newPhone" value=<%=changePhone %>>
 						<br><span class="errMsg" id="phoneErrMsg"></span>
 					</div>
-					<div>
-						<label for="newEmail">e-mail</label>
+					<div class="my-input" id="emailDiv">
+						<label for="newEmail">e-mail</label><br>
 						<input type="email" name="newEmail" id="newEmail" value=<%=changeEmail %>>
 						<br><span class="errMsg" id="emailErrMsg"></span>
 					</div>
