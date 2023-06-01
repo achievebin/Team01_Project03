@@ -23,31 +23,56 @@ String yourGrade = (String)request.getAttribute("mypageGrade");
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<div class="wrapper">
-		<section>
-			<h2><%=yourNickname %>님, 환영합니다.</h2>
-			<h3>회원 등급은 <%=yourGrade%>입니다.</h3>
-			<form name="myPageForm" action="./updateInfo.jsp" method="post">
-				<input type="hidden" name="prevId" value=<%=yourId %> readonly>
-				<input type="hidden" name="prevPw" value=<%=yourPw %> readonly>
-				<input type="hidden" name="prevName" value=<%=yourName %> readonly>
-				<input type="hidden" name="prevNickname" value=<%=yourNickname %> readonly>
-				<input type="hidden" name="prevBirth" value=<%=yourBirth %> readonly>
-				<input type="hidden" name="prevSex" value=<%=yourSex %>>
-				<input type="hidden" name="prevAddress" value=<%=yourAddress %> readonly>
-				<input type="hidden" name="prevPhone" value=<%=yourPhone %> readonly>
-				<input type="hidden" name="prevEmail" value=<%=yourEmail %> readonly>
-				<input type="submit" value="회원수정">
-				<input type="button" value="회원탈퇴" onclick="location.href='withdraw.jsp';">
-			</form>
-		</section>
-		<aside>
-			<ul>
-				<li><a href="../revPage/myReview.jsp">활동내역</a></li>
-				<li><a href="../resPage/myReservation.jsp">예약정보</a></li>
-				<li><a href="../bmPage/bookMark.jsp">관심목록</a></li>
-			</ul>
-		</aside>
-	</div>
+		<div class="contents">
+			<section>
+				<h2><%=yourNickname %>님, 환영합니다.</h2>
+				<h3>회원 등급은 <%=yourGrade%>입니다.</h3>
+				<table id="myPageTable">
+					<tr>
+						<td>이름</td><td><%=yourName %></td>
+					</tr>
+					<tr>
+						<td>닉네임</td><td><%=yourNickname %></td>
+					</tr>
+					<tr>
+						<td>생년월일</td><td><%=yourBirth %></td>
+					</tr>
+					<tr>	
+						<td>성별</td><td><%=yourSex %></td>
+					</tr>
+					<tr>	
+						<td>주소</td><td><%=yourAddress %></td>
+					</tr>
+					<tr>
+						<td>휴대폰번호</td><td><%=yourPhone %></td>
+					</tr>
+					<tr>	
+						<td>이메일</td><td><%=yourEmail %></td>
+					</tr>
+				</table>
+				<form name="myPageForm" action="./updateInfo.jsp" method="post">
+					<input type="hidden" name="prevId" value=<%=yourId %> readonly>
+					<input type="hidden" name="prevPw" value=<%=yourPw %> readonly>
+					<input type="hidden" name="prevName" value=<%=yourName %> readonly>
+					<input type="hidden" name="prevNickname" value=<%=yourNickname %> readonly>
+					<input type="hidden" name="prevBirth" value=<%=yourBirth %> readonly>
+					<input type="hidden" name="prevSex" value=<%=yourSex %>>
+					<input type="hidden" name="prevAddress" value=<%=yourAddress %> readonly>
+					<input type="hidden" name="prevPhone" value=<%=yourPhone %> readonly>
+					<input type="hidden" name="prevEmail" value=<%=yourEmail %> readonly>
+					<input type="submit" value="회원수정">
+					<input type="button" value="회원탈퇴" onclick="location.href='withdraw.jsp';">
+				</form>
+			</section>
+			<aside>
+				<ul>
+					<li><a href="../revPage/myReview.jsp">활동내역</a></li>
+					<li><a href="../resPage/myReservation.jsp">예약정보</a></li>
+					<li><a href="../bmPage/bookMark.jsp">관심목록</a></li>
+				</ul>
+			</aside>
+		</div>
+	</div> <!-- wrapper end -->
 	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

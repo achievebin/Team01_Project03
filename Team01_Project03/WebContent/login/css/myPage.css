@@ -1,9 +1,17 @@
 @charset "UTF-8";
 
-section {
+/* section {
+	margin: 0 auto;
 	float: right;
+	text-align: center;
 }
 
 aside {
+	margin: 0 auto;
 	float: left;
+	text-align: center;
 }
+ */
+ 
+.contents{width:550px; height: auto; margin:0 auto; top:50px; position: relative; font-size: large;}
+#myPageTable{width:100%; background-color: rgb(247, 247, 247);}
