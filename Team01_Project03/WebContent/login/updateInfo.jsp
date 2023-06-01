@@ -39,19 +39,9 @@ String changeEmail = request.getParameter("prevEmail");
 						<label for="newId">아이디</label><br>
 						<input type="text" name="newId" id="newId" value=<%=changeId %> readonly>
 					</div>
-					<div class="my-input" id="oldPwDiv">
-						<label for="newPw">기존 비밀번호</label><br>
-						<input type="password" name="oldPw" id="oldPw" value=<%=changePw %>><br>
-						<br><span class="errMsg" id="pwErrMsg"></span>
-					</div>
 					<div class="my-input" id="newPwDiv">
-						<label for="newPw">새 비밀번호</label><br>
-						<input type="password" name="newPw" id="newPw"><br>
-						<br><span class="errMsg" id="pwErrMsg"></span>
-					</div>
-					<div class="my-input" id="newPwCheckDiv">
-						<label for="newPw">새 비밀번호 확인</label><br>
-						<input type="password" name="newPwCheck" id="newPwCheck"><br>
+						<label for="newPw">비밀번호</label><br>
+						<input type="password" name="newPw" id="newPw" value=<%=changePw %>><br>
 						<br><span class="errMsg" id="pwErrMsg"></span>
 					</div>
 				</fieldset> <!-- first fieldset end -->

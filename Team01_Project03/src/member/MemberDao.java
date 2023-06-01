@@ -149,6 +149,21 @@ public class MemberDao extends JDBConnect {
 		return dto;
 	}
 	
+	//비밀번호 변경: 아이디가 일치하는 회원 정보를 찾은 후 기입한 비밀번호로 갱신합니다.
+		public int modifyPw(String nextpw, String myid, String currpw) {
+			int modifyResult = 0;
+			String query = "UPDATE memberidtbl SET mit_pw=? WHERE mit_id=? AND mit_pw=?";
+			try {
+				psmt = con.prepareStatement(query); 
+	            psmt.setString(1, nextpw);
+	            psmt.setString(2, myid);
+	            psmt.setString(3, currpw);
+	            modifyResult = psmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return modifyResult;
+		}
 	
 	//회원정보수정: 아이디와 일치하는 회원 정보를 찾은 후 기입한 정보로 갱신합니다.
 	public int update(MemberDto dto) {
