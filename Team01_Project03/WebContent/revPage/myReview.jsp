@@ -18,8 +18,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 // DAO를 생성해 DB에 연결
-ReviewDAO dao = new ReviewDAO(application);
-ActDTO adt = new ActDTO();
+ReviewDAO dao = new ReviewDAO(application); //리뷰dao
+ActDTO adt = new ActDTO();	//숙소dto
 
 
 // 사용자가 입력한 검색 조건을 Map에 저장
@@ -74,7 +74,7 @@ sdao.close();	//점수db 연결해제
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
 
-<!-- 리뷰 삭제 함수 -->
+<!-- 리뷰 삭제 스크립트 -->
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -86,13 +86,16 @@ function deletePost() {
     }
 }
 </script>
-<!-- 리뷰 삭제 함수 끝 -->
+<!-- 리뷰 삭제 스크립트 끝 -->
+
 <!-- css 연결 -->
 <link href="./css/revcss.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- 헤더 -->
-<%@ include file="../common/header.jsp" %>	
+<%@ include file="../common/header.jsp" %>
+
+<!-- myReview div 시작 -->	
 <div id="myReview">
 <h2>활동내역 - 내가 쓴 리뷰</h2>
 
@@ -118,7 +121,7 @@ function deletePost() {
     </form> -->
     <!-- 검색 폼 끝 -->
     
-    <!-- 게시물 목록 테이블(표) -->
+    <!-- revListTable 시작 -->
     <table border="1" style="width:90%" class="revListTable" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
@@ -185,6 +188,7 @@ else { %>
 %>
 
     </table>
+    <!-- revListTable 끝 -->
                     <!--목록 하단의 [글쓰기] 버튼-->
     <table border="1" style="width:90%">
         <tr align="center">
@@ -199,7 +203,9 @@ else { %>
     <!-- 게시물 목록 끝 -->
 
 </div>
-
+<!-- myReview div 끝 -->	
 </body>
+
+<!-- 푸터 적용 -->
 <jsp:include page="/common/footer.jsp"/>
 </html>

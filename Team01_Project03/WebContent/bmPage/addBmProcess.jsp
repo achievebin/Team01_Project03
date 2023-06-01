@@ -17,8 +17,8 @@ BmDAO dao = new BmDAO(application);  // DAO 객체 생성
 
 // 로그인된 사용자 ID 얻기
 String sessionId = session.getAttribute("signInId").toString(); 
-/* dto.setBmId(sessionId); //dto에 id 입력 */
-int delResult = 0;
+
+int delResult = 0; // 값을 받으면 1로 변환
 
 // 세션id가 공백이 아닐경우(로그인상태)
 if (sessionId != null ) {  

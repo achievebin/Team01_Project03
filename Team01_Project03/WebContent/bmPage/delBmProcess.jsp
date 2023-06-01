@@ -13,7 +13,7 @@ BmDAO dao = new BmDAO(application);  // DAO 객체 생성
 
 
 
-dto.setActNumber((String)num);
+dto.setActNumber((String)num); // dto에 숙소번호 입력
 
 // 로그인된 사용자 ID 얻기
 String sessionId = session.getAttribute("signInId").toString(); 

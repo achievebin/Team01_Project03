@@ -75,7 +75,8 @@ sdao.close();// DB 연결 해제
 <meta charset="UTF-8">
 <!-- 타이틀 -->
 <title>숙소 소개</title>
-<!-- 삭제 버튼 클릭시 해당함수 작동 -->
+
+<!-- 삭제 버튼 클릭시 해당스크립트 작동 -->
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -88,7 +89,7 @@ function deletePost() {
 }
 </script>
 
-<!-- 관심목록추가 버튼 클릭시 해당함수 작동 -->
+<!-- 관심목록추가 버튼 클릭시 해당스크립트 작동 -->
 <script>
 function addBookMark() {
     var confirmed = confirm("정말로 추가하겠습니까?"); 
@@ -102,7 +103,7 @@ function addBookMark() {
 }
 </script>
 
-<!-- 관심목록삭제 버튼 클릭시 해당함수 작동 -->
+<!-- 관심목록삭제 버튼 클릭시 해당스크립트 작동 -->
 <script>
 function delBookMark() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -124,15 +125,16 @@ function delBookMark() {
 
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
+<!-- actView div 시작 -->
 <div id="actView">
 <h2>숙소 소개</h2>
 
-<!-- 숙소소개 폼  -->
+<!-- 숙소소개 폼 시작  -->
 <form name="ActViewFrm" method="get">
     <input type="hidden" name="num" value="<%= dto.getActNumber() %>" />  <!-- 공통 링크 -->
 	<input type="hidden" name="actnum" value="<%= dto.getActNumber() %>" />
 	<input type="hidden" name="actname" value="<%= dto.getActName() %>" />
-	<!-- 숙소 소개 테이블  -->
+	<!-- 숙소 소개 테이블 시작  -->
     <table border="1" style="width:90%" id="actViewTable">
     	<!-- 숙소 데이터 출력 -->
         <tr>
@@ -230,9 +232,11 @@ function delBookMark() {
     <!-- 아래쪽에 리뷰리스트 출력 -->
     <jsp:include page="../revPage/reviewList.jsp" />
 </form>
-</div>
 <!-- 숙소소개 폼 끝 -->
+</div>
+<!-- actView div 끝 -->
 
 </body>
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>

@@ -15,10 +15,11 @@ String sessionId = session.getAttribute("signInId").toString();
 
 int delResult = 0;
 
-if (sessionId.equals(dto.getActId())) {  // 작성자가 본인인지 확인 
-    // 작성자가 본인일경우
-    dto.setActNumber(num);
-    delResult = dao.deletePost(dto);  // 삭제
+//작성자가 본인인지 확인 
+if (sessionId.equals(dto.getActId())) {  // 작성자가 본인일경우
+    
+    dto.setActNumber(num); //dto에 선택된 숙소의 숙소번호를 입력
+    delResult = dao.deletePost(dto);  // 해당 숙소번호를 가진 데이터 삭제
 /*     int delRev = dao.deleteReview(dto);
     int delSco = dao.deleteScore(dto); */
     dao.close();

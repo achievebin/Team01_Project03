@@ -22,7 +22,7 @@ dto.setActRoom(Integer.parseInt(room));  //숙소 객실수
 dto.setActNumber(num);  //숙소번호
 
 // DB에 반영
-ActDAO dao = new ActDAO(application);
+ActDAO dao = new ActDAO(application); //dao 연결
 int affected = dao.updateEdit(dto);  //숙소 데이터 변경
 int upRev = dao.updateRev(dto);  //리뷰 데이터 변경
 int upScore = dao.updateScore(dto);  //숙소 점수 데이터 변경

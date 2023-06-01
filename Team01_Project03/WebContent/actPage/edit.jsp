@@ -81,7 +81,7 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
-
+<!-- actEdit div 시작 -->
 <div id = "actEdit">
 <h2>숙소정보 수정</h2>
 
@@ -153,7 +153,9 @@ function validateForm(form) {  // 폼 내용 검증
 </form>
 <!-- 숙소정보 수정 폼 끝 -->
 </div>
+<!-- actEdit div 끝 -->
 
 </body>
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>

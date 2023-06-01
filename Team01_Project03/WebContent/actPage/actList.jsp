@@ -84,9 +84,12 @@ dao.close();  // DB 연결 닫기
 
 <body>
 
-<!-- 헤더 --> 
+<!-- 헤더 적용 --> 
 <%@ include file="../common/header.jsp" %>	
 <div class="wrapper">
+
+
+	<!-- actList div 시작 -->
 	<div id="actList">
 		<%--     <!-- 날짜 입력용 달력 -->
 		<%@ include file = "../actPage/accommodationDate.jsp" %> --%>
@@ -110,7 +113,7 @@ dao.close();  // DB 연결 닫기
 		</form>
 	    <!-- 정렬 기능 끝 -->
 	    
-	        <!-- 숙소 구분 폼 -->
+	    <!-- 숙소 구분 폼 -->
 	    <form action="../actPage/actList.jsp" method="get">
 	            <select name="actdiv" onchange="this.form.submit()">
 	            	<option value="">숙소종류</option>
@@ -121,9 +124,7 @@ dao.close();  // DB 연결 닫기
 	           	</select>
 	           	<button type="button" onclick="location.href='actList.jsp';">전체보기
 	            </button>
-	    </form>
-	    
-	    
+	    </form>   
 	    <!-- 숙소 구분 폼 끝 -->
 	 
 	    <!-- 게시물 목록 테이블(표) -->
@@ -177,11 +178,11 @@ dao.close();  // DB 연결 닫기
 	            <td><%= dto.getActNumber()  %></td>  <!--게시물 번호-->
 	            <td align="left">  <!--제목(+ 하이퍼링크)-->
 	                <a href="actView.jsp?num=<%= dto.getActNumber() %>">
-	                <%= dto.getActName() %></a>
+	                <%= dto.getActName() %></a> <!-- 숙소명 -->
 	            </td>
-	            <td style="text-align: left"><%= dto.getActDiv() %></td>          <!--숙소종류-->
-	            <td style="text-align: left;"><%= dto.getActAddress() %></td>          <!--숙소주소-->
-	            <td style="text-align: left"><%= dto.getActPhone() %></td>  <!--숙소전화번호-->
+	            <td style="text-align: left"><%= dto.getActDiv() %></td>     <!--숙소종류-->
+	            <td style="text-align: left;"><%= dto.getActAddress() %></td><!--숙소주소-->
+	            <td style="text-align: left"><%= dto.getActPhone() %></td>   <!--숙소전화번호-->
 	            <td style="text-align: right"><%= dto.getActPrice() %></td>  <!--숙소가격-->
 	            <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
 	            <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
@@ -193,11 +194,11 @@ dao.close();  // DB 연결 닫기
 	            		bmchk = "O"; // 관심목록 데이터에 해당 숙소가 있을경우 O로 표시
 	            		
 	            	}%> <% }; %>
-	            <!--관심목록 표시-->	
+	            <!--관심여부 출력-->	
 				<td><%=bmchk %></td>
 	           
 	        </tr>
-	<%
+	<%//db연결 해제
 	   rdao.close();
 		sdao.close();	
 	    	}
@@ -232,8 +233,13 @@ dao.close();  // DB 연결 닫기
 	            </td>
 	        </tr>
 	    </table>
+	    <!-- actListTable 끝 -->
+	    
 	</div>
+	<!-- actList div 끝 -->
+	
 </div>
+<!-- wrapper div 끝 -->
     <!-- 페이징 및 글쓰기 버튼 끝 -->
 
 

@@ -10,7 +10,7 @@
 <!-- 타이틀 -->
 <title>숙소목록</title>
 
-<!-- 폼 예외처리 -->
+<!-- 폼 예외처리 스크립트 시작 -->
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증
 	let regPhone = /([0-9]{2,4})-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -58,22 +58,24 @@ function validateForm(form) {  // 폼 내용 검증
     
 }
 </script>
-<!-- 폼 예외처리 끝 -->
+<!-- 폼 예외처리 스크립트 끝 -->
 
 <!-- css 연결 -->
 <link href="./css/actcss.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
-<!-- 헤더 -->
+<!-- 헤더 적용 -->
 <%@ include file="../common/header.jsp" %>	
 
+<!-- actWrite div 시작 -->
 <div id="actWrite">
 <h2>숙소목록 - 글쓰기(Write)</h2>
 
-<!-- 숙소 작성 폼 -->
+<!-- 숙소 작성 폼 시작 -->
 <form name="ActwriteFrm" method="post" action="actWriteProcess.jsp"
       onsubmit="return validateForm(this);">
+      <!-- actWriteTable 시작 -->
     <table border="1" style="width:90%" id="actWriteTable">
         <tr>
         <!-- 숙소명 입력 -->
@@ -123,7 +125,7 @@ function validateForm(form) {  // 폼 내용 검증
             </td>
         </tr>
         <tr>
-                <!-- 숙소 객실수 입력 -->
+                <!-- 숙소 종류 입력 -->
             <td>숙소 구분</td>
             <td>
                 <select name="act_div">
@@ -145,10 +147,15 @@ function validateForm(form) {  // 폼 내용 검증
             </td>
         </tr>
     </table>
+    <!-- actWriteTable 끝 -->
 </form>
-</div>
 <!-- 숙소 작성 폼 끝 -->
 
+</div>
+<!-- actWrite div 끝 -->
+
+
 </body>
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>

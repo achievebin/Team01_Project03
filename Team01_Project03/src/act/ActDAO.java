@@ -88,7 +88,7 @@ public class ActDAO extends JDBConnect {
             
             // 쿼리문 실행
             rs = psmt.executeQuery();          
-            while (rs.next()) {
+            while (rs.next()) { //rs에 값이 있을경우 해당값을 dto에 저장 
             	String actnum = rs.getString("act_number");
             	String actname = rs.getString("act_name");
             	String actinfo = rs.getString("act_info");
@@ -110,7 +110,7 @@ public class ActDAO extends JDBConnect {
                 dto.setActPrice(actpr);
                 dto.setActLeftRoom(actle);	
                 dto.setActDiv(actdiv);
-            	bbs.add(dto);
+            	bbs.add(dto); //dto의 값을 리스트에 추가
                 
             }
 
@@ -234,7 +234,7 @@ public class ActDAO extends JDBConnect {
             rs = psmt.executeQuery();  // 쿼리 실행 
 
             // 결과 처리
-            if (rs.next()) {
+            if (rs.next()) { //rs에 값이 있을경우 dto에 저장
                 dto.setActNumber(rs.getString(1)); 
                 dto.setActName(rs.getString(2));             
                 dto.setActAddress(rs.getString(3));
@@ -273,7 +273,7 @@ public class ActDAO extends JDBConnect {
 //        }
 //    }
     
-    // 지정한 게시물을 수정합니다.
+    // 숙소 데이터 수정
     public int updateEdit(ActDTO dto) { 
         int result = 0;
         
@@ -305,7 +305,7 @@ public class ActDAO extends JDBConnect {
         
         return result; // 결과 반환 
     }
-    // 수정 성공시 데이터베이스 업데이트
+    // 리뷰테이블의 숙소명 업데이트
     public int updateRev(ActDTO dto) { 
         int result = 0;
         
@@ -328,7 +328,7 @@ public class ActDAO extends JDBConnect {
         
         return result; // 결과 반환 
     }
-    
+    // 리뷰스코어 테이블의 숙소명 업데이트
     public int updateScore(ActDTO dto) { 
         int result = 0;
         
@@ -416,7 +416,7 @@ public class ActDAO extends JDBConnect {
         
         return result; // 결과 반환
     }
-    
+    //리뷰 스코어 업데이트
     public int scoreUpdate(int num) {
         
     	int result = 0;

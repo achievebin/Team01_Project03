@@ -14,6 +14,7 @@ String score = request.getParameter("rev_score");  //리뷰 점수
 String hotel = request.getParameter("rev_hotel");  //리뷰한 숙소 명
 String actnumber = (String)session.getAttribute("actnumber"); //리뷰한 숙소 번호
 String id = (String)session.getAttribute("signInId");  //리뷰 작성자 id
+
 // 폼값을 DTO 객체에 저장
 ReviewDTO dto = new ReviewDTO();
 dto.setTitle(title); //리뷰 제목

@@ -101,6 +101,7 @@ function addComma(num) {
 <!-- 헤더 -->
 <jsp:include page="/common/header.jsp" />
 	<div class="wrapper">
+		<!-- resList div 시작 -->
 		<div id="resList">
 		   <%--  <h2>목록 보기(List) - 현재 페이지 : <%= pageNum %> (전체 : <%= totalPage %>)</h2> --%>
 		    <h2>예약 목록</h2>
@@ -200,7 +201,7 @@ function addComma(num) {
 		        </tr>
 		    </table>
 		 </div>
-	     <!-- 게시물 목록 테이블(표) 끝 -->
+	     <!-- resList div 끝 -->
 	</div>     
 <script>
 function addComma(num) {

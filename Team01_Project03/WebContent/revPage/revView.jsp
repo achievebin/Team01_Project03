@@ -8,7 +8,7 @@ String num = request.getParameter("num");  // 일련번호 받기
 ReviewDAO dao = new ReviewDAO(application);  // DAO 생성 
               
 ReviewDTO dto = dao.selectView(num);        // 게시물 가져오기 
-String actname = dto.getTitle();
+String actname = dto.getTitle();			// 숙소명 가져오기
 dao.close();                               // DB 연결 해제
 %>
 <!DOCTYPE html>
@@ -41,15 +41,18 @@ function deletePost() {
 
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>	
+
+<!-- revView div 시작 -->
 <div id="revView">
 <h2>리뷰 상세</h2>
 
-<!-- 리뷰출력 폼 -->
-<form name="ReViewFrm" method="post" id="revViewTable">
+<!-- 리뷰출력 폼 시작 -->
+<form name="ReViewFrm" method="post" >
             <input type="hidden" name="revId" value="<%= dto.getId() %>" />
             <input type="hidden" name="revNum" value="<%= dto.getNum() %>" />
-
-    <table border="1" style="width:90%">
+	
+	<!-- revViewTable 시작 -->
+    <table border="1" style="width:90%" id="revViewTable">
     
         <tr>
             <td>번호</td><td><%= dto.getNum() %></td>
@@ -96,11 +99,16 @@ function deletePost() {
         </tr>
                
     </table>
+    <!-- revViewTable 끝 -->
     
 </form>
-</div>
 <!-- 리뷰출력 폼 끝 -->
+
+</div>
+<!-- revView div 시작 -->
 </body>
+
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>
 

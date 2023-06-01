@@ -27,13 +27,13 @@
 
 <!-- 리뷰 작성 예외처리 -->
 <script type="text/javascript">
-function validateForm(form) {  // 폼 내용 검증
-    if (form.rev_title.value == "") {
+function validateForm(form) {  
+    if (form.rev_title.value == "") {//공백값 제거
         alert("제목을 입력하세요.");
         form.rev_title.focus();
         return false;
     }
-    if (form.rev_content.value == "") {
+    if (form.rev_content.value == "") {//공백값 제거
         alert("내용을 입력하세요.");
         form.rev_content.focus();
         return false;
@@ -43,7 +43,7 @@ function validateForm(form) {  // 폼 내용 검증
 <!-- 리뷰 작성 예외처리 끝 -->
 </head>
 <body>
-<!-- 헤더 -->
+<!-- 헤더 적용 -->
 <%@ include file="../common/header.jsp" %>
 
 
@@ -95,11 +95,14 @@ dao.close();  // DB 연결 닫기
 
 %>
 
+<!-- revWrite div 시작 -->
 <div id="revWrite">
 <h2>리뷰 쓰기</h2>
- <!-- 리뷰 입력 폼 -->
+ <!-- 리뷰 입력 폼 시작 -->
 <form name="ReviewwriteFrm" method="post" action="reviewWriteProcess.jsp"
       onsubmit="return validateForm(this);">
+      
+      <!-- revWriteTable 시작 -->
     <table border="1" style="width:90%" id="revWriteTable">
         <tr>
         <!-- 리뷰 제목 -->
@@ -145,9 +148,15 @@ dao.close();  // DB 연결 닫기
             </td>
         </tr>
     </table>
+    <!-- revWriteTable 끝 -->
 </form>
+ <!-- 리뷰 입력 폼 끝 -->
+
 </div>
- <!-- 리뷰 입력 끝 -->
+<!-- revWrite div 끝 -->
+
 </body>
+
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>

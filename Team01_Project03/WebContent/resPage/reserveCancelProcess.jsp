@@ -16,10 +16,10 @@ String sessionId = session.getAttribute("signInId").toString();
 int delResult = 0;
 
 if (sessionId.equals(dto.getResid())) {  // 작성자가 본인인지 확인 
-    // 작성자가 본인이면...
-    dto.setResnumber(Integer.parseInt(num));
-    delResult = dao.cancleReserve(dto);  // 삭제!!! 
-    dao.updateRoom(dto.getActnumber());
+    // 작성자가 본인일 경우
+    dto.setResnumber(Integer.parseInt(num)); //resDTO에 예약번호 입력
+    delResult = dao.cancleReserve(dto);  // 해당 예약번호의 취소여부를 취소됨으로 변경
+    dao.updateRoom(dto.getActnumber()); // 숙소db의 남은객실수 업데이트 
 
     dao.close();
 

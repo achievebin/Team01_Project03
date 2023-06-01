@@ -38,7 +38,7 @@ dto.setResid(id);	//예약자 아이디
 
 
 // DB에 반영
-ReserveDAO dao = new ReserveDAO(application);
+ReserveDAO dao = new ReserveDAO(application); //db 연결
 int affected = dao.insertWrite(dto);	//db에 입력
 int upd = dao.updateRoom(Integer.parseInt(num));	//객실수 업데이트
 

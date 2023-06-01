@@ -16,10 +16,10 @@ String sessionId = session.getAttribute("signInId").toString();
 int delResult = 0;
 
 if (sessionId.equals(dto.getId())) {  // 작성자가 본인인지 확인 
-    // 작성자가 본인이면...
-    dto.setActNumber(num);
-    delResult = dao.deletePost(dto);  // 삭제!!! 
-    dao.close();
+    
+    dto.setActNumber(num); // actnumber dto에 입력 
+    delResult = dao.deletePost(dto);  // dto에서 actnumber를 가져와 해당하는 데이터 삭제
+    dao.close(); //db 연결 해제
 
     // 성공/실패 처리
     if (delResult == 1) { 

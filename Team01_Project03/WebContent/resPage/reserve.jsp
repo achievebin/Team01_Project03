@@ -8,16 +8,16 @@
     pageEncoding="UTF-8"%>
 <%
 String num = request.getParameter("num");  // 일련번호 받기 
-String actnum = (String)session.getAttribute("actnumber");
+String actnum = (String)session.getAttribute("actnumber"); //숙소 번호 가져오기
 ActDAO dao = new ActDAO(application);  // DAO 생성 
               
 ActDTO dto = dao.selectView(actnum);        // 게시물 가져오기 
 String actname = dto.getActName();
 ScoreDAO sdao = new ScoreDAO(application); //점수 dao 생성
 
-ScoreDTO sdto = sdao.scoreView(actnum); //점수 가져오기
+ScoreDTO sdto = sdao.scoreView(actnum); //ScoreDTO에서 점수 가져오기
 
-int act_price = dto.getActPrice();
+int act_price = dto.getActPrice(); //ActDTO에서 숙소가격 가져오기
 
 
 
@@ -75,30 +75,30 @@ window.onload = function() {
 		let regPhone = /([0-9]{2,4})-?([0-9]{3,4})-?([0-9]{4})$/;
 		let regPrice = /([0-9])$/;
 		
-	    if (form.reserv_name.value == "") {
+	    if (form.reserv_name.value == "") { // 공백 제거
 	        alert("예약자 성함을 입력하세요.");
 	        form.reserv_name.focus();
 	        return false;
 	    }
 	    
-	    if (form.reserv_phone.value == "") {
+	    if (form.reserv_phone.value == "") {// 공백 제거
 	        alert("전화번호를 입력하세요.");
 	        form.reserv_phone.focus();
 	        return false;
 	    }
 	    
-		if (regPhone.test(form.reserv_phone.value) == false) {
+		if (regPhone.test(form.reserv_phone.value) == false) {// 전화번호 형식이 틀렸을경우
 			alert("잘못된 형식의 전화번호입니다.");
 			form.reserv_phone.focus();
 			return false;
 			}
 		
-	    if (form.intera.checked == false) {
+	    if (form.intera.checked == false) {// 공백 제거
 	        alert("약관A에 동의해주세요");
 	        form.intera.focus();
 	        return false;
 	    }
-	    if (form.interb.checked == false) {
+	    if (form.interb.checked == false) {// 공백 제거
 	        alert("약관B에 동의해주세요");
 	        form.interb.focus();
 	        return false;
@@ -111,11 +111,13 @@ window.onload = function() {
 
 </head>
 <body>
-<!-- 헤더 -->
+<!-- 헤더 적용 -->
 <jsp:include page="/common/header.jsp" />
+
+<!-- resWrite div 시작 -->
 <div id="resWrite">
 <%-- <jsp:include page="../ActPage/MainLink.jsp" /> --%>
-<!-- 숙소명 예약 출력 -->
+<!-- 숙소명 + 예약 출력 -->
 <h2><%=actname%> 예약</h2>
         
         <!-- 예약 정보 입력 폼 -->
@@ -183,13 +185,12 @@ window.onload = function() {
        
         </form> 
         <!-- 예약 정보 입력 폼 끝 -->
- 
-        
-
-    
 
 </div>
+<!-- resWrite div 끝 -->
 
 </body>
+
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>

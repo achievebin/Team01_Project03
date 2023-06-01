@@ -24,12 +24,13 @@ dto.setActPhone(phone);  //숙소 전화번호
 dto.setActRoom(Integer.parseInt(room)); //숙소 객실수
 dto.setActId(session.getAttribute("signInId").toString()); //작성자 아이디
 dto.setActPrice(Integer.parseInt(price)); // 숙소 가격
-dto.setActDiv(div);
+dto.setActDiv(div); // 숙소 종류
 // DAO 객체를 통해 DB에 DTO 저장
 ActDAO dao = new ActDAO(application);
 
 //더미데이터용 랜덤함수
 Random random = new Random();
+
 // 기존 코드
 int iResult = dao.insertWrite(dto);
 
@@ -44,10 +45,12 @@ int iResult = dao.insertWrite(dto);
 
 dao.close(); //db연결종료
 
-// 성공 or 실패? 
+// 성공 시
 if (iResult == 1) {
     response.sendRedirect("actList.jsp");
-} else {
+}
+// 실패 시
+else {
     JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
 }
 %>

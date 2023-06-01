@@ -15,8 +15,7 @@ public class ActDTO {
     private String actDiv;
     
 	// 게터/세터
-   
-    
+ 
 	public String getActDiv() {
 		return actDiv;
 	}

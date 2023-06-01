@@ -55,11 +55,11 @@ int start = (pageNum - 1) * pageSize + 1;  // 첫 게시물 번호
 int end = pageNum * pageSize; // 마지막 게시물 번호
 param.put("start", start);
 param.put("end", end);
-/*** 페이지 처리 end ***/
+// 페이징 끝 
 
  List<ActDTO> ActLists = dao.actList(param);  // 게시물 목록 받기
  List<ActDTO> chkLists = adao.bmCheck(param); // 현재 아이디의 북마크 목록 받기
-  // DB 연결 닫기  
+ 
 
 
 
@@ -87,13 +87,14 @@ List<BmDTO> bmLists = dao.selectList(param); // 북마크리스트 가져오기
 </head>
 
 <body>
-<!-- 헤더 -->
-
+<!-- 헤더 적용 -->
 <%@ include file="../common/header.jsp" %>	
+
+<!-- bmList div 시작 -->
 <div id="bmList">
     <h2>관심 목록</h2>
     
-    <!-- 게시물 목록 테이블(표) -->
+    <!-- bmListTable 시작 -->
     <table border="1" style="width:90%" id="bmListTable" >
         <!-- 각 칼럼의 이름 -->
         <tr align="center">
@@ -151,18 +152,19 @@ else {%>
             <td ><%= dto.getActLeftRoom() %></td>    <!--남은객실수-->
             <td ><%= sdto.getAvgScore() %></td>    <!--평균점수-->
             
-            <!--관심목록 표시-->
+            <!--관심여부 확인-->
             <%for(ActDTO adto : chkLists){
             	
             	if (adto.getActBookMark().equals(dto.getActNumber())){
             		bmchk = "O";
             		
             	}%> <% }; %>
+            	<!-- 관심 여부 출력 -->
 			<td><%=bmchk %></td>
             
            
         </tr>
-<%
+<% // DB 연결 닫기  
    rdao.close();
 	sdao.close();	
 
@@ -172,7 +174,7 @@ else {%>
 }
 %>
     </table>
-    <!-- 게시물 목록 테이블(표) 끝 -->
+    <!-- bmListTable 끝 -->
     
     <!-- 페이징 버튼 -->
     <%-- <table border="1" style="width:90%">
@@ -196,6 +198,9 @@ else {%>
         </tr>
     </table> --%>
 </div>
+<!-- bmList div 끝 -->
 </body>
+
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>

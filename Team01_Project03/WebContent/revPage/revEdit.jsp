@@ -25,13 +25,13 @@ String actname = (String)session.getAttribute("actname"); //숙소명 가져오�
 
  <!-- 리뷰 수정 예외처리 함수 -->
 <script type="text/javascript">
-function validateForm(form) {  // 폼 내용 검증
-    if (form.rev_title.value == "") {
+function validateForm(form) {  
+    if (form.rev_title.value == "") { //공백값 예외처리
         alert("제목을 입력하세요.");
         form.rev_title.focus();
         return false;
     }
-    if (form.rev_content.value == "") {
+    if (form.rev_content.value == "") {//공백값 예외처리
         alert("내용을 입력하세요.");
         form.rev_content.focus();
         return false;
@@ -45,6 +45,7 @@ function validateForm(form) {  // 폼 내용 검증
 <!-- 헤더 -->
 <%@ include file="../common/header.jsp" %>
 
+<!-- revEdit div 시작 -->
 <div id="revEdit">
 <h2>리뷰 수정</h2>
 
@@ -54,6 +55,7 @@ function validateForm(form) {  // 폼 내용 검증
       
       <!-- 리뷰번호 입력 -->
       <input type="hidden" name="rev_num" value="<%= dto.getNum() %>" />
+      <!-- revEditTable 시작 -->
     <table border="1" style="width:90%" id="revEditTable">
         <tr>
         <!-- 리뷰 제목 입력 -->
@@ -95,9 +97,15 @@ function validateForm(form) {  // 폼 내용 검증
         </tr>
 
     </table>
+    <!-- revEditTable 끝 -->
+    
 </form>
-</div>
 <!-- 리뷰수정 폼 끝 -->
+
+</div>
+<!-- revEdit div 끝 -->
+
 </body>
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>

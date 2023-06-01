@@ -52,10 +52,10 @@ rdao.close();//예약 DB 연결 해제
 <link href="./css/rescss.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 
-<!-- 예약취소 함수 -->
+<!-- 예약취소 스크립트 -->
 <script>
 function resCancel() {
-    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    var confirmed = confirm("정말로 취소하겠습니까?"); 
     if (confirmed) {
         var form = document.ReserverFrm;       // 이름(name)이 "writeFrm"인 폼 선택
         form.method = "post";               // 전송 방식 
@@ -64,7 +64,7 @@ function resCancel() {
     }
 }
 </script>
-<!-- 예약취소 함수 끝 -->
+<!-- 예약취소 스크립트 끝 -->
 
 
 
@@ -74,9 +74,10 @@ function resCancel() {
 </head>
 
 <body>
-<!-- 헤더 -->
+<!-- 헤더 적용 -->
 <%@ include file="../common/header.jsp" %>
 
+<!-- resView div 시작 -->
 <div id="resView">
 <h2>예약 정보</h2>
  <!-- 예약 정보 출력  폼-->
@@ -111,6 +112,7 @@ function resCancel() {
         <hr width="50%" align="left">
  </form>
  <!-- 예약 정보 출력  폼 끝-->
+ 
   <!-- 총 금액 출력 폼-->
 <form name="saleFrm" method="post">
 	<h2>총 금액</h2>
@@ -133,6 +135,7 @@ function resCancel() {
 	        </tr>
         </table>
         
+        <!-- 예약 취소 버튼 테이블 -->
         <table>
         	<tr>
 				<td><button type="button" onclick="location.href='myReservation.jsp';">목록 보기</button></td>
@@ -145,11 +148,12 @@ function resCancel() {
        	</table>
 </form> 
 <!-- 결제수단 출력 폼 끝 -->
-
-
-       
+   
 </div>
+<!-- resView div 끝 -->
 
 </body>
+
+<!-- 푸터 적용 -->
 <jsp:include page="../common/footer.jsp"/>
 </html>
