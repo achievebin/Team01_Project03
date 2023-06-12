@@ -35,14 +35,13 @@ String changeEmail = request.getParameter("prevEmail");
 		<form name="updateInfoForm" id="updateInfoForm" action="./updateInfoProcess.jsp" method="post">
 				<fieldset class="fs" id="idpwfs">
 					<legend>내 회원 정보</legend>
-					<div class="my-input" id="idDiv">
-						<label for="newId">아이디</label><br>
-						<input type="text" name="newId" id="newId" value=<%=changeId %> readonly>
+					<div>
+						<label for="newId">아이디</label>
+						<input type="text" name="newId" id="newId" value=<%=changeId %>>
 					</div>
-					<div class="my-input" id="newPwDiv">
-						<label for="newPw">비밀번호</label><br>
-						<input type="password" name="newPw" id="newPw" value=<%=changePw %>><br>
-						<br><span class="errMsg" id="pwErrMsg"></span>
+					<div>
+						<label for="newPw">비밀번호</label>
+						<input type="password" name="newPw" id="newPw" value=<%=changePw %>>
 					</div>
 				</fieldset> <!-- first fieldset end -->
 				<fieldset class="fs" id="privacyfs">

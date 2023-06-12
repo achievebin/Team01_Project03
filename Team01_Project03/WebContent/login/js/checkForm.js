@@ -237,7 +237,6 @@ function resetIdCheck() {
 
 //정보수정 폼 유효성 검증	
 function updateInfoFormCheck() {
-	let pw = document.getElementById("newPw");
 	let name = document.getElementById("newName");
 	let nickname = document.getElementById("newNickname");
 	const birth = document.getElementById("newBirth");
@@ -246,7 +245,6 @@ function updateInfoFormCheck() {
 	let email = document.getElementById("newEmail");
 	
 	//에러 메시지 출력을 위한 변수
-	let pwErrMsg = document.getElementById("pwErrMsg");
 	let nameErrMsg = document.getElementById("nameErrMsg");
 	let nicknameErrMsg = document.getElementById("nicknameErrMsg");
 	let birthErrMsg = document.getElementById("birthErrMsg");
@@ -254,22 +252,11 @@ function updateInfoFormCheck() {
 	let phoneErrMsg = document.getElementById("phoneErrMsg");
 	let emailErrMsg = document.getElementById("emailErrMsg");
 	
-	let regPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
 	let regName = /^[가-힇a-zA-Z]+$/;
 	let regNickname = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
 	let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 	let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	
-	if (!pw.value) {
-		pwErrMsg.innerText("비밀번호를 입력해주세요.");
-		pw.focus();
-		return false;
-		}
-	if (regPw.test(pw.value) == false) {
-		pwErrMsg.innerText("숫자, 대소문자, 특수문자를 포함한 8~12자리의 비밀번호를 입력해주세요");
-		pw.focus();
-		return false;
-		}
 	if (!name.value) {
 		nameErrMsg.innerText("이름을 입력해주세요.");
 		name.focus();

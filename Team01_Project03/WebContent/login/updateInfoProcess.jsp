@@ -32,7 +32,7 @@ String oraclePwd = application.getInitParameter("OraclePwd");
 
 MemberDao dao = new MemberDao(oracleDriver, oracleURL, oracleId, oraclePwd);
 MemberDto dto = new MemberDto(updateId, updatePw, updateName, updateNickname, updateBirth, updateSex, updateAddress, updatePhone, updateEmail);
-int updateresult = dao.update(dto);
+int updateresult = dao.updateInfo(dto);
 dao.close();
 
 if (updateresult != 0) {

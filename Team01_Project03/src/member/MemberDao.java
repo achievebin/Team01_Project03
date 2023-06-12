@@ -149,39 +149,39 @@ public class MemberDao extends JDBConnect {
 		return dto;
 	}
 	
-	//비밀번호 변경: 아이디가 일치하는 회원 정보를 찾은 후 기입한 비밀번호로 갱신합니다.
-		public int modifyPw(String nextpw, String myid, String currpw) {
-			int modifyResult = 0;
-			String query = "UPDATE memberidtbl SET mit_pw=? WHERE mit_id=? AND mit_pw=?";
-			try {
-				psmt = con.prepareStatement(query); 
-	            psmt.setString(1, nextpw);
-	            psmt.setString(2, myid);
-	            psmt.setString(3, currpw);
-	            modifyResult = psmt.executeUpdate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return modifyResult;
-		}
-	
-	//회원정보수정: 아이디와 일치하는 회원 정보를 찾은 후 기입한 정보로 갱신합니다.
-	public int update(MemberDto dto) {
+	//비밀번호 변경
+	public int changePwd(String npw, String oid, String opw) {
 		int result = 0;
-		String query = "UPDATE memberidtbl SET mit_pw=?, mit_name=?, mit_nickname=?, mit_birth=?,"
-						+ "mit_sex= ?, mit_address=?, mit_phone=?,"
-						+ "mit_email=? WHERE mit_id=?";
+		String query = "UPDATE memberidtbl SET mit_pw=? WHERE mit_id=? AND mit_pw=?";
 		try {
 			psmt = con.prepareStatement(query); 
-            psmt.setString(1, dto.getPw());
-            psmt.setString(2, dto.getName());
-            psmt.setString(3, dto.getNickname());
-            psmt.setDate(4, dto.getBirth());
-            psmt.setString(5, dto.getSex());
-            psmt.setString(6, dto.getAddress());
-            psmt.setString(7, dto.getPhone());
-            psmt.setString(8, dto.getEmail());
-            psmt.setString(9, dto.getId());
+            psmt.setString(1, npw);
+            psmt.setString(2, oid);
+            psmt.setString(3, opw);
+            result = psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//회원정보수정: 아이디와 일치하는 회원 정보를 찾은 후 기입한 정보로 갱신합니다.
+	public int updateInfo(MemberDto dto) {
+		int result = 0;
+		String query = "UPDATE memberidtbl SET mit_name=?, mit_nickname=?, mit_birth=?,"
+						+ "mit_sex= ?, mit_address=?, mit_phone=?,"
+						+ "mit_email=? WHERE mit_id=? AND mit_pw=?";
+		try {
+			psmt = con.prepareStatement(query); 
+            psmt.setString(1, dto.getName());
+            psmt.setString(2, dto.getNickname());
+            psmt.setDate(3, dto.getBirth());
+            psmt.setString(4, dto.getSex());
+            psmt.setString(5, dto.getAddress());
+            psmt.setString(6, dto.getPhone());
+            psmt.setString(7, dto.getEmail());
+            psmt.setString(8, dto.getId());
+            psmt.setString(9, dto.getPw());
             result = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
