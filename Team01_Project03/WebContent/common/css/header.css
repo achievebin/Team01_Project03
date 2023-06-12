@@ -2,7 +2,8 @@
 #contents {
 	width:1138px;
 	margin-top: 20px;
-	z-index: 99}
+	z-index: 9999;
+}
 
 /* 헤더 전체 배경 */
 .navbar navbar-expand-lg headcolor {
