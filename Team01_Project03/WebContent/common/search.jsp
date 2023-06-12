@@ -10,13 +10,15 @@
         var searchValue = document.getElementById("accsearch").value;
 
         // 검색 필드가 비어 있는지 확인
-        if (searchValue === "") {
+        if (searchValue z=== "") {
             alert("검색어가 없습니다. 검색어를 입력하세요.");
             return false; // 폼 제출을 막음
         }
         return true; // 폼 제출을 진행
     }
 </script>
+<!-- 	<link href="./common/css/serch.css" rel="stylesheet" type="text/css"> -->
+<!-- 	<link href="./css/serch.css" rel="stylesheet" type="text/css"> -->
 </head>
 <body>
 
@@ -41,11 +43,13 @@
 %>
 
 <!-- 검색폼 -->
-<form class="d-flex position-absolute top-50 start-50 translate-middle" role="search" action="../actPage/actList.jsp" method="GET" onsubmit="return searchForm();">
-	<input class="form-control me-2" type="text" placeholder="Search" aria-label="Search"  name="accsearch" id="accsearch" value="<%= searchValue %>">
-	<button class="btn btn-outline-success" type="submit">검색하기</button>
-	<input type="hidden" id="searchText" name="searchText" value="act_name" />
-</form>
+<div class="search">
+	<form class="d-flex position-absolute top-50 start-50 translate-middle" role="search" action="../actPage/actList.jsp" method="GET" onsubmit="return searchForm();">
+		<input class="form-control me-2" type="text" placeholder="Search" aria-label="Search"  name="accsearch" id="accsearch" value="<%= searchValue %>">
+		<button class="btn btn-outline-success" type="submit">검색하기</button>
+		<input type="hidden" id="searchText" name="searchText" value="act_name" />
+	</form>
+</div>
 
 <!-- 이전 검색값을 세션에 저장 -->
 <%
