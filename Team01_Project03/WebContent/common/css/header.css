@@ -64,6 +64,23 @@ a {
 #accsearch {
 	width: 200px;
 }
+
+/* 로그인 정보 드롭박스 크기 */
+#navbarSupportedContent > ul:nth-child(4) > li > ul{
+	width: 180px;
+}
+
+/* 첫번째 요소 위치 정렬 */
+#navbarSupportedContent > ul:nth-child(4) > li > ul > li:nth-child(1) {
+	text-align-last: left;
+	margin-left: 10px;
+}
+
+/* 두번째 요소 위치 정렬 */
+#navbarSupportedContent > ul:nth-child(4) > li > ul > li:nth-child(3) {
+	text-align-last: left;
+	margin-left: 10px;
+}
 /* .head ul {
   display: flex;
   flex-wrap: wrap;
