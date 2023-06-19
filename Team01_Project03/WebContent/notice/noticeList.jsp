@@ -6,7 +6,7 @@
 <%@ page import="member.MemberDao" %>
 <%@ page import="member.MemberDto" %>
 <%@ page import="utils.BoardPage" %>
-
+<%@ page import="utils.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
@@ -117,15 +117,15 @@ dao.close(); // DB 연결 닫기
 	<!--목록 하단의 [글쓰기] 버튼-->
 	<table border="1" style="width:90%">
 	    <tr align="center">
-	        <!--페이징 처리-->
+	        <!-- 페이징 처리 -->
 	        <td>
-	            <%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %>
+	             <%= Page.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %>
 	        </td>
-	        <!--글쓰기 버튼-->
+	        <!-- 글쓰기 버튼 -->
 	        <% if (myGrade != null && myGrade.equals("admin")) { %>
-	         <td>
-	             <button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button>
-	         </td>
+	        <td>
+	            <button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button>
+	        </td>
 	        <% } %>
 	    </tr>
 	</table>
