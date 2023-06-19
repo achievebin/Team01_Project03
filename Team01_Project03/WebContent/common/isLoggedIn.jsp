@@ -14,7 +14,7 @@ if (session.getAttribute("signInId") == null) {
     $().ready(function () {
         Swal.fire({
             icon: 'error',
-            title: '로그인 실패!',
+            title: '로그인 필요',
             text: '<%= message %>',
         }).then(function () {
             location.href='<%= redirectUrl %>';

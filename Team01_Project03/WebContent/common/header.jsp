@@ -19,7 +19,7 @@
 					</a>
 				<div class="search"> <!-- 검색창 -->
 				 	<!-- -------------------------검색창------------------------------ -->  
-					<%@ include file="../common/search.jsp" %>
+					<%@ include file="/common/search.jsp" %>
 				</div> <!-- 검색창 end -->
 					<!-- -----------------생성할 하위 페이지로 넘겨줄 구역------------------- -->
 					<div class="position-absolute top-80 end-0 translate-middle-y"> <!-- second start -->       
