@@ -9,7 +9,7 @@
 <title>첫 화면</title>
 <link href="./common/css/index.css" rel="stylesheet" type="text/css">
 </head>
-<jsp:include page="./common/header.jsp" />
+<jsp:include page="/common/header.jsp" />
 <body>
 
 <div class="wrapper">
@@ -43,5 +43,5 @@
 	</div>
 </div>
 </body>
-<jsp:include page="./common/footer.jsp" />
+<jsp:include page="/common/footer.jsp" />
 </html>
